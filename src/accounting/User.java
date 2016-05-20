@@ -1,5 +1,8 @@
 package accounting;
 
+import distribution.Resource;
+import distribution.Warehouse;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -8,6 +11,12 @@ public class User {
 	private String firstname;
 	private String lastname;
 	private List<Job> jobs;
+
+	public User(String firstname, String lastname, List<Job> jobs) {
+		this.firstname = firstname;
+		this.lastname = lastname;
+		this.jobs = jobs;
+	}
 
 	public String[] getPermissions() {
 		List<String> permissions = new ArrayList<>();
@@ -36,5 +45,10 @@ public class User {
 			return  false;
 		}
 		return true;
+	}
+
+	public boolean addNewResource(Resource resource){
+
+		return  true;
 	}
 }

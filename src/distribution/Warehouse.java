@@ -13,9 +13,8 @@ public class Warehouse {
 		throw new UnsupportedOperationException();
 	}
 
-	public void getInstance() {
-		// TODO - implement Warehouse.getInstance
-		throw new UnsupportedOperationException();
+	public  getInstance() {
+		return instance;
 	}
 
 	private Warehouse() {
