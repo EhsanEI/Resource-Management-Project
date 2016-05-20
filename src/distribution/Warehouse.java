@@ -1,23 +1,32 @@
 package distribution;
 
+import java.lang.*;
+import java.lang.System;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Warehouse {
 
 	private List<Resource> resources;
 
-	private static Warehouse instance = new Warehouse();
+	private static Warehouse instance;
 
-	private Warehouse(){}
+	private Warehouse(){
+		resources = new ArrayList<>();
+	}
 
 	public static  Warehouse getInstance() {
+		if (instance == null) {
+			instance = new Warehouse();
+		}
 		return instance;
 	}
 
 	public Resource getResource(int id){
-		for(Resource resource : resources)
+		for(Resource resource : resources) {
 			if (resource.getId() == id)
 				return resource;
+		}
 		return  null;
 
 	}
