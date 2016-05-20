@@ -14,6 +14,14 @@ public class Warehouse {
 		return instance;
 	}
 
+	public Resource getResource(int id){
+		for(Resource resource : resources)
+			if (resource.getId() == id)
+				return resource;
+		return  null;
+
+	}
+
 	public boolean addResource(Resource resource) {
 		if(resource != null)
 			resources.add(resource);
