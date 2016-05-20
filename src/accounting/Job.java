@@ -2,7 +2,7 @@ package accounting;
 
 public class Job {
 
-	private string title;
-	private string[] permissions;
+	private String title;
+	private String[] permissions;
 
 }

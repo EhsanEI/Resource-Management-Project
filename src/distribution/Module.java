@@ -7,6 +7,6 @@ public class Module extends InformationResource {
 	private int loc;
 	private int hours;
 	private Speciality[] specialities;
-	private string state;
+	private String state;
 
 }

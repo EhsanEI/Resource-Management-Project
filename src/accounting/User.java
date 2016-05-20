@@ -2,11 +2,11 @@ package accounting;
 
 public class User {
 
-	private string firstname;
-	private string lastname;
+	private String firstname;
+	private String lastname;
 	private Job[] jobs;
 
-	public string[] getPermissions() {
+	public String[] getPermissions() {
 		// TODO - implement User.getPermissions
 		throw new UnsupportedOperationException();
 	}

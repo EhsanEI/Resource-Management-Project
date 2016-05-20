@@ -2,10 +2,10 @@ package distribution;
 
 public class Requirement {
 
-	private string resourceType;
-	private string resourceName;
+	private String resourceType;
+	private String resourceName;
 	private int quantity;
-	private string state;
+	private String state;
 	private Resource[] allocatedResources;
 
 }
