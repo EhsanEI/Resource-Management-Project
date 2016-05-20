@@ -1,25 +1,25 @@
 package distribution;
 
+import java.util.List;
+
 public class Warehouse {
 
-	private static Warehouse instance;
+	private List<Resource> resources;
 
-	/**
-	 * 
-	 * @param resource
-	 */
-	public void addResource(Resource resource) {
-		// TODO - implement Warehouse.addResource
-		throw new UnsupportedOperationException();
-	}
+	private static Warehouse instance = new Warehouse();
 
-	public Warehouse getInstance() {
+	private Warehouse(){}
+
+	public static  Warehouse getInstance() {
 		return instance;
 	}
 
-	private Warehouse() {
-		// TODO - implement Warehouse.Warehouse
-		throw new UnsupportedOperationException();
+	public boolean addResource(Resource resource) {
+		if(resource != null)
+			resources.add(resource);
+		else
+			return false;
+		return true;
 	}
 
 }

@@ -48,7 +48,10 @@ public class User {
 	}
 
 	public boolean addNewResource(Resource resource){
-
+		if (resource != null)
+			Warehouse.getInstance().addResource(resource);
+		else
+			return false;
 		return  true;
 	}
 }
