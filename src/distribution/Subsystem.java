@@ -2,7 +2,7 @@ package distribution;
 
 public class Subsystem extends InformationResource {
 
-	private string name;
+	private String name;
 	private Module[] modules;
 
 }
