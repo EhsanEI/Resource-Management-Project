@@ -1,7 +1,5 @@
 package distribution;
 
-import accounting.Speciality;
-
 public class Module extends InformationResource {
 
 	private int loc;

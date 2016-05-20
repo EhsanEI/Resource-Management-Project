@@ -1,4 +1,4 @@
-package accounting;
+package distribution;
 
 public class Speciality {
 
