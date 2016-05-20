@@ -13,7 +13,7 @@ public class Warehouse {
 		throw new UnsupportedOperationException();
 	}
 
-	public  getInstance() {
+	public Warehouse getInstance() {
 		return instance;
 	}
 
