@@ -7,4 +7,8 @@ public class Module extends InformationResource {
 	private Speciality[] specialities;
 	private String state;
 
+	public Module(String name, Requirement[] requirements, int id) {
+		super(name, requirements, id);
+	}
+
 }
