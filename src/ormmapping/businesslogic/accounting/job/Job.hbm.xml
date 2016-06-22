@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!--
+Licensee: 
+License Type: Evaluation
+-->
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="businesslogic.accounting.job.Job" table="Job" lazy="false" discriminator-value="Job">
+		<id name="ID" column="ID" type="integer" unsaved-value="0">
+			<generator class="native">
+			</generator>
+		</id>
+		<discriminator column="Discriminator" type="string"/>
+		
+		<set name="ORM_Permission" lazy="true" cascade="save-update,lock" inverse="false">
+			<key column="JobID" not-null="true"/>
+			<one-to-many class="businesslogic.accounting.Permission"/>
+		</set>
+		<subclass name="businesslogic.accounting.job.ProjectManagement" discriminator-value="ProjectManagement" lazy="false">
+			<set name="ORM_Notification" lazy="true" cascade="save-update,lock" inverse="false">
+				<key column="JobID" not-null="true"/>
+				<one-to-many class="businesslogic.utility.Notification"/>
+			</set>
+		</subclass>
+		<subclass name="businesslogic.accounting.ResourceManagement" discriminator-value="ResourceManagement" lazy="false">
+		</subclass>
+		<subclass name="businesslogic.accounting.job.Programming" discriminator-value="Programming" lazy="false">
+		</subclass>
+	</class>
+</hibernate-mapping>
