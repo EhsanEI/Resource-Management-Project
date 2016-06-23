@@ -42,12 +42,11 @@ public class Notification {
 	}
 	
 	public Notification(String content) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.content = content;
 	}
 	
 	public String toString() {
-		return String.valueOf(getID());
+		return content;
 	}
 	
 }

@@ -13,10 +13,13 @@
  */
 package businesslogic.distribution;
 
+import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.Resource;
 
 public class Allocation {
-	public Allocation() {
+	public Allocation(int ID) {
+		this.ID = ID;
+		this.allocated = false; //TODO really false?
 	}
 	
 	private java.util.Set this_getSet (int key) {
@@ -40,6 +43,10 @@ public class Allocation {
 	private int ID;
 	
 	private boolean allocated;
+
+	private Requirement requirement;
+
+	private Resource[] resources;
 	
 	private java.util.Set ORM_requirements = new java.util.HashSet();
 	
@@ -86,23 +93,19 @@ public class Allocation {
 	public final businesslogic.distribution.ResourceAllocationSetCollection resourceAllocations = new businesslogic.distribution.ResourceAllocationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_ALLOCATION__RESOURCEALLOCATIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.distribution.requirement.Requirement getRequirement() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return requirement;
 	}
 	
 	public void setRequirement(businesslogic.distribution.requirement.Requirement requirement) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.requirement = requirement;
 	}
 	
 	public Resource[] getResources() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return resources;
 	}
 	
 	public void setResources(Resource[] resources) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.resources = resources;
 	}
 	
 	public String toString() {

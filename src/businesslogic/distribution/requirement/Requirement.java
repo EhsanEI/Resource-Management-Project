@@ -14,7 +14,7 @@
 package businesslogic.distribution.requirement;
 
 import businesslogic.accounting.user.User;
-import businesslogic.utility.Quantity;
+import businesslogic.utility.Date;
 
 public class Requirement {
 	public Requirement() {
@@ -42,6 +42,16 @@ public class Requirement {
 	private String resourceType;
 	
 	private int quantity;
+
+	private Date startDate;
+
+	private Date endDate;
+
+	private RequirementPriority priority;
+
+	private User projectManager;
+
+
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -87,54 +97,46 @@ public class Requirement {
 		return requirementPriority;
 	}
 	
-	public Requirement(String resourceName, String resourceType, Quantity quantity, businesslogic.utility.Date startDate, businesslogic.utility.Date endDate, businesslogic.distribution.requirement.RequirementPriority priority) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+	public Requirement(String resourceName, String resourceType, int quantity, businesslogic.utility.Date startDate, businesslogic.utility.Date endDate, businesslogic.distribution.requirement.RequirementPriority priority) {
+		this.resourceName = resourceName;
+		this.resourceType = resourceType;
+		this.quantity = quantity;
+		this.startDate = startDate;
+		this.endDate = endDate;
+		this.priority = priority;
 	}
-	
-	public void setQuantity(Quantity quantity) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
+
 	
 	public businesslogic.utility.Date getStartDate() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return startDate;
 	}
 	
 	public void setStartDate(businesslogic.utility.Date startDate) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.startDate = startDate;
 	}
 	
 	public businesslogic.utility.Date getEndDate() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return endDate;
 	}
 	
 	public void setEndDate(businesslogic.utility.Date endDate) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.endDate = endDate;
 	}
 	
 	public businesslogic.distribution.requirement.RequirementPriority getPriority() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return priority;
 	}
 	
 	public void setPriority(businesslogic.distribution.requirement.RequirementPriority priority) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.priority = priority;
 	}
 	
 	public User getProjectManager() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return projectManager;
 	}
 	
 	public void setProjectManager(User projectManager) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.projectManager = projectManager;
 	}
 	
 	public String toString() {

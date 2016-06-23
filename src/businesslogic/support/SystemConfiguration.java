@@ -13,13 +13,19 @@
  */
 package businesslogic.support;
 
+import businesslogic.utility.Date;
+
 public class SystemConfiguration {
 	public SystemConfiguration() {
 	}
 	
 	private int ID;
+
+	private Date date;
 	
 	private int backupPreiodDays;
+
+	private BackupFormat backupFormat;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -42,23 +48,19 @@ public class SystemConfiguration {
 	}
 	
 	public businesslogic.utility.Date getDate() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return date;
 	}
 	
 	public void setDate(businesslogic.utility.Date date) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.date = date;
 	}
 	
 	public BackupFormat getBackupFormat() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return backupFormat;
 	}
 	
 	public void setBackupFormat(BackupFormat backupFormat) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.backupFormat = backupFormat;
 	}
 	
 	public String toString() {

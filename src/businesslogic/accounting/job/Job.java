@@ -13,9 +13,12 @@
  */
 package businesslogic.accounting.job;
 
+import businesslogic.accounting.Permission;
 import businesslogic.utility.Tree;
 
 public class Job {
+	private Permission[] permissions;
+
 	public Job() {
 	}
 	
@@ -61,13 +64,11 @@ public class Job {
 	public final businesslogic.accounting.job.UserJobSetCollection userJobs = new businesslogic.accounting.job.UserJobSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_JOB_USERJOBS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.accounting.Permission[] getPermissions() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return permissions;
 	}
 	
 	public void setPermissions(businesslogic.accounting.Permission[] permissions) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.permissions = permissions;
 	}
 	
 	public Tree<String> getInfo() {

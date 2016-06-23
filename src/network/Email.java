@@ -14,8 +14,6 @@
 package network;
 
 public class Email {
-	public Email() {
-	}
 	
 	private int ID;
 	
@@ -52,13 +50,18 @@ public class Email {
 	}
 	
 	public Email(businesslogic.utility.Notification notification, String address) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		//TODO create html
+		this.content = notification.getContent();
+		this.address = address;
 	}
 	
 	public Email(String content, String address) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.content = content;
+		this.address = address;
+	}
+
+	public void send() {
+		//TODO implement
 	}
 	
 	public String toString() {
