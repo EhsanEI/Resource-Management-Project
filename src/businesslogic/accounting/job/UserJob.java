@@ -19,17 +19,16 @@ public class UserJob {
 	
 	private int ID;
 	
-	
-	public int getORMID() {
-		return getID();
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public businesslogic.accounting.user.User getUser() {

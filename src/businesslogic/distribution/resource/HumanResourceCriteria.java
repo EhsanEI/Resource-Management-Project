@@ -20,14 +20,24 @@ import org.orm.criteria.*;
 
 public class HumanResourceCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression uniqueIdentifier;
+	public final IntegerExpression resourceStateId;
+	public final AssociationExpression resourceState;
+	public final IntegerExpression uniqueIdentifier;
 	public final StringExpression name;
+	public final CollectionExpression resourceAllocations;
+	public final IntegerExpression programmingId;
+	public final AssociationExpression programming;
 	
 	public HumanResourceCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		uniqueIdentifier = new StringExpression("uniqueIdentifier", this);
+		resourceStateId = new IntegerExpression("resourceState.ID", this);
+		resourceState = new AssociationExpression("resourceState", this);
+		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this);
 		name = new StringExpression("name", this);
+		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this);
+		programmingId = new IntegerExpression("programming.ID", this);
+		programming = new AssociationExpression("programming", this);
 	}
 	
 	public HumanResourceCriteria(PersistentSession session) {
@@ -35,7 +45,19 @@ public class HumanResourceCriteria extends AbstractORMCriteria {
 	}
 	
 	public HumanResourceCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
+	}
+	
+	public businesslogic.accounting.job.ProgrammingCriteria createProgrammingCriteria() {
+		return new businesslogic.accounting.job.ProgrammingCriteria(createCriteria("programming"));
+	}
+	
+	public ResourceStateCriteria createResourceStateCriteria() {
+		return new ResourceStateCriteria(createCriteria("resourceState"));
+	}
+	
+	public businesslogic.distribution.ResourceAllocationCriteria createResourceAllocationsCriteria() {
+		return new businesslogic.distribution.ResourceAllocationCriteria(createCriteria("ORM_ResourceAllocations"));
 	}
 	
 	public HumanResource uniqueHumanResource() {

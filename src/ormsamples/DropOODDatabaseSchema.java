@@ -11,8 +11,8 @@ public class DropOODDatabaseSchema {
 			System.out.println("Are you sure to drop table(s)? (Y/N)");
 			java.io.BufferedReader reader = new java.io.BufferedReader(new java.io.InputStreamReader(System.in));
 			if (reader.readLine().trim().toUpperCase().equals("Y")) {
-				ORMDatabaseInitiator.dropSchema(businesslogic.distribution.resource.OODPersistentManager.instance());
-				businesslogic.distribution.resource.OODPersistentManager.instance().disposePersistentManager();
+				ORMDatabaseInitiator.dropSchema(businesslogic.accounting.user.OODPersistentManager.instance());
+				businesslogic.accounting.user.OODPersistentManager.instance().disposePersistentManager();
 			}
 			
 		}

@@ -13,13 +13,15 @@
  */
 package businesslogic.accounting.job;
 
+import businesslogic.utility.Tree;
+
 public class Job {
 	public Job() {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.distribution.resource.ORMConstants.KEY_JOB_PERMISSION) {
-			return ORM_permission;
+		if (key == businesslogic.accounting.user.ORMConstants.KEY_JOB_USERJOBS) {
+			return ORM_userJobs;
 		}
 		
 		return null;
@@ -34,14 +36,9 @@ public class Job {
 	
 	private int ID;
 	
-	private java.util.Set ORM_permission = new java.util.HashSet();
+	private java.util.Set ORM_userJobs = new java.util.HashSet();
 	
-	
-	public int getORMID() {
-		return getID();
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
@@ -49,15 +46,19 @@ public class Job {
 		return ID;
 	}
 	
-	private void setORM_Permission(java.util.Set value) {
-		this.ORM_permission = value;
+	public int getORMID() {
+		return getID();
 	}
 	
-	private java.util.Set getORM_Permission() {
-		return ORM_permission;
+	private void setORM_UserJobs(java.util.Set value) {
+		this.ORM_userJobs = value;
 	}
 	
-	public final businesslogic.accounting.PermissionSetCollection permission = new businesslogic.accounting.PermissionSetCollection(this, _ormAdapter, businesslogic.distribution.resource.ORMConstants.KEY_JOB_PERMISSION, businesslogic.distribution.resource.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	private java.util.Set getORM_UserJobs() {
+		return ORM_userJobs;
+	}
+	
+	public final businesslogic.accounting.job.UserJobSetCollection userJobs = new businesslogic.accounting.job.UserJobSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_JOB_USERJOBS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.accounting.Permission[] getPermissions() {
 		//TODO: Implement Method
@@ -65,6 +66,11 @@ public class Job {
 	}
 	
 	public void setPermissions(businesslogic.accounting.Permission[] permissions) {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
+	}
+	
+	public Tree<String> getInfo() {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}

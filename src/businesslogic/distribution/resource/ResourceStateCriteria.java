@@ -31,7 +31,7 @@ public class ResourceStateCriteria extends AbstractORMCriteria {
 	}
 	
 	public ResourceStateCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
 	public ResourceState uniqueResourceState() {

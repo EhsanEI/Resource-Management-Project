@@ -20,24 +20,41 @@ import org.orm.criteria.*;
 
 public class FinancialResourceDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression uniqueIdentifier;
+	public final IntegerExpression resourceStateId;
+	public final AssociationExpression resourceState;
+	public final IntegerExpression uniqueIdentifier;
 	public final StringExpression name;
+	public final CollectionExpression resourceAllocations;
 	public final IntegerExpression financialValue;
 	
 	public FinancialResourceDetachedCriteria() {
 		super(businesslogic.distribution.resource.FinancialResource.class, businesslogic.distribution.resource.FinancialResourceCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		uniqueIdentifier = new StringExpression("uniqueIdentifier", this.getDetachedCriteria());
+		resourceStateId = new IntegerExpression("resourceState.ID", this.getDetachedCriteria());
+		resourceState = new AssociationExpression("resourceState", this.getDetachedCriteria());
+		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this.getDetachedCriteria());
 		name = new StringExpression("name", this.getDetachedCriteria());
+		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this.getDetachedCriteria());
 		financialValue = new IntegerExpression("financialValue", this.getDetachedCriteria());
 	}
 	
 	public FinancialResourceDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, businesslogic.distribution.resource.FinancialResourceCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		uniqueIdentifier = new StringExpression("uniqueIdentifier", this.getDetachedCriteria());
+		resourceStateId = new IntegerExpression("resourceState.ID", this.getDetachedCriteria());
+		resourceState = new AssociationExpression("resourceState", this.getDetachedCriteria());
+		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this.getDetachedCriteria());
 		name = new StringExpression("name", this.getDetachedCriteria());
+		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this.getDetachedCriteria());
 		financialValue = new IntegerExpression("financialValue", this.getDetachedCriteria());
+	}
+	
+	public businesslogic.distribution.resource.ResourceStateDetachedCriteria createResourceStateCriteria() {
+		return new businesslogic.distribution.resource.ResourceStateDetachedCriteria(createCriteria("resourceState"));
+	}
+	
+	public businesslogic.distribution.ResourceAllocationDetachedCriteria createResourceAllocationsCriteria() {
+		return new businesslogic.distribution.ResourceAllocationDetachedCriteria(createCriteria("ORM_ResourceAllocations"));
 	}
 	
 	public FinancialResource uniqueFinancialResource(PersistentSession session) {

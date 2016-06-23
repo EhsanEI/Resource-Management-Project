@@ -8,8 +8,8 @@ import org.orm.*;
 public class CreateOODDatabaseSchema {
 	public static void main(String[] args) {
 		try {
-			ORMDatabaseInitiator.createSchema(businesslogic.distribution.resource.OODPersistentManager.instance());
-			businesslogic.distribution.resource.OODPersistentManager.instance().disposePersistentManager();
+			ORMDatabaseInitiator.createSchema(businesslogic.accounting.user.OODPersistentManager.instance());
+			businesslogic.accounting.user.OODPersistentManager.instance().disposePersistentManager();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

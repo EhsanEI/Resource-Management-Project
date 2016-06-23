@@ -4,10 +4,11 @@
  */
 package ormsamples;
 
+import businesslogic.distribution.Allocation;
 import org.orm.*;
 public class DeleteOODData {
 	public void deleteTestData() throws PersistentException {
-		PersistentTransaction t = businesslogic.distribution.resource.OODPersistentManager.instance().getSession().beginTransaction();
+		PersistentTransaction t = businesslogic.accounting.user.OODPersistentManager.instance().getSession().beginTransaction();
 		try {
 			businesslogic.accounting.user.User businessLogicAccountingUserUser = businesslogic.accounting.user.UserDAO.loadUserByQuery(null, null);
 			// Delete the persistent object
@@ -75,9 +76,9 @@ public class DeleteOODData {
 			businesslogic.support.SystemConfiguration businessLogicSupportSystemConfiguration = businesslogic.support.SystemConfigurationDAO.loadSystemConfigurationByQuery(null, null);
 			// Delete the persistent object
 			businesslogic.support.SystemConfigurationDAO.delete(businessLogicSupportSystemConfiguration);
-			businesslogic.distribution.Allocation businessLogicDistributionAllocation = businesslogic.distribution.AllocationDAO.loadAllocationByQuery(null, null);
+			Allocation businessLogicDistributionAllocation_ = businesslogic.distribution.Allocation_DAO.loadAllocation_ByQuery(null, null);
 			// Delete the persistent object
-			businesslogic.distribution.AllocationDAO.delete(businessLogicDistributionAllocation);
+			businesslogic.distribution.Allocation_DAO.delete(businessLogicDistributionAllocation_);
 			businesslogic.accounting.user.HighLevelManager businessLogicAccountingUserHighLevelManager = businesslogic.accounting.user.HighLevelManagerDAO.loadHighLevelManagerByQuery(null, null);
 			// Delete the persistent object
 			businesslogic.accounting.user.HighLevelManagerDAO.delete(businessLogicAccountingUserHighLevelManager);
@@ -96,12 +97,6 @@ public class DeleteOODData {
 			businesslogic.distribution.resource.ResourceState businessLogicDistributionResourceResourceState = businesslogic.distribution.resource.ResourceStateDAO.loadResourceStateByQuery(null, null);
 			// Delete the persistent object
 			businesslogic.distribution.resource.ResourceStateDAO.delete(businessLogicDistributionResourceResourceState);
-			businesslogic.support.BackupFormat businessLogicSupportBackupFormat = businesslogic.support.BackupFormatDAO.loadBackupFormatByQuery(null, null);
-			// Delete the persistent object
-			businesslogic.support.BackupFormatDAO.delete(businessLogicSupportBackupFormat);
-			businesslogic.distribution.requirement.ResourceRequirementPriority businessLogicDistributionRequirementResourceRequirementPriority = businesslogic.distribution.requirement.ResourceRequirementPriorityDAO.loadResourceRequirementPriorityByQuery(null, null);
-			// Delete the persistent object
-			businesslogic.distribution.requirement.ResourceRequirementPriorityDAO.delete(businessLogicDistributionRequirementResourceRequirementPriority);
 			network.Email networkEmail = network.EmailDAO.loadEmailByQuery(null, null);
 			// Delete the persistent object
 			network.EmailDAO.delete(networkEmail);
@@ -111,12 +106,6 @@ public class DeleteOODData {
 			businesslogic.distribution.ResourceAllocation businessLogicDistributionResourceAllocation = businesslogic.distribution.ResourceAllocationDAO.loadResourceAllocationByQuery(null, null);
 			// Delete the persistent object
 			businesslogic.distribution.ResourceAllocationDAO.delete(businessLogicDistributionResourceAllocation);
-			businesslogic.distribution.resource.ModuleState businessLogicDistributionResourceModuleState = businesslogic.distribution.resource.ModuleStateDAO.loadModuleStateByQuery(null, null);
-			// Delete the persistent object
-			businesslogic.distribution.resource.ModuleStateDAO.delete(businessLogicDistributionResourceModuleState);
-			businesslogic.distribution.resource.ModuleSpecialty businessLogicDistributionResourceModuleSpecialty = businesslogic.distribution.resource.ModuleSpecialtyDAO.loadModuleSpecialtyByQuery(null, null);
-			// Delete the persistent object
-			businesslogic.distribution.resource.ModuleSpecialtyDAO.delete(businessLogicDistributionResourceModuleSpecialty);
 			t.commit();
 		}
 		catch (Exception e) {
@@ -132,7 +121,7 @@ public class DeleteOODData {
 				deleteOODData.deleteTestData();
 			}
 			finally {
-				businesslogic.distribution.resource.OODPersistentManager.instance().disposePersistentManager();
+				businesslogic.accounting.user.OODPersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

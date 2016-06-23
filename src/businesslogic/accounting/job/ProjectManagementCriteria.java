@@ -20,13 +20,19 @@ import org.orm.criteria.*;
 
 public class ProjectManagementCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final CollectionExpression permission;
+	public final CollectionExpression userJobs;
+	public final CollectionExpression informationResources;
+	public final CollectionExpression specialties;
+	public final CollectionExpression requirements;
 	public final CollectionExpression notification;
 	
 	public ProjectManagementCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		permission = new CollectionExpression("ORM_Permission", this);
+		userJobs = new CollectionExpression("ORM_UserJobs", this);
+		informationResources = new CollectionExpression("ORM_InformationResources", this);
+		specialties = new CollectionExpression("ORM_Specialties", this);
+		requirements = new CollectionExpression("ORM_Requirements", this);
 		notification = new CollectionExpression("ORM_Notification", this);
 	}
 	
@@ -35,15 +41,27 @@ public class ProjectManagementCriteria extends AbstractORMCriteria {
 	}
 	
 	public ProjectManagementCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
+	}
+	
+	public businesslogic.distribution.resource.InformationResourceCriteria createInformationResourcesCriteria() {
+		return new businesslogic.distribution.resource.InformationResourceCriteria(createCriteria("ORM_InformationResources"));
+	}
+	
+	public businesslogic.accounting.job.SpecialtyCriteria createSpecialtiesCriteria() {
+		return new businesslogic.accounting.job.SpecialtyCriteria(createCriteria("ORM_Specialties"));
+	}
+	
+	public businesslogic.distribution.requirement.RequirementCriteria createRequirementsCriteria() {
+		return new businesslogic.distribution.requirement.RequirementCriteria(createCriteria("ORM_Requirements"));
 	}
 	
 	public businesslogic.utility.NotificationCriteria createNotificationCriteria() {
 		return new businesslogic.utility.NotificationCriteria(createCriteria("ORM_Notification"));
 	}
 	
-	public businesslogic.accounting.PermissionCriteria createPermissionCriteria() {
-		return new businesslogic.accounting.PermissionCriteria(createCriteria("ORM_Permission"));
+	public businesslogic.accounting.job.UserJobCriteria createUserJobsCriteria() {
+		return new businesslogic.accounting.job.UserJobCriteria(createCriteria("ORM_UserJobs"));
 	}
 	
 	public ProjectManagement uniqueProjectManagement() {

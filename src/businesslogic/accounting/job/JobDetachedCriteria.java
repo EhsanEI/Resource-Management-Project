@@ -20,22 +20,22 @@ import org.orm.criteria.*;
 
 public class JobDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final CollectionExpression permission;
+	public final CollectionExpression userJobs;
 	
 	public JobDetachedCriteria() {
 		super(businesslogic.accounting.job.Job.class, businesslogic.accounting.job.JobCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		permission = new CollectionExpression("ORM_Permission", this.getDetachedCriteria());
+		userJobs = new CollectionExpression("ORM_UserJobs", this.getDetachedCriteria());
 	}
 	
 	public JobDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, businesslogic.accounting.job.JobCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		permission = new CollectionExpression("ORM_Permission", this.getDetachedCriteria());
+		userJobs = new CollectionExpression("ORM_UserJobs", this.getDetachedCriteria());
 	}
 	
-	public businesslogic.accounting.PermissionDetachedCriteria createPermissionCriteria() {
-		return new businesslogic.accounting.PermissionDetachedCriteria(createCriteria("ORM_Permission"));
+	public businesslogic.accounting.job.UserJobDetachedCriteria createUserJobsCriteria() {
+		return new businesslogic.accounting.job.UserJobDetachedCriteria(createCriteria("ORM_UserJobs"));
 	}
 	
 	public Job uniqueJob(PersistentSession session) {

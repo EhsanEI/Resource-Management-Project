@@ -13,18 +13,25 @@
  */
 package businesslogic.distribution.resource;
 
-import businesslogic.utility.Date;
-
 public class Module extends businesslogic.distribution.resource.InformationResource {
 	public Module() {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.distribution.resource.ORMConstants.KEY_MODULE_MODULESPECIALTY) {
-			return ORM_moduleSpecialty;
+		if (key == businesslogic.accounting.user.ORMConstants.KEY_MODULE_SPECIALTIES) {
+			return ORM_specialties;
+		}
+		else if (key == businesslogic.accounting.user.ORMConstants.KEY_MODULE_MODULECHANGES) {
+			return ORM_moduleChanges;
 		}
 		
 		return null;
+	}
+	
+	private void this_setOwner(Object owner, int key) {
+		if (key == businesslogic.accounting.user.ORMConstants.KEY_MODULE_DATE) {
+			this.date = (businesslogic.utility.Date) owner;
+		}
 	}
 	
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
@@ -32,7 +39,13 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 			return this_getSet(key);
 		}
 		
+		public void setOwner(Object owner, int key) {
+			this_setOwner(owner, key);
+		}
+		
 	};
+	
+	private businesslogic.utility.Date date;
 	
 	private String name;
 	
@@ -40,7 +53,9 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 	
 	private int linesOfCode;
 	
-	private java.util.Set ORM_moduleSpecialty = new java.util.HashSet();
+	private java.util.Set ORM_specialties = new java.util.HashSet();
+	
+	private java.util.Set ORM_moduleChanges = new java.util.HashSet();
 	
 	public void setName(String value) {
 		this.name = value;
@@ -66,17 +81,35 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 		return linesOfCode;
 	}
 	
-	private void setORM_ModuleSpecialty(java.util.Set value) {
-		this.ORM_moduleSpecialty = value;
+	private void setORM_Specialties(java.util.Set value) {
+		this.ORM_specialties = value;
 	}
 	
-	private java.util.Set getORM_ModuleSpecialty() {
-		return ORM_moduleSpecialty;
+	private java.util.Set getORM_Specialties() {
+		return ORM_specialties;
 	}
 	
-	public final businesslogic.distribution.resource.ModuleSpecialtySetCollection moduleSpecialty = new businesslogic.distribution.resource.ModuleSpecialtySetCollection(this, _ormAdapter, businesslogic.distribution.resource.ORMConstants.KEY_MODULE_MODULESPECIALTY, businesslogic.distribution.resource.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.accounting.job.SpecialtySetCollection specialties = new businesslogic.accounting.job.SpecialtySetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_MODULE_SPECIALTIES, businesslogic.accounting.user.ORMConstants.KEY_MUL_MANY_TO_MANY);
 	
-	public Module(String name, Date startDate, int linesOfCode) {
+	private void setORM_ModuleChanges(java.util.Set value) {
+		this.ORM_moduleChanges = value;
+	}
+	
+	private java.util.Set getORM_ModuleChanges() {
+		return ORM_moduleChanges;
+	}
+	
+	public final businesslogic.distribution.resource.ModuleChangeSetCollection moduleChanges = new businesslogic.distribution.resource.ModuleChangeSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_MODULE_MODULECHANGES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	public void setDate(businesslogic.utility.Date value) {
+		this.date = value;
+	}
+	
+	public businesslogic.utility.Date getDate() {
+		return date;
+	}
+	
+	public Module(String name, businesslogic.utility.Date startDate, int linesOfCode) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}

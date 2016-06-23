@@ -33,7 +33,7 @@ public class PermissionCriteria extends AbstractORMCriteria {
 	}
 	
 	public PermissionCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
 	public Permission uniquePermission() {

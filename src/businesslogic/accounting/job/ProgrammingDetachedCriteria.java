@@ -20,22 +20,43 @@ import org.orm.criteria.*;
 
 public class ProgrammingDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final CollectionExpression permission;
+	public final CollectionExpression userJobs;
+	public final CollectionExpression specialties;
+	public final CollectionExpression modules;
+	public final CollectionExpression moduleChanges;
 	
 	public ProgrammingDetachedCriteria() {
 		super(businesslogic.accounting.job.Programming.class, businesslogic.accounting.job.ProgrammingCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		permission = new CollectionExpression("ORM_Permission", this.getDetachedCriteria());
+		userJobs = new CollectionExpression("ORM_UserJobs", this.getDetachedCriteria());
+		specialties = new CollectionExpression("ORM_Specialties", this.getDetachedCriteria());
+		modules = new CollectionExpression("ORM_Modules", this.getDetachedCriteria());
+		moduleChanges = new CollectionExpression("ORM_ModuleChanges", this.getDetachedCriteria());
 	}
 	
 	public ProgrammingDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, businesslogic.accounting.job.ProgrammingCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		permission = new CollectionExpression("ORM_Permission", this.getDetachedCriteria());
+		userJobs = new CollectionExpression("ORM_UserJobs", this.getDetachedCriteria());
+		specialties = new CollectionExpression("ORM_Specialties", this.getDetachedCriteria());
+		modules = new CollectionExpression("ORM_Modules", this.getDetachedCriteria());
+		moduleChanges = new CollectionExpression("ORM_ModuleChanges", this.getDetachedCriteria());
 	}
 	
-	public businesslogic.accounting.PermissionDetachedCriteria createPermissionCriteria() {
-		return new businesslogic.accounting.PermissionDetachedCriteria(createCriteria("ORM_Permission"));
+	public businesslogic.accounting.job.SpecialtyDetachedCriteria createSpecialtiesCriteria() {
+		return new businesslogic.accounting.job.SpecialtyDetachedCriteria(createCriteria("ORM_Specialties"));
+	}
+	
+	public businesslogic.distribution.resource.ModuleDetachedCriteria createModulesCriteria() {
+		return new businesslogic.distribution.resource.ModuleDetachedCriteria(createCriteria("ORM_Modules"));
+	}
+	
+	public businesslogic.distribution.resource.ModuleChangeDetachedCriteria createModuleChangesCriteria() {
+		return new businesslogic.distribution.resource.ModuleChangeDetachedCriteria(createCriteria("ORM_ModuleChanges"));
+	}
+	
+	public businesslogic.accounting.job.UserJobDetachedCriteria createUserJobsCriteria() {
+		return new businesslogic.accounting.job.UserJobDetachedCriteria(createCriteria("ORM_UserJobs"));
 	}
 	
 	public Programming uniqueProgramming(PersistentSession session) {

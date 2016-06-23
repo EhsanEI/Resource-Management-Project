@@ -20,24 +20,72 @@ import org.orm.criteria.*;
 
 public class ProjectDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression uniqueIdentifier;
+	public final IntegerExpression resourceStateId;
+	public final AssociationExpression resourceState;
+	public final IntegerExpression uniqueIdentifier;
 	public final StringExpression name;
+	public final CollectionExpression resourceAllocations;
+	public final IntegerExpression projectManagementId;
+	public final AssociationExpression projectManagement;
+	public final CollectionExpression allocation_s;
+	public final CollectionExpression requirements;
 	public final IntegerExpression budget;
+	public final CollectionExpression systems;
 	
 	public ProjectDetachedCriteria() {
 		super(businesslogic.distribution.resource.Project.class, businesslogic.distribution.resource.ProjectCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		uniqueIdentifier = new StringExpression("uniqueIdentifier", this.getDetachedCriteria());
+		resourceStateId = new IntegerExpression("resourceState.ID", this.getDetachedCriteria());
+		resourceState = new AssociationExpression("resourceState", this.getDetachedCriteria());
+		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this.getDetachedCriteria());
 		name = new StringExpression("name", this.getDetachedCriteria());
+		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this.getDetachedCriteria());
+		projectManagementId = new IntegerExpression("projectManagement.ID", this.getDetachedCriteria());
+		projectManagement = new AssociationExpression("projectManagement", this.getDetachedCriteria());
+		allocation_s = new CollectionExpression("ORM_Allocation_s", this.getDetachedCriteria());
+		requirements = new CollectionExpression("ORM_Requirements", this.getDetachedCriteria());
 		budget = new IntegerExpression("budget", this.getDetachedCriteria());
+		systems = new CollectionExpression("ORM_Systems", this.getDetachedCriteria());
 	}
 	
 	public ProjectDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, businesslogic.distribution.resource.ProjectCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		uniqueIdentifier = new StringExpression("uniqueIdentifier", this.getDetachedCriteria());
+		resourceStateId = new IntegerExpression("resourceState.ID", this.getDetachedCriteria());
+		resourceState = new AssociationExpression("resourceState", this.getDetachedCriteria());
+		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this.getDetachedCriteria());
 		name = new StringExpression("name", this.getDetachedCriteria());
+		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this.getDetachedCriteria());
+		projectManagementId = new IntegerExpression("projectManagement.ID", this.getDetachedCriteria());
+		projectManagement = new AssociationExpression("projectManagement", this.getDetachedCriteria());
+		allocation_s = new CollectionExpression("ORM_Allocation_s", this.getDetachedCriteria());
+		requirements = new CollectionExpression("ORM_Requirements", this.getDetachedCriteria());
 		budget = new IntegerExpression("budget", this.getDetachedCriteria());
+		systems = new CollectionExpression("ORM_Systems", this.getDetachedCriteria());
+	}
+	
+	public businesslogic.distribution.resource.SystemDetachedCriteria createSystemsCriteria() {
+		return new businesslogic.distribution.resource.SystemDetachedCriteria(createCriteria("ORM_Systems"));
+	}
+	
+	public businesslogic.accounting.job.ProjectManagementDetachedCriteria createProjectManagementCriteria() {
+		return new businesslogic.accounting.job.ProjectManagementDetachedCriteria(createCriteria("projectManagement"));
+	}
+	
+	public businesslogic.distribution.Allocation_DetachedCriteria createAllocation_sCriteria() {
+		return new businesslogic.distribution.Allocation_DetachedCriteria(createCriteria("ORM_Allocation_s"));
+	}
+	
+	public businesslogic.distribution.requirement.RequirementDetachedCriteria createRequirementsCriteria() {
+		return new businesslogic.distribution.requirement.RequirementDetachedCriteria(createCriteria("ORM_Requirements"));
+	}
+	
+	public businesslogic.distribution.resource.ResourceStateDetachedCriteria createResourceStateCriteria() {
+		return new businesslogic.distribution.resource.ResourceStateDetachedCriteria(createCriteria("resourceState"));
+	}
+	
+	public businesslogic.distribution.ResourceAllocationDetachedCriteria createResourceAllocationsCriteria() {
+		return new businesslogic.distribution.ResourceAllocationDetachedCriteria(createCriteria("ORM_ResourceAllocations"));
 	}
 	
 	public Project uniqueProject(PersistentSession session) {

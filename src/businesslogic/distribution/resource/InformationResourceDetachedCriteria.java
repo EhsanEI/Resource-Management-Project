@@ -20,21 +20,62 @@ import org.orm.criteria.*;
 
 public class InformationResourceDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression uniqueIdentifier;
+	public final IntegerExpression resourceStateId;
+	public final AssociationExpression resourceState;
+	public final IntegerExpression uniqueIdentifier;
 	public final StringExpression name;
+	public final CollectionExpression resourceAllocations;
+	public final IntegerExpression projectManagementId;
+	public final AssociationExpression projectManagement;
+	public final CollectionExpression allocation_s;
+	public final CollectionExpression requirements;
 	
 	public InformationResourceDetachedCriteria() {
 		super(businesslogic.distribution.resource.InformationResource.class, businesslogic.distribution.resource.InformationResourceCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		uniqueIdentifier = new StringExpression("uniqueIdentifier", this.getDetachedCriteria());
+		resourceStateId = new IntegerExpression("resourceState.ID", this.getDetachedCriteria());
+		resourceState = new AssociationExpression("resourceState", this.getDetachedCriteria());
+		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this.getDetachedCriteria());
 		name = new StringExpression("name", this.getDetachedCriteria());
+		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this.getDetachedCriteria());
+		projectManagementId = new IntegerExpression("projectManagement.ID", this.getDetachedCriteria());
+		projectManagement = new AssociationExpression("projectManagement", this.getDetachedCriteria());
+		allocation_s = new CollectionExpression("ORM_Allocation_s", this.getDetachedCriteria());
+		requirements = new CollectionExpression("ORM_Requirements", this.getDetachedCriteria());
 	}
 	
 	public InformationResourceDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, businesslogic.distribution.resource.InformationResourceCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		uniqueIdentifier = new StringExpression("uniqueIdentifier", this.getDetachedCriteria());
+		resourceStateId = new IntegerExpression("resourceState.ID", this.getDetachedCriteria());
+		resourceState = new AssociationExpression("resourceState", this.getDetachedCriteria());
+		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this.getDetachedCriteria());
 		name = new StringExpression("name", this.getDetachedCriteria());
+		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this.getDetachedCriteria());
+		projectManagementId = new IntegerExpression("projectManagement.ID", this.getDetachedCriteria());
+		projectManagement = new AssociationExpression("projectManagement", this.getDetachedCriteria());
+		allocation_s = new CollectionExpression("ORM_Allocation_s", this.getDetachedCriteria());
+		requirements = new CollectionExpression("ORM_Requirements", this.getDetachedCriteria());
+	}
+	
+	public businesslogic.accounting.job.ProjectManagementDetachedCriteria createProjectManagementCriteria() {
+		return new businesslogic.accounting.job.ProjectManagementDetachedCriteria(createCriteria("projectManagement"));
+	}
+	
+	public businesslogic.distribution.Allocation_DetachedCriteria createAllocation_sCriteria() {
+		return new businesslogic.distribution.Allocation_DetachedCriteria(createCriteria("ORM_Allocation_s"));
+	}
+	
+	public businesslogic.distribution.requirement.RequirementDetachedCriteria createRequirementsCriteria() {
+		return new businesslogic.distribution.requirement.RequirementDetachedCriteria(createCriteria("ORM_Requirements"));
+	}
+	
+	public businesslogic.distribution.resource.ResourceStateDetachedCriteria createResourceStateCriteria() {
+		return new businesslogic.distribution.resource.ResourceStateDetachedCriteria(createCriteria("resourceState"));
+	}
+	
+	public businesslogic.distribution.ResourceAllocationDetachedCriteria createResourceAllocationsCriteria() {
+		return new businesslogic.distribution.ResourceAllocationDetachedCriteria(createCriteria("ORM_ResourceAllocations"));
 	}
 	
 	public InformationResource uniqueInformationResource(PersistentSession session) {

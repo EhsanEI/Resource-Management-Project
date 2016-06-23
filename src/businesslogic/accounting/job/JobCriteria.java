@@ -20,12 +20,12 @@ import org.orm.criteria.*;
 
 public class JobCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final CollectionExpression permission;
+	public final CollectionExpression userJobs;
 	
 	public JobCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		permission = new CollectionExpression("ORM_Permission", this);
+		userJobs = new CollectionExpression("ORM_UserJobs", this);
 	}
 	
 	public JobCriteria(PersistentSession session) {
@@ -33,11 +33,11 @@ public class JobCriteria extends AbstractORMCriteria {
 	}
 	
 	public JobCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
-	public businesslogic.accounting.PermissionCriteria createPermissionCriteria() {
-		return new businesslogic.accounting.PermissionCriteria(createCriteria("ORM_Permission"));
+	public businesslogic.accounting.job.UserJobCriteria createUserJobsCriteria() {
+		return new businesslogic.accounting.job.UserJobCriteria(createCriteria("ORM_UserJobs"));
 	}
 	
 	public Job uniqueJob() {

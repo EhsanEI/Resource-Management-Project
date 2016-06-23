@@ -17,14 +17,14 @@ public class HumanResource extends businesslogic.distribution.resource.Resource 
 	public HumanResource() {
 	}
 	
-	public businesslogic.accounting.job.Programming getProgramming() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+	private businesslogic.accounting.job.Programming programming;
+	
+	public void setProgramming(businesslogic.accounting.job.Programming value) {
+		this.programming = value;
 	}
 	
-	public void setProgramming(businesslogic.accounting.job.Programming programming) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+	public businesslogic.accounting.job.Programming getProgramming() {
+		return programming;
 	}
 	
 	public String toString() {

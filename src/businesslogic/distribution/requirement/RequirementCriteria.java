@@ -20,18 +20,20 @@ import org.orm.criteria.*;
 
 public class RequirementCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
+	public final IntegerExpression requirementPriorityId;
+	public final AssociationExpression requirementPriority;
 	public final StringExpression resourceName;
 	public final StringExpression resourceType;
 	public final IntegerExpression quantity;
-	public final CollectionExpression date;
 	
 	public RequirementCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
+		requirementPriorityId = new IntegerExpression("requirementPriority.ID", this);
+		requirementPriority = new AssociationExpression("requirementPriority", this);
 		resourceName = new StringExpression("resourceName", this);
 		resourceType = new StringExpression("resourceType", this);
 		quantity = new IntegerExpression("quantity", this);
-		date = new CollectionExpression("ORM_Date", this);
 	}
 	
 	public RequirementCriteria(PersistentSession session) {
@@ -39,11 +41,11 @@ public class RequirementCriteria extends AbstractORMCriteria {
 	}
 	
 	public RequirementCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
-	public businesslogic.utility.DateCriteria createDateCriteria() {
-		return new businesslogic.utility.DateCriteria(createCriteria("ORM_Date"));
+	public RequirementPriorityCriteria createRequirementPriorityCriteria() {
+		return new RequirementPriorityCriteria(createCriteria("requirementPriority"));
 	}
 	
 	public Requirement uniqueRequirement() {

@@ -4,10 +4,11 @@
  */
 package ormsamples;
 
+import businesslogic.distribution.Allocation;
 import org.orm.*;
 public class RetrieveAndUpdateOODData {
 	public void retrieveAndUpdateTestData() throws PersistentException {
-		PersistentTransaction t = businesslogic.distribution.resource.OODPersistentManager.instance().getSession().beginTransaction();
+		PersistentTransaction t = businesslogic.accounting.user.OODPersistentManager.instance().getSession().beginTransaction();
 		try {
 			businesslogic.accounting.user.User businessLogicAccountingUserUser = businesslogic.accounting.user.UserDAO.loadUserByQuery(null, null);
 			// Update the properties of the persistent object
@@ -75,9 +76,9 @@ public class RetrieveAndUpdateOODData {
 			businesslogic.support.SystemConfiguration businessLogicSupportSystemConfiguration = businesslogic.support.SystemConfigurationDAO.loadSystemConfigurationByQuery(null, null);
 			// Update the properties of the persistent object
 			businesslogic.support.SystemConfigurationDAO.save(businessLogicSupportSystemConfiguration);
-			businesslogic.distribution.Allocation businessLogicDistributionAllocation = businesslogic.distribution.AllocationDAO.loadAllocationByQuery(null, null);
+			Allocation businessLogicDistributionAllocation_ = businesslogic.distribution.Allocation_DAO.loadAllocation_ByQuery(null, null);
 			// Update the properties of the persistent object
-			businesslogic.distribution.AllocationDAO.save(businessLogicDistributionAllocation);
+			businesslogic.distribution.Allocation_DAO.save(businessLogicDistributionAllocation_);
 			businesslogic.accounting.user.HighLevelManager businessLogicAccountingUserHighLevelManager = businesslogic.accounting.user.HighLevelManagerDAO.loadHighLevelManagerByQuery(null, null);
 			// Update the properties of the persistent object
 			businesslogic.accounting.user.HighLevelManagerDAO.save(businessLogicAccountingUserHighLevelManager);
@@ -96,12 +97,6 @@ public class RetrieveAndUpdateOODData {
 			businesslogic.distribution.resource.ResourceState businessLogicDistributionResourceResourceState = businesslogic.distribution.resource.ResourceStateDAO.loadResourceStateByQuery(null, null);
 			// Update the properties of the persistent object
 			businesslogic.distribution.resource.ResourceStateDAO.save(businessLogicDistributionResourceResourceState);
-			businesslogic.support.BackupFormat businessLogicSupportBackupFormat = businesslogic.support.BackupFormatDAO.loadBackupFormatByQuery(null, null);
-			// Update the properties of the persistent object
-			businesslogic.support.BackupFormatDAO.save(businessLogicSupportBackupFormat);
-			businesslogic.distribution.requirement.ResourceRequirementPriority businessLogicDistributionRequirementResourceRequirementPriority = businesslogic.distribution.requirement.ResourceRequirementPriorityDAO.loadResourceRequirementPriorityByQuery(null, null);
-			// Update the properties of the persistent object
-			businesslogic.distribution.requirement.ResourceRequirementPriorityDAO.save(businessLogicDistributionRequirementResourceRequirementPriority);
 			network.Email networkEmail = network.EmailDAO.loadEmailByQuery(null, null);
 			// Update the properties of the persistent object
 			network.EmailDAO.save(networkEmail);
@@ -111,12 +106,6 @@ public class RetrieveAndUpdateOODData {
 			businesslogic.distribution.ResourceAllocation businessLogicDistributionResourceAllocation = businesslogic.distribution.ResourceAllocationDAO.loadResourceAllocationByQuery(null, null);
 			// Update the properties of the persistent object
 			businesslogic.distribution.ResourceAllocationDAO.save(businessLogicDistributionResourceAllocation);
-			businesslogic.distribution.resource.ModuleState businessLogicDistributionResourceModuleState = businesslogic.distribution.resource.ModuleStateDAO.loadModuleStateByQuery(null, null);
-			// Update the properties of the persistent object
-			businesslogic.distribution.resource.ModuleStateDAO.save(businessLogicDistributionResourceModuleState);
-			businesslogic.distribution.resource.ModuleSpecialty businessLogicDistributionResourceModuleSpecialty = businesslogic.distribution.resource.ModuleSpecialtyDAO.loadModuleSpecialtyByQuery(null, null);
-			// Update the properties of the persistent object
-			businesslogic.distribution.resource.ModuleSpecialtyDAO.save(businessLogicDistributionResourceModuleSpecialty);
 			t.commit();
 		}
 		catch (Exception e) {
@@ -258,11 +247,11 @@ public class RetrieveAndUpdateOODData {
 		//businessLogicSupportSystemConfigurationCriteria.ID.eq();
 		System.out.println(businessLogicSupportSystemConfigurationCriteria.uniqueSystemConfiguration());
 		
-		System.out.println("Retrieving Allocation by AllocationCriteria");
-		businesslogic.distribution.AllocationCriteria businessLogicDistributionAllocationCriteria = new businesslogic.distribution.AllocationCriteria();
+		System.out.println("Retrieving Allocation by Allocation_Criteria");
+		businesslogic.distribution.Allocation_Criteria businessLogicDistributionAllocation_Criteria = new businesslogic.distribution.Allocation_Criteria();
 		// Please uncomment the follow line and fill in parameter(s)
-		//businessLogicDistributionAllocationCriteria.ID.eq();
-		System.out.println(businessLogicDistributionAllocationCriteria.uniqueAllocation());
+		//businessLogicDistributionAllocation_Criteria.ID.eq();
+		System.out.println(businessLogicDistributionAllocation_Criteria.uniqueAllocation_());
 		
 		System.out.println("Retrieving HighLevelManager by HighLevelManagerCriteria");
 		businesslogic.accounting.user.HighLevelManagerCriteria businessLogicAccountingUserHighLevelManagerCriteria = new businesslogic.accounting.user.HighLevelManagerCriteria();
@@ -300,18 +289,6 @@ public class RetrieveAndUpdateOODData {
 		//businessLogicDistributionResourceResourceStateCriteria.ID.eq();
 		System.out.println(businessLogicDistributionResourceResourceStateCriteria.uniqueResourceState());
 		
-		System.out.println("Retrieving BackupFormat by BackupFormatCriteria");
-		businesslogic.support.BackupFormatCriteria businessLogicSupportBackupFormatCriteria = new businesslogic.support.BackupFormatCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//businessLogicSupportBackupFormatCriteria.ID.eq();
-		System.out.println(businessLogicSupportBackupFormatCriteria.uniqueBackupFormat());
-		
-		System.out.println("Retrieving ResourceRequirementPriority by ResourceRequirementPriorityCriteria");
-		businesslogic.distribution.requirement.ResourceRequirementPriorityCriteria businessLogicDistributionRequirementResourceRequirementPriorityCriteria = new businesslogic.distribution.requirement.ResourceRequirementPriorityCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//businessLogicDistributionRequirementResourceRequirementPriorityCriteria.ID.eq();
-		System.out.println(businessLogicDistributionRequirementResourceRequirementPriorityCriteria.uniqueResourceRequirementPriority());
-		
 		System.out.println("Retrieving Email by EmailCriteria");
 		network.EmailCriteria networkEmailCriteria = new network.EmailCriteria();
 		// Please uncomment the follow line and fill in parameter(s)
@@ -330,18 +307,6 @@ public class RetrieveAndUpdateOODData {
 		//businessLogicDistributionResourceAllocationCriteria.ID.eq();
 		System.out.println(businessLogicDistributionResourceAllocationCriteria.uniqueResourceAllocation());
 		
-		System.out.println("Retrieving ModuleState by ModuleStateCriteria");
-		businesslogic.distribution.resource.ModuleStateCriteria businessLogicDistributionResourceModuleStateCriteria = new businesslogic.distribution.resource.ModuleStateCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//businessLogicDistributionResourceModuleStateCriteria.ID.eq();
-		System.out.println(businessLogicDistributionResourceModuleStateCriteria.uniqueModuleState());
-		
-		System.out.println("Retrieving ModuleSpecialty by ModuleSpecialtyCriteria");
-		businesslogic.distribution.resource.ModuleSpecialtyCriteria businessLogicDistributionResourceModuleSpecialtyCriteria = new businesslogic.distribution.resource.ModuleSpecialtyCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//businessLogicDistributionResourceModuleSpecialtyCriteria.ID.eq();
-		System.out.println(businessLogicDistributionResourceModuleSpecialtyCriteria.uniqueModuleSpecialty());
-		
 	}
 	
 	
@@ -353,7 +318,7 @@ public class RetrieveAndUpdateOODData {
 				//retrieveAndUpdateOODData.retrieveByCriteria();
 			}
 			finally {
-				businesslogic.distribution.resource.OODPersistentManager.instance().disposePersistentManager();
+				businesslogic.accounting.user.OODPersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

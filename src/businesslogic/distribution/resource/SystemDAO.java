@@ -21,7 +21,7 @@ import java.util.List;
 public class SystemDAO {
 	public static System loadSystemByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadSystemByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +32,7 @@ public class SystemDAO {
 	
 	public static System getSystemByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getSystemByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +43,7 @@ public class SystemDAO {
 	
 	public static System loadSystemByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadSystemByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +54,7 @@ public class SystemDAO {
 	
 	public static System getSystemByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getSystemByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +105,7 @@ public class SystemDAO {
 	
 	public static List querySystem(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return querySystem(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +116,7 @@ public class SystemDAO {
 	
 	public static List querySystem(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return querySystem(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +127,7 @@ public class SystemDAO {
 	
 	public static System[] listSystemByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listSystemByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +138,7 @@ public class SystemDAO {
 	
 	public static System[] listSystemByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listSystemByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +204,7 @@ public class SystemDAO {
 	
 	public static System loadSystemByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadSystemByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +215,7 @@ public class SystemDAO {
 	
 	public static System loadSystemByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadSystemByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +242,7 @@ public class SystemDAO {
 	
 	public static java.util.Iterator iterateSystemByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateSystemByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +253,7 @@ public class SystemDAO {
 	
 	public static java.util.Iterator iterateSystemByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateSystemByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +301,7 @@ public class SystemDAO {
 	
 	public static boolean save(businesslogic.distribution.resource.System system) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().saveObject(system);
+			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(system);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +312,7 @@ public class SystemDAO {
 	
 	public static boolean delete(businesslogic.distribution.resource.System system) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().deleteObject(system);
+			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(system);
 			return true;
 		}
 		catch (Exception e) {
@@ -321,9 +321,42 @@ public class SystemDAO {
 		}
 	}
 	
+	public static boolean deleteAndDissociate(businesslogic.distribution.resource.System system)throws PersistentException {
+		try {
+			if (system.getProjectManagement() != null) {
+				system.getProjectManagement().informationResources.remove(system);
+			}
+			
+			return delete(system);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
+	public static boolean deleteAndDissociate(businesslogic.distribution.resource.System system, org.orm.PersistentSession session)throws PersistentException {
+		try {
+			if (system.getProjectManagement() != null) {
+				system.getProjectManagement().informationResources.remove(system);
+			}
+			
+			try {
+				session.delete(system);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
 	public static boolean refresh(businesslogic.distribution.resource.System system) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().refresh(system);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(system);
 			return true;
 		}
 		catch (Exception e) {
@@ -334,7 +367,7 @@ public class SystemDAO {
 	
 	public static boolean evict(businesslogic.distribution.resource.System system) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().evict(system);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(system);
 			return true;
 		}
 		catch (Exception e) {

@@ -10,12 +10,11 @@ License Type: Evaluation
 			<generator class="native">
 			</generator>
 		</id>
-		
-		<property name="second" column="Second" type="integer" not-null="true" lazy="false"/>
-		<property name="minute" column="Minute" type="integer" not-null="true" lazy="false"/>
-		<property name="hour" column="Hour" type="integer" not-null="true" lazy="false"/>
-		<property name="day" column="Day" type="integer" not-null="true" lazy="false"/>
-		<property name="month" column="Month" type="integer" not-null="true" lazy="false"/>
-		<property name="year" column="Year" type="integer" not-null="true" lazy="false"/>
+		<property name="second" column="Second" type="integer" length="10" not-null="true" lazy="false"/>
+		<property name="minute" column="Minute" type="integer" length="10" not-null="true" lazy="false"/>
+		<property name="hour" column="Hour" type="integer" length="10" not-null="true" lazy="false"/>
+		<property name="day" column="Day" type="integer" length="10" not-null="true" lazy="false"/>
+		<property name="month" column="Month" type="integer" length="10" not-null="true" lazy="false"/>
+		<property name="year" column="Year" type="integer" length="10" not-null="true" lazy="false"/>
 	</class>
 </hibernate-mapping>

@@ -20,12 +20,16 @@ import org.orm.criteria.*;
 
 public class ResourceManagementCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final CollectionExpression permission;
+	public final CollectionExpression userJobs;
+	public final CollectionExpression resources;
+	public final CollectionExpression allocation_s;
 	
 	public ResourceManagementCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		permission = new CollectionExpression("ORM_Permission", this);
+		userJobs = new CollectionExpression("ORM_UserJobs", this);
+		resources = new CollectionExpression("ORM_Resources", this);
+		allocation_s = new CollectionExpression("ORM_Allocation_s", this);
 	}
 	
 	public ResourceManagementCriteria(PersistentSession session) {
@@ -33,11 +37,19 @@ public class ResourceManagementCriteria extends AbstractORMCriteria {
 	}
 	
 	public ResourceManagementCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
-	public businesslogic.accounting.PermissionCriteria createPermissionCriteria() {
-		return new businesslogic.accounting.PermissionCriteria(createCriteria("ORM_Permission"));
+	public businesslogic.distribution.resource.ResourceCriteria createResourcesCriteria() {
+		return new businesslogic.distribution.resource.ResourceCriteria(createCriteria("ORM_Resources"));
+	}
+	
+	public businesslogic.distribution.Allocation_Criteria createAllocation_sCriteria() {
+		return new businesslogic.distribution.Allocation_Criteria(createCriteria("ORM_Allocation_s"));
+	}
+	
+	public businesslogic.accounting.job.UserJobCriteria createUserJobsCriteria() {
+		return new businesslogic.accounting.job.UserJobCriteria(createCriteria("ORM_UserJobs"));
 	}
 	
 	public ResourceManagement uniqueResourceManagement() {

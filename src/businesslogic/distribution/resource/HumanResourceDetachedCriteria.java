@@ -20,21 +20,48 @@ import org.orm.criteria.*;
 
 public class HumanResourceDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final StringExpression uniqueIdentifier;
+	public final IntegerExpression resourceStateId;
+	public final AssociationExpression resourceState;
+	public final IntegerExpression uniqueIdentifier;
 	public final StringExpression name;
+	public final CollectionExpression resourceAllocations;
+	public final IntegerExpression programmingId;
+	public final AssociationExpression programming;
 	
 	public HumanResourceDetachedCriteria() {
 		super(businesslogic.distribution.resource.HumanResource.class, businesslogic.distribution.resource.HumanResourceCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		uniqueIdentifier = new StringExpression("uniqueIdentifier", this.getDetachedCriteria());
+		resourceStateId = new IntegerExpression("resourceState.ID", this.getDetachedCriteria());
+		resourceState = new AssociationExpression("resourceState", this.getDetachedCriteria());
+		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this.getDetachedCriteria());
 		name = new StringExpression("name", this.getDetachedCriteria());
+		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this.getDetachedCriteria());
+		programmingId = new IntegerExpression("programming.ID", this.getDetachedCriteria());
+		programming = new AssociationExpression("programming", this.getDetachedCriteria());
 	}
 	
 	public HumanResourceDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, businesslogic.distribution.resource.HumanResourceCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		uniqueIdentifier = new StringExpression("uniqueIdentifier", this.getDetachedCriteria());
+		resourceStateId = new IntegerExpression("resourceState.ID", this.getDetachedCriteria());
+		resourceState = new AssociationExpression("resourceState", this.getDetachedCriteria());
+		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this.getDetachedCriteria());
 		name = new StringExpression("name", this.getDetachedCriteria());
+		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this.getDetachedCriteria());
+		programmingId = new IntegerExpression("programming.ID", this.getDetachedCriteria());
+		programming = new AssociationExpression("programming", this.getDetachedCriteria());
+	}
+	
+	public businesslogic.accounting.job.ProgrammingDetachedCriteria createProgrammingCriteria() {
+		return new businesslogic.accounting.job.ProgrammingDetachedCriteria(createCriteria("programming"));
+	}
+	
+	public businesslogic.distribution.resource.ResourceStateDetachedCriteria createResourceStateCriteria() {
+		return new businesslogic.distribution.resource.ResourceStateDetachedCriteria(createCriteria("resourceState"));
+	}
+	
+	public businesslogic.distribution.ResourceAllocationDetachedCriteria createResourceAllocationsCriteria() {
+		return new businesslogic.distribution.ResourceAllocationDetachedCriteria(createCriteria("ORM_ResourceAllocations"));
 	}
 	
 	public HumanResource uniqueHumanResource(PersistentSession session) {

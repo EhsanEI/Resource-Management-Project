@@ -13,28 +13,29 @@
  */
 package businesslogic.distribution.requirement;
 
-import businesslogic.accounting.job.ProjectManagement;
+import businesslogic.accounting.user.User;
+import businesslogic.utility.Quantity;
 
 public class Requirement {
 	public Requirement() {
 	}
 	
-	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.distribution.resource.ORMConstants.KEY_REQUIREMENT_DATE) {
-			return ORM_date;
+	private void this_setOwner(Object owner, int key) {
+		if (key == businesslogic.accounting.user.ORMConstants.KEY_REQUIREMENT_REQUIREMENTPRIORITY) {
+			this.requirementPriority = (businesslogic.distribution.requirement.RequirementPriority) owner;
 		}
-		
-		return null;
 	}
 	
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-		public java.util.Set getSet(int key) {
-			return this_getSet(key);
+		public void setOwner(Object owner, int key) {
+			this_setOwner(owner, key);
 		}
 		
 	};
 	
 	private int ID;
+	
+	private businesslogic.distribution.requirement.RequirementPriority requirementPriority;
 	
 	private String resourceName;
 	
@@ -42,18 +43,16 @@ public class Requirement {
 	
 	private int quantity;
 	
-	private java.util.Set ORM_date = new java.util.HashSet();
-	
-	public int getORMID() {
-		return getID();
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setResourceName(String value) {
@@ -80,17 +79,20 @@ public class Requirement {
 		return quantity;
 	}
 	
-	private void setORM_Date(java.util.Set value) {
-		this.ORM_date = value;
+	public void setRequirementPriority(businesslogic.distribution.requirement.RequirementPriority value) {
+		this.requirementPriority = value;
 	}
 	
-	private java.util.Set getORM_Date() {
-		return ORM_date;
+	public businesslogic.distribution.requirement.RequirementPriority getRequirementPriority() {
+		return requirementPriority;
 	}
 	
-	public final businesslogic.utility.DateSetCollection date = new businesslogic.utility.DateSetCollection(this, _ormAdapter, businesslogic.distribution.resource.ORMConstants.KEY_REQUIREMENT_DATE, businesslogic.distribution.resource.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public Requirement(String resourceName, String resourceType, Quantity quantity, businesslogic.utility.Date startDate, businesslogic.utility.Date endDate, businesslogic.distribution.requirement.RequirementPriority priority) {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
+	}
 	
-	public Requirement(String resourceName, String resourceType, int quantity, businesslogic.utility.Date startDate, businesslogic.utility.Date endDate, businesslogic.distribution.requirement.RequirementPriority priority) {
+	public void setQuantity(Quantity quantity) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
@@ -125,12 +127,12 @@ public class Requirement {
 		throw new UnsupportedOperationException();
 	}
 	
-	public ProjectManagement getProjectManager() {
+	public User getProjectManager() {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
 	
-	public void setProjectManager(ProjectManagement projectManager) {
+	public void setProjectManager(User projectManager) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}

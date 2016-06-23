@@ -10,13 +10,10 @@ License Type: Evaluation
 			<generator class="native">
 			</generator>
 		</id>
-		
+		<many-to-one name="requirementPriority" column="RequirementPriorityID" class="businesslogic.distribution.requirement.RequirementPriority" cascade="save-update,lock,delete" unique="true" not-null="true" lazy="proxy" access="field">
+		</many-to-one>
 		<property name="resourceName" column="ResourceName" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="resourceType" column="ResourceType" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="quantity" column="Quantity" type="integer" not-null="true" lazy="false"/>
-		<set name="ORM_Date" lazy="true" cascade="save-update,lock" inverse="false">
-			<key column="RequirementID" not-null="true"/>
-			<one-to-many class="businesslogic.utility.Date"/>
-		</set>
+		<property name="quantity" column="Quantity" type="integer" length="10" not-null="false" lazy="false"/>
 	</class>
 </hibernate-mapping>

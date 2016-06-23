@@ -17,11 +17,40 @@ public class Resource {
 	public Resource() {
 	}
 	
+	private java.util.Set this_getSet (int key) {
+		if (key == businesslogic.accounting.user.ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS) {
+			return ORM_resourceAllocations;
+		}
+		
+		return null;
+	}
+	
+	private void this_setOwner(Object owner, int key) {
+		if (key == businesslogic.accounting.user.ORMConstants.KEY_RESOURCE_RESOURCESTATE) {
+			this.resourceState = (businesslogic.distribution.resource.ResourceState) owner;
+		}
+	}
+	
+	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
+		public java.util.Set getSet(int key) {
+			return this_getSet(key);
+		}
+		
+		public void setOwner(Object owner, int key) {
+			this_setOwner(owner, key);
+		}
+		
+	};
+	
 	private int ID;
 	
-	private String uniqueIdentifier;
+	private businesslogic.distribution.resource.ResourceState resourceState;
+	
+	private int uniqueIdentifier;
 	
 	private String name;
+	
+	private java.util.Set ORM_resourceAllocations = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -35,11 +64,11 @@ public class Resource {
 		return getID();
 	}
 	
-	public void setUniqueIdentifier(String value) {
+	public void setUniqueIdentifier(int value) {
 		this.uniqueIdentifier = value;
 	}
 	
-	public String getUniqueIdentifier() {
+	public int getUniqueIdentifier() {
 		return uniqueIdentifier;
 	}
 	
@@ -49,6 +78,24 @@ public class Resource {
 	
 	public String getName() {
 		return name;
+	}
+	
+	private void setORM_ResourceAllocations(java.util.Set value) {
+		this.ORM_resourceAllocations = value;
+	}
+	
+	private java.util.Set getORM_ResourceAllocations() {
+		return ORM_resourceAllocations;
+	}
+	
+	public final businesslogic.distribution.ResourceAllocationSetCollection resourceAllocations = new businesslogic.distribution.ResourceAllocationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	public void setResourceState(businesslogic.distribution.resource.ResourceState value) {
+		this.resourceState = value;
+	}
+	
+	public businesslogic.distribution.resource.ResourceState getResourceState() {
+		return resourceState;
 	}
 	
 	public Resource(int id, String name) {

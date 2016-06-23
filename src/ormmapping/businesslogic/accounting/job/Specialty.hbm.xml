@@ -10,8 +10,7 @@ License Type: Evaluation
 			<generator class="native">
 			</generator>
 		</id>
-		
 		<property name="title" column="Title" type="string" length="255" not-null="false" lazy="false"/>
-		<property name="proficiencyLevel" column="ProficiencyLevel" type="integer" not-null="true" lazy="false"/>
+		<property name="proficiencyLevel" column="ProficiencyLevel" type="integer" length="10" not-null="true" lazy="false"/>
 	</class>
 </hibernate-mapping>

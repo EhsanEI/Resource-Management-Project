@@ -21,7 +21,7 @@ import java.util.List;
 public class InformationResourceDAO {
 	public static InformationResource loadInformationResourceByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadInformationResourceByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +32,7 @@ public class InformationResourceDAO {
 	
 	public static InformationResource getInformationResourceByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getInformationResourceByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +43,7 @@ public class InformationResourceDAO {
 	
 	public static InformationResource loadInformationResourceByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadInformationResourceByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +54,7 @@ public class InformationResourceDAO {
 	
 	public static InformationResource getInformationResourceByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getInformationResourceByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +105,7 @@ public class InformationResourceDAO {
 	
 	public static List queryInformationResource(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return queryInformationResource(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +116,7 @@ public class InformationResourceDAO {
 	
 	public static List queryInformationResource(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return queryInformationResource(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +127,7 @@ public class InformationResourceDAO {
 	
 	public static InformationResource[] listInformationResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listInformationResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +138,7 @@ public class InformationResourceDAO {
 	
 	public static InformationResource[] listInformationResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listInformationResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +204,7 @@ public class InformationResourceDAO {
 	
 	public static InformationResource loadInformationResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadInformationResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +215,7 @@ public class InformationResourceDAO {
 	
 	public static InformationResource loadInformationResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadInformationResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +242,7 @@ public class InformationResourceDAO {
 	
 	public static java.util.Iterator iterateInformationResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateInformationResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +253,7 @@ public class InformationResourceDAO {
 	
 	public static java.util.Iterator iterateInformationResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateInformationResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +301,7 @@ public class InformationResourceDAO {
 	
 	public static boolean save(businesslogic.distribution.resource.InformationResource informationResource) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().saveObject(informationResource);
+			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(informationResource);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +312,7 @@ public class InformationResourceDAO {
 	
 	public static boolean delete(businesslogic.distribution.resource.InformationResource informationResource) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().deleteObject(informationResource);
+			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(informationResource);
 			return true;
 		}
 		catch (Exception e) {
@@ -321,9 +321,74 @@ public class InformationResourceDAO {
 		}
 	}
 	
+	public static boolean deleteAndDissociate(businesslogic.distribution.resource.InformationResource informationResource)throws PersistentException {
+		if (informationResource instanceof businesslogic.distribution.resource.Project) {
+			return businesslogic.distribution.resource.ProjectDAO.deleteAndDissociate((businesslogic.distribution.resource.Project) informationResource);
+		}
+		
+		if (informationResource instanceof businesslogic.distribution.resource.System) {
+			return businesslogic.distribution.resource.SystemDAO.deleteAndDissociate((businesslogic.distribution.resource.System) informationResource);
+		}
+		
+		if (informationResource instanceof businesslogic.distribution.resource.Subsystem) {
+			return businesslogic.distribution.resource.SubsystemDAO.deleteAndDissociate((businesslogic.distribution.resource.Subsystem) informationResource);
+		}
+		
+		if (informationResource instanceof businesslogic.distribution.resource.Module) {
+			return businesslogic.distribution.resource.ModuleDAO.deleteAndDissociate((businesslogic.distribution.resource.Module) informationResource);
+		}
+		
+		try {
+			if (informationResource.getProjectManagement() != null) {
+				informationResource.getProjectManagement().informationResources.remove(informationResource);
+			}
+			
+			return delete(informationResource);
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
+	public static boolean deleteAndDissociate(businesslogic.distribution.resource.InformationResource informationResource, org.orm.PersistentSession session)throws PersistentException {
+		if (informationResource instanceof businesslogic.distribution.resource.Project) {
+			return businesslogic.distribution.resource.ProjectDAO.deleteAndDissociate((businesslogic.distribution.resource.Project) informationResource, session);
+		}
+		
+		if (informationResource instanceof businesslogic.distribution.resource.System) {
+			return businesslogic.distribution.resource.SystemDAO.deleteAndDissociate((businesslogic.distribution.resource.System) informationResource, session);
+		}
+		
+		if (informationResource instanceof businesslogic.distribution.resource.Subsystem) {
+			return businesslogic.distribution.resource.SubsystemDAO.deleteAndDissociate((businesslogic.distribution.resource.Subsystem) informationResource, session);
+		}
+		
+		if (informationResource instanceof businesslogic.distribution.resource.Module) {
+			return businesslogic.distribution.resource.ModuleDAO.deleteAndDissociate((businesslogic.distribution.resource.Module) informationResource, session);
+		}
+		
+		try {
+			if (informationResource.getProjectManagement() != null) {
+				informationResource.getProjectManagement().informationResources.remove(informationResource);
+			}
+			
+			try {
+				session.delete(informationResource);
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
+		catch(Exception e) {
+			e.printStackTrace();
+			throw new PersistentException(e);
+		}
+	}
+	
 	public static boolean refresh(businesslogic.distribution.resource.InformationResource informationResource) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().refresh(informationResource);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(informationResource);
 			return true;
 		}
 		catch (Exception e) {
@@ -334,7 +399,7 @@ public class InformationResourceDAO {
 	
 	public static boolean evict(businesslogic.distribution.resource.InformationResource informationResource) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().evict(informationResource);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(informationResource);
 			return true;
 		}
 		catch (Exception e) {

@@ -17,6 +17,33 @@ public class Subsystem extends businesslogic.distribution.resource.InformationRe
 	public Subsystem() {
 	}
 	
+	private java.util.Set this_getSet (int key) {
+		if (key == businesslogic.accounting.user.ORMConstants.KEY_SUBSYSTEM_MODULES) {
+			return ORM_modules;
+		}
+		
+		return null;
+	}
+	
+	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
+		public java.util.Set getSet(int key) {
+			return this_getSet(key);
+		}
+		
+	};
+	
+	private java.util.Set ORM_modules = new java.util.HashSet();
+	
+	private void setORM_Modules(java.util.Set value) {
+		this.ORM_modules = value;
+	}
+	
+	private java.util.Set getORM_Modules() {
+		return ORM_modules;
+	}
+	
+	public final businesslogic.distribution.resource.ModuleSetCollection modules = new businesslogic.distribution.resource.ModuleSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_SUBSYSTEM_MODULES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
 	public String toString() {
 		return super.toString();
 	}

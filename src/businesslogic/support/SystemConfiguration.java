@@ -17,24 +17,20 @@ public class SystemConfiguration {
 	public SystemConfiguration() {
 	}
 	
-	private businesslogic.support.BackupFormat backupFormat;
-	
-	private businesslogic.utility.Date date;
-	
 	private int ID;
 	
 	private int backupPreiodDays;
 	
-	public int getORMID() {
-		return getID();
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setBackupPreiodDays(int value) {
@@ -45,20 +41,24 @@ public class SystemConfiguration {
 		return backupPreiodDays;
 	}
 	
-	public void setDate(businesslogic.utility.Date value) {
-		this.date = value;
-	}
-	
 	public businesslogic.utility.Date getDate() {
-		return date;
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
-	public void setBackupFormat(businesslogic.support.BackupFormat value) {
-		this.backupFormat = value;
+	public void setDate(businesslogic.utility.Date date) {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
-	public businesslogic.support.BackupFormat getBackupFormat() {
-		return backupFormat;
+	public BackupFormat getBackupFormat() {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
+	}
+	
+	public void setBackupFormat(BackupFormat backupFormat) {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {

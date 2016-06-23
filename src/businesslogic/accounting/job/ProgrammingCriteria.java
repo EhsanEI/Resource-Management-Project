@@ -20,12 +20,18 @@ import org.orm.criteria.*;
 
 public class ProgrammingCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final CollectionExpression permission;
+	public final CollectionExpression userJobs;
+	public final CollectionExpression specialties;
+	public final CollectionExpression modules;
+	public final CollectionExpression moduleChanges;
 	
 	public ProgrammingCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		permission = new CollectionExpression("ORM_Permission", this);
+		userJobs = new CollectionExpression("ORM_UserJobs", this);
+		specialties = new CollectionExpression("ORM_Specialties", this);
+		modules = new CollectionExpression("ORM_Modules", this);
+		moduleChanges = new CollectionExpression("ORM_ModuleChanges", this);
 	}
 	
 	public ProgrammingCriteria(PersistentSession session) {
@@ -33,11 +39,23 @@ public class ProgrammingCriteria extends AbstractORMCriteria {
 	}
 	
 	public ProgrammingCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
-	public businesslogic.accounting.PermissionCriteria createPermissionCriteria() {
-		return new businesslogic.accounting.PermissionCriteria(createCriteria("ORM_Permission"));
+	public businesslogic.accounting.job.SpecialtyCriteria createSpecialtiesCriteria() {
+		return new businesslogic.accounting.job.SpecialtyCriteria(createCriteria("ORM_Specialties"));
+	}
+	
+	public businesslogic.distribution.resource.ModuleCriteria createModulesCriteria() {
+		return new businesslogic.distribution.resource.ModuleCriteria(createCriteria("ORM_Modules"));
+	}
+	
+	public businesslogic.distribution.resource.ModuleChangeCriteria createModuleChangesCriteria() {
+		return new businesslogic.distribution.resource.ModuleChangeCriteria(createCriteria("ORM_ModuleChanges"));
+	}
+	
+	public businesslogic.accounting.job.UserJobCriteria createUserJobsCriteria() {
+		return new businesslogic.accounting.job.UserJobCriteria(createCriteria("ORM_UserJobs"));
 	}
 	
 	public Programming uniqueProgramming() {

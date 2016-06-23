@@ -43,7 +43,7 @@ public class DateCriteria extends AbstractORMCriteria {
 	}
 	
 	public DateCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
 	public Date uniqueDate() {

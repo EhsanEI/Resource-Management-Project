@@ -17,7 +17,24 @@ public class Project extends businesslogic.distribution.resource.InformationReso
 	public Project() {
 	}
 	
+	private java.util.Set this_getSet (int key) {
+		if (key == businesslogic.accounting.user.ORMConstants.KEY_PROJECT_SYSTEMS) {
+			return ORM_systems;
+		}
+		
+		return null;
+	}
+	
+	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
+		public java.util.Set getSet(int key) {
+			return this_getSet(key);
+		}
+		
+	};
+	
 	private int budget;
+	
+	private java.util.Set ORM_systems = new java.util.HashSet();
 	
 	public void setBudget(int value) {
 		this.budget = value;
@@ -26,6 +43,16 @@ public class Project extends businesslogic.distribution.resource.InformationReso
 	public int getBudget() {
 		return budget;
 	}
+	
+	private void setORM_Systems(java.util.Set value) {
+		this.ORM_systems = value;
+	}
+	
+	private java.util.Set getORM_Systems() {
+		return ORM_systems;
+	}
+	
+	public final businesslogic.distribution.resource.SystemSetCollection systems = new businesslogic.distribution.resource.SystemSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROJECT_SYSTEMS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.distribution.resource.System[] getSystems() {
 		//TODO: Implement Method

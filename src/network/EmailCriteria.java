@@ -35,7 +35,7 @@ public class EmailCriteria extends AbstractORMCriteria {
 	}
 	
 	public EmailCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
 	public Email uniqueEmail() {

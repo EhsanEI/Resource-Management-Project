@@ -10,11 +10,6 @@ License Type: Evaluation
 			<generator class="native">
 			</generator>
 		</id>
-		<many-to-one name="backupFormat" column="BackupFormatID" class="businesslogic.support.BackupFormat" cascade="save-update,lock" unique="true" not-null="true" lazy="proxy" access="field">
-		</many-to-one>
-		<many-to-one name="date" column="DateID" class="businesslogic.utility.Date" cascade="save-update,lock" unique="true" not-null="true" lazy="proxy" access="field">
-		</many-to-one>
-		
-		<property name="backupPreiodDays" column="BackupPreiodDays" type="integer" not-null="true" lazy="false"/>
+		<property name="backupPreiodDays" column="BackupPreiodDays" type="integer" length="10" not-null="true" lazy="false"/>
 	</class>
 </hibernate-mapping>

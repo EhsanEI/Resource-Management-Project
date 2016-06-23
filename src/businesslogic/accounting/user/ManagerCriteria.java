@@ -20,20 +20,30 @@ import org.orm.criteria.*;
 
 public class ManagerCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
+	public final IntegerExpression userId;
+	public final AssociationExpression user;
 	public final StringExpression username;
 	public final StringExpression password;
 	public final StringExpression email;
 	public final BooleanExpression approved;
-	public final CollectionExpression permission;
+	public final CollectionExpression emails;
+	public final CollectionExpression userJobs;
+	public final CollectionExpression jobs;
+	public final CollectionExpression users;
 	
 	public ManagerCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
+		userId = new IntegerExpression("user.ID", this);
+		user = new AssociationExpression("user", this);
 		username = new StringExpression("username", this);
 		password = new StringExpression("password", this);
 		email = new StringExpression("email", this);
 		approved = new BooleanExpression("approved", this);
-		permission = new CollectionExpression("ORM_Permission", this);
+		emails = new CollectionExpression("ORM_Emails", this);
+		userJobs = new CollectionExpression("ORM_UserJobs", this);
+		jobs = new CollectionExpression("ORM_Jobs", this);
+		users = new CollectionExpression("ORM_Users", this);
 	}
 	
 	public ManagerCriteria(PersistentSession session) {
@@ -41,11 +51,27 @@ public class ManagerCriteria extends AbstractORMCriteria {
 	}
 	
 	public ManagerCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
-	public businesslogic.accounting.PermissionCriteria createPermissionCriteria() {
-		return new businesslogic.accounting.PermissionCriteria(createCriteria("ORM_Permission"));
+	public businesslogic.accounting.job.JobCriteria createJobsCriteria() {
+		return new businesslogic.accounting.job.JobCriteria(createCriteria("ORM_Jobs"));
+	}
+	
+	public businesslogic.accounting.user.UserCriteria createUsersCriteria() {
+		return new businesslogic.accounting.user.UserCriteria(createCriteria("ORM_Users"));
+	}
+	
+	public UserCriteria createUserCriteria() {
+		return new UserCriteria(createCriteria("user"));
+	}
+	
+	public network.EmailCriteria createEmailsCriteria() {
+		return new network.EmailCriteria(createCriteria("ORM_Emails"));
+	}
+	
+	public businesslogic.accounting.job.UserJobCriteria createUserJobsCriteria() {
+		return new businesslogic.accounting.job.UserJobCriteria(createCriteria("ORM_UserJobs"));
 	}
 	
 	public Manager uniqueManager() {

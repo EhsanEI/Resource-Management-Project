@@ -10,7 +10,6 @@ License Type: Evaluation
 			<generator class="native">
 			</generator>
 		</id>
-		
 		<property name="title" column="Title" type="string" length="255" not-null="false" lazy="false"/>
 	</class>
 </hibernate-mapping>

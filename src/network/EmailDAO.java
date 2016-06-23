@@ -21,7 +21,7 @@ import java.util.List;
 public class EmailDAO {
 	public static Email loadEmailByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadEmailByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +32,7 @@ public class EmailDAO {
 	
 	public static Email getEmailByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getEmailByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +43,7 @@ public class EmailDAO {
 	
 	public static Email loadEmailByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadEmailByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +54,7 @@ public class EmailDAO {
 	
 	public static Email getEmailByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getEmailByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +105,7 @@ public class EmailDAO {
 	
 	public static List queryEmail(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return queryEmail(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +116,7 @@ public class EmailDAO {
 	
 	public static List queryEmail(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return queryEmail(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +127,7 @@ public class EmailDAO {
 	
 	public static Email[] listEmailByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listEmailByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +138,7 @@ public class EmailDAO {
 	
 	public static Email[] listEmailByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listEmailByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +204,7 @@ public class EmailDAO {
 	
 	public static Email loadEmailByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadEmailByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +215,7 @@ public class EmailDAO {
 	
 	public static Email loadEmailByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadEmailByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +242,7 @@ public class EmailDAO {
 	
 	public static java.util.Iterator iterateEmailByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateEmailByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +253,7 @@ public class EmailDAO {
 	
 	public static java.util.Iterator iterateEmailByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateEmailByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +301,7 @@ public class EmailDAO {
 	
 	public static boolean save(network.Email email) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().saveObject(email);
+			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(email);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +312,7 @@ public class EmailDAO {
 	
 	public static boolean delete(network.Email email) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().deleteObject(email);
+			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(email);
 			return true;
 		}
 		catch (Exception e) {
@@ -323,7 +323,7 @@ public class EmailDAO {
 	
 	public static boolean refresh(network.Email email) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().refresh(email);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(email);
 			return true;
 		}
 		catch (Exception e) {
@@ -334,7 +334,7 @@ public class EmailDAO {
 	
 	public static boolean evict(network.Email email) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().evict(email);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(email);
 			return true;
 		}
 		catch (Exception e) {

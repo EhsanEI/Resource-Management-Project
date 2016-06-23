@@ -31,7 +31,7 @@ public class ResourceAllocationCriteria extends AbstractORMCriteria {
 	}
 	
 	public ResourceAllocationCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
 	public ResourceAllocation uniqueResourceAllocation() {

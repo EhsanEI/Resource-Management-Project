@@ -21,7 +21,7 @@ import java.util.List;
 public class PhysicalResourceDAO {
 	public static PhysicalResource loadPhysicalResourceByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadPhysicalResourceByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +32,7 @@ public class PhysicalResourceDAO {
 	
 	public static PhysicalResource getPhysicalResourceByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getPhysicalResourceByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +43,7 @@ public class PhysicalResourceDAO {
 	
 	public static PhysicalResource loadPhysicalResourceByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadPhysicalResourceByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +54,7 @@ public class PhysicalResourceDAO {
 	
 	public static PhysicalResource getPhysicalResourceByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getPhysicalResourceByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +105,7 @@ public class PhysicalResourceDAO {
 	
 	public static List queryPhysicalResource(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return queryPhysicalResource(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +116,7 @@ public class PhysicalResourceDAO {
 	
 	public static List queryPhysicalResource(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return queryPhysicalResource(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +127,7 @@ public class PhysicalResourceDAO {
 	
 	public static PhysicalResource[] listPhysicalResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listPhysicalResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +138,7 @@ public class PhysicalResourceDAO {
 	
 	public static PhysicalResource[] listPhysicalResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listPhysicalResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +204,7 @@ public class PhysicalResourceDAO {
 	
 	public static PhysicalResource loadPhysicalResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadPhysicalResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +215,7 @@ public class PhysicalResourceDAO {
 	
 	public static PhysicalResource loadPhysicalResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadPhysicalResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +242,7 @@ public class PhysicalResourceDAO {
 	
 	public static java.util.Iterator iteratePhysicalResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iteratePhysicalResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +253,7 @@ public class PhysicalResourceDAO {
 	
 	public static java.util.Iterator iteratePhysicalResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iteratePhysicalResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +301,7 @@ public class PhysicalResourceDAO {
 	
 	public static boolean save(businesslogic.distribution.resource.PhysicalResource physicalResource) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().saveObject(physicalResource);
+			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(physicalResource);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +312,7 @@ public class PhysicalResourceDAO {
 	
 	public static boolean delete(businesslogic.distribution.resource.PhysicalResource physicalResource) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().deleteObject(physicalResource);
+			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(physicalResource);
 			return true;
 		}
 		catch (Exception e) {
@@ -323,7 +323,7 @@ public class PhysicalResourceDAO {
 	
 	public static boolean refresh(businesslogic.distribution.resource.PhysicalResource physicalResource) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().refresh(physicalResource);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(physicalResource);
 			return true;
 		}
 		catch (Exception e) {
@@ -334,7 +334,7 @@ public class PhysicalResourceDAO {
 	
 	public static boolean evict(businesslogic.distribution.resource.PhysicalResource physicalResource) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().evict(physicalResource);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(physicalResource);
 			return true;
 		}
 		catch (Exception e) {

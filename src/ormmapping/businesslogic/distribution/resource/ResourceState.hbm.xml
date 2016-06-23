@@ -10,6 +10,5 @@ License Type: Evaluation
 			<generator class="native">
 			</generator>
 		</id>
-		
 	</class>
 </hibernate-mapping>

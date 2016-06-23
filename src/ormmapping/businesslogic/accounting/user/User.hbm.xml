@@ -11,18 +11,35 @@ License Type: Evaluation
 			</generator>
 		</id>
 		<discriminator column="Discriminator" type="string"/>
-		
+		<many-to-one name="user" column="UserID2" class="businesslogic.accounting.user.User" cascade="save-update,lock" unique="true" not-null="true" lazy="proxy" access="field">
+		</many-to-one>
 		<property name="username" column="Username" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="password" column="Password" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="email" column="Email" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="approved" column="Approved" type="boolean" not-null="true" lazy="false"/>
-		<set name="ORM_Permission" lazy="true" cascade="save-update,lock" inverse="false">
+		<set name="ORM_Emails" lazy="true" cascade="save-update,lock" inverse="false">
 			<key column="UserID" not-null="true"/>
-			<one-to-many class="businesslogic.accounting.Permission"/>
+			<one-to-many class="network.Email"/>
+		</set>
+		<set name="ORM_UserJobs" lazy="true" cascade="save-update,lock" inverse="false">
+			<key column="UserID" not-null="true"/>
+			<one-to-many class="businesslogic.accounting.job.UserJob"/>
 		</set>
 		<subclass name="businesslogic.accounting.user.Admin" discriminator-value="Admin" lazy="false">
+			<set name="ORM_SystemConfigurations" lazy="true" cascade="save-update,lock" inverse="false">
+				<key column="UserID" not-null="true"/>
+				<one-to-many class="businesslogic.support.SystemConfiguration"/>
+			</set>
 		</subclass>
 		<subclass name="businesslogic.accounting.user.Manager" discriminator-value="Manager" lazy="false">
+			<set name="ORM_Jobs" lazy="true" cascade="save-update,lock" inverse="false">
+				<key column="UserID" not-null="true"/>
+				<one-to-many class="businesslogic.accounting.job.Job"/>
+			</set>
+			<set name="ORM_Users" lazy="true" cascade="save-update,lock" inverse="false">
+				<key column="UserID" not-null="true"/>
+				<one-to-many class="businesslogic.accounting.user.User"/>
+			</set>
 			<subclass name="businesslogic.accounting.user.MiddleLevelManager" discriminator-value="MiddleLevelManager" lazy="false">
 			</subclass>
 			<subclass name="businesslogic.accounting.user.HighLevelManager" discriminator-value="HighLevelManager" lazy="false">

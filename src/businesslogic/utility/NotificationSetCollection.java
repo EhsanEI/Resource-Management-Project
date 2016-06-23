@@ -71,7 +71,6 @@ public class NotificationSetCollection extends org.orm.util.ORMSet {
 	 * Return an sorted array containing all of the persistent objects in ORMSet
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
-	 * <li>ID</li>
 	 * <li>content</li>
 	 * </ul>
 	 * @return The persistent objects sorted array
@@ -84,7 +83,6 @@ public class NotificationSetCollection extends org.orm.util.ORMSet {
 	 * Return an sorted array containing all of the persistent objects in ORMSet
 	 * @param propertyName Name of the property for sorting:<ul>
 	 * <li>ID</li>
-	 * <li>ID</li>
 	 * <li>content</li>
 	 * </ul>
 	 * @param ascending true for ascending, false for descending
@@ -95,7 +93,7 @@ public class NotificationSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return businesslogic.distribution.resource.OODPersistentManager.instance();
+		return businesslogic.accounting.user.OODPersistentManager.instance();
 	}
 	
 }

@@ -33,7 +33,7 @@ public class NotificationCriteria extends AbstractORMCriteria {
 	}
 	
 	public NotificationCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
 	public Notification uniqueNotification() {

@@ -31,7 +31,7 @@ public class UserJobCriteria extends AbstractORMCriteria {
 	}
 	
 	public UserJobCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
 	public UserJob uniqueUserJob() {

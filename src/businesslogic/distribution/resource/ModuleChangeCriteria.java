@@ -20,11 +20,15 @@ import org.orm.criteria.*;
 
 public class ModuleChangeCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
+	public final IntegerExpression dateId;
+	public final AssociationExpression date;
 	public final StringExpression description;
 	
 	public ModuleChangeCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
+		dateId = new IntegerExpression("date.ID", this);
+		date = new AssociationExpression("date", this);
 		description = new StringExpression("description", this);
 	}
 	
@@ -33,7 +37,11 @@ public class ModuleChangeCriteria extends AbstractORMCriteria {
 	}
 	
 	public ModuleChangeCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
+	}
+	
+	public businesslogic.utility.DateCriteria createDateCriteria() {
+		return new businesslogic.utility.DateCriteria(createCriteria("date"));
 	}
 	
 	public ModuleChange uniqueModuleChange() {

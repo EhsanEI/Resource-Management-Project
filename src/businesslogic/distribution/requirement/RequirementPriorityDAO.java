@@ -21,7 +21,7 @@ import java.util.List;
 public class RequirementPriorityDAO {
 	public static RequirementPriority loadRequirementPriorityByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadRequirementPriorityByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +32,7 @@ public class RequirementPriorityDAO {
 	
 	public static RequirementPriority getRequirementPriorityByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getRequirementPriorityByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +43,7 @@ public class RequirementPriorityDAO {
 	
 	public static RequirementPriority loadRequirementPriorityByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadRequirementPriorityByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +54,7 @@ public class RequirementPriorityDAO {
 	
 	public static RequirementPriority getRequirementPriorityByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getRequirementPriorityByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +105,7 @@ public class RequirementPriorityDAO {
 	
 	public static List queryRequirementPriority(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return queryRequirementPriority(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +116,7 @@ public class RequirementPriorityDAO {
 	
 	public static List queryRequirementPriority(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return queryRequirementPriority(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +127,7 @@ public class RequirementPriorityDAO {
 	
 	public static RequirementPriority[] listRequirementPriorityByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listRequirementPriorityByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +138,7 @@ public class RequirementPriorityDAO {
 	
 	public static RequirementPriority[] listRequirementPriorityByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listRequirementPriorityByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +204,7 @@ public class RequirementPriorityDAO {
 	
 	public static RequirementPriority loadRequirementPriorityByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadRequirementPriorityByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +215,7 @@ public class RequirementPriorityDAO {
 	
 	public static RequirementPriority loadRequirementPriorityByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadRequirementPriorityByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +242,7 @@ public class RequirementPriorityDAO {
 	
 	public static java.util.Iterator iterateRequirementPriorityByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateRequirementPriorityByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +253,7 @@ public class RequirementPriorityDAO {
 	
 	public static java.util.Iterator iterateRequirementPriorityByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateRequirementPriorityByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +301,7 @@ public class RequirementPriorityDAO {
 	
 	public static boolean save(businesslogic.distribution.requirement.RequirementPriority requirementPriority) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().saveObject(requirementPriority);
+			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(requirementPriority);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +312,7 @@ public class RequirementPriorityDAO {
 	
 	public static boolean delete(businesslogic.distribution.requirement.RequirementPriority requirementPriority) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().deleteObject(requirementPriority);
+			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(requirementPriority);
 			return true;
 		}
 		catch (Exception e) {
@@ -323,7 +323,7 @@ public class RequirementPriorityDAO {
 	
 	public static boolean refresh(businesslogic.distribution.requirement.RequirementPriority requirementPriority) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().refresh(requirementPriority);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(requirementPriority);
 			return true;
 		}
 		catch (Exception e) {
@@ -334,7 +334,7 @@ public class RequirementPriorityDAO {
 	
 	public static boolean evict(businesslogic.distribution.requirement.RequirementPriority requirementPriority) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().evict(requirementPriority);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(requirementPriority);
 			return true;
 		}
 		catch (Exception e) {

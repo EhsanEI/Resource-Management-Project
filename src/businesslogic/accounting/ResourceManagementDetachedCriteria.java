@@ -20,22 +20,36 @@ import org.orm.criteria.*;
 
 public class ResourceManagementDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final CollectionExpression permission;
+	public final CollectionExpression userJobs;
+	public final CollectionExpression resources;
+	public final CollectionExpression allocation_s;
 	
 	public ResourceManagementDetachedCriteria() {
 		super(businesslogic.accounting.ResourceManagement.class, businesslogic.accounting.ResourceManagementCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		permission = new CollectionExpression("ORM_Permission", this.getDetachedCriteria());
+		userJobs = new CollectionExpression("ORM_UserJobs", this.getDetachedCriteria());
+		resources = new CollectionExpression("ORM_Resources", this.getDetachedCriteria());
+		allocation_s = new CollectionExpression("ORM_Allocation_s", this.getDetachedCriteria());
 	}
 	
 	public ResourceManagementDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, businesslogic.accounting.ResourceManagementCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		permission = new CollectionExpression("ORM_Permission", this.getDetachedCriteria());
+		userJobs = new CollectionExpression("ORM_UserJobs", this.getDetachedCriteria());
+		resources = new CollectionExpression("ORM_Resources", this.getDetachedCriteria());
+		allocation_s = new CollectionExpression("ORM_Allocation_s", this.getDetachedCriteria());
 	}
 	
-	public businesslogic.accounting.PermissionDetachedCriteria createPermissionCriteria() {
-		return new businesslogic.accounting.PermissionDetachedCriteria(createCriteria("ORM_Permission"));
+	public businesslogic.distribution.resource.ResourceDetachedCriteria createResourcesCriteria() {
+		return new businesslogic.distribution.resource.ResourceDetachedCriteria(createCriteria("ORM_Resources"));
+	}
+	
+	public businesslogic.distribution.Allocation_DetachedCriteria createAllocation_sCriteria() {
+		return new businesslogic.distribution.Allocation_DetachedCriteria(createCriteria("ORM_Allocation_s"));
+	}
+	
+	public businesslogic.accounting.job.UserJobDetachedCriteria createUserJobsCriteria() {
+		return new businesslogic.accounting.job.UserJobDetachedCriteria(createCriteria("ORM_UserJobs"));
 	}
 	
 	public ResourceManagement uniqueResourceManagement(PersistentSession session) {

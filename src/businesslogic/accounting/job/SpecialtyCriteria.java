@@ -35,7 +35,7 @@ public class SpecialtyCriteria extends AbstractORMCriteria {
 	}
 	
 	public SpecialtyCriteria() throws PersistentException {
-		this(businesslogic.distribution.resource.OODPersistentManager.instance().getSession());
+		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
 	
 	public Specialty uniqueSpecialty() {

@@ -21,7 +21,7 @@ import java.util.List;
 public class MiddleLevelManagerDAO {
 	public static MiddleLevelManager loadMiddleLevelManagerByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadMiddleLevelManagerByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +32,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static MiddleLevelManager getMiddleLevelManagerByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getMiddleLevelManagerByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +43,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static MiddleLevelManager loadMiddleLevelManagerByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadMiddleLevelManagerByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +54,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static MiddleLevelManager getMiddleLevelManagerByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getMiddleLevelManagerByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +105,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static List queryMiddleLevelManager(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return queryMiddleLevelManager(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +116,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static List queryMiddleLevelManager(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return queryMiddleLevelManager(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +127,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static MiddleLevelManager[] listMiddleLevelManagerByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listMiddleLevelManagerByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +138,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static MiddleLevelManager[] listMiddleLevelManagerByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listMiddleLevelManagerByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +204,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static MiddleLevelManager loadMiddleLevelManagerByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadMiddleLevelManagerByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +215,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static MiddleLevelManager loadMiddleLevelManagerByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadMiddleLevelManagerByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +242,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static java.util.Iterator iterateMiddleLevelManagerByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateMiddleLevelManagerByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +253,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static java.util.Iterator iterateMiddleLevelManagerByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateMiddleLevelManagerByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +301,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static boolean save(businesslogic.accounting.user.MiddleLevelManager middleLevelManager) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().saveObject(middleLevelManager);
+			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(middleLevelManager);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +312,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static boolean delete(businesslogic.accounting.user.MiddleLevelManager middleLevelManager) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().deleteObject(middleLevelManager);
+			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(middleLevelManager);
 			return true;
 		}
 		catch (Exception e) {
@@ -323,7 +323,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static boolean refresh(businesslogic.accounting.user.MiddleLevelManager middleLevelManager) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().refresh(middleLevelManager);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(middleLevelManager);
 			return true;
 		}
 		catch (Exception e) {
@@ -334,7 +334,7 @@ public class MiddleLevelManagerDAO {
 	
 	public static boolean evict(businesslogic.accounting.user.MiddleLevelManager middleLevelManager) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().evict(middleLevelManager);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(middleLevelManager);
 			return true;
 		}
 		catch (Exception e) {

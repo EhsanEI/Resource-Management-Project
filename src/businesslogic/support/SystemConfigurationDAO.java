@@ -21,7 +21,7 @@ import java.util.List;
 public class SystemConfigurationDAO {
 	public static SystemConfiguration loadSystemConfigurationByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadSystemConfigurationByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +32,7 @@ public class SystemConfigurationDAO {
 	
 	public static SystemConfiguration getSystemConfigurationByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getSystemConfigurationByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +43,7 @@ public class SystemConfigurationDAO {
 	
 	public static SystemConfiguration loadSystemConfigurationByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadSystemConfigurationByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +54,7 @@ public class SystemConfigurationDAO {
 	
 	public static SystemConfiguration getSystemConfigurationByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return getSystemConfigurationByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +105,7 @@ public class SystemConfigurationDAO {
 	
 	public static List querySystemConfiguration(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return querySystemConfiguration(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +116,7 @@ public class SystemConfigurationDAO {
 	
 	public static List querySystemConfiguration(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return querySystemConfiguration(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +127,7 @@ public class SystemConfigurationDAO {
 	
 	public static SystemConfiguration[] listSystemConfigurationByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listSystemConfigurationByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +138,7 @@ public class SystemConfigurationDAO {
 	
 	public static SystemConfiguration[] listSystemConfigurationByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return listSystemConfigurationByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +204,7 @@ public class SystemConfigurationDAO {
 	
 	public static SystemConfiguration loadSystemConfigurationByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadSystemConfigurationByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +215,7 @@ public class SystemConfigurationDAO {
 	
 	public static SystemConfiguration loadSystemConfigurationByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return loadSystemConfigurationByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +242,7 @@ public class SystemConfigurationDAO {
 	
 	public static java.util.Iterator iterateSystemConfigurationByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateSystemConfigurationByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +253,7 @@ public class SystemConfigurationDAO {
 	
 	public static java.util.Iterator iterateSystemConfigurationByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.distribution.resource.OODPersistentManager.instance().getSession();
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			return iterateSystemConfigurationByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +301,7 @@ public class SystemConfigurationDAO {
 	
 	public static boolean save(businesslogic.support.SystemConfiguration systemConfiguration) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().saveObject(systemConfiguration);
+			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(systemConfiguration);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +312,7 @@ public class SystemConfigurationDAO {
 	
 	public static boolean delete(businesslogic.support.SystemConfiguration systemConfiguration) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().deleteObject(systemConfiguration);
+			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(systemConfiguration);
 			return true;
 		}
 		catch (Exception e) {
@@ -323,7 +323,7 @@ public class SystemConfigurationDAO {
 	
 	public static boolean refresh(businesslogic.support.SystemConfiguration systemConfiguration) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().refresh(systemConfiguration);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(systemConfiguration);
 			return true;
 		}
 		catch (Exception e) {
@@ -334,7 +334,7 @@ public class SystemConfigurationDAO {
 	
 	public static boolean evict(businesslogic.support.SystemConfiguration systemConfiguration) throws PersistentException {
 		try {
-			businesslogic.distribution.resource.OODPersistentManager.instance().getSession().evict(systemConfiguration);
+			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(systemConfiguration);
 			return true;
 		}
 		catch (Exception e) {

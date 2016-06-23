@@ -13,6 +13,8 @@
  */
 package businesslogic.accounting.job;
 
+import businesslogic.utility.Tree;
+
 public class Specialty {
 	public Specialty() {
 	}
@@ -23,17 +25,16 @@ public class Specialty {
 	
 	private int proficiencyLevel;
 	
-	
-	public int getORMID() {
-		return getID();
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setTitle(String value) {
@@ -50,6 +51,11 @@ public class Specialty {
 	
 	public int getProficiencyLevel() {
 		return proficiencyLevel;
+	}
+	
+	public Tree<String> getInfo() {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {

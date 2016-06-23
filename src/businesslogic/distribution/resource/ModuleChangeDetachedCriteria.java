@@ -20,18 +20,28 @@ import org.orm.criteria.*;
 
 public class ModuleChangeDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
+	public final IntegerExpression dateId;
+	public final AssociationExpression date;
 	public final StringExpression description;
 	
 	public ModuleChangeDetachedCriteria() {
 		super(businesslogic.distribution.resource.ModuleChange.class, businesslogic.distribution.resource.ModuleChangeCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		dateId = new IntegerExpression("date.ID", this.getDetachedCriteria());
+		date = new AssociationExpression("date", this.getDetachedCriteria());
 		description = new StringExpression("description", this.getDetachedCriteria());
 	}
 	
 	public ModuleChangeDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, businesslogic.distribution.resource.ModuleChangeCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		dateId = new IntegerExpression("date.ID", this.getDetachedCriteria());
+		date = new AssociationExpression("date", this.getDetachedCriteria());
 		description = new StringExpression("description", this.getDetachedCriteria());
+	}
+	
+	public businesslogic.utility.DateDetachedCriteria createDateCriteria() {
+		return new businesslogic.utility.DateDetachedCriteria(createCriteria("date"));
 	}
 	
 	public ModuleChange uniqueModuleChange(PersistentSession session) {

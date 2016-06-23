@@ -19,16 +19,16 @@ public class ResourceAllocation {
 	
 	private int ID;
 	
-	public int getORMID() {
-		return getID();
-	}
-	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public businesslogic.distribution.resource.Resource getResource() {
@@ -41,7 +41,7 @@ public class ResourceAllocation {
 		throw new UnsupportedOperationException();
 	}
 	
-	public businesslogic.distribution.Allocation  getAllocation() {
+	public Allocation getAllocation() {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}

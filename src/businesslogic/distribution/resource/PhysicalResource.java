@@ -19,12 +19,17 @@ public class PhysicalResource extends businesslogic.distribution.resource.Resour
 	public PhysicalResource() {
 	}
 	
-	public  PhysicalResource(HashMap<String, String> specs) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+	private String specs;
+	
+	public void setSpecs(String value) {
+		this.specs = value;
 	}
 	
-	public HashMap<String, String> getSpecs() {
+	public String getSpecs() {
+		return specs;
+	}
+	
+	public PhysicalResource(HashMap<String, String> specs) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}

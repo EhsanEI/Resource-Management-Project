@@ -4,6 +4,7 @@
  */
 package ormsamples;
 
+import businesslogic.distribution.Allocation;
 import org.orm.*;
 public class ListOODData {
 	private static final int ROW_COUNT = 100;
@@ -186,10 +187,10 @@ public class ListOODData {
 		System.out.println(length + " record(s) retrieved.");
 		
 		System.out.println("Listing Allocation...");
-		businesslogic.distribution.Allocation[] businessLogicDistributionAllocations = businesslogic.distribution.AllocationDAO.listAllocationByQuery(null, null);
-		length = Math.min(businessLogicDistributionAllocations.length, ROW_COUNT);
+		Allocation[] businessLogicDistributionAllocation_s = businesslogic.distribution.Allocation_DAO.listAllocation_ByQuery(null, null);
+		length = Math.min(businessLogicDistributionAllocation_s.length, ROW_COUNT);
 		for (int i = 0; i < length; i++) {
-			System.out.println(businessLogicDistributionAllocations[i]);
+			System.out.println(businessLogicDistributionAllocation_s[i]);
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
@@ -241,22 +242,6 @@ public class ListOODData {
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
-		System.out.println("Listing BackupFormat...");
-		businesslogic.support.BackupFormat[] businessLogicSupportBackupFormats = businesslogic.support.BackupFormatDAO.listBackupFormatByQuery(null, null);
-		length = Math.min(businessLogicSupportBackupFormats.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(businessLogicSupportBackupFormats[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
-		System.out.println("Listing ResourceRequirementPriority...");
-		businesslogic.distribution.requirement.ResourceRequirementPriority[] businessLogicDistributionRequirementResourceRequirementPrioritys = businesslogic.distribution.requirement.ResourceRequirementPriorityDAO.listResourceRequirementPriorityByQuery(null, null);
-		length = Math.min(businessLogicDistributionRequirementResourceRequirementPrioritys.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(businessLogicDistributionRequirementResourceRequirementPrioritys[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
 		System.out.println("Listing Email...");
 		network.Email[] networkEmails = network.EmailDAO.listEmailByQuery(null, null);
 		length = Math.min(networkEmails.length, ROW_COUNT);
@@ -278,22 +263,6 @@ public class ListOODData {
 		length = Math.min(businessLogicDistributionResourceAllocations.length, ROW_COUNT);
 		for (int i = 0; i < length; i++) {
 			System.out.println(businessLogicDistributionResourceAllocations[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
-		System.out.println("Listing ModuleState...");
-		businesslogic.distribution.resource.ModuleState[] businessLogicDistributionResourceModuleStates = businesslogic.distribution.resource.ModuleStateDAO.listModuleStateByQuery(null, null);
-		length = Math.min(businessLogicDistributionResourceModuleStates.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(businessLogicDistributionResourceModuleStates[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
-		System.out.println("Listing ModuleSpecialty...");
-		businesslogic.distribution.resource.ModuleSpecialty[] businessLogicDistributionResourceModuleSpecialtys = businesslogic.distribution.resource.ModuleSpecialtyDAO.listModuleSpecialtyByQuery(null, null);
-		length = Math.min(businessLogicDistributionResourceModuleSpecialtys.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(businessLogicDistributionResourceModuleSpecialtys[i]);
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
@@ -565,16 +534,16 @@ public class ListOODData {
 		System.out.println(length + " SystemConfiguration record(s) retrieved."); 
 		
 		System.out.println("Listing Allocation by Criteria...");
-		businesslogic.distribution.AllocationCriteria businessLogicDistributionAllocationCriteria = new businesslogic.distribution.AllocationCriteria();
+		businesslogic.distribution.Allocation_Criteria businessLogicDistributionAllocation_Criteria = new businesslogic.distribution.Allocation_Criteria();
 		// Please uncomment the follow line and fill in parameter(s) 
-		//businessLogicDistributionAllocationCriteria.ID.eq();
-		businessLogicDistributionAllocationCriteria.setMaxResults(ROW_COUNT);
-		businesslogic.distribution.Allocation[] businessLogicDistributionAllocations = businessLogicDistributionAllocationCriteria.listAllocation();
-		length =businessLogicDistributionAllocations== null ? 0 : Math.min(businessLogicDistributionAllocations.length, ROW_COUNT); 
+		//businessLogicDistributionAllocation_Criteria.ID.eq();
+		businessLogicDistributionAllocation_Criteria.setMaxResults(ROW_COUNT);
+		Allocation[] businessLogicDistributionAllocation_s = businessLogicDistributionAllocation_Criteria.listAllocation_();
+		length =businessLogicDistributionAllocation_s== null ? 0 : Math.min(businessLogicDistributionAllocation_s.length, ROW_COUNT); 
 		for (int i = 0; i < length; i++) {
-			 System.out.println(businessLogicDistributionAllocations[i]);
+			 System.out.println(businessLogicDistributionAllocation_s[i]);
 		}
-		System.out.println(length + " Allocation record(s) retrieved."); 
+		System.out.println(length + " Allocation record(s) retrieved.");
 		
 		System.out.println("Listing HighLevelManager by Criteria...");
 		businesslogic.accounting.user.HighLevelManagerCriteria businessLogicAccountingUserHighLevelManagerCriteria = new businesslogic.accounting.user.HighLevelManagerCriteria();
@@ -648,30 +617,6 @@ public class ListOODData {
 		}
 		System.out.println(length + " ResourceState record(s) retrieved."); 
 		
-		System.out.println("Listing BackupFormat by Criteria...");
-		businesslogic.support.BackupFormatCriteria businessLogicSupportBackupFormatCriteria = new businesslogic.support.BackupFormatCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//businessLogicSupportBackupFormatCriteria.ID.eq();
-		businessLogicSupportBackupFormatCriteria.setMaxResults(ROW_COUNT);
-		businesslogic.support.BackupFormat[] businessLogicSupportBackupFormats = businessLogicSupportBackupFormatCriteria.listBackupFormat();
-		length =businessLogicSupportBackupFormats== null ? 0 : Math.min(businessLogicSupportBackupFormats.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(businessLogicSupportBackupFormats[i]);
-		}
-		System.out.println(length + " BackupFormat record(s) retrieved."); 
-		
-		System.out.println("Listing ResourceRequirementPriority by Criteria...");
-		businesslogic.distribution.requirement.ResourceRequirementPriorityCriteria businessLogicDistributionRequirementResourceRequirementPriorityCriteria = new businesslogic.distribution.requirement.ResourceRequirementPriorityCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//businessLogicDistributionRequirementResourceRequirementPriorityCriteria.ID.eq();
-		businessLogicDistributionRequirementResourceRequirementPriorityCriteria.setMaxResults(ROW_COUNT);
-		businesslogic.distribution.requirement.ResourceRequirementPriority[] businessLogicDistributionRequirementResourceRequirementPrioritys = businessLogicDistributionRequirementResourceRequirementPriorityCriteria.listResourceRequirementPriority();
-		length =businessLogicDistributionRequirementResourceRequirementPrioritys== null ? 0 : Math.min(businessLogicDistributionRequirementResourceRequirementPrioritys.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(businessLogicDistributionRequirementResourceRequirementPrioritys[i]);
-		}
-		System.out.println(length + " ResourceRequirementPriority record(s) retrieved."); 
-		
 		System.out.println("Listing Email by Criteria...");
 		network.EmailCriteria networkEmailCriteria = new network.EmailCriteria();
 		// Please uncomment the follow line and fill in parameter(s) 
@@ -708,30 +653,6 @@ public class ListOODData {
 		}
 		System.out.println(length + " ResourceAllocation record(s) retrieved."); 
 		
-		System.out.println("Listing ModuleState by Criteria...");
-		businesslogic.distribution.resource.ModuleStateCriteria businessLogicDistributionResourceModuleStateCriteria = new businesslogic.distribution.resource.ModuleStateCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//businessLogicDistributionResourceModuleStateCriteria.ID.eq();
-		businessLogicDistributionResourceModuleStateCriteria.setMaxResults(ROW_COUNT);
-		businesslogic.distribution.resource.ModuleState[] businessLogicDistributionResourceModuleStates = businessLogicDistributionResourceModuleStateCriteria.listModuleState();
-		length =businessLogicDistributionResourceModuleStates== null ? 0 : Math.min(businessLogicDistributionResourceModuleStates.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(businessLogicDistributionResourceModuleStates[i]);
-		}
-		System.out.println(length + " ModuleState record(s) retrieved."); 
-		
-		System.out.println("Listing ModuleSpecialty by Criteria...");
-		businesslogic.distribution.resource.ModuleSpecialtyCriteria businessLogicDistributionResourceModuleSpecialtyCriteria = new businesslogic.distribution.resource.ModuleSpecialtyCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//businessLogicDistributionResourceModuleSpecialtyCriteria.ID.eq();
-		businessLogicDistributionResourceModuleSpecialtyCriteria.setMaxResults(ROW_COUNT);
-		businesslogic.distribution.resource.ModuleSpecialty[] businessLogicDistributionResourceModuleSpecialtys = businessLogicDistributionResourceModuleSpecialtyCriteria.listModuleSpecialty();
-		length =businessLogicDistributionResourceModuleSpecialtys== null ? 0 : Math.min(businessLogicDistributionResourceModuleSpecialtys.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(businessLogicDistributionResourceModuleSpecialtys[i]);
-		}
-		System.out.println(length + " ModuleSpecialty record(s) retrieved."); 
-		
 	}
 	
 	public static void main(String[] args) {
@@ -742,7 +663,7 @@ public class ListOODData {
 				//listOODData.listByCriteria();
 			}
 			finally {
-				businesslogic.distribution.resource.OODPersistentManager.instance().disposePersistentManager();
+				businesslogic.accounting.user.OODPersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

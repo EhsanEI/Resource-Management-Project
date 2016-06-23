@@ -13,16 +13,27 @@
  */
 package businesslogic.accounting.user;
 
+import businesslogic.utility.Tree;
+
 public class User {
 	public User() {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.distribution.resource.ORMConstants.KEY_USER_PERMISSION) {
-			return ORM_permission;
+		if (key == businesslogic.accounting.user.ORMConstants.KEY_USER_EMAILS) {
+			return ORM_emails;
+		}
+		else if (key == businesslogic.accounting.user.ORMConstants.KEY_USER_USERJOBS) {
+			return ORM_userJobs;
 		}
 		
 		return null;
+	}
+	
+	private void this_setOwner(Object owner, int key) {
+		if (key == businesslogic.accounting.user.ORMConstants.KEY_USER_USER) {
+			this.user = (businesslogic.accounting.user.User) owner;
+		}
 	}
 	
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
@@ -30,9 +41,15 @@ public class User {
 			return this_getSet(key);
 		}
 		
+		public void setOwner(Object owner, int key) {
+			this_setOwner(owner, key);
+		}
+		
 	};
 	
 	private int ID;
+	
+	private businesslogic.accounting.user.User user;
 	
 	private String username;
 	
@@ -42,18 +59,20 @@ public class User {
 	
 	private boolean approved;
 	
-	private java.util.Set ORM_permission = new java.util.HashSet();
+	private java.util.Set ORM_emails = new java.util.HashSet();
 	
-	public int getORMID() {
-		return getID();
-	}
+	private java.util.Set ORM_userJobs = new java.util.HashSet();
 	
-	public void setID(int value) {
+	private void setID(int value) {
 		this.ID = value;
 	}
 	
 	public int getID() {
 		return ID;
+	}
+	
+	public int getORMID() {
+		return getID();
 	}
 	
 	public void setUsername(String value) {
@@ -88,15 +107,33 @@ public class User {
 		return approved;
 	}
 	
-	private void setORM_Permission(java.util.Set value) {
-		this.ORM_permission = value;
+	public void setUser(businesslogic.accounting.user.User value) {
+		this.user = value;
 	}
 	
-	private java.util.Set getORM_Permission() {
-		return ORM_permission;
+	public businesslogic.accounting.user.User getUser() {
+		return user;
 	}
 	
-	public final businesslogic.accounting.PermissionSetCollection permission = new businesslogic.accounting.PermissionSetCollection(this, _ormAdapter, businesslogic.distribution.resource.ORMConstants.KEY_USER_PERMISSION, businesslogic.distribution.resource.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	private void setORM_Emails(java.util.Set value) {
+		this.ORM_emails = value;
+	}
+	
+	private java.util.Set getORM_Emails() {
+		return ORM_emails;
+	}
+	
+	public final network.EmailSetCollection emails = new network.EmailSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_USER_EMAILS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	
+	private void setORM_UserJobs(java.util.Set value) {
+		this.ORM_userJobs = value;
+	}
+	
+	private java.util.Set getORM_UserJobs() {
+		return ORM_userJobs;
+	}
+	
+	public final businesslogic.accounting.job.UserJobSetCollection userJobs = new businesslogic.accounting.job.UserJobSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_USER_USERJOBS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.accounting.job.Job[] getJobs() {
 		//TODO: Implement Method
@@ -144,6 +181,11 @@ public class User {
 	}
 	
 	public void setCreatorUser(businesslogic.accounting.user.User creatorUser) {
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
+	}
+	
+	public Tree<String> getJobInfo() {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}

@@ -6,38 +6,76 @@ License Type: Evaluation
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 	<class name="businesslogic.distribution.resource.Resource" table="Resource" lazy="false" discriminator-value="Resource">
-		<id name="ID" column="ID" type="integer" unsaved-value="0">
+		<id name="ID" column="ID2" type="integer" unsaved-value="0">
 			<generator class="native">
 			</generator>
 		</id>
 		<discriminator column="Discriminator" type="string"/>
-		<property name="uniqueIdentifier" column="UniqueIdentifier" type="string" length="255" not-null="true" lazy="false"/>
+		<many-to-one name="resourceState" column="ResourceStateID" class="businesslogic.distribution.resource.ResourceState" cascade="save-update,lock,delete" unique="true" not-null="true" lazy="proxy" access="field">
+		</many-to-one>
+		<property name="uniqueIdentifier" column="Id" type="integer" length="10" not-null="true" lazy="false"/>
 		<property name="name" column="Name2" type="string" length="255" not-null="false" lazy="false"/>
+		<set name="ORM_ResourceAllocations" lazy="true" cascade="save-update,lock" inverse="false">
+			<key column="ResourceID2" not-null="true"/>
+			<one-to-many class="businesslogic.distribution.ResourceAllocation"/>
+		</set>
 		<subclass name="businesslogic.distribution.resource.InformationResource" discriminator-value="InformationResource" lazy="false">
+			<many-to-one name="projectManagement" cascade="lock" column="JobID3" class="businesslogic.accounting.job.ProjectManagement" not-null="false" lazy="proxy" access="field">
+			</many-to-one>
+			<set name="ORM_Allocation_s" lazy="true" cascade="save-update,lock" inverse="false">
+				<key column="ResourceID2" not-null="true"/>
+				<one-to-many class="businesslogic.distribution.Allocation"/>
+			</set>
+			<set name="ORM_Requirements" lazy="true" cascade="save-update,lock" inverse="false">
+				<key column="ResourceID2" not-null="true"/>
+				<one-to-many class="businesslogic.distribution.requirement.Requirement"/>
+			</set>
 			<subclass name="businesslogic.distribution.resource.Project" discriminator-value="Project" lazy="false">
-				<property name="budget" column="Budget" type="integer" not-null="false" lazy="false"/>
+				<property name="budget" column="Budget" type="integer" length="10" not-null="false" lazy="false"/>
+				<set name="ORM_Systems" lazy="true" cascade="all-delete-orphan" inverse="false">
+					<key column="ResourceID2" not-null="false"/>
+					<one-to-many class="businesslogic.distribution.resource.System"/>
+				</set>
 			</subclass>
 			<subclass name="businesslogic.distribution.resource.System" discriminator-value="System" lazy="false">
-				<property name="technologies" column="Technologies" type="string" length="255" not-null="false" lazy="false"/>
+				<property name="technologies" column="Technologies" type="integer" length="10" not-null="false" lazy="false"/>
+				<set name="ORM_Subsystems" lazy="true" cascade="all-delete-orphan" inverse="false">
+					<key column="ResourceID22" not-null="false"/>
+					<one-to-many class="businesslogic.distribution.resource.Subsystem"/>
+				</set>
 			</subclass>
 			<subclass name="businesslogic.distribution.resource.Subsystem" discriminator-value="Subsystem" lazy="false">
+				<set name="ORM_Modules" lazy="true" cascade="save-update,lock" inverse="false">
+					<key column="ResourceID23" not-null="false"/>
+					<one-to-many class="businesslogic.distribution.resource.Module"/>
+				</set>
 			</subclass>
 			<subclass name="businesslogic.distribution.resource.Module" discriminator-value="Module" lazy="false">
+				<many-to-one name="date" column="DateID" class="businesslogic.utility.Date" cascade="save-update,lock" unique="true" not-null="false" lazy="proxy" access="field">
+				</many-to-one>
 				<property name="name" column="Name" type="string" length="255" not-null="false" lazy="false"/>
 				<property name="description" column="Description" type="string" length="255" not-null="false" lazy="false"/>
-				<property name="linesOfCode" column="LinesOfCode" type="integer" not-null="false" lazy="false"/>
-				<set name="ORM_ModuleSpecialty" lazy="true" cascade="save-update,lock" inverse="false">
-					<key column="ResourceID" not-null="true"/>
-					<one-to-many class="businesslogic.distribution.resource.ModuleSpecialty"/>
+				<property name="linesOfCode" column="LinesOfCode" type="integer" length="10" not-null="false" lazy="false"/>
+				<set name="ORM_Specialties" table="Resource_Specialty" lazy="true" cascade="save-update,lock">
+					<key column="ResourceID2" not-null="true"/>
+					<many-to-many column="SpecialtyID" class="businesslogic.accounting.job.Specialty">
+					</many-to-many>
+				</set>
+				<set name="ORM_ModuleChanges" lazy="true" cascade="save-update,lock" inverse="false">
+					<key column="ResourceID2" not-null="true"/>
+					<one-to-many class="businesslogic.distribution.resource.ModuleChange"/>
 				</set>
 			</subclass>
 		</subclass>
 		<subclass name="businesslogic.distribution.resource.HumanResource" discriminator-value="HumanResource" lazy="false">
+			<many-to-one name="programming" column="JobID" class="businesslogic.accounting.job.Programming" cascade="save-update,lock" unique="true" not-null="false" lazy="proxy" access="field">
+			</many-to-one>
 		</subclass>
 		<subclass name="businesslogic.distribution.resource.FinancialResource" discriminator-value="FinancialResource" lazy="false">
-			<property name="financialValue" column="FinancialValue" type="integer" not-null="false" lazy="false"/>
+			<property name="financialValue" column="FinancialValue" type="integer" length="10" not-null="false" lazy="false"/>
 		</subclass>
 		<subclass name="businesslogic.distribution.resource.PhysicalResource" discriminator-value="PhysicalResource" lazy="false">
+			<property name="specs" column="Specs" type="integer" length="10" not-null="false" lazy="false"/>
 		</subclass>
 	</class>
 </hibernate-mapping>

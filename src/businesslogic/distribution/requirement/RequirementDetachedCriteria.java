@@ -20,31 +20,34 @@ import org.orm.criteria.*;
 
 public class RequirementDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
+	public final IntegerExpression requirementPriorityId;
+	public final AssociationExpression requirementPriority;
 	public final StringExpression resourceName;
 	public final StringExpression resourceType;
 	public final IntegerExpression quantity;
-	public final CollectionExpression date;
 	
 	public RequirementDetachedCriteria() {
 		super(businesslogic.distribution.requirement.Requirement.class, businesslogic.distribution.requirement.RequirementCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		requirementPriorityId = new IntegerExpression("requirementPriority.ID", this.getDetachedCriteria());
+		requirementPriority = new AssociationExpression("requirementPriority", this.getDetachedCriteria());
 		resourceName = new StringExpression("resourceName", this.getDetachedCriteria());
 		resourceType = new StringExpression("resourceType", this.getDetachedCriteria());
 		quantity = new IntegerExpression("quantity", this.getDetachedCriteria());
-		date = new CollectionExpression("ORM_Date", this.getDetachedCriteria());
 	}
 	
 	public RequirementDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, businesslogic.distribution.requirement.RequirementCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
+		requirementPriorityId = new IntegerExpression("requirementPriority.ID", this.getDetachedCriteria());
+		requirementPriority = new AssociationExpression("requirementPriority", this.getDetachedCriteria());
 		resourceName = new StringExpression("resourceName", this.getDetachedCriteria());
 		resourceType = new StringExpression("resourceType", this.getDetachedCriteria());
 		quantity = new IntegerExpression("quantity", this.getDetachedCriteria());
-		date = new CollectionExpression("ORM_Date", this.getDetachedCriteria());
 	}
 	
-	public businesslogic.utility.DateDetachedCriteria createDateCriteria() {
-		return new businesslogic.utility.DateDetachedCriteria(createCriteria("ORM_Date"));
+	public businesslogic.distribution.requirement.RequirementPriorityDetachedCriteria createRequirementPriorityCriteria() {
+		return new businesslogic.distribution.requirement.RequirementPriorityDetachedCriteria(createCriteria("requirementPriority"));
 	}
 	
 	public Requirement uniqueRequirement(PersistentSession session) {
