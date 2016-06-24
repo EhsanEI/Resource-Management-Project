@@ -2,7 +2,7 @@ package businesslogic;
 
 import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
-import businesslogic.distribution.requirement.ResourceRequirementPriority;
+import businesslogic.distribution.requirement.RequirementPriority;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.distribution.resource.Module;
 import businesslogic.distribution.resource.Project;
@@ -20,7 +20,7 @@ public interface ProjectManagerLogicInterface {
                         int numberOfHours, Specialty[] specialties);
     Project[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget);
     void registerRequirement(InformationResource informationResource, String resourceType, String resourceName,
-                             ResourceRequirementPriority priority, Date startDate, Date endDate);
+                             RequirementPriority priority, Date startDate, Date endDate);
     Specialty createSpecialty(String title, int proficiencyLevel);
     Project[] getProjectList(int userID);
     User[] getProgrammers(Project project);

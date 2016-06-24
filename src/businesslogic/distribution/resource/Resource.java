@@ -14,8 +14,6 @@
 package businesslogic.distribution.resource;
 
 public class Resource {
-	public Resource() {
-	}
 	
 	private java.util.Set this_getSet (int key) {
 		if (key == businesslogic.accounting.user.ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS) {
@@ -44,9 +42,7 @@ public class Resource {
 	
 	private int ID;
 	
-	private businesslogic.distribution.resource.ResourceState resourceState;
-	
-	private int uniqueIdentifier;
+	private ResourceState resourceState;
 	
 	private String name;
 	
@@ -62,14 +58,6 @@ public class Resource {
 	
 	public int getORMID() {
 		return getID();
-	}
-	
-	public void setUniqueIdentifier(int value) {
-		this.uniqueIdentifier = value;
-	}
-	
-	public int getUniqueIdentifier() {
-		return uniqueIdentifier;
 	}
 	
 	public void setName(String value) {
@@ -99,8 +87,9 @@ public class Resource {
 	}
 	
 	public Resource(int id, String name) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.ID = id;
+		this.resourceState = new ResourceState(); //TODO change to enum
+		this.name = name;
 	}
 	
 	public void allocate() {
@@ -114,8 +103,7 @@ public class Resource {
 	}
 	
 	public void setState(businesslogic.distribution.resource.ResourceState state) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.resourceState = state;
 	}
 	
 	public String toString() {
