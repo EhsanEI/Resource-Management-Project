@@ -14,6 +14,8 @@
 package businesslogic.distribution.resource;
 
 public class Resource {
+	public Resource() {
+	}
 	
 	private java.util.Set this_getSet (int key) {
 		if (key == businesslogic.accounting.user.ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS) {
@@ -22,27 +24,20 @@ public class Resource {
 		
 		return null;
 	}
-	
-	private void this_setOwner(Object owner, int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_RESOURCE_RESOURCESTATE) {
-			this.resourceState = (businesslogic.distribution.resource.ResourceState) owner;
-		}
-	}
-	
+
 	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
 		public java.util.Set getSet(int key) {
 			return this_getSet(key);
 		}
 		
-		public void setOwner(Object owner, int key) {
-			this_setOwner(owner, key);
-		}
-		
+
 	};
 	
 	private int ID;
 	
-	private ResourceState resourceState;
+	private int resourceState;
+	
+	private String uniqueIdentifier;
 	
 	private String name;
 	
@@ -58,6 +53,14 @@ public class Resource {
 	
 	public int getORMID() {
 		return getID();
+	}
+	
+	public void setUniqueIdentifier(String value) {
+		this.uniqueIdentifier = value;
+	}
+	
+	public String getUniqueIdentifier() {
+		return uniqueIdentifier;
 	}
 	
 	public void setName(String value) {
@@ -78,18 +81,17 @@ public class Resource {
 	
 	public final businesslogic.distribution.ResourceAllocationSetCollection resourceAllocations = new businesslogic.distribution.ResourceAllocationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
-	public void setResourceState(businesslogic.distribution.resource.ResourceState value) {
+	public void setResourceState(int value) {
 		this.resourceState = value;
 	}
 	
-	public businesslogic.distribution.resource.ResourceState getResourceState() {
+	public int getResourceState() {
 		return resourceState;
 	}
 	
 	public Resource(int id, String name) {
-		this.ID = id;
-		this.resourceState = new ResourceState(); //TODO change to enum
-		this.name = name;
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public void allocate() {
@@ -103,7 +105,8 @@ public class Resource {
 	}
 	
 	public void setState(businesslogic.distribution.resource.ResourceState state) {
-		this.resourceState = state;
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {

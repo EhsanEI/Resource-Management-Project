@@ -11,9 +11,8 @@ License Type: Evaluation
 			</generator>
 		</id>
 		<discriminator column="Discriminator" type="string"/>
-		<many-to-one name="resourceState" column="ResourceStateID" class="businesslogic.distribution.resource.ResourceState" cascade="save-update,lock,delete" unique="true" not-null="true" lazy="proxy" access="field">
-		</many-to-one>
-		<property name="uniqueIdentifier" column="Id" type="integer" length="10" not-null="true" lazy="false"/>
+		<property name="resourceState" column="ResourceState" type="integer" length="10" not-null="false" lazy="false"/>
+		<property name="uniqueIdentifier" column="UniqueIdentifier" type="string" length="255" not-null="true" lazy="false"/>
 		<property name="name" column="Name2" type="string" length="255" not-null="false" lazy="false"/>
 		<set name="ORM_ResourceAllocations" lazy="true" cascade="save-update,lock" inverse="false">
 			<key column="ResourceID2" not-null="true"/>
@@ -75,7 +74,10 @@ License Type: Evaluation
 			<property name="financialValue" column="FinancialValue" type="integer" length="10" not-null="false" lazy="false"/>
 		</subclass>
 		<subclass name="businesslogic.distribution.resource.PhysicalResource" discriminator-value="PhysicalResource" lazy="false">
-			<property name="specs" column="Specs" type="integer" length="10" not-null="false" lazy="false"/>
+			<set name="ORM_Specs" lazy="true" cascade="save-update,lock" inverse="false">
+				<key column="ResourceID" not-null="false"/>
+				<one-to-many class="businesslogic.distribution.resource.Spec"/>
+			</set>
 		</subclass>
 	</class>
 </hibernate-mapping>

@@ -13,18 +13,12 @@
  */
 package businesslogic.distribution;
 
-import businesslogic.distribution.resource.Resource;
-
 public class ResourceAllocation {
 	public ResourceAllocation() {
 	}
 	
 	private int ID;
-
-	private Resource resource;
-
-	private Allocation allocation;
-
+	
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -38,19 +32,23 @@ public class ResourceAllocation {
 	}
 	
 	public businesslogic.distribution.resource.Resource getResource() {
-		return resource;
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public void setResource(businesslogic.distribution.resource.Resource resource) {
-		this.resource = resource;
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public Allocation getAllocation() {
-		return allocation;
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public void setAllocation(businesslogic.distribution.Allocation  allocation) {
-		this.allocation = allocation;
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {

@@ -19,7 +19,7 @@
       <ReferencedColumn>BusinessLogic.Accounting.User.User.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -31,7 +31,7 @@
       <ReferencedColumn>BusinessLogic.Accounting.User.User.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -194,7 +194,7 @@
       <ReferencedColumn>BusinessLogic.Accounting.User.User.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -439,13 +439,12 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="ResourceStateID">
+    <Column name="ResourceState">
       <PrimaryKey>false</PrimaryKey>
-      <ForeignKey>true</ForeignKey>
-      <ReferencedColumn>BusinessLogic.Distribution.Resource.ResourceState.ID</ReferencedColumn>
+      <ForeignKey>false</ForeignKey>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -517,7 +516,7 @@
       <ReferencedColumn>BusinessLogic.Accounting.Job.Job.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -535,11 +534,11 @@
       <Index>false</Index>
       <UserTypes/>
     </Column>
-    <Column name="Id">
+    <Column name="UniqueIdentifier">
       <PrimaryKey>false</PrimaryKey>
       <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>10</Length>
+      <Type>27</Type>
+      <Length>255</Length>
       <Nullable>false</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -1356,19 +1355,6 @@
       <UserTypes/>
     </Column>
   </Entity>
-  <Entity name="ResourceState" PKClustered="0">
-    <Column name="ID">
-      <PrimaryKey>true</PrimaryKey>
-      <ForeignKey>false</ForeignKey>
-      <Type>9</Type>
-      <Length>10</Length>
-      <Nullable>false</Nullable>
-      <IDGenerator>native</IDGenerator>
-      <Unique>false</Unique>
-      <Index>false</Index>
-      <UserTypes/>
-    </Column>
-  </Entity>
   <Entity name="Email" PKClustered="0">
     <Column name="ID">
       <PrimaryKey>true</PrimaryKey>
@@ -1434,7 +1420,7 @@
       <ReferencedColumn>BusinessLogic.Accounting.Job.Job.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -1446,7 +1432,7 @@
       <ReferencedColumn>BusinessLogic.Accounting.User.User.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -1468,6 +1454,53 @@
       <ForeignKey>false</ForeignKey>
       <Type>9</Type>
       <Length>10</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+  </Entity>
+  <Entity name="Spec" PKClustered="0">
+    <Column name="ID">
+      <PrimaryKey>true</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>false</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="ResourceID">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>true</ForeignKey>
+      <ReferencedColumn>BusinessLogic.Distribution.Resource.Resource</ReferencedColumn>
+      <Type>9</Type>
+      <Length>10</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Name">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
+      <Nullable>true</Nullable>
+      <IDGenerator>native</IDGenerator>
+      <Unique>false</Unique>
+      <Index>false</Index>
+      <UserTypes/>
+    </Column>
+    <Column name="Value">
+      <PrimaryKey>false</PrimaryKey>
+      <ForeignKey>false</ForeignKey>
+      <Type>27</Type>
+      <Length>255</Length>
       <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
@@ -1830,6 +1863,16 @@
       <Column>ID</Column>
     </RefColumns>
   </ForeignKey>
+  <ForeignKey name="AmGhezi">
+    <ReferenceTable>Spec</ReferenceTable>
+    <ReferencedTable>Resource</ReferencedTable>
+    <Columns>
+      <Column>ResourceID</Column>
+    </Columns>
+    <RefColumns>
+      <Column>ID2</Column>
+    </RefColumns>
+  </ForeignKey>
   <ForeignKey name="creates5">
     <ReferenceTable>ModuleChange</ReferenceTable>
     <ReferencedTable>Job</ReferencedTable>
@@ -1875,16 +1918,6 @@
     <ReferencedTable>RequirementPriority</ReferencedTable>
     <Columns>
       <Column>RequirementPriorityID</Column>
-    </Columns>
-    <RefColumns>
-      <Column>ID</Column>
-    </RefColumns>
-  </ForeignKey>
-  <ForeignKey name="has7">
-    <ReferenceTable>Resource</ReferenceTable>
-    <ReferencedTable>ResourceState</ReferencedTable>
-    <Columns>
-      <Column>ResourceStateID</Column>
     </Columns>
     <RefColumns>
       <Column>ID</Column>

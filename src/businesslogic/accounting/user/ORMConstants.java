@@ -77,5 +77,7 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	final int KEY_USER_USER = -1951432801;
 	
 	final int KEY_USER_USERJOBS = 582740117;
+
+	final int KEY_RESOURCE_SPECS = 696969696;
 	
 }

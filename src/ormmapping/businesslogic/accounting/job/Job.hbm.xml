@@ -12,7 +12,7 @@ License Type: Evaluation
 		</id>
 		<discriminator column="Discriminator" type="string"/>
 		<set name="ORM_UserJobs" lazy="true" cascade="save-update,lock" inverse="false">
-			<key column="JobID" not-null="true"/>
+			<key column="JobID" not-null="false"/>
 			<one-to-many class="businesslogic.accounting.job.UserJob"/>
 		</set>
 		<subclass name="businesslogic.accounting.job.ProjectManagement" discriminator-value="ProjectManagement" lazy="false">
@@ -21,11 +21,11 @@ License Type: Evaluation
 				<one-to-many class="businesslogic.distribution.resource.InformationResource"/>
 			</set>
 			<set name="ORM_Specialties" lazy="true" cascade="save-update,lock" inverse="false">
-				<key column="JobID2" not-null="true"/>
+				<key column="JobID2" not-null="false"/>
 				<one-to-many class="businesslogic.accounting.job.Specialty"/>
 			</set>
 			<set name="ORM_Requirements" lazy="true" cascade="save-update,lock" inverse="false">
-				<key column="JobID" not-null="true"/>
+				<key column="JobID" not-null="false"/>
 				<one-to-many class="businesslogic.distribution.requirement.Requirement"/>
 			</set>
 			<set name="ORM_Notification" lazy="true" cascade="save-update,lock" inverse="false">
@@ -35,7 +35,7 @@ License Type: Evaluation
 		</subclass>
 		<subclass name="businesslogic.accounting.ResourceManagement" discriminator-value="ResourceManagement" lazy="false">
 			<set name="ORM_Resources" lazy="true" cascade="save-update,lock" inverse="false">
-				<key column="JobID2" not-null="true"/>
+				<key column="JobID2" not-null="false"/>
 				<one-to-many class="businesslogic.distribution.resource.Resource"/>
 			</set>
 			<set name="ORM_Allocation_s" lazy="true" cascade="save-update,lock" inverse="false">

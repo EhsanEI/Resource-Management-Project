@@ -17,6 +17,7 @@ import businesslogic.utility.Tree;
 
 public class User {
 	public User() {
+		approved = false;
 	}
 	
 	private java.util.Set this_getSet (int key) {
@@ -119,17 +120,17 @@ public class User {
 		this.ORM_emails = value;
 	}
 	
-	private java.util.Set getORM_Emails() {
+	public java.util.Set getORM_Emails() {
 		return ORM_emails;
 	}
 	
 	public final network.EmailSetCollection emails = new network.EmailSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_USER_EMAILS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
-	private void setORM_UserJobs(java.util.Set value) {
+	public void setORM_UserJobs(java.util.Set value) {
 		this.ORM_userJobs = value;
 	}
 	
-	private java.util.Set getORM_UserJobs() {
+	public java.util.Set getORM_UserJobs() {
 		return ORM_userJobs;
 	}
 	
@@ -182,9 +183,9 @@ public class User {
 	
 	public void setCreatorUser(businesslogic.accounting.user.User creatorUser) {
 		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.user = creatorUser;
 	}
-	
+
 	public Tree<String> getJobInfo() {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();

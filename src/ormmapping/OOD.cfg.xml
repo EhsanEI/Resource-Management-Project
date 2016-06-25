@@ -36,6 +36,7 @@ License Type: Evaluation
 		<mapping resource="ormmapping/businesslogic/distribution/resource/ModuleChange.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/distribution/resource/Resource.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/distribution/resource/ResourceState.hbm.xml" />
+		<mapping resource="ormmapping/businesslogic/distribution/resource/Spec.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/support/SystemConfiguration.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/utility/Date.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/utility/Notification.hbm.xml" />

@@ -2,7 +2,7 @@ package businesslogic;
 
 import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
-import businesslogic.distribution.requirement.RequirementPriority;
+import businesslogic.distribution.requirement.ResourceRequirementPriority;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.distribution.resource.Module;
 import businesslogic.distribution.resource.Project;
@@ -39,7 +39,7 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public void registerRequirement(InformationResource informationResource, String resourceType, String resourceName, RequirementPriority priority, Date startDate, Date endDate) {
+    public void registerRequirement(InformationResource informationResource, String resourceType, String resourceName, ResourceRequirementPriority priority, Date startDate, Date endDate) {
 
     }
 

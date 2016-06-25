@@ -92,7 +92,7 @@ public class Date {
 	}
 	
 	public String toString() {
-		return getYear()+"/"+getMonth()+"/"+getDay();
+		return String.valueOf(getID());
 	}
 	
 }

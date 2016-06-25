@@ -295,7 +295,7 @@ public class RetrieveAndUpdateOODData {
 		//networkEmailCriteria.ID.eq();
 		System.out.println(networkEmailCriteria.uniqueEmail());
 		
-		System.out.println("Retrieving UserJob by UserJobCriteria");
+		System.out.println("Retrieving UserJob by SpecCriteria");
 		businesslogic.accounting.job.UserJobCriteria businessLogicAccountingJobUserJobCriteria = new businesslogic.accounting.job.UserJobCriteria();
 		// Please uncomment the follow line and fill in parameter(s)
 		//businessLogicAccountingJobUserJobCriteria.ID.eq();

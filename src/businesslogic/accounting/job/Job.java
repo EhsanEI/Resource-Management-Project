@@ -13,12 +13,9 @@
  */
 package businesslogic.accounting.job;
 
-import businesslogic.accounting.Permission;
 import businesslogic.utility.Tree;
 
 public class Job {
-	private Permission[] permissions;
-
 	public Job() {
 	}
 	
@@ -53,7 +50,7 @@ public class Job {
 		return getID();
 	}
 	
-	private void setORM_UserJobs(java.util.Set value) {
+	public void setORM_UserJobs(java.util.Set value) {
 		this.ORM_userJobs = value;
 	}
 	
@@ -64,11 +61,13 @@ public class Job {
 	public final businesslogic.accounting.job.UserJobSetCollection userJobs = new businesslogic.accounting.job.UserJobSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_JOB_USERJOBS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.accounting.Permission[] getPermissions() {
-		return permissions;
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public void setPermissions(businesslogic.accounting.Permission[] permissions) {
-		this.permissions = permissions;
+		//TODO: Implement Method
+		throw new UnsupportedOperationException();
 	}
 	
 	public Tree<String> getInfo() {

@@ -15,11 +15,11 @@ package businesslogic.accounting.user;
 
 public class Employee extends businesslogic.accounting.user.User {
 	public Employee() {
+		super();
 	}
 	
 	public Employee(String username, String password, String email, businesslogic.accounting.job.Job[] jobs) {
 		//TODO: Implement Method
-		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {

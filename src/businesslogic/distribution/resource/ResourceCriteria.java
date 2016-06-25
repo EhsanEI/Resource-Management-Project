@@ -20,18 +20,16 @@ import org.orm.criteria.*;
 
 public class ResourceCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final IntegerExpression resourceStateId;
-	public final AssociationExpression resourceState;
-	public final IntegerExpression uniqueIdentifier;
+	public final IntegerExpression resourceState;
+	public final StringExpression uniqueIdentifier;
 	public final StringExpression name;
 	public final CollectionExpression resourceAllocations;
 	
 	public ResourceCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		resourceStateId = new IntegerExpression("resourceState.ID", this);
-		resourceState = new AssociationExpression("resourceState", this);
-		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this);
+		resourceState = new IntegerExpression("resourceState", this);
+		uniqueIdentifier = new StringExpression("uniqueIdentifier", this);
 		name = new StringExpression("name", this);
 		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this);
 	}
@@ -43,11 +41,7 @@ public class ResourceCriteria extends AbstractORMCriteria {
 	public ResourceCriteria() throws PersistentException {
 		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
 	}
-	
-	public ResourceStateCriteria createResourceStateCriteria() {
-		return new ResourceStateCriteria(createCriteria("resourceState"));
-	}
-	
+
 	public businesslogic.distribution.ResourceAllocationCriteria createResourceAllocationsCriteria() {
 		return new businesslogic.distribution.ResourceAllocationCriteria(createCriteria("ORM_ResourceAllocations"));
 	}

@@ -49,7 +49,7 @@ public class Manager extends businesslogic.accounting.user.User {
 	
 	public final businesslogic.accounting.job.JobSetCollection jobs = new businesslogic.accounting.job.JobSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_MANAGER_JOBS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
-	private void setORM_Users(java.util.Set value) {
+	public void setORM_Users(java.util.Set value) {
 		this.ORM_users = value;
 	}
 	

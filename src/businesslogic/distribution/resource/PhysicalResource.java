@@ -13,21 +13,26 @@
  */
 package businesslogic.distribution.resource;
 
+import businesslogic.accounting.user.ORMConstants;
+
 import java.util.HashMap;
 
 public class PhysicalResource extends businesslogic.distribution.resource.Resource {
 	public PhysicalResource() {
 	}
-	
-	private String specs;
-	
-	public void setSpecs(String value) {
-		this.specs = value;
+
+	private java.util.Set ORM_specs= new java.util.HashSet();
+
+	public void setORM_Specs(java.util.Set value) {
+		this.ORM_specs = value;
 	}
-	
-	public String getSpecs() {
-		return specs;
+
+	public java.util.Set getORM_Specs() {
+		return ORM_specs;
 	}
+
+	public final SpecSetCollection specs =
+			new SpecSetCollection(this, _ormAdapter, ORMConstants.KEY_RESOURCE_SPECS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public PhysicalResource(HashMap<String, String> specs) {
 		//TODO: Implement Method

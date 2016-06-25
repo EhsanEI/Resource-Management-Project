@@ -11,15 +11,13 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package businesslogic.utility;
+package businesslogic.distribution.resource;
 
-public class Notification {
-	public Notification() {
+public class Spec {
+	public Spec() {
 	}
 	
 	private int ID;
-	
-	private String content;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -33,19 +31,26 @@ public class Notification {
 		return getID();
 	}
 	
-	public void setContent(String value) {
-		this.content = value;
+	private String name;
+
+	private String value;
+
+	public String getName() {
+		return name;
 	}
-	
-	public String getContent() {
-		return content;
+
+	public String getValue() {
+		return value;
 	}
-	
-	public Notification(String content) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public void setName(String name) {
+		this.name = name;
 	}
-	
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
 	public String toString() {
 		return String.valueOf(getID());
 	}

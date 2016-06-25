@@ -14,8 +14,7 @@
 package businesslogic.distribution.resource;
 
 public class System extends businesslogic.distribution.resource.InformationResource {
-	public System(String technologies) {
-		this.technologies = technologies;
+	public System() {
 	}
 	
 	private java.util.Set this_getSet (int key) {
