@@ -37,7 +37,7 @@ License Type: Evaluation
 				</set>
 			</subclass>
 			<subclass name="businesslogic.distribution.resource.System" discriminator-value="System" lazy="false">
-				<property name="technologies" column="Technologies" type="integer" length="10" not-null="false" lazy="false"/>
+				<property name="technologies" column="Technologies" type="string" length="10" not-null="false" lazy="false"/>
 				<set name="ORM_Subsystems" lazy="true" cascade="all-delete-orphan" inverse="false">
 					<key column="ResourceID22" not-null="false"/>
 					<one-to-many class="businesslogic.distribution.resource.Subsystem"/>
@@ -53,6 +53,8 @@ License Type: Evaluation
 				<many-to-one name="date" column="DateID" class="businesslogic.utility.Date" cascade="save-update,lock" unique="true" not-null="false" lazy="proxy" access="field">
 				</many-to-one>
 				<property name="name" column="Name" type="string" length="255" not-null="false" lazy="false"/>
+				<property name="startDate" column="StartDate" type="string" length="255" not-null="false" lazy="false"/>
+				<property name="endDate" column="EndDate" type="string" length="255" not-null="false" lazy="false"/>
 				<property name="description" column="Description" type="string" length="255" not-null="false" lazy="false"/>
 				<property name="linesOfCode" column="LinesOfCode" type="integer" length="10" not-null="false" lazy="false"/>
 				<set name="ORM_Specialties" table="Resource_Specialty" lazy="true" cascade="save-update,lock">

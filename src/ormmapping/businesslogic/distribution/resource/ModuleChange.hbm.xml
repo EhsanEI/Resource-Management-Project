@@ -12,6 +12,8 @@ License Type: Evaluation
 		</id>
 		<many-to-one name="date" column="DateID" class="businesslogic.utility.Date" cascade="save-update,lock" unique="true" not-null="true" lazy="proxy" access="field">
 		</many-to-one>
+		<property name="startDate" column="StartDate" type="string" length="255" not-null="false" lazy="false"/>
+		<property name="endDate" column="EndDate" type="string" length="255" not-null="false" lazy="false"/>
 		<property name="description" column="Description" type="string" length="255" not-null="false" lazy="false"/>
 	</class>
 </hibernate-mapping>

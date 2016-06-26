@@ -35,6 +35,10 @@ public class ModuleChange {
 	private businesslogic.utility.Date date;
 	
 	private String description;
+
+	private String startDate;
+
+	private String endDate;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -68,27 +72,23 @@ public class ModuleChange {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
-	
-	public businesslogic.utility.Date getStartDate() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public String getStartDate() {
+		return startDate;
 	}
-	
-	public void setStartDate(businesslogic.utility.Date startDate) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
-	
-	public businesslogic.utility.Date getEndDate() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public String getEndDate() {
+		return endDate;
 	}
-	
-	public void setEndDate(businesslogic.utility.Date endDate) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
-	
+
 	public String toString() {
 		return String.valueOf(getID());
 	}

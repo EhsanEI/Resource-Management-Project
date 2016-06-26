@@ -54,7 +54,7 @@ public class Job {
 		this.ORM_userJobs = value;
 	}
 	
-	private java.util.Set getORM_UserJobs() {
+	public java.util.Set getORM_UserJobs() {
 		return ORM_userJobs;
 	}
 	

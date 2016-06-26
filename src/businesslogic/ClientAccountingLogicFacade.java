@@ -1,5 +1,8 @@
 package businesslogic;
 
+import businesslogic.accounting.AuthenticationResult;
+import businesslogic.accounting.job.Job;
+import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
 
 /**
@@ -7,12 +10,12 @@ import businesslogic.accounting.user.User;
  */
 public class ClientAccountingLogicFacade implements AccountingLogicInterface{
     @Override
-    public void login(String username, String password) {
-
+    public AuthenticationResult login(String username, String password) {
+        return null;
     }
 
     @Override
-    public void signup(User user) {
+    public void signup(User user, Job[] jobs, Specialty[] specialties) {
 
     }
 
@@ -22,12 +25,12 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
     }
 
     @Override
-    public void recoverPassword() {
+    public void recoverPassword(String username) {
 
     }
 
     @Override
-    public void editProfile() {
+    public void editProfile(User user) {
 
     }
 

@@ -23,6 +23,8 @@ public class ModuleChangeDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression dateId;
 	public final AssociationExpression date;
 	public final StringExpression description;
+	public final StringExpression startDate;
+	public final StringExpression endDate;
 	
 	public ModuleChangeDetachedCriteria() {
 		super(businesslogic.distribution.resource.ModuleChange.class, businesslogic.distribution.resource.ModuleChangeCriteria.class);
@@ -30,6 +32,8 @@ public class ModuleChangeDetachedCriteria extends AbstractORMDetachedCriteria {
 		dateId = new IntegerExpression("date.ID", this.getDetachedCriteria());
 		date = new AssociationExpression("date", this.getDetachedCriteria());
 		description = new StringExpression("description", this.getDetachedCriteria());
+		startDate = new StringExpression("startDate", this.getDetachedCriteria());
+		endDate = new StringExpression("endDate", this.getDetachedCriteria());
 	}
 	
 	public ModuleChangeDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -38,6 +42,8 @@ public class ModuleChangeDetachedCriteria extends AbstractORMDetachedCriteria {
 		dateId = new IntegerExpression("date.ID", this.getDetachedCriteria());
 		date = new AssociationExpression("date", this.getDetachedCriteria());
 		description = new StringExpression("description", this.getDetachedCriteria());
+		startDate = new StringExpression("startDate", this.getDetachedCriteria());
+		endDate = new StringExpression("endDate", this.getDetachedCriteria());
 	}
 	
 	public businesslogic.utility.DateDetachedCriteria createDateCriteria() {

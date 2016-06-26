@@ -48,27 +48,27 @@ public class Programming extends businesslogic.accounting.job.Job {
 		this.ORM_specialties = value;
 	}
 	
-	private java.util.Set getORM_Specialties() {
+	public java.util.Set getORM_Specialties() {
 		return ORM_specialties;
 	}
 	
 	public final businesslogic.accounting.job.SpecialtySetCollection specialties = new businesslogic.accounting.job.SpecialtySetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROGRAMMING_SPECIALTIES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
-	
-	private void setORM_Modules(java.util.Set value) {
+
+	public void setORM_Modules(java.util.Set value) {
 		this.ORM_modules = value;
 	}
-	
-	private java.util.Set getORM_Modules() {
+
+	public java.util.Set getORM_Modules() {
 		return ORM_modules;
 	}
 	
 	public final businesslogic.distribution.resource.ModuleSetCollection modules = new businesslogic.distribution.resource.ModuleSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROGRAMMING_MODULES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
-	
-	private void setORM_ModuleChanges(java.util.Set value) {
+
+	public void setORM_ModuleChanges(java.util.Set value) {
 		this.ORM_moduleChanges = value;
 	}
-	
-	private java.util.Set getORM_ModuleChanges() {
+
+	public java.util.Set getORM_ModuleChanges() {
 		return ORM_moduleChanges;
 	}
 	
@@ -80,8 +80,7 @@ public class Programming extends businesslogic.accounting.job.Job {
 	}
 	
 	public void addSpecialty(Specialty specialty) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		getORM_Specialties().add(specialty);
 	}
 	
 	public String toString() {

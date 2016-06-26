@@ -103,8 +103,7 @@ public class InformationResource extends businesslogic.distribution.resource.Res
 	}
 	
 	public void addRequirement(businesslogic.distribution.requirement.Requirement requirement) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		getORM_Requirements().add(requirement);
 	}
 	
 	public void addAllocation(businesslogic.distribution.Allocation  allocation) {

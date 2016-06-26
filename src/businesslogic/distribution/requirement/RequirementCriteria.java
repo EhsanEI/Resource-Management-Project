@@ -20,19 +20,21 @@ import org.orm.criteria.*;
 
 public class RequirementCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
-	public final IntegerExpression requirementPriorityId;
-	public final AssociationExpression requirementPriority;
+	public final IntegerExpression requirementPriority;
 	public final StringExpression resourceName;
 	public final StringExpression resourceType;
+	public final StringExpression startDate;
+	public final StringExpression endDate;
 	public final IntegerExpression quantity;
 	
 	public RequirementCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
-		requirementPriorityId = new IntegerExpression("requirementPriority.ID", this);
-		requirementPriority = new AssociationExpression("requirementPriority", this);
+		requirementPriority = new IntegerExpression("requirementPriority", this);
 		resourceName = new StringExpression("resourceName", this);
 		resourceType = new StringExpression("resourceType", this);
+		startDate = new StringExpression("startDate", this);
+		endDate = new StringExpression("endDate", this);
 		quantity = new IntegerExpression("quantity", this);
 	}
 	

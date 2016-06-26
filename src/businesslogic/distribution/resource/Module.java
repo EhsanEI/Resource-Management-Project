@@ -13,6 +13,8 @@
  */
 package businesslogic.distribution.resource;
 
+import businesslogic.accounting.job.Specialty;
+
 public class Module extends businesslogic.distribution.resource.InformationResource {
 	public Module() {
 	}
@@ -52,6 +54,9 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 	private String description;
 	
 	private int linesOfCode;
+
+	private String startDate;
+	private String endDate;
 	
 	private java.util.Set ORM_specialties = new java.util.HashSet();
 	
@@ -109,9 +114,11 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 		return date;
 	}
 	
-	public Module(String name, businesslogic.utility.Date startDate, int linesOfCode) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+	public Module(String name, String startDate, String endDate, int linesOfCode) {
+		setName(name);
+		setStartDate(startDate);
+		setEndDate(endDate);
+		setLinesOfCode(linesOfCode);
 	}
 	
 	public ModuleState getState() {
@@ -123,27 +130,23 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
-	
-	public businesslogic.utility.Date getStartDate() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public String getStartDate() {
+		return startDate;
 	}
-	
-	public void setStartDate(businesslogic.utility.Date startDate) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
-	
-	public businesslogic.utility.Date getEndDate() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public String getEndDate() {
+		return endDate;
 	}
-	
-	public void setEndDate(businesslogic.utility.Date endDate) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
-	
+
 	public void registerCreation(String description, businesslogic.utility.Date startDate, businesslogic.utility.Date endDate) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
@@ -152,6 +155,10 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 	public void registerChange(String description, businesslogic.utility.Date startDate, businesslogic.utility.Date endDate) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
+	}
+
+	public void addSpecialty(Specialty specialty) {
+		getORM_Specialties().add(specialty);
 	}
 	
 	public String toString() {

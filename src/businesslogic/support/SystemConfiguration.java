@@ -40,27 +40,27 @@ public class SystemConfiguration {
 	public int getBackupPreiodDays() {
 		return backupPreiodDays;
 	}
-	
+
 	public businesslogic.utility.Date getDate() {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public void setDate(businesslogic.utility.Date date) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public BackupFormat getBackupFormat() {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public void setBackupFormat(BackupFormat backupFormat) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public String toString() {
 		return String.valueOf(getID());
 	}

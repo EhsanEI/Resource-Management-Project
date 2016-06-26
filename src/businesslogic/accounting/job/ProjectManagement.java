@@ -13,6 +13,11 @@
  */
 package businesslogic.accounting.job;
 
+import businesslogic.distribution.requirement.Requirement;
+import businesslogic.distribution.resource.InformationResource;
+
+import java.util.Set;
+
 public class ProjectManagement extends businesslogic.accounting.job.Job {
 	public ProjectManagement() {
 	}
@@ -90,13 +95,16 @@ public class ProjectManagement extends businesslogic.accounting.job.Job {
 	public final businesslogic.utility.NotificationSetCollection notification = new businesslogic.utility.NotificationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROJECTMANAGEMENT_NOTIFICATION, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.distribution.resource.InformationResource[] getInformationResources() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		Set<InformationResource> informationResourceSet = getORM_InformationResources();
+		return informationResourceSet.toArray(new InformationResource[getORM_InformationResources().size()]);
 	}
 	
 	public void addInformationResource(businesslogic.distribution.resource.InformationResource informationResource) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		getORM_InformationResources().add(informationResource);
+	}
+
+	public void addRequirement(Requirement requirement) {
+		getORM_Requirements().add(requirement);
 	}
 	
 	public businesslogic.utility.Notification[] getNotifications() {

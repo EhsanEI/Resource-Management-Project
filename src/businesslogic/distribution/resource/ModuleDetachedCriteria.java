@@ -24,6 +24,8 @@ public class ModuleDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final AssociationExpression resourceState;
 	public final IntegerExpression uniqueIdentifier;
 	public final StringExpression name;
+	public final StringExpression startDate;
+	public final StringExpression endDate;
 	public final CollectionExpression resourceAllocations;
 	public final IntegerExpression projectManagementId;
 	public final AssociationExpression projectManagement;
@@ -43,6 +45,8 @@ public class ModuleDetachedCriteria extends AbstractORMDetachedCriteria {
 		resourceState = new AssociationExpression("resourceState", this.getDetachedCriteria());
 		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this.getDetachedCriteria());
 		name = new StringExpression("name", this.getDetachedCriteria());
+		startDate = new StringExpression("startDate", this.getDetachedCriteria());
+		endDate = new StringExpression("endDate", this.getDetachedCriteria());
 		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this.getDetachedCriteria());
 		projectManagementId = new IntegerExpression("projectManagement.ID", this.getDetachedCriteria());
 		projectManagement = new AssociationExpression("projectManagement", this.getDetachedCriteria());
@@ -63,6 +67,8 @@ public class ModuleDetachedCriteria extends AbstractORMDetachedCriteria {
 		resourceState = new AssociationExpression("resourceState", this.getDetachedCriteria());
 		uniqueIdentifier = new IntegerExpression("uniqueIdentifier", this.getDetachedCriteria());
 		name = new StringExpression("name", this.getDetachedCriteria());
+		startDate = new StringExpression("startDate", this.getDetachedCriteria());
+		endDate = new StringExpression("endDate", this.getDetachedCriteria());
 		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this.getDetachedCriteria());
 		projectManagementId = new IntegerExpression("projectManagement.ID", this.getDetachedCriteria());
 		projectManagement = new AssociationExpression("projectManagement", this.getDetachedCriteria());

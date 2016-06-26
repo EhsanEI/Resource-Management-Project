@@ -1,6 +1,8 @@
 package businesslogic;
 
 import businesslogic.distribution.resource.Module;
+import businesslogic.distribution.resource.ModuleDAO;
+import org.orm.PersistentException;
 
 /**
  * Created by Esi on 6/22/2016.
@@ -8,6 +10,15 @@ import businesslogic.distribution.resource.Module;
 public class ServerModuleLogicFacade implements ModuleLogicInterface{
     @Override
     public Module[] getModuleList(int UserID) {
-        return new Module[0];
+        StringBuffer condition = new StringBuffer("");
+//        condition.append("").append(); TODO which job to use??
+
+        Module[] result = null;
+        try {
+            result = ModuleDAO.listModuleByQuery(condition.toString(),null);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }

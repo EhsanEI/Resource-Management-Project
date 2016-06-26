@@ -15,6 +15,7 @@ package businesslogic.distribution.resource;
 
 public class Resource {
 	public Resource() {
+		setResourceState(ResourceStateEnum.UNALLOCATED.ordinal());
 	}
 	
 	private java.util.Set this_getSet (int key) {

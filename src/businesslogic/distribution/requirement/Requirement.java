@@ -13,35 +13,41 @@
  */
 package businesslogic.distribution.requirement;
 
+import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.user.User;
+import businesslogic.distribution.resource.InformationResource;
 import businesslogic.utility.Quantity;
 
 public class Requirement {
 	public Requirement() {
 	}
 	
-	private void this_setOwner(Object owner, int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_REQUIREMENT_REQUIREMENTPRIORITY) {
-			this.requirementPriority = (businesslogic.distribution.requirement.RequirementPriority) owner;
-		}
-	}
+//	private void this_setOwner(Object owner, int key) {
+//		if (key == businesslogic.accounting.user.ORMConstants.KEY_REQUIREMENT_REQUIREMENTPRIORITY) {
+//			this.requirementPriority = (businesslogic.distribution.requirement.RequirementPriority) owner;
+//		}
+//	}
 	
-	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-		public void setOwner(Object owner, int key) {
-			this_setOwner(owner, key);
-		}
-		
-	};
+//	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
+//		public void setOwner(Object owner, int key) {
+//			this_setOwner(owner, key);
+//		}
+//
+//	};
 	
 	private int ID;
 	
-	private businesslogic.distribution.requirement.RequirementPriority requirementPriority;
+	private int requirementPriority;
 	
 	private String resourceName;
 	
 	private String resourceType;
 	
 	private int quantity;
+
+	private String startDate;
+
+	private String endDate;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -78,15 +84,15 @@ public class Requirement {
 	public int getQuantity() {
 		return quantity;
 	}
-	
-	public void setRequirementPriority(businesslogic.distribution.requirement.RequirementPriority value) {
-		this.requirementPriority = value;
-	}
-	
-	public businesslogic.distribution.requirement.RequirementPriority getRequirementPriority() {
+
+	public int getRequirementPriority() {
 		return requirementPriority;
 	}
-	
+
+	public void setRequirementPriority(int requirementPriority) {
+		this.requirementPriority = requirementPriority;
+	}
+
 	public Requirement(String resourceName, String resourceType, Quantity quantity, businesslogic.utility.Date startDate, businesslogic.utility.Date endDate, businesslogic.distribution.requirement.RequirementPriority priority) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
@@ -96,27 +102,23 @@ public class Requirement {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
-	
-	public businesslogic.utility.Date getStartDate() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public String getStartDate() {
+		return startDate;
 	}
-	
-	public void setStartDate(businesslogic.utility.Date startDate) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public void setStartDate(String startDate) {
+		this.startDate = startDate;
 	}
-	
-	public businesslogic.utility.Date getEndDate() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public String getEndDate() {
+		return endDate;
 	}
-	
-	public void setEndDate(businesslogic.utility.Date endDate) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public void setEndDate(String endDate) {
+		this.endDate = endDate;
 	}
-	
+
 	public businesslogic.distribution.requirement.RequirementPriority getPriority() {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
@@ -127,14 +129,12 @@ public class Requirement {
 		throw new UnsupportedOperationException();
 	}
 	
-	public User getProjectManager() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+	public void setProjectManager(ProjectManagement pm) {
+		pm.addRequirement(this);
 	}
-	
-	public void setProjectManager(User projectManager) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	public void setInformationResource(InformationResource informationResource) {
+		informationResource.addRequirement(this);
 	}
 	
 	public String toString() {

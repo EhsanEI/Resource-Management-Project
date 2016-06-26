@@ -42,8 +42,7 @@ public class Notification {
 	}
 	
 	public Notification(String content) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		setContent(content);
 	}
 	
 	public String toString() {

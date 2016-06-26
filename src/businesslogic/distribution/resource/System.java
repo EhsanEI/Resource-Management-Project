@@ -44,15 +44,19 @@ public class System extends businesslogic.distribution.resource.InformationResou
 		return technologies;
 	}
 	
-	private void setORM_Subsystems(java.util.Set value) {
+	public void setORM_Subsystems(java.util.Set value) {
 		this.ORM_subsystems = value;
 	}
 	
-	private java.util.Set getORM_Subsystems() {
+	public java.util.Set getORM_Subsystems() {
 		return ORM_subsystems;
 	}
 	
 	public final businesslogic.distribution.resource.SubsystemSetCollection subsystems = new businesslogic.distribution.resource.SubsystemSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_SYSTEM_SUBSYSTEMS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+
+	public void addSubsystem(Subsystem subsystem) {
+		getORM_Subsystems().add(subsystem);
+	}
 	
 	public String toString() {
 		return super.toString();

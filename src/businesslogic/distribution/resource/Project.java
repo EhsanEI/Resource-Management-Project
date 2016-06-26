@@ -34,7 +34,7 @@ public class Project extends businesslogic.distribution.resource.InformationReso
 	
 	private int budget;
 	
-	private java.util.Set ORM_systems = new java.util.HashSet();
+	public java.util.Set ORM_systems = new java.util.HashSet();
 	
 	public void setBudget(int value) {
 		this.budget = value;
@@ -48,7 +48,7 @@ public class Project extends businesslogic.distribution.resource.InformationReso
 		this.ORM_systems = value;
 	}
 	
-	private java.util.Set getORM_Systems() {
+	public java.util.Set getORM_Systems() {
 		return ORM_systems;
 	}
 	
@@ -62,6 +62,10 @@ public class Project extends businesslogic.distribution.resource.InformationReso
 	public void setSystems(businesslogic.distribution.resource.System[] systems) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
+	}
+
+	public void addSystem(System system) {
+		getORM_Systems().add(system);
 	}
 	
 	public String toString() {

@@ -2,11 +2,10 @@ package businesslogic;
 
 import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
+import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.requirement.ResourceRequirementPriority;
-import businesslogic.distribution.resource.InformationResource;
-import businesslogic.distribution.resource.Module;
-import businesslogic.distribution.resource.Project;
-import businesslogic.distribution.resource.Subsystem;
+import businesslogic.distribution.resource.*;
+import businesslogic.distribution.resource.System;
 import businesslogic.utility.Date;
 
 /**
@@ -14,23 +13,8 @@ import businesslogic.utility.Date;
  */
 public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInterface{
     @Override
-    public Project createProject(String name, Date startDate, Date endDate, int budget, String description) {
-        return null;
-    }
+    public void registerProjectScale(int UserID, Project newProject) {
 
-    @Override
-    public System createSystem(Project project, String name, String[] technologies) {
-        return null;
-    }
-
-    @Override
-    public Subsystem createSubsystem(System system, String name) {
-        return null;
-    }
-
-    @Override
-    public Module createModule(Subsystem subsystem, String name, String description, int estimatedLinesOfCode, int numberOfHours, Specialty[] specialties) {
-        return null;
     }
 
     @Override
@@ -39,13 +23,8 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public void registerRequirement(InformationResource informationResource, String resourceType, String resourceName, ResourceRequirementPriority priority, Date startDate, Date endDate) {
+    public void registerRequirement(int userID, Requirement newRequirement) {
 
-    }
-
-    @Override
-    public Specialty createSpecialty(String title, int proficiencyLevel) {
-        return null;
     }
 
     @Override
@@ -61,5 +40,15 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
     @Override
     public Module[] getModules(Project project) {
         return new Module[0];
+    }
+
+    @Override
+    public InformationResource[] getInformationResources(int userID) {
+        return new InformationResource[0];
+    }
+
+    @Override
+    public String[] getResourceNames(int userID, String resourceType) {
+        return new String[0];
     }
 }

@@ -23,6 +23,8 @@ public class ModuleChangeCriteria extends AbstractORMCriteria {
 	public final IntegerExpression dateId;
 	public final AssociationExpression date;
 	public final StringExpression description;
+	public final StringExpression startDate;
+	public final StringExpression endDate;
 	
 	public ModuleChangeCriteria(Criteria criteria) {
 		super(criteria);
@@ -30,6 +32,8 @@ public class ModuleChangeCriteria extends AbstractORMCriteria {
 		dateId = new IntegerExpression("date.ID", this);
 		date = new AssociationExpression("date", this);
 		description = new StringExpression("description", this);
+		startDate = new StringExpression("startDate", this);
+		endDate = new StringExpression("endDate", this);
 	}
 	
 	public ModuleChangeCriteria(PersistentSession session) {

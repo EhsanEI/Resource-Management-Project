@@ -13,7 +13,17 @@
  */
 package businesslogic.accounting.user;
 
+import businesslogic.accounting.job.Job;
+import businesslogic.accounting.job.JobDAO;
+import businesslogic.accounting.job.UserJob;
+import businesslogic.accounting.job.UserJobDAO;
 import businesslogic.utility.Tree;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 
 public class User {
 	public User() {
@@ -108,11 +118,11 @@ public class User {
 		return approved;
 	}
 	
-	public void setUser(businesslogic.accounting.user.User value) {
+	private void setUser(businesslogic.accounting.user.User value) {
 		this.user = value;
 	}
 	
-	public businesslogic.accounting.user.User getUser() {
+	private businesslogic.accounting.user.User getUser() {
 		return user;
 	}
 	
@@ -137,8 +147,49 @@ public class User {
 	public final businesslogic.accounting.job.UserJobSetCollection userJobs = new businesslogic.accounting.job.UserJobSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_USER_USERJOBS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.accounting.job.Job[] getJobs() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		try {
+			//A dirty way for getting jobs. Other ways result in errors.
+			//First get user_jobs of this user.
+			Set user_jobs = getORM_UserJobs();
+
+			//Then get all jobs in db
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			List<Job> allJobsList = session.createQuery("SELECT job FROM Job AS job").list();
+			Job[] allJobs = allJobsList.toArray(new Job[allJobsList.size()]);
+			ArrayList<Job> result = new ArrayList<>();
+
+			//Then find jobs that have the same user_job as the user.
+			for(Job job:allJobs) {
+				boolean should_add = false;
+
+				for(Object uj_object: job.getORM_UserJobs()) {
+					UserJob uj = (UserJob) uj_object;
+
+					for(Object user_uj_object:user_jobs) {
+						UserJob user_uj = (UserJob) user_uj_object;
+						if(uj.getID() == user_uj.getID()) {
+							should_add = true;
+							break;
+						}
+					}
+
+					if(should_add) {
+						break;
+					}
+				}
+
+				if(should_add) {
+					result.add(job);
+				}
+			}
+
+			Job[] result_arr = result.toArray(new Job[result.size()]);
+			return result_arr;
+		}
+		catch(PersistentException ex) {
+			ex.printStackTrace();
+		}
+		return new Job[0];
 	}
 	
 	public void setJobs(int[] Job) {
@@ -147,8 +198,9 @@ public class User {
 	}
 	
 	public void addJob(businesslogic.accounting.job.Job job) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		UserJob uj = UserJobDAO.createUserJob();
+		getORM_UserJobs().add(uj);
+		job.getORM_UserJobs().add(uj);
 	}
 	
 	public void deleteJob(businesslogic.accounting.job.Job job) {
@@ -157,8 +209,7 @@ public class User {
 	}
 	
 	public void approve() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		setApproved(true);
 	}
 	
 	public businesslogic.accounting.Permission[] getPermissions() {
@@ -175,15 +226,13 @@ public class User {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
 	}
-	
+
 	public businesslogic.accounting.user.User getCreatorUser() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return getUser();
 	}
-	
+
 	public void setCreatorUser(businesslogic.accounting.user.User creatorUser) {
-		//TODO: Implement Method
-		this.user = creatorUser;
+		setUser(creatorUser);
 	}
 
 	public Tree<String> getJobInfo() {

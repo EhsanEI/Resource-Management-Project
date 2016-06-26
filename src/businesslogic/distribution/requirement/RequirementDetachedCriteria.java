@@ -20,29 +20,32 @@ import org.orm.criteria.*;
 
 public class RequirementDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;
-	public final IntegerExpression requirementPriorityId;
-	public final AssociationExpression requirementPriority;
+	public final IntegerExpression requirementPriority;
 	public final StringExpression resourceName;
 	public final StringExpression resourceType;
+	public final StringExpression startDate;
+	public final StringExpression endDate;
 	public final IntegerExpression quantity;
 	
 	public RequirementDetachedCriteria() {
 		super(businesslogic.distribution.requirement.Requirement.class, businesslogic.distribution.requirement.RequirementCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		requirementPriorityId = new IntegerExpression("requirementPriority.ID", this.getDetachedCriteria());
-		requirementPriority = new AssociationExpression("requirementPriority", this.getDetachedCriteria());
+		requirementPriority = new IntegerExpression("requirementPriority", this.getDetachedCriteria());
 		resourceName = new StringExpression("resourceName", this.getDetachedCriteria());
 		resourceType = new StringExpression("resourceType", this.getDetachedCriteria());
+		startDate = new StringExpression("startDate", this.getDetachedCriteria());
+		endDate = new StringExpression("endDate", this.getDetachedCriteria());
 		quantity = new IntegerExpression("quantity", this.getDetachedCriteria());
 	}
 	
 	public RequirementDetachedCriteria(DetachedCriteria aDetachedCriteria) {
 		super(aDetachedCriteria, businesslogic.distribution.requirement.RequirementCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
-		requirementPriorityId = new IntegerExpression("requirementPriority.ID", this.getDetachedCriteria());
-		requirementPriority = new AssociationExpression("requirementPriority", this.getDetachedCriteria());
+		requirementPriority = new IntegerExpression("requirementPriority", this.getDetachedCriteria());
 		resourceName = new StringExpression("resourceName", this.getDetachedCriteria());
 		resourceType = new StringExpression("resourceType", this.getDetachedCriteria());
+		startDate = new StringExpression("startDate", this.getDetachedCriteria());
+		endDate = new StringExpression("endDate", this.getDetachedCriteria());
 		quantity = new IntegerExpression("quantity", this.getDetachedCriteria());
 	}
 	
