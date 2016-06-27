@@ -210,20 +210,39 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
     @Override
     public Project[] predictEssentialResourceAllocations(Project project) {
-//        try {
-//            Project[] allProjects = getAllProjectList();
-//
-//            ArrayList<Project> resultList = new ArrayList<>();
-//
-//            for(Project p:allProjects) {
-//
-//            }
-//
-//        }
-//        catch (PersistentException ex) {
-//            ex.printStackTrace();
-//        }
-        return new Project[0];
+
+        Requirement[] requirements = project.getRequirements();
+
+        Project[] allProjects = getAllProjectList();
+
+        ArrayList<Project> resultList = new ArrayList<>();
+
+        for(Project p:allProjects) {
+            if(p.getID() == project.getID()) {
+                continue;
+            }
+            Requirement [] rs = p.getRequirements();
+
+            boolean similar = false;
+            for(Requirement r: rs) {
+                for(Requirement requirement: requirements) {
+                    if (r.getResourceType().equals(requirement.getResourceType()) &&
+                            r.getResourceName().equals(requirement.getResourceName())) {
+                        similar = true;
+                        break;
+                    }
+                }
+                if(similar) {
+                    break;
+                }
+            }
+
+            if(similar) {
+                resultList.add(p);
+            }
+        }
+
+        return resultList.toArray(new Project[resultList.size()]);
     }
 
     @Override
