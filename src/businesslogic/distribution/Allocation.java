@@ -13,7 +13,10 @@
  */
 package businesslogic.distribution;
 
+import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.Resource;
+
+import java.util.Set;
 
 public class Allocation {
 	public Allocation() {
@@ -86,13 +89,15 @@ public class Allocation {
 	public final businesslogic.distribution.ResourceAllocationSetCollection resourceAllocations = new businesslogic.distribution.ResourceAllocationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_ALLOCATION__RESOURCEALLOCATIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.distribution.requirement.Requirement getRequirement() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		if(getORM_Requirements().isEmpty()) {
+			return null;
+		}
+		return ((Set<Requirement>)getORM_Requirements()).toArray(new Requirement[getORM_Requirements().size()])[0];
 	}
 	
 	public void setRequirement(businesslogic.distribution.requirement.Requirement requirement) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		getORM_Requirements().clear();
+		getORM_Requirements().add(requirement);
 	}
 	
 	public Resource[] getResources() {

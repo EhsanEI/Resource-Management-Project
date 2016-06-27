@@ -6,6 +6,7 @@ import businesslogic.accounting.job.ProjectManagementDAO;
 import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
+import businesslogic.distribution.Allocation;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.requirement.RequirementDAO;
 import businesslogic.distribution.requirement.ResourceRequirementPriority;
@@ -15,8 +16,7 @@ import businesslogic.utility.Date;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Created by Esi on 6/22/2016.
@@ -75,7 +75,33 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public Project[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) {
+    public InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) {
+        try {
+            if(technologies.length < 1) {
+                return new Project[0];
+            }
+
+            StringBuffer condition = new StringBuffer("");
+            condition.append("SELECT ID2 FROM Resource WHERE Technologies IN ('").append(technologies[0]);
+            for(int i = 1;i < technologies.length; i++) {
+                condition.append("','").append(technologies[i]);
+            }
+            condition.append("')");
+
+            condition.append(" OR budget = ").append(budget);
+
+            PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+            List<Integer> resultIDs = session.createSQLQuery(condition.toString()).list();
+
+            ArrayList<InformationResource> result = new ArrayList<>();
+            for(Integer id:resultIDs) {
+                result.add(InformationResourceDAO.getInformationResourceByORMID(id));
+            }
+            return result.toArray(new InformationResource[result.size()]);
+        }
+        catch(PersistentException ex) {
+            ex.printStackTrace();
+        }
         return new Project[0];
     }
 
@@ -95,12 +121,48 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
 
     @Override
     public Project[] getProjectList(int userID) {
+        try {
+            User user = UserDAO.getUserByORMID(userID);
+            ProjectManagement pm = getProjectManagement(user);
+            InformationResource[] informationResources = pm.getInformationResources();
+
+            ArrayList<Project> projects = new ArrayList<>();
+            for(InformationResource informationResource:informationResources) {
+                if(informationResource instanceof Project) {
+                    projects.add((Project) informationResource);
+                }
+            }
+            return projects.toArray(new Project[projects.size()]);
+        }
+        catch(PersistentException ex) {
+
+        }
         return new Project[0];
     }
 
     @Override
-    public User[] getProgrammers(Project project) {
-        return new User[0];
+    public HumanResource[] getProgrammers(Project project) {
+        Set<Allocation> allAllocations = new HashSet<>();
+
+        allAllocations.addAll(Arrays.asList(project.getAllocations()));
+        for(System system : (Set<System>) project.getORM_Systems()) {
+
+            allAllocations.addAll(Arrays.asList(system.getAllocations()));
+            for(Subsystem subsystem : (Set<Subsystem>) system.getORM_Subsystems()) {
+
+                allAllocations.addAll(Arrays.asList(subsystem.getAllocations()));
+                for(Module module : (Set<Module>)subsystem.getORM_Modules()) {
+                    allAllocations.addAll(Arrays.asList(module.getAllocations()));
+
+                }
+            }
+        }
+
+
+        //TODO do after resource
+//        Allocation allocation = null; allocation.
+
+        return new HumanResource[0];
     }
 
     @Override

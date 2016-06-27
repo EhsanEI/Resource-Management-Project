@@ -53,16 +53,6 @@ public class Project extends businesslogic.distribution.resource.InformationReso
 	}
 	
 	public final businesslogic.distribution.resource.SystemSetCollection systems = new businesslogic.distribution.resource.SystemSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROJECT_SYSTEMS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
-	
-	public businesslogic.distribution.resource.System[] getSystems() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public void setSystems(businesslogic.distribution.resource.System[] systems) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
 
 	public void addSystem(System system) {
 		getORM_Systems().add(system);

@@ -1,5 +1,6 @@
 package businesslogic;
 
+import businesslogic.distribution.ResourceAllocation;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.distribution.resource.Project;
@@ -13,9 +14,20 @@ import businesslogic.utility.Date;
  * Created by Esi on 6/22/2016.
  */
 public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInterface{
-    @Override
-    public void registerResourceAllocation(String[] resourceID, Date[] startDate, Date[] endDate, Requirement requirement) {
 
+    @Override
+    public void registerResourceAllocation(int userID, ResourceAllocation resourceAllocation) {
+
+    }
+
+    @Override
+    public Requirement[] getRequirements(int userID) {
+        return new Requirement[0];
+    }
+
+    @Override
+    public Resource[] getRequirementResources(int userID, String resourceType, String resourceName) {
+        return new Resource[0];
     }
 
     @Override
@@ -40,6 +52,11 @@ public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInt
 
     @Override
     public Project[] predictEssentialResourceAllocations(Project project) {
+        return new Project[0];
+    }
+
+    @Override
+    public Project[] getAllProjectList() {
         return new Project[0];
     }
 }

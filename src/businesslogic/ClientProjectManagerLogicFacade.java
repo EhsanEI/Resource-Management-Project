@@ -18,7 +18,7 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public Project[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) {
+    public InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) {
         return new Project[0];
     }
 
@@ -33,8 +33,8 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public User[] getProgrammers(Project project) {
-        return new User[0];
+    public HumanResource[] getProgrammers(Project project) {
+        return new HumanResource[0];
     }
 
     @Override

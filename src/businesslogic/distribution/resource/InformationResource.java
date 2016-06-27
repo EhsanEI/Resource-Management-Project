@@ -13,7 +13,10 @@
  */
 package businesslogic.distribution.resource;
 
+import businesslogic.distribution.Allocation;
 import businesslogic.distribution.requirement.Requirement;
+
+import java.util.Set;
 
 public class InformationResource extends businesslogic.distribution.resource.Resource {
 	public InformationResource() {
@@ -98,8 +101,8 @@ public class InformationResource extends businesslogic.distribution.resource.Res
 	public final businesslogic.distribution.requirement.RequirementSetCollection requirements = new businesslogic.distribution.requirement.RequirementSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_INFORMATIONRESOURCE_REQUIREMENTS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public Requirement[] getRequirements() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		Set<Requirement> requirementSet = getORM_Requirements();
+		return requirementSet.toArray(new Requirement[requirementSet.size()]);
 	}
 	
 	public void addRequirement(businesslogic.distribution.requirement.Requirement requirement) {
@@ -107,13 +110,12 @@ public class InformationResource extends businesslogic.distribution.resource.Res
 	}
 	
 	public void addAllocation(businesslogic.distribution.Allocation  allocation) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		getORM_Allocation_s().add(allocation);
 	}
 	
 	public businesslogic.distribution.Allocation [] getAllocations() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		Set<Allocation> allocationSet = getORM_Allocation_s();
+		return allocationSet.toArray(new Allocation[allocationSet.size()]);
 	}
 	
 	public String toString() {

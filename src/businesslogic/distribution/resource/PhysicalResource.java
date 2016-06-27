@@ -33,20 +33,13 @@ public class PhysicalResource extends businesslogic.distribution.resource.Resour
 
 	public final SpecSetCollection specs =
 			new SpecSetCollection(this, _ormAdapter, ORMConstants.KEY_RESOURCE_SPECS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
-	
-	public PhysicalResource(HashMap<String, String> specs) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public void setSpecs(HashMap<String, String> specs) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
+
 	
 	public void addSpec(String title, String value) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		Spec spec = SpecDAO.createSpec();
+		spec.setName(title);
+		spec.setValue(value);
+		getORM_Specs().add(spec);
 	}
 	
 	public String toString() {
