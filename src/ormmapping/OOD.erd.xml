@@ -1103,7 +1103,7 @@
       <ReferencedColumn>BusinessLogic.Accounting.Job.Job.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -1115,7 +1115,7 @@
       <ReferencedColumn>BusinessLogic.Distribution.Resource.Resource.ID2</ReferencedColumn>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -1514,7 +1514,7 @@
       <ReferencedColumn>BusinessLogic.Distribution.Resource.Resource.ID2</ReferencedColumn>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>
@@ -1526,7 +1526,7 @@
       <ReferencedColumn>BusinessLogic.Distribution.Allocation.ID</ReferencedColumn>
       <Type>9</Type>
       <Length>10</Length>
-      <Nullable>false</Nullable>
+      <Nullable>true</Nullable>
       <IDGenerator>native</IDGenerator>
       <Unique>false</Unique>
       <Index>false</Index>

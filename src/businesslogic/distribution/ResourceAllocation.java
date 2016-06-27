@@ -13,6 +13,8 @@
  */
 package businesslogic.distribution;
 
+import businesslogic.distribution.requirement.Requirement;
+
 public class ResourceAllocation {
 	public ResourceAllocation() {
 	}
@@ -29,26 +31,6 @@ public class ResourceAllocation {
 	
 	public int getORMID() {
 		return getID();
-	}
-	
-	public businesslogic.distribution.resource.Resource getResource() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public void setResource(businesslogic.distribution.resource.Resource resource) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public Allocation getAllocation() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public void setAllocation(businesslogic.distribution.Allocation  allocation) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
 	}
 	
 	public String toString() {

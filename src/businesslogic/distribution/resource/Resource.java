@@ -13,6 +13,8 @@
  */
 package businesslogic.distribution.resource;
 
+import businesslogic.distribution.ResourceAllocation;
+
 public class Resource {
 	public Resource() {
 		setResourceState(ResourceStateEnum.UNALLOCATED.ordinal());
@@ -82,7 +84,7 @@ public class Resource {
 	
 	public final businesslogic.distribution.ResourceAllocationSetCollection resourceAllocations = new businesslogic.distribution.ResourceAllocationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
-	public void setResourceState(int value) {
+	private void setResourceState(int value) {
 		this.resourceState = value;
 	}
 	
@@ -90,24 +92,21 @@ public class Resource {
 		return resourceState;
 	}
 	
-	public Resource(int id, String name) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
 	public void allocate() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		setResourceState(ResourceStateEnum.ALLOCATED.ordinal());
 	}
 	
 	public void deallocate() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		setResourceState(ResourceStateEnum.UNALLOCATED.ordinal());
 	}
 	
 	public void setState(businesslogic.distribution.resource.ResourceState state) {
 		//TODO: Implement Method
 		throw new UnsupportedOperationException();
+	}
+
+	public void addResourceAllocation(ResourceAllocation resourceAllocation) {
+		getORM_ResourceAllocations().add(resourceAllocation);
 	}
 	
 	public String toString() {

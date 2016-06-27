@@ -14,9 +14,14 @@
 package businesslogic.distribution.requirement;
 
 import businesslogic.accounting.job.ProjectManagement;
+import businesslogic.accounting.job.ProjectManagementDAO;
 import businesslogic.accounting.user.User;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.utility.Quantity;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import java.util.List;
 
 public class Requirement {
 	public Requirement() {
@@ -131,6 +136,18 @@ public class Requirement {
 	
 	public void setProjectManager(ProjectManagement pm) {
 		pm.addRequirement(this);
+	}
+
+	public ProjectManagement getProjectManagement() {
+		try {
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			Integer jobID = (Integer) session.createSQLQuery("SELECT JobID FROM Requirement WHERE ID = " + getID()).list().get(0);
+			return ProjectManagementDAO.getProjectManagementByORMID(jobID);
+		}
+		catch (PersistentException ex) {
+			ex.printStackTrace();
+		}
+		return null;
 	}
 
 	public void setInformationResource(InformationResource informationResource) {

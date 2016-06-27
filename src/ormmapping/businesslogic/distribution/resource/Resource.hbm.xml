@@ -15,14 +15,14 @@ License Type: Evaluation
 		<property name="uniqueIdentifier" column="UniqueIdentifier" type="string" length="255" not-null="true" lazy="false"/>
 		<property name="name" column="Name2" type="string" length="255" not-null="false" lazy="false"/>
 		<set name="ORM_ResourceAllocations" lazy="true" cascade="save-update,lock" inverse="false">
-			<key column="ResourceID2" not-null="true"/>
+			<key column="ResourceID2" not-null="false"/>
 			<one-to-many class="businesslogic.distribution.ResourceAllocation"/>
 		</set>
 		<subclass name="businesslogic.distribution.resource.InformationResource" discriminator-value="InformationResource" lazy="false">
 			<many-to-one name="projectManagement" cascade="lock" column="JobID3" class="businesslogic.accounting.job.ProjectManagement" not-null="false" lazy="proxy" access="field">
 			</many-to-one>
 			<set name="ORM_Allocation_s" lazy="true" cascade="save-update,lock" inverse="false">
-				<key column="ResourceID2" not-null="true"/>
+				<key column="ResourceID2" not-null="false"/>
 				<one-to-many class="businesslogic.distribution.Allocation"/>
 			</set>
 			<set name="ORM_Requirements" lazy="true" cascade="save-update,lock" inverse="false">

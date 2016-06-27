@@ -2,24 +2,40 @@ package businesslogic.report;
 
 import businesslogic.utility.Date;
 import businesslogic.utility.Table;
+import org.orm.PersistentException;
+
+import java.text.SimpleDateFormat;
 
 /**
  * Created by Esi on 6/23/2016.
  */
 public abstract class Report {
-    private Date date;
+    private String date;
+    private Table table;
 
-    public Report(Date date) {
+    public Report() {
+        this.date = new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date());
+    }
+
+    public Report(String date) {
         this.date = date;
     }
 
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(String date) {
         this.date = date;
     }
 
-    public abstract Table makeReport();
+    public Table getTable() {
+        return table;
+    }
+
+    public void setTable(Table table) {
+        this.table = table;
+    }
+
+    public abstract Table makeReport() throws PersistentException;
 }

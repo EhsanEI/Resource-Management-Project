@@ -3,9 +3,13 @@ package businesslogic;
 import businesslogic.accounting.ResourceManagement;
 import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.ProjectManagement;
+import businesslogic.accounting.job.ProjectManagementDAO;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
+import businesslogic.distribution.Allocation;
+import businesslogic.distribution.Allocation_DAO;
 import businesslogic.distribution.ResourceAllocation;
+import businesslogic.distribution.ResourceAllocationDAO;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.*;
 import businesslogic.report.FlowReport;
@@ -15,8 +19,10 @@ import businesslogic.utility.Date;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Esi on 6/22/2016.
@@ -37,8 +43,34 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
 
     @Override
-    public void registerResourceAllocation(int userID, ResourceAllocation resourceAllocation) {
+    public void registerResourceAllocation(int userID, Allocation allocation, Resource[] resources) {
+        try{
 
+            //TODO add resource management for the allocation
+            User user = UserDAO.getUserByORMID(userID);
+            getResourceManagement(user).addAllocation(allocation);
+
+            allocation.setAllocated(true);
+
+            for(Resource resource: resources) {
+                resource.allocate();
+            }
+
+            for(ResourceAllocation ra:(Set<ResourceAllocation>)allocation.getORM_ResourceAllocations()) {
+                ResourceAllocationDAO.save(ra);
+            }
+
+            Allocation_DAO.save(allocation);
+
+            for(Resource resource: resources) {
+                ResourceDAO.save(resource);
+            }
+
+            //TODO add notification to allocation.getRequirement().getProjectManagement()
+        }
+        catch (PersistentException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override
@@ -102,6 +134,14 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
     @Override
     public ResourceReport reportResources() {
+        try {
+            ResourceReport report = new ResourceReport();
+            report.makeReport();
+            return report;
+        }
+        catch (PersistentException ex) {
+            ex.printStackTrace();
+        }
         return null;
     }
 

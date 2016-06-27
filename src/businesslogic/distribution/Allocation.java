@@ -15,7 +15,12 @@ package businesslogic.distribution;
 
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.Resource;
+import businesslogic.distribution.resource.ResourceDAO;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 public class Allocation {
@@ -82,7 +87,7 @@ public class Allocation {
 		this.ORM_resourceAllocations = value;
 	}
 	
-	private java.util.Set getORM_ResourceAllocations() {
+	public java.util.Set getORM_ResourceAllocations() {
 		return ORM_resourceAllocations;
 	}
 	
@@ -101,13 +106,30 @@ public class Allocation {
 	}
 	
 	public Resource[] getResources() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		//This method can be called after allocation and resourceAllocation are saved to db
+		try {
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			List<Integer> resourceIDs = session
+					.createSQLQuery("SELECT ResourceID2 FROM ResourceAllocation WHERE AllocationID = "+ getID()).list();
+			ArrayList<Resource> result = new ArrayList<>();
+			for(Integer id:resourceIDs) {
+				result.add(ResourceDAO.getResourceByORMID(id));
+			}
+			return result.toArray(new Resource[result.size()]);
+		}
+		catch (PersistentException ex) {
+			ex.printStackTrace();
+		}
+		return new Resource[0];
 	}
 	
-	public void setResources(Resource[] resources) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+	public void addResources(Resource[] resources) {
+		for (Resource resource : resources) {
+			ResourceAllocation ra = ResourceAllocationDAO.createResourceAllocation();
+			resource.addResourceAllocation(ra);
+			getORM_ResourceAllocations().add(ra);
+		}
+
 	}
 	
 	public String toString() {

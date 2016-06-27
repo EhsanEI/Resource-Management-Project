@@ -1,5 +1,6 @@
 package businesslogic;
 
+import businesslogic.distribution.Allocation;
 import businesslogic.distribution.ResourceAllocation;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.InformationResource;
@@ -16,7 +17,7 @@ import businesslogic.utility.Date;
 public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInterface{
 
     @Override
-    public void registerResourceAllocation(int userID, ResourceAllocation resourceAllocation) {
+    public void registerResourceAllocation(int userID, Allocation allocation, Resource[] resources) {
 
     }
 

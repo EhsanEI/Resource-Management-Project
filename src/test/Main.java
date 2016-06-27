@@ -9,12 +9,18 @@ import businesslogic.accounting.user.Employee;
 import businesslogic.accounting.user.EmployeeDAO;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
+import businesslogic.distribution.Allocation;
+import businesslogic.distribution.Allocation_DAO;
+import businesslogic.distribution.ResourceAllocation;
+import businesslogic.distribution.ResourceAllocationDAO;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.requirement.RequirementDAO;
 import businesslogic.distribution.requirement.RequirementPriorityEnum;
 import businesslogic.distribution.resource.*;
+import businesslogic.report.Report;
 import businesslogic.utility.Date;
 import businesslogic.utility.DateDAO;
+import businesslogic.utility.Table;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.PersistentTransaction;
@@ -40,7 +46,9 @@ public class Main {
 
 //        registerNewResource();
 
-        registerResourceAllocation();
+//        registerResourceAllocation();
+
+        reportResourceRequirements();
 
         t.commit();
     }
@@ -235,9 +243,9 @@ public class Main {
             Requirement requirement = RequirementDAO.createRequirement();
             requirement.setStartDate("4/4/73");
             requirement.setEndDate("4/3/76");
-            requirement.setQuantity(34);
-            requirement.setResourceName("some module");
-            requirement.setResourceType("Module");
+            requirement.setQuantity(2);
+            requirement.setResourceName("printer");
+            requirement.setResourceType("PhysicalResource");
             requirement.setRequirementPriority(RequirementPriorityEnum.ESSENTIAL.ordinal());
             requirement.setInformationResource(ModuleDAO.getModuleByORMID(informationResourceID));
             ServerProjectManagerLogicFacade.getInstance().registerRequirement(userID, requirement);
@@ -290,16 +298,40 @@ public class Main {
 
     public static void registerResourceAllocation() {
         int userID = 2;
+        int reqIndex = 0;
+        int resourceIndex = 0;
         Requirement[] requirements = ServerResourceManagerLogicFacade.getInstance().getRequirements(userID);
-        for (Requirement req: requirements) {
-            System.out.println(req.getID());
-        }
+//        for (Requirement req: requirements) {
+//            System.out.println(req.getResourceName() + "," + req.getResourceType());
+//        }
 
         Resource[] resources = ServerResourceManagerLogicFacade.getInstance().getRequirementResources(userID,
                 "PhysicalResource", "printer");
 
-        for(Resource resource:resources) {
-            System.out.println(resource.getID());
-        }
+//        for(Resource resource:resources) {
+//            System.out.println(resource.getID());
+//        }
+
+        Allocation allocation = Allocation_DAO.createAllocation_();
+        allocation.setRequirement(requirements[reqIndex]);
+        allocation.addResources(resources);
+
+        System.out.println(allocation.getRequirement().getResourceName());
+        ServerResourceManagerLogicFacade.getInstance().registerResourceAllocation(userID, allocation, resources);
     }
+
+    private static void reportResources() {
+        Report report = ServerResourceManagerLogicFacade.getInstance().reportResources();
+        Table table = report.getTable();
+
+        table.print();
+    }
+
+    private static void reportResourceRequirements() {
+        Report report = ServerResourceManagerLogicFacade.getInstance().reportResources();
+        Table table = report.getTable();
+
+        table.print();
+    }
+
 }

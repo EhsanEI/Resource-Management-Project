@@ -13,6 +13,8 @@
  */
 package businesslogic.accounting;
 
+import businesslogic.distribution.Allocation;
+
 public class ResourceManagement extends businesslogic.accounting.job.Job {
 	public ResourceManagement() {
 	}
@@ -58,6 +60,10 @@ public class ResourceManagement extends businesslogic.accounting.job.Job {
 	}
 	
 	public final businesslogic.distribution.Allocation_SetCollection allocation_s = new businesslogic.distribution.Allocation_SetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_RESOURCEMANAGEMENT_ALLOCATION_S, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+
+	public void addAllocation(Allocation allocation) {
+		getORM_Allocation_s().add(allocation);
+	}
 	
 	public String toString() {
 		return super.toString();
