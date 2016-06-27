@@ -22,12 +22,27 @@ public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
+    public InformationResource[] getInformationResources(int uesrID) {
+        return new InformationResource[0];
+    }
+
+    @Override
+    public String[] getResourceNames(int userID, String resourceType) {
+        return new String[0];
+    }
+
+    @Override
+    public FlowReport reportFlowResourceAllocations(Resource resource, String startDate, String endDate) {
+        return null;
+    }
+
+    @Override
     public Requirement[] getRequirements(int userID) {
         return new Requirement[0];
     }
 
     @Override
-    public Resource[] getRequirementResources(int userID, String resourceType, String resourceName) {
+    public Resource[] getResources(int userID, String resourceType, String resourceName) {
         return new Resource[0];
     }
 

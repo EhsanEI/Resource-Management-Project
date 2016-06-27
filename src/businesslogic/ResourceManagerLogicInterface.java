@@ -15,8 +15,11 @@ import businesslogic.utility.Date;
  */
 public interface ResourceManagerLogicInterface {
     void registerResourceAllocation(int userID, Allocation allocation, Resource[] resources);
+    InformationResource[] getInformationResources(int uesrID);
+    String[] getResourceNames(int userID, String resourceType);
+    FlowReport reportFlowResourceAllocations(Resource resource, String startDate, String endDate);
     Requirement[] getRequirements(int userID);
-    Resource[] getRequirementResources(int userID, String resourceType, String resourceName);
+    Resource[] getResources(int userID, String resourceType, String resourceName);
     boolean registerNewResource(int userID, Resource newResource);
     ResourceReport reportResources();
     FlowReport reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate);

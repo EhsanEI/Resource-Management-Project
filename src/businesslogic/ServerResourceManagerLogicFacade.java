@@ -74,6 +74,38 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
+    public InformationResource[] getInformationResources(int uesrID) {
+        try {
+            PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+            List<InformationResource> informationResourceList= session
+                    .createQuery("SELECT resource FROM Resource AS resource WHERE " +
+                            "Discriminator IN ('Project','System','Subsystem', 'Module')").list();
+
+            return informationResourceList.toArray(new InformationResource[informationResourceList.size()]);
+        }
+        catch(PersistentException ex) {
+
+        }
+        return new Project[0];
+    }
+
+    @Override
+    public String[] getResourceNames(int userID, String resourceType) {
+        try {
+            StringBuffer condition = new StringBuffer("");
+            condition.append("SELECT DISTINCT Name2 FROM Resource WHERE Discriminator = '").append(resourceType)
+                    .append("'");
+            PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+            List<String> resourceNameList = session
+                    .createSQLQuery(condition.toString()).list();
+            return resourceNameList.toArray(new String[resourceNameList.size()]);
+        } catch (PersistentException ex) {
+            ex.printStackTrace();
+        }
+        return new String[0];
+    }
+
+    @Override
     public Requirement[] getRequirements(int userID) {
         try {
             PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
@@ -88,7 +120,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public Resource[] getRequirementResources(int userID, String resourceType, String resourceName) {
+    public Resource[] getResources(int userID, String resourceType, String resourceName) {
         try {
             StringBuffer condition = new StringBuffer("");
             condition.append("SELECT resource.ID2 FROM Resource AS resource WHERE resource.Discriminator = '")
@@ -151,7 +183,28 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
+    public FlowReport reportFlowResourceAllocations(Resource resource, String startDate, String endDate) {
+        try {
+            FlowReport report = new FlowReport(resource, startDate, endDate);
+            report.makeReport();
+            return report;
+        }
+        catch (PersistentException ex) {
+            ex.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
     public ResourceRequirementReport reportResourceRequirements(InformationResource informationResource) {
+        try {
+            ResourceRequirementReport report = new ResourceRequirementReport(informationResource.getID());
+            report.makeReport();
+            return report;
+        }
+        catch (PersistentException ex) {
+            ex.printStackTrace();
+        }
         return null;
     }
 

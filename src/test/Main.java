@@ -8,27 +8,22 @@ import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.Employee;
 import businesslogic.accounting.user.EmployeeDAO;
 import businesslogic.accounting.user.User;
-import businesslogic.accounting.user.UserDAO;
 import businesslogic.distribution.Allocation;
 import businesslogic.distribution.Allocation_DAO;
-import businesslogic.distribution.ResourceAllocation;
-import businesslogic.distribution.ResourceAllocationDAO;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.requirement.RequirementDAO;
 import businesslogic.distribution.requirement.RequirementPriorityEnum;
 import businesslogic.distribution.resource.*;
+import businesslogic.report.FlowReport;
 import businesslogic.report.Report;
 import businesslogic.utility.Date;
 import businesslogic.utility.DateDAO;
 import businesslogic.utility.Table;
 import org.orm.PersistentException;
-import org.orm.PersistentSession;
 import org.orm.PersistentTransaction;
 
 import java.lang.System;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -48,7 +43,7 @@ public class Main {
 
 //        registerResourceAllocation();
 
-        reportResourceRequirements();
+        reportFlowResourceAllocations();
 
         t.commit();
     }
@@ -305,7 +300,7 @@ public class Main {
 //            System.out.println(req.getResourceName() + "," + req.getResourceType());
 //        }
 
-        Resource[] resources = ServerResourceManagerLogicFacade.getInstance().getRequirementResources(userID,
+        Resource[] resources = ServerResourceManagerLogicFacade.getInstance().getResources(userID,
                 "PhysicalResource", "printer");
 
 //        for(Resource resource:resources) {
@@ -328,10 +323,38 @@ public class Main {
     }
 
     private static void reportResourceRequirements() {
-        Report report = ServerResourceManagerLogicFacade.getInstance().reportResources();
+        int userID = 2;
+        int informationResourceInd = 1;
+        InformationResource[] informationResources = ServerResourceManagerLogicFacade.getInstance().getInformationResources(2);
+        for(InformationResource i:informationResources) {
+            System.out.println(i.getName());
+        }
+        System.out.println();
+        Report report = ServerResourceManagerLogicFacade.getInstance()
+                .reportResourceRequirements(informationResources[informationResourceInd]);
         Table table = report.getTable();
-
+//
         table.print();
+    }
+
+    public static void reportFlowResourceAllocations() {
+        int userID = 2;
+        String resourceType = "PhysicalResource";
+        int resourceNameInd = 0;
+        int resourceInd = 0;
+
+        String[] resourceNames = ServerResourceManagerLogicFacade.getInstance().getResourceNames(userID, resourceType);
+
+        for(String name:resourceNames) {
+            System.out.println(name);
+        }
+
+        Resource[] resources = ServerResourceManagerLogicFacade.getInstance()
+                .getResources(userID, resourceType, resourceNames[resourceNameInd]);
+
+        FlowReport report = ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[resourceInd], "4/4/70", "4/3/79");
+        report.getTable().print();
+
     }
 
 }
