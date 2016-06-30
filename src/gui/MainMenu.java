@@ -31,7 +31,7 @@ public class MainMenu {
                 adminGuiController.initializeSpecifically();
                 break;
             case 2:
-                fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/programmer/ProgrammerView1.fxml"));
+                fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/programmer/ProgrammerView.fxml"));
                 root = fxmlLoader.load();
                 ProgrammerGuiController programmerGuiController= fxmlLoader.<ProgrammerGuiController>getController();
                 programmerGuiController.setUser(user);
@@ -47,7 +47,7 @@ public class MainMenu {
                 projectManagerGuiController.initializeSpecifically();
                 break;
             case 4:
-                fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/resourcemanager/ResourceManagerView1.fxml"));
+                fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/resourcemanager/ResourceManagerView.fxml"));
                 root = fxmlLoader.load();
                 ResourceManagerGuiController resourceManagerGuiController= fxmlLoader.<ResourceManagerGuiController>getController();
                 resourceManagerGuiController.setUser(user);

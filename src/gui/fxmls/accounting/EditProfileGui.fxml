@@ -7,14 +7,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<Pane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.accounting.ProfileViewController">
+<Pane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.accounting.ProfileEditController">
    <children>
       <ImageView fx:id="backGroundImage" fitHeight="200.0" fitWidth="400.0" pickOnBounds="true">
          <image>
-            <Image url="@../resources/background.jpg" />
+            <Image url="@../../resources/background.jpg" />
          </image>
       </ImageView>
-      <Label fx:id="usernameLabel" layoutX="79.0" layoutY="46.0" prefHeight="59.0" prefWidth="243.0" text="This is your Profile!">
+      <Label fx:id="usernameLabel" layoutX="79.0" layoutY="46.0" prefHeight="59.0" prefWidth="243.0" text="Edit Your Profile!">
          <font>
             <Font name="Cooper Black" size="24.0" />
          </font>
@@ -22,7 +22,7 @@
             <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
          </effect>
       </Label>
-      <Button fx:id="okButton" layoutX="164.0" layoutY="164.0" mnemonicParsing="false" onAction="#backFromProfileView" prefHeight="22.0" prefWidth="73.0" text="Ok">
+      <Button fx:id="editProfileButton" layoutX="313.0" layoutY="164.0" mnemonicParsing="false" onAction="#editProfile" prefHeight="22.0" prefWidth="73.0" text="Edit">
          <effect>
             <InnerShadow color="#003eff" />
          </effect>

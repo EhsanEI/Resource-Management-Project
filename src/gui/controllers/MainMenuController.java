@@ -93,7 +93,7 @@ public class MainMenuController {
     public void viewProfile() throws IOException {
         Stage viewProfileStage = new Stage();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/ViewProfileGui.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/accounting/ViewProfileGui.fxml"));
         Parent warningRoot = fxmlLoader.load();
         ProfileViewController controller = fxmlLoader.<ProfileViewController>getController();
         controller.setUser(user);
@@ -149,7 +149,7 @@ public class MainMenuController {
     private void editProfile() throws IOException {
         Stage viewProfileStage = new Stage();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/EditProfileGui.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/accounting/EditProfileGui.fxml"));
         Parent warningRoot = fxmlLoader.load();
         ProfileEditController controller = fxmlLoader.<ProfileEditController>getController();
         controller.setUser(user);
