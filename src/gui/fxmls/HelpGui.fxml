@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="210.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.HelpViewController">
+   <children>
+      <ImageView fx:id="backGroundImage" fitHeight="210.0" fitWidth="400.0" pickOnBounds="true">
+         <image>
+            <Image url="@../resources/background.jpg" />
+         </image>
+      </ImageView>
+      <Label fx:id="usernameLabel" layoutX="86.0" layoutY="76.0" prefHeight="59.0" prefWidth="229.0" text="This is help menu!">
+         <font>
+            <Font name="Cooper Black" size="24.0" />
+         </font>
+         <effect>
+            <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+         </effect>
+      </Label>
+      <Button fx:id="okFromHelp" layoutX="170.0" layoutY="174.0" mnemonicParsing="false" onAction="#backFromHelp" prefHeight="22.0" prefWidth="73.0" text="Ok">
+         <effect>
+            <InnerShadow color="#003eff" />
+         </effect>
+         <font>
+            <Font name="Cooper Black" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</Pane>

@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.resourcemanager.ResourceManagerGuiController">
+    <children>
+        <ImageView fx:id="backGroundImage" fitHeight="600.0" fitWidth="750.0" layoutX="109.0" layoutY="125.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../../resources/background.jpg" />
+            </image>
+        </ImageView>
+        <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="750.0" />
+      <AnchorPane fx:id="emptyPane" layoutX="7.0" layoutY="25.0" prefHeight="575.0" prefWidth="750.0" />
+      <AnchorPane fx:id="NewResourceRegistrationPane" layoutX="1000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+         <children>
+            <Button fx:id="registerResourceButton" layoutX="643.0" layoutY="540.0" mnemonicParsing="false" onAction="#registerResource" prefHeight="22.0" prefWidth="97.0" text="Register">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="typesCombo" layoutX="250.0" layoutY="75.0" prefHeight="25.0" prefWidth="449.0" />
+            <Label fx:id="usernameLabel" layoutX="40.0" layoutY="55.0" prefHeight="59.0" prefWidth="176.0" text="Type:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="userabel1" layoutX="40.0" layoutY="115.0" prefHeight="59.0" prefWidth="166.0" text="Name:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="backupPeriod" layoutX="250.0" layoutY="132.0" prefHeight="25.0" prefWidth="449.0">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </TextField>
+            <Label fx:id="username11" layoutX="40.0" layoutY="175.0" prefHeight="59.0" prefWidth="190.0" text="Unique identifier:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel2" layoutX="40.0" layoutY="10.0" prefHeight="59.0" prefWidth="338.0" text="New Resource Registeration" textFill="#bf1c1c">
+               <effect>
+                  <InnerShadow choke="0.29" color="#00ff00" height="117.25" radius="58.4625" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="backupPeriod1" layoutX="250.0" layoutY="192.0" prefHeight="25.0" prefWidth="449.0">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </TextField>
+            <Label fx:id="specificationLabel" layoutX="40.0" layoutY="235.0" prefHeight="59.0" prefWidth="190.0" text="Specification:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="valueLabel" layoutX="40.0" layoutY="295.0" prefHeight="59.0" prefWidth="190.0" text="Value:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="specificationText" layoutX="250.0" layoutY="252.0" prefHeight="25.0" prefWidth="449.0">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </TextField>
+            <TextArea fx:id="valueText" layoutX="250.0" layoutY="325.0" prefHeight="116.0" prefWidth="449.0">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </TextArea>
+            <Button fx:id="addSpecificationButton" layoutX="497.0" layoutY="540.0" mnemonicParsing="false" onAction="#addSpecification" prefHeight="22.0" prefWidth="132.0" text="Add Specification">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ResourceFlowPane" layoutX="2000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+         <children>
+            <Button fx:id="getFlowReportButton" layoutX="633.0" layoutY="540.0" mnemonicParsing="false" onAction="#getFlowReportPressed" prefHeight="22.0" prefWidth="107.0" text="Get Report">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="typesCombo1" layoutX="250.0" layoutY="75.0" prefHeight="25.0" prefWidth="449.0" />
+            <Label fx:id="usernameLabel1" layoutX="40.0" layoutY="55.0" prefHeight="59.0" prefWidth="176.0" text="Type:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel11" layoutX="40.0" layoutY="115.0" prefHeight="59.0" prefWidth="166.0" text="Name:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel111" layoutX="40.0" layoutY="175.0" prefHeight="59.0" prefWidth="190.0" text="From:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel21" layoutX="40.0" layoutY="10.0" prefHeight="59.0" prefWidth="367.0" text="Resource Allocations Flow Report" textFill="#bf1c1c">
+               <effect>
+                  <InnerShadow choke="0.29" color="#00ff00" height="117.25" radius="58.4625" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <ComboBox fx:id="typesCombo11" layoutX="250.0" layoutY="132.0" prefHeight="25.0" prefWidth="449.0" />
+            <Label fx:id="usernameLabel1111" layoutX="407.0" layoutY="175.0" prefHeight="59.0" prefWidth="190.0" text="To:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <DatePicker layoutX="201.0" layoutY="192.0" />
+            <DatePicker layoutX="525.0" layoutY="192.0" />
+            <TableView layoutX="35.0" layoutY="250.0" prefHeight="250.0" prefWidth="666.0">
+              <columns>
+                <TableColumn prefWidth="75.0" text="C1" />
+                <TableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ResourceRequirementPane" layoutX="3000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+         <children>
+            <Button fx:id="getRequirementReportButton" layoutX="633.0" layoutY="540.0" mnemonicParsing="false" onAction="#getRequirementReportPressed" prefHeight="22.0" prefWidth="107.0" text="Get Report">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="typesCombo11" layoutX="302.0" layoutY="75.0" prefHeight="25.0" prefWidth="397.0" />
+            <Label fx:id="usernameLabel11" layoutX="40.0" layoutY="55.0" prefHeight="59.0" prefWidth="245.0" text="Information Rwsource:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel211" layoutX="40.0" layoutY="10.0" prefHeight="59.0" prefWidth="367.0" text="Resource Requirement Report" textFill="#bf1c1c">
+               <effect>
+                  <InnerShadow choke="0.29" color="#00ff00" height="117.25" radius="58.4625" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <TableView layoutX="35.0" layoutY="134.0" prefHeight="366.0" prefWidth="666.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="C1" />
+                  <TableColumn prefWidth="75.0" text="C2" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ResourceReportPane" layoutX="4000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+         <children>
+            <Button fx:id="getResourceReportButton" layoutX="633.0" layoutY="540.0" mnemonicParsing="false" onAction="#getResourceReportPressed" prefHeight="22.0" prefWidth="107.0" text="Get Report">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="usernameLabel2111" layoutX="40.0" layoutY="10.0" prefHeight="59.0" prefWidth="367.0" text="Resource Report" textFill="#bf1c1c">
+               <effect>
+                  <InnerShadow choke="0.29" color="#00ff00" height="117.25" radius="58.4625" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <TableView layoutX="35.0" layoutY="88.0" prefHeight="412.0" prefWidth="666.0">
+               <columns>
+                  <TableColumn prefWidth="75.0" text="C1" />
+                  <TableColumn prefWidth="75.0" text="C2" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="ResourceAllocationPane" layoutX="5000.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+         <children>
+            <Button fx:id="viewRequirementButton" layoutX="596.0" layoutY="540.0" mnemonicParsing="false" onAction="#viewRequirementPressed" prefHeight="22.0" prefWidth="144.0" text="View Requirement">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="usernameLabel11" layoutX="40.0" layoutY="55.0" prefHeight="59.0" prefWidth="225.0" text="Select a Requirement:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel212" layoutX="40.0" layoutY="10.0" prefHeight="59.0" prefWidth="367.0" text="Resource Allocation" textFill="#bf1c1c">
+               <effect>
+                  <InnerShadow choke="0.29" color="#00ff00" height="117.25" radius="58.4625" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <ListView layoutX="40.0" layoutY="123.0" prefHeight="366.0" prefWidth="694.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="RequirementViewPane" layoutX="6000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+         <children>
+            <Button fx:id="determineSituationButton" layoutX="596.0" layoutY="540.0" mnemonicParsing="false" onAction="#determineSituationPressed" prefHeight="22.0" prefWidth="144.0" text="Determine Situation">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="usernameLabel112" layoutX="40.0" layoutY="55.0" prefHeight="59.0" prefWidth="297.0" text="Requirement Specifications:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel2121" layoutX="40.0" layoutY="10.0" prefHeight="59.0" prefWidth="367.0" text="Requirement View" textFill="#bf1c1c">
+               <effect>
+                  <InnerShadow choke="0.29" color="#00ff00" height="117.25" radius="58.4625" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <ListView layoutX="407.0" layoutY="114.0" prefHeight="375.0" prefWidth="328.0" />
+            <Label fx:id="usernameLabel1121" layoutX="407.0" layoutY="55.0" prefHeight="59.0" prefWidth="225.0" text="Related Resources:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Button fx:id="viewRelatedResourcesButton" layoutX="413.0" layoutY="540.0" mnemonicParsing="false" onAction="#viewRelatedResourcesPressed" prefHeight="22.0" prefWidth="166.0" text="View Related Resources">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Button>
+            <ImageView fx:id="backFromRequirmentViewButton" fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="515.0" onMouseClicked="#backFromRequirmentView" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/back.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="AllocationRegistrationPane" layoutX="7000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+         <children>
+            <Button fx:id="allocationRegisterButton" layoutX="596.0" layoutY="540.0" mnemonicParsing="false" onAction="#allocationRegisterPressed" prefHeight="22.0" prefWidth="144.0" text="Register">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="usernameLabel1121" layoutX="40.0" layoutY="55.0" prefHeight="59.0" prefWidth="297.0" text="Accept Situation:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel21211" layoutX="40.0" layoutY="10.0" prefHeight="59.0" prefWidth="367.0" text="Allocation" textFill="#bf1c1c">
+               <effect>
+                  <InnerShadow choke="0.29" color="#00ff00" height="117.25" radius="58.4625" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="backFromAllocationPane" fitHeight="50.0" fitWidth="50.0" layoutX="10.0" layoutY="515.0" onMouseClicked="#backFromAllocationPane" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/back.png" />
+               </image>
+            </ImageView>
+            <RadioButton layoutX="332.0" layoutY="76.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="121.0" text=" Accept">
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+               <effect>
+                  <InnerShadow color="#1eff00" />
+               </effect>
+            </RadioButton>
+            <RadioButton layoutX="496.0" layoutY="76.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="121.0" text="Reject">
+               <effect>
+                  <InnerShadow color="#1eff00" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </RadioButton>
+         </children>
+      </AnchorPane>
+      <AnchorPane fx:id="EssentialResourcesPredictionPane" layoutX="8000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+         <children>
+            <Button fx:id="predictButton" layoutX="596.0" layoutY="540.0" mnemonicParsing="false" onAction="#predictPressed" prefHeight="22.0" prefWidth="144.0" text="Predict">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Button>
+            <Label fx:id="usernameLabel212111" layoutX="40.0" layoutY="10.0" prefHeight="59.0" prefWidth="367.0" text="Essential Resources Prediction:" textFill="#bf1c1c">
+               <effect>
+                  <InnerShadow choke="0.29" color="#00ff00" height="117.25" radius="58.4625" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <ListView layoutX="40.0" layoutY="137.0" prefHeight="339.0" prefWidth="694.0" />
+            <Label fx:id="usernameLabel11211" layoutX="40.0" layoutY="69.0" prefHeight="59.0" prefWidth="297.0" text="Select a Project:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>
