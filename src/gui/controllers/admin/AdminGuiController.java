@@ -3,11 +3,19 @@ package gui.controllers.admin;
 
 import gui.controllers.MainMenuController;
 import gui.controllers.iMainMenuController;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -17,8 +25,18 @@ import java.io.IOException;
  */
 public class AdminGuiController extends MainMenuController implements iMainMenuController {
 
+
     private MenuItem configuresystem;
-    private ConfigurSystemController configurSystemController;
+
+    @FXML
+    private AnchorPane configureSystemAnchorPane;
+    @FXML
+    private AnchorPane emptyPane;
+
+    @FXML
+    private void initialize(){
+        onTheTopPane = emptyPane;
+    }
 
 
     public void initializeSpecifically(){
@@ -32,13 +50,15 @@ public class AdminGuiController extends MainMenuController implements iMainMenuC
             }
         });
         permissionMenu.getItems().add(configuresystem);
-        configurSystemController = new ConfigurSystemController();
-
     }
 
     private void configureSystemSelected() throws IOException {
-        stage = (Stage) anchorPane.getScene().getWindow();
-        configurSystemController.handle(anchorPane, user);
+        animatePaneChange(configureSystemAnchorPane, true);
+    }
+
+
+    public void configure(ActionEvent event) {
+        System.out.println("configure pressed!");
     }
 
 

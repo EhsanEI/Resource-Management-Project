@@ -75,17 +75,11 @@ public class ProgrammerGuiController extends MainMenuController implements iMain
 
 
     private void maintainModule() throws IOException {
-        moduleMaintenancePane.setLayoutX(0);
-        moduleMaintenancePane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = moduleMaintenancePane;
+        animatePaneChange(moduleMaintenancePane, true);
     }
 
     private void createModule() throws IOException {
-        moduleCreationPane.setLayoutX(0);
-        moduleCreationPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = moduleCreationPane;
+        animatePaneChange(moduleCreationPane, true);
     }
 
 

@@ -3,6 +3,10 @@ package gui.controllers;
 import gui.StartMenu;
 import gui.controllers.accounting.ProfileEditController;
 import gui.controllers.accounting.ProfileViewController;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -11,6 +15,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 
 import java.io.IOException;
@@ -20,8 +25,12 @@ import java.util.Optional;
  * Created by qizilbash on 6/25/2016.
  */
 public class MainMenuController {
+
+    private double animationTime = 1000;
+
+    public AnchorPane onTheTopPane;
+
     public int user;
-    public Stage stage;
 
 
     public Menu profileMenu;
@@ -106,7 +115,6 @@ public class MainMenuController {
         viewProfileStage.show();
 
 
-
         viewProfileStage.setOnHiding(event -> anchorPane.setDisable(false));
 
         anchorPane.setDisable(true);
@@ -188,6 +196,41 @@ public class MainMenuController {
         viewProfileStage.setOnHiding(event -> anchorPane.setDisable(false));
 
         anchorPane.setDisable(true);
+    }
+
+    public void animatePaneChange(AnchorPane anchorPane, boolean direction){
+
+        double xPos1 = 1000;
+        double xPos2 = -1000;
+
+        if (!direction){
+            xPos1 = -1000;
+            xPos2 = 1000;
+        }
+
+        anchorPane.setLayoutX(xPos1);
+        anchorPane.setLayoutY(25);
+
+        Timeline timeline = new Timeline();
+
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(animationTime),
+                        new KeyValue(anchorPane.layoutXProperty(),
+                                0,
+                                Interpolator.EASE_BOTH)));
+        timeline.getKeyFrames().add(
+                new KeyFrame(Duration.millis(animationTime),
+                        new KeyValue(onTheTopPane.layoutXProperty(),
+                                xPos2,
+                                Interpolator.EASE_BOTH)));
+
+
+
+        timeline.setCycleCount(1);
+        timeline.setAutoReverse(false);
+        timeline.play();
+
+        timeline.setOnFinished(event -> onTheTopPane = anchorPane);
     }
 
 }

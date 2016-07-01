@@ -2,12 +2,17 @@ package gui.controllers.projectmanager;
 
 import gui.controllers.MainMenuController;
 import gui.controllers.iMainMenuController;
+import javafx.animation.Interpolator;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 import java.io.IOException;
 
@@ -15,6 +20,7 @@ import java.io.IOException;
  * Created by qizilbash on 6/25/2016.
  */
 public class ProjectManagerGuiController extends MainMenuController implements iMainMenuController {
+
 
     private MenuItem resourceAllocationsEstimate;
     private MenuItem moduleAssign;
@@ -62,9 +68,13 @@ public class ProjectManagerGuiController extends MainMenuController implements i
     @Override
     public void initializeSpecifically() {
         requirementRegistreation = new MenuItem("Register Requirement");
+
         moduleAssign = new MenuItem("Assign Module");
+
         projectScaleRegistreation = new MenuItem("Register Project Scale");
+
         resourceAllocationsEstimate = new MenuItem("Estimate Resource Allocations");
+
 
         requirementRegistreation.setOnAction(event -> registerRequirement());
 
@@ -74,75 +84,48 @@ public class ProjectManagerGuiController extends MainMenuController implements i
 
         moduleAssign.setOnAction(event -> assignModule());
 
+
         permissionMenu.getItems().addAll(requirementRegistreation,moduleAssign,projectScaleRegistreation,resourceAllocationsEstimate);
-
-
-
     }
 
     private void estimateResourceAllocations() {
-        EstimateResourceAllocationPane.setLayoutX(0);
-        EstimateResourceAllocationPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(0);
-        onTheTopPane = EstimateResourceAllocationPane;
-
+        animatePaneChange(EstimateResourceAllocationPane, true);
     }
 
 
 
     private void assignModule() {
-        ProjectSelectionToAssignPane.setLayoutX(0);
-        ProjectSelectionToAssignPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = ProjectSelectionToAssignPane;
-
+        animatePaneChange(ProjectSelectionToAssignPane, true);
     }
 
 
     private void registerRequirement() {
-        SelectInformationResourcePane.setLayoutX(0);
-        SelectInformationResourcePane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = SelectInformationResourcePane;
-
+        animatePaneChange(SelectInformationResourcePane, true);
     }
 
 
     private void registerProjectScale() {
-        stage = (Stage) anchorPane.getScene().getWindow();
-        initializeProjectPane.setLayoutY(25);
-        initializeProjectPane.setLayoutX(0);
-        onTheTopPane = initializeProjectPane;
+        animatePaneChange(initializeProjectPane, true);
     }
 
 
 
 
     public void initializeProjectPressed(ActionEvent event) {
-        systemAdditionPane.setLayoutY(25);
-        systemAdditionPane.setLayoutX(0);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = systemAdditionPane;
+        animatePaneChange(systemAdditionPane, true);
 
     }
 
     public void addSystemPressed(ActionEvent event) {
         System.out.println("add system pressed");
-
     }
 
     public void addSubsystemsPressed(ActionEvent event) {
-        subsystemAdditionPane.setLayoutY(25);
-        subsystemAdditionPane.setLayoutX(0);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = subsystemAdditionPane;
+        animatePaneChange(subsystemAdditionPane, true);
     }
 
     public void backFromSystem(Event event) {
-        initializeProjectPane.setLayoutX(0);
-        initializeProjectPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = initializeProjectPane;
+        animatePaneChange(initializeProjectPane, false);
     }
 
     public void addSybsystemPressed(ActionEvent event) {
@@ -150,17 +133,11 @@ public class ProjectManagerGuiController extends MainMenuController implements i
     }
 
     public void addModulesPressed(ActionEvent event) {
-        modulesAdditionPane.setLayoutX(0);
-        modulesAdditionPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = modulesAdditionPane;
+        animatePaneChange(modulesAdditionPane, true);
     }
 
     public void backFromSubsystem(Event event) {
-        systemAdditionPane.setLayoutX(0);
-        systemAdditionPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = systemAdditionPane;
+        animatePaneChange(systemAdditionPane, false);
     }
 
     public void addModulePressed(ActionEvent event) {
@@ -168,17 +145,11 @@ public class ProjectManagerGuiController extends MainMenuController implements i
     }
 
     public void addSpecialtiesPressed(ActionEvent event) {
-        specialtyAdditionPane.setLayoutX(0);
-        specialtyAdditionPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = specialtyAdditionPane;
+        animatePaneChange(specialtyAdditionPane, true);
     }
 
     public void backFromModules(Event event) {
-        subsystemAdditionPane.setLayoutX(0);
-        subsystemAdditionPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = subsystemAdditionPane;
+        animatePaneChange(subsystemAdditionPane,false);
     }
 
     public void addSpecialtyPressed(ActionEvent event) {
@@ -187,24 +158,15 @@ public class ProjectManagerGuiController extends MainMenuController implements i
 
 
     public void backFromSpecialty(Event event) {
-        modulesAdditionPane.setLayoutX(0);
-        modulesAdditionPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = modulesAdditionPane;
+        animatePaneChange(modulesAdditionPane,false);
     }
 
     public void estimatePressed(ActionEvent event) {
-        EstimationPane.setLayoutX(0);
-        EstimationPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(0);
-        onTheTopPane = EstimationPane;
+        animatePaneChange(EstimationPane,true);
     }
 
     public void backFromEstimationResultPressed(Event event) {
-        EstimateResourceAllocationPane.setLayoutX(0);
-        EstimateResourceAllocationPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(0);
-        onTheTopPane = EstimateResourceAllocationPane;
+        animatePaneChange(EstimateResourceAllocationPane,false);
     }
 
     public void assignModulePressed(ActionEvent event) {
@@ -213,18 +175,11 @@ public class ProjectManagerGuiController extends MainMenuController implements i
     }
 
     public void backFromAssignmentPressed(Event event) {
-        ProjectSelectionToAssignPane.setLayoutX(0);
-        ProjectSelectionToAssignPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(10000);
-        onTheTopPane = ProjectSelectionToAssignPane;
-
+        animatePaneChange(ProjectSelectionToAssignPane, false);
     }
 
     public void getModulesAndProgrammersPressed(ActionEvent event) {
-        ModuleAssignmentPane.setLayoutX(0);
-        ModuleAssignmentPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = ModuleAssignmentPane;
+        animatePaneChange(ModuleAssignmentPane, true);
     }
 
     public void RegisterRequirementPressed(ActionEvent event) {
@@ -232,16 +187,11 @@ public class ProjectManagerGuiController extends MainMenuController implements i
     }
 
     public void RegisterARequirementPressed(ActionEvent event) {
-        RegisterRequirementPane.setLayoutX(0);
-        RegisterRequirementPane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = RegisterRequirementPane;
+        animatePaneChange(RegisterRequirementPane, true);
     }
 
     public void backFromReqisterRequirementPressed(Event event) {
-        SelectInformationResourcePane.setLayoutX(0);
-        SelectInformationResourcePane.setLayoutY(25);
-        onTheTopPane.setLayoutX(1000);
-        onTheTopPane = SelectInformationResourcePane;
+        animatePaneChange(SelectInformationResourcePane, false);
     }
+
 }
