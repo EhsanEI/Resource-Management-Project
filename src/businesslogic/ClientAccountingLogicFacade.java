@@ -37,8 +37,8 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
     }
 
     @Override
-    public void signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
-
+    public boolean signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
+        return false;
     }
 
     @Override
