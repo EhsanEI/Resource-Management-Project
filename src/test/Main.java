@@ -23,7 +23,9 @@ import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
 import java.lang.System;
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.Set;
 
 /**
@@ -279,12 +281,18 @@ public class Main {
 
     public static void assignModules() {
         int userID = 1;
-        Project[] projects = ServerProjectManagerLogicFacade.getInstance().getProjectList(userID);
+        int projectInd = 0;
+        int programmerInd = 0;
+        int moduleInd = 0;
 
-        for(Project project: projects) {
-            System.out.println(project.getName());
-            ServerProjectManagerLogicFacade.getInstance().getProgrammers(project);
-        }
+        Project[] projects = ServerProjectManagerLogicFacade.getInstance().getProjectList(userID);
+        Project project = projects[projectInd];
+        HumanResource[] programmers = ServerProjectManagerLogicFacade.getInstance().getProgrammers(project);
+        Module[] modules = ServerProjectManagerLogicFacade.getInstance().getModules(project);
+
+        Map<HumanResource, Module> assignments = new HashMap<>();
+        assignments.put(programmers[programmerInd], modules[moduleInd]);
+        ServerProjectManagerLogicFacade.getInstance().assignModules(assignments);
     }
 
     public static void registerNewResource() {

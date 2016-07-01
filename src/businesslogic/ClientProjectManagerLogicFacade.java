@@ -7,11 +7,19 @@ import businesslogic.distribution.requirement.ResourceRequirementPriority;
 import businesslogic.distribution.resource.*;
 import businesslogic.distribution.resource.System;
 import businesslogic.utility.Date;
+import businesslogic.utility.Notification;
+
+import java.util.Map;
 
 /**
  * Created by Esi on 6/22/2016.
  */
 public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInterface{
+    @Override
+    public Notification assignModules(Map<HumanResource, Module> assignments) {
+        return null;
+    }
+
     @Override
     public void registerProjectScale(int UserID, Project newProject) {
 

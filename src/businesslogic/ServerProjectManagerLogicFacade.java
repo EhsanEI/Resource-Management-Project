@@ -13,6 +13,8 @@ import businesslogic.distribution.requirement.ResourceRequirementPriority;
 import businesslogic.distribution.resource.*;
 import businesslogic.distribution.resource.System;
 import businesslogic.utility.Date;
+import businesslogic.utility.Notification;
+import businesslogic.utility.NotificationDAO;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 
@@ -33,6 +35,29 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
             instance = new ServerProjectManagerLogicFacade();
         }
         return instance;
+    }
+
+    @Override
+    public Notification assignModules(Map<HumanResource, Module> assignments) {
+        StringBuffer msg = new StringBuffer("");
+        for(HumanResource humanResource: assignments.keySet()) {
+            humanResource.getProgramming().addModule(assignments.get(humanResource));
+            try {
+                HumanResourceDAO.save(humanResource);
+            }
+            catch (PersistentException ex) {
+                ex.printStackTrace();
+                msg.append("Cannot assign module to programmer " + humanResource.getName());
+            }
+        }
+        Notification notification = NotificationDAO.createNotification();
+        if(msg.length() == 0) {
+            notification.setContent(msg.toString());
+        }
+        else {
+            notification.setContent("Modules were assigned.");
+        }
+        return notification;
     }
 
     @Override

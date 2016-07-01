@@ -13,6 +13,11 @@
  */
 package businesslogic.accounting.job;
 
+import businesslogic.distribution.resource.Module;
+import businesslogic.distribution.resource.ModuleChange;
+
+import java.util.Set;
+
 public class Programming extends businesslogic.accounting.job.Job {
 	public Programming() {
 	}
@@ -75,12 +80,30 @@ public class Programming extends businesslogic.accounting.job.Job {
 	public final businesslogic.distribution.resource.ModuleChangeSetCollection moduleChanges = new businesslogic.distribution.resource.ModuleChangeSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROGRAMMING_MODULECHANGES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public Specialty[] getSpecialties() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		Set<Specialty> castedSpecialities = getORM_Specialties();
+		return castedSpecialities.toArray(new Specialty[castedSpecialities.size()]);
 	}
 	
 	public void addSpecialty(Specialty specialty) {
 		getORM_Specialties().add(specialty);
+	}
+
+	public void addModule(Module module) {
+		getORM_Modules().add(module);
+	}
+
+	public Module[] getModules() {
+		Set<Module> castedModules= getORM_Modules();
+		return castedModules.toArray(new Module[castedModules.size()]);
+	}
+
+	public void addModuleChange(ModuleChange change) {
+		getORM_ModuleChanges().add(change);
+	}
+
+	public ModuleChange[] getModuleChanges() {
+		Set<ModuleChange> castedChanges = getORM_ModuleChanges();
+		return castedChanges.toArray(new ModuleChange[castedChanges.size()]);
 	}
 	
 	public String toString() {
