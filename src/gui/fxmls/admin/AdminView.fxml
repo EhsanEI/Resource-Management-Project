@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane fx:id="anchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.admin.AdminGuiController">
+    <children>
+        <ImageView fx:id="backGroundImage" fitHeight="600.0" fitWidth="750.0" layoutX="109.0" layoutY="125.0" pickOnBounds="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <image>
+                <Image url="@../../resources/background.jpg" />
+            </image>
+        </ImageView>
+        <MenuBar fx:id="menuBar" prefHeight="25.0" prefWidth="750.0" />
+      <AnchorPane fx:id="emptyPane" layoutY="25.0" prefHeight="575.0" prefWidth="750.0" />
+      <AnchorPane fx:id="configureSystemAnchorPane" layoutX="1000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+         <children>
+            <Button fx:id="configureButton" layoutX="660.0" layoutY="540.0" mnemonicParsing="false" onAction="#configure" text="Configure">
+               <effect>
+                  <InnerShadow />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="12.0" />
+               </font>
+            </Button>
+            <ComboBox fx:id="backupTeypesCombo" layoutX="323.0" layoutY="57.0" prefWidth="150.0" />
+            <Label fx:id="usernameLabel" layoutX="40.0" layoutY="40.0" prefHeight="59.0" prefWidth="150.0" text="Backup Type: ">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <Label fx:id="usernameLabel1" layoutX="40.0" layoutY="100.0" prefHeight="59.0" prefWidth="166.0" text="Backup Period:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="backupPeriod" layoutX="324.0" layoutY="117.0" />
+         </children>
+      </AnchorPane>
+    </children>
+</AnchorPane>
