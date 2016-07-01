@@ -54,8 +54,7 @@ public class FlowReport  extends Report{
 
         //Can be done easier with join
         List<Integer> allocationIDs = session
-                .createSQLQuery("SELECT ID FROM Allocation WHERE ID = " +
-                        "(SELECT [Allocation ID] FROM ResourceAllocation WHERE ResourceID2 = " + resource.getID()+ ")").list();
+                .createSQLQuery("SELECT [Allocation ID] FROM ResourceAllocation WHERE ResourceID2 = " + resource.getID()).list();
 
         String[] headers = new String[]{"Information Resource Name", "Start Date", "End Date"};
 

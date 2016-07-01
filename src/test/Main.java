@@ -196,7 +196,7 @@ public class Main {
     }
 
     public static void registerProject() {
-        int userID = 2;
+        int userID = 1;
 
         Module m = ModuleDAO.createModule();
         m.setName("some module");
@@ -241,7 +241,7 @@ public class Main {
 
     public static void registerRequirement() {
         try {
-            int userID = 2;
+            int userID = 1;
             int informationResourceID = 2;
             Requirement requirement = RequirementDAO.createRequirement();
             requirement.setStartDate("4/4/73");
@@ -278,7 +278,7 @@ public class Main {
     }
 
     public static void assignModules() {
-        int userID = 2;
+        int userID = 1;
         Project[] projects = ServerProjectManagerLogicFacade.getInstance().getProjectList(userID);
 
         for(Project project: projects) {
@@ -296,7 +296,7 @@ public class Main {
         resource.addSpec("Color", "CMYK");
         resource.addSpec("Rate", "20 PPM");
 
-        int userID = 3;
+        int userID = 2;
 
         ServerResourceManagerLogicFacade.getInstance().registerNewResource(userID, resource);
 
@@ -311,20 +311,13 @@ public class Main {
     }
 
     public static void registerResourceAllocation() {
-        int userID = 3;
+        int userID = 2;
         int reqIndex = 0;
         int resourceIndex = 0;
         Requirement[] requirements = ServerResourceManagerLogicFacade.getInstance().getRequirements(userID);
-//        for (Requirement req: requirements) {
-//            System.out.println(req.getResourceName() + "," + req.getResourceType());
-//        }
 
         Resource[] resources = ServerResourceManagerLogicFacade.getInstance().getResources(userID,
                 "PhysicalResource", "printer");
-
-//        for(Resource resource:resources) {
-//            System.out.println(resource.getID());
-//        }
 
         Allocation allocation = Allocation_DAO.createAllocation_();
         allocation.setRequirement(requirements[reqIndex]);
@@ -336,19 +329,12 @@ public class Main {
         int reqIndex2 = 1;
         int resourceIndex2 = 0;
         Requirement[] requirements2 = ServerResourceManagerLogicFacade.getInstance().getRequirements(userID);
-//        for (Requirement req: requirements2) {
-//            System.out.println(req.getResourceName() + "," + req.getResourceType());
-//        }
 
         Resource[] resources2 = ServerResourceManagerLogicFacade.getInstance().getResources(userID,
                 "HumanResource", "signed up user");
 
-//        for(Resource resource:resources2) {
-//            System.out.println(resource.getID());
-//        }
-
         Allocation allocation2 = Allocation_DAO.createAllocation_();
-        allocation2.setRequirement(requirements[reqIndex2]);
+        allocation2.setRequirement(requirements2[reqIndex2]);
         allocation2.addResources(resources2);
 
         System.out.println(allocation2.getRequirement().getResourceName());
@@ -378,7 +364,7 @@ public class Main {
     }
 
     public static void reportFlowResourceAllocations() {
-        int userID = 2;
+        int userID = 3;
         String resourceType = "PhysicalResource";
         int resourceNameInd = 0;
         int resourceInd = 0;

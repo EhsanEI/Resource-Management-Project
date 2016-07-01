@@ -110,7 +110,7 @@ public class Allocation {
 		try {
 			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
 			List<Integer> resourceIDs = session
-					.createSQLQuery("SELECT ResourceID2 FROM ResourceAllocation WHERE AllocationID = "+ getID()).list();
+					.createSQLQuery("SELECT ResourceID2 FROM ResourceAllocation WHERE [Allocation ID] = "+ getID()).list();
 			ArrayList<Resource> result = new ArrayList<>();
 			for(Integer id:resourceIDs) {
 				result.add(ResourceDAO.getResourceByORMID(id));

@@ -17,9 +17,11 @@ import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.job.ProjectManagementDAO;
 import businesslogic.accounting.user.User;
 import businesslogic.distribution.resource.InformationResource;
+import businesslogic.distribution.resource.InformationResourceDAO;
 import businesslogic.utility.Quantity;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
+import org.orm.PersistentTransaction;
 
 import java.util.List;
 
@@ -98,16 +100,6 @@ public class Requirement {
 		this.requirementPriority = requirementPriority;
 	}
 
-	public Requirement(String resourceName, String resourceType, Quantity quantity, businesslogic.utility.Date startDate, businesslogic.utility.Date endDate, businesslogic.distribution.requirement.RequirementPriority priority) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public void setQuantity(Quantity quantity) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-
 	public String getStartDate() {
 		return startDate;
 	}
@@ -122,16 +114,6 @@ public class Requirement {
 
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
-	}
-
-	public businesslogic.distribution.requirement.RequirementPriority getPriority() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public void setPriority(businesslogic.distribution.requirement.RequirementPriority priority) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
 	}
 	
 	public void setProjectManager(ProjectManagement pm) {
@@ -152,6 +134,17 @@ public class Requirement {
 
 	public void setInformationResource(InformationResource informationResource) {
 		informationResource.addRequirement(this);
+	}
+
+	public InformationResource getInformationResource() {
+		try{
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			Integer irID = (Integer) session.createSQLQuery("SELECT ResourceID2 FROM Requirement WHERE ID = "+ getID()).uniqueResult();
+			return InformationResourceDAO.getInformationResourceByORMID(irID);
+		}
+		catch (PersistentException ex){
+		}
+		return null;
 	}
 	
 	public String toString() {

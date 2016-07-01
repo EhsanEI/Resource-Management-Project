@@ -146,38 +146,41 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
 
         allAllocations.addAll(Arrays.asList(project.getAllocations()));
         for(System system : (Set<System>) project.getORM_Systems()) {
-            java.lang.System.out.println(system.getName());
 
             allAllocations.addAll(Arrays.asList(system.getAllocations()));
             for(Subsystem subsystem : (Set<Subsystem>) system.getORM_Subsystems()) {
-                java.lang.System.out.println(subsystem.getName());
 
                 allAllocations.addAll(Arrays.asList(subsystem.getAllocations()));
                 for(Module module : (Set<Module>)subsystem.getORM_Modules()) {
                     allAllocations.addAll(Arrays.asList(module.getAllocations()));
-                    java.lang.System.out.println(module.getName());
-
                 }
             }
         }
 
-
+        ArrayList<HumanResource> programmers = new ArrayList();
         for(Allocation allocation:allAllocations) {
-            java.lang.System.out.println(allocation.getID());
             for (Resource resource: allocation.getResources()) {
-                java.lang.System.out.println(resource.getName());
                 if(resource instanceof HumanResource) {
-                    java.lang.System.out.println("-> " + resource.getName());
+                    programmers.add((HumanResource)resource);
                 }
             }
         }
 
-        return new HumanResource[0];
+        return programmers.toArray(new HumanResource[programmers.size()]);
     }
 
     @Override
     public Module[] getModules(Project project) {
-        return new Module[0];
+        Set<Module> allModules = new HashSet<>();
+
+        for(System system : (Set<System>) project.getORM_Systems()) {
+            for(Subsystem subsystem : (Set<Subsystem>) system.getORM_Subsystems()) {
+                for(Module module : (Set<Module>)subsystem.getORM_Modules()) {
+                    allModules.add(module);
+                }
+            }
+        }
+        return allModules.toArray(new Module[allModules.size()]);
     }
 
     @Override

@@ -6,6 +6,7 @@ import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
 import businesslogic.distribution.resource.HumanResource;
+import businesslogic.distribution.resource.HumanResourceDAO;
 import businesslogic.distribution.resource.Spec;
 import businesslogic.utility.Notification;
 import org.orm.PersistentException;
@@ -53,6 +54,10 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
 
             for(Specialty specialty: specialties) {
                 SpecialtyDAO.save(specialty);
+            }
+
+            for(HumanResource hr: humanResources) {
+                HumanResourceDAO.save(hr);
             }
 
             UserDAO.save(user);

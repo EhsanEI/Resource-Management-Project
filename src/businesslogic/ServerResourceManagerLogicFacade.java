@@ -11,6 +11,7 @@ import businesslogic.distribution.Allocation_DAO;
 import businesslogic.distribution.ResourceAllocation;
 import businesslogic.distribution.ResourceAllocationDAO;
 import businesslogic.distribution.requirement.Requirement;
+import businesslogic.distribution.requirement.RequirementDAO;
 import businesslogic.distribution.resource.*;
 import businesslogic.report.FlowReport;
 import businesslogic.report.ResourceReport;
@@ -19,6 +20,7 @@ import businesslogic.utility.Date;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 
+import java.lang.System;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -46,7 +48,6 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     public void registerResourceAllocation(int userID, Allocation allocation, Resource[] resources) {
         try{
 
-            //TODO add resource management for the allocation
             User user = UserDAO.getUserByORMID(userID);
             getResourceManagement(user).addAllocation(allocation);
 
@@ -55,6 +56,10 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             for(Resource resource: resources) {
                 resource.allocate();
             }
+
+            InformationResource informationResource = allocation.getRequirement().getInformationResource();
+            informationResource.addAllocation(allocation);
+            InformationResourceDAO.save(informationResource);
 
             for(ResourceAllocation ra:(Set<ResourceAllocation>)allocation.getORM_ResourceAllocations()) {
                 ResourceAllocationDAO.save(ra);
@@ -65,6 +70,8 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             for(Resource resource: resources) {
                 ResourceDAO.save(resource);
             }
+
+            RequirementDAO.save(allocation.getRequirement());
 
             //TODO add notification to allocation.getRequirement().getProjectManagement()
         }
