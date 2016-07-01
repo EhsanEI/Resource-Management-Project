@@ -12,7 +12,11 @@ import javafx.stage.Stage;
 
 public class StartMenu extends Application {
 
-    public static void main() {launch();}
+
+    public static void main() {
+
+        launch();
+    }
 
 
     @Override
