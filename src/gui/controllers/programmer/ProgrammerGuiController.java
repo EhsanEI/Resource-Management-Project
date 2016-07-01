@@ -1,12 +1,13 @@
 package gui.controllers.programmer;
 
 import gui.controllers.MainMenuController;
-import gui.controllers.admin.ConfigurSystemController;
 import gui.controllers.iMainMenuController;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.MenuItem;
-import javafx.stage.Stage;
+import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
@@ -18,8 +19,32 @@ public class ProgrammerGuiController extends MainMenuController implements iMain
     private MenuItem moduleCreation;
     private MenuItem moduleMaintenance;
 
-    private ModuleCreationController moduleCreationController;
-    private ModuleMaintenanceController moduleMaintenanceController;
+
+    @FXML
+    private AnchorPane emptyPane;
+    @FXML
+    private AnchorPane moduleMaintenancePane;
+    @FXML
+    private AnchorPane moduleCreationPane;
+
+    private AnchorPane onTheTopPane;
+
+    @FXML
+    private Button moduleCreationButton;
+    @FXML
+    private Button moduleMaintenanceButton;
+    @FXML
+    private Button addChangeButton;
+
+
+
+
+
+    @FXML
+    private void initialize(){
+        onTheTopPane = emptyPane;
+    }
+
 
     @Override
     public void initializeSpecifically() {
@@ -39,25 +64,44 @@ public class ProgrammerGuiController extends MainMenuController implements iMain
 
         moduleMaintenance.setOnAction(event -> {
             try {
-                maintaineModule();
+                maintainModule();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         });
         permissionMenu.getItems().addAll(moduleCreation, moduleMaintenance);
 
-        moduleCreationController = new ModuleCreationController();
-        moduleMaintenanceController = new ModuleMaintenanceController();
     }
 
 
-    private void maintaineModule() throws IOException {
-        stage = (Stage) anchorPane.getScene().getWindow();
-        moduleMaintenanceController.handle(anchorPane, user);
+    private void maintainModule() throws IOException {
+        moduleMaintenancePane.setLayoutX(0);
+        moduleMaintenancePane.setLayoutY(25);
+        onTheTopPane.setLayoutX(1000);
+        onTheTopPane = moduleMaintenancePane;
     }
 
     private void createModule() throws IOException {
-        stage = (Stage) anchorPane.getScene().getWindow();
-        moduleCreationController.handle(anchorPane, user);
+        moduleCreationPane.setLayoutX(0);
+        moduleCreationPane.setLayoutY(25);
+        onTheTopPane.setLayoutX(1000);
+        onTheTopPane = moduleCreationPane;
+    }
+
+
+
+    @FXML
+    public void addChangePressed(ActionEvent event) {
+        System.out.println("add change pressed");
+    }
+
+    @FXML
+    public void registerMaintenancePressed(ActionEvent event) {
+        System.out.println("registerMaintenancePressed");
+    }
+
+    @FXML
+    public void createModulePressed(ActionEvent event) {
+        System.out.println("createModulepressed");
     }
 }
