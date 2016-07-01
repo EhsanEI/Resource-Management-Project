@@ -61,7 +61,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public void registerProjectScale(int UserID, Project newProject) {
+    public Notification registerProjectScale(int UserID, Project newProject) {
 
         try {
 
@@ -70,7 +70,9 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
             ProjectManagement pm = getProjectManagement(user);
 
             if(pm == null) {
-                return;
+                Notification notification = NotificationDAO.createNotification();
+                notification.setContent("The user is not a project manager.");
+                return notification;
             }
 
             newProject.setProjectManagement(pm);
@@ -96,7 +98,13 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
         }
         catch(PersistentException ex) {
             ex.printStackTrace();
+            Notification notification = NotificationDAO.createNotification();
+            notification.setContent("Cannot save the project.");
+            return notification;
         }
+        Notification notification = NotificationDAO.createNotification();
+        notification.setContent("The project has been registered successfully.");
+        return notification;
     }
 
     @Override
@@ -127,21 +135,26 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
         catch(PersistentException ex) {
             ex.printStackTrace();
         }
-        return new Project[0];
+        return null;
     }
 
     @Override
-    public void registerRequirement(int userID, Requirement newRequirement) {
+    public Notification registerRequirement(int userID, Requirement newRequirement) {
         try {
 
             User user = UserDAO.getUserByORMID(userID);
             newRequirement.setProjectManager(getProjectManagement(user));
             RequirementDAO.save(newRequirement);
-            //TODO add notification
+            Notification notification = NotificationDAO.createNotification();
+            notification.setContent("The requirement has been registered successfully.");
+            return notification;
         }
         catch(PersistentException ex) {
             ex.printStackTrace();
         }
+        Notification notification = NotificationDAO.createNotification();
+        notification.setContent("Cannot save the requirement.");
+        return notification;
     }
 
     @Override
@@ -160,9 +173,9 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
             return projects.toArray(new Project[projects.size()]);
         }
         catch(PersistentException ex) {
-
+            ex.printStackTrace();
         }
-        return new Project[0];
+        return null;
     }
 
     @Override
@@ -234,7 +247,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
         catch(PersistentException | NullPointerException  ex) {
             ex.printStackTrace();
         }
-        return new String[0];
+        return null;
 
     }
 

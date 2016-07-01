@@ -30,7 +30,7 @@ public class ServerManagerLogicFacade implements ManagerLogicInterface {
         catch (PersistentException ex) {
             ex.printStackTrace();
         }
-        return new User[0];
+        return null;
     }
 
     @Override

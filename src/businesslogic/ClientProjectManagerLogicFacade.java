@@ -21,8 +21,8 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public void registerProjectScale(int UserID, Project newProject) {
-
+    public Notification registerProjectScale(int UserID, Project newProject) {
+        return null;
     }
 
     @Override
@@ -31,8 +31,8 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public void registerRequirement(int userID, Requirement newRequirement) {
-
+    public Notification registerRequirement(int userID, Requirement newRequirement) {
+        return null;
     }
 
     @Override

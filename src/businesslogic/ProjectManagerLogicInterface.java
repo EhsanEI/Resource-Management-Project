@@ -18,12 +18,14 @@ public interface ProjectManagerLogicInterface {
 
     Notification assignModules(Map<HumanResource, Module> assignments);
 
-    void registerProjectScale(int UserID, Project newProject);
+    Notification registerProjectScale(int UserID, Project newProject);
 
     InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget);
-    void registerRequirement(int userID, Requirement newRequirement);
+
+    Notification registerRequirement(int userID, Requirement newRequirement);
 
     Project[] getProjectList(int userID);
+
     HumanResource[] getProgrammers(Project project);
 
     Module[] getModules(Project project);
