@@ -22,7 +22,7 @@ public class ServerNetwork {
                 try {
                     System.out.println("Waiting for Client ...");
                     destiny = listener.accept();
-                    System.out.println("Connected to the server ...");
+                    System.out.println("Connected to the Client ...");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -78,7 +78,11 @@ public class ServerNetwork {
     public boolean sendResponse(NetworkRequest request) throws IOException {
         // TODO
         // switch based on request method
-        NetworkResponse networkResponse = new NetworkResponse(null,"processed");
+        NetworkResponse networkResponse = null;
+
+        if(request.getMethod().equals("me")){
+            networkResponse = new NetworkResponse(null,"processed");
+        }
 
         ObjectOutputStream clientOutputStream = new ObjectOutputStream(destiny.getOutputStream());
         clientOutputStream.writeObject(networkResponse);

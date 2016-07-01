@@ -4,18 +4,29 @@ import businesslogic.accounting.AuthenticationResult;
 import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
+import network.ClientNetwork;
+import network.NetworkRequest;
+import network.NetworkResponse;
+
+import java.io.IOException;
+import java.net.ServerSocket;
 
 /**
  * Created by Esi on 6/22/2016.
  */
 
+
 public class ClientAccountingLogicFacade implements AccountingLogicInterface{
+
+    private static ClientNetwork clientNetwork;
 
     private static ClientAccountingLogicFacade clientAccountingLogicFacade;
 
-    public static ClientAccountingLogicFacade getInstance() {
+    public static ClientAccountingLogicFacade getInstance() throws IOException, ClassNotFoundException {
         if(clientAccountingLogicFacade == null) {
             clientAccountingLogicFacade = new ClientAccountingLogicFacade();
+            clientNetwork = new ClientNetwork(new ServerSocket(9091));
+            clientNetwork.communicate();
         }
         return clientAccountingLogicFacade;
     }
@@ -36,8 +47,8 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
     }
 
     @Override
-    public void recoverPassword(String username) {
-
+    public String recoverPassword(String username) throws IOException {
+        return clientNetwork.sendRequest(new NetworkRequest(username, null)).getMessage();
     }
 
     @Override

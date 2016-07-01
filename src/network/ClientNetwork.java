@@ -19,9 +19,9 @@ public class ClientNetwork {
         new Thread(){
             public void run(){
                 try {
-                    System.out.println("Waiting for Client ...");
+                    System.out.println("Waiting for Server ...");
                     destiny = listener.accept();
-                    System.out.println("Connected to the server ...");
+                    System.out.println("Connected to the Server ...");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

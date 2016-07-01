@@ -14,7 +14,6 @@ public class StartMenu extends Application {
 
 
     public static void main() {
-
         launch();
     }
 
