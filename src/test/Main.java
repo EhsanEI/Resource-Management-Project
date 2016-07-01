@@ -33,7 +33,7 @@ public class Main {
     public static void main(String[] args) throws PersistentException {
         PersistentTransaction t = businesslogic.accounting.user.OODPersistentManager.instance().getSession().beginTransaction();
 
-//        signup();
+        signup();
 
 //        registerProject();
 
@@ -43,7 +43,7 @@ public class Main {
 
 //        registerResourceAllocation();
 
-        reportFlowResourceAllocations();
+//        reportFlowResourceAllocations();
 
         t.commit();
     }
@@ -153,6 +153,10 @@ public class Main {
 
         Programming pr = ProgrammingDAO.createProgramming();
         em.addJob(pr);
+        HumanResource hr = HumanResourceDAO.createHumanResource();
+        hr.setProgramming(pr);
+        hr.setName(em.getUsername());
+        hr.setUniqueIdentifier("HumanResource_"+em.getUsername());
 
         Specialty sp = SpecialtyDAO.createSpecialty();
         sp.setTitle("Android");
@@ -169,11 +173,13 @@ public class Main {
 
         Job[] jobs = {pm, pr};
         Specialty[] specialties = {sp};
-        ServerAccountingLogicFacade.getInstance().signup(em, jobs, specialties);
+        HumanResource[] humanResources = {};
+        ServerAccountingLogicFacade.getInstance().signup(em, jobs, specialties, humanResources);
 
         Job[] jobs2 = {rm};
         Specialty[] specialties2 = {};
-        ServerAccountingLogicFacade.getInstance().signup(em2, jobs2, specialties2);
+        HumanResource[] humanResources2 = {hr};
+        ServerAccountingLogicFacade.getInstance().signup(em2, jobs2, specialties2, humanResources2);
 
     }
 
