@@ -46,8 +46,4 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
 
     }
 
-    @Override
-    public User addUser() {
-        return null;
-    }
 }

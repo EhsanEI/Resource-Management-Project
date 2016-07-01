@@ -15,5 +15,4 @@ public interface AccountingLogicInterface {
     void logout(int UserID);
     void recoverPassword(String username);
     void editProfile(User user);
-    User addUser();
 }

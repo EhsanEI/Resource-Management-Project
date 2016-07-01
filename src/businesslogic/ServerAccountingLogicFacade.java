@@ -38,7 +38,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
     }
 
     @Override
-    public void signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
+    public boolean signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
         try {
 
             for(Object ujObject: user.getORM_UserJobs()) {
@@ -59,8 +59,9 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             }
 
             UserDAO.save(user);
+            return true;
         } catch (PersistentException e) {
-            e.printStackTrace();
+            return false;
         }
     }
 
@@ -103,10 +104,5 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
         } catch (PersistentException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public User addUser() {
-        return null;
     }
 }
