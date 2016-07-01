@@ -62,7 +62,7 @@ public class ProjectManagerGuiController extends MainMenuController implements i
     private void initialize(){
         onTheTopPane = emptyPane;
     }
-    private AnchorPane onTheTopPane;
+
 
 
     @Override

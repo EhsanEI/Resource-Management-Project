@@ -40,14 +40,9 @@ public class StartMenuController{
     private TextField confirmPasswordTextField;
     private Label confirmPasswordLabel;
 
-
-
-
     private Timeline timeline;
 
     private double animationTime = 700;
-
-
 
     @FXML private void signInPressed() throws Exception {
         System.out.println(usernameTextField.getText() + "@" + passwordField.getText());
