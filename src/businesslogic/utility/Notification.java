@@ -13,7 +13,9 @@
  */
 package businesslogic.utility;
 
-public class Notification {
+import java.io.Serializable;
+
+public class Notification implements Serializable {
 	public Notification() {
 	}
 	

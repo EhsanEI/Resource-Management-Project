@@ -20,12 +20,14 @@ public class StartMenu extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("fxmls/StartMenuGui.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("fxmls/StartMenuView.fxml"));
         stage.setTitle("ERP System");
         stage.setScene(new Scene(root, 400, 290));
         stage.getIcons().add(new Image(getClass().getResource("resources/erp.png").toString()));
         stage.setHeight(315);
         stage.setWidth(400);
+        stage.setX(500);
+        stage.setY(50);
         stage.show();
         stage.setResizable(false);
     }

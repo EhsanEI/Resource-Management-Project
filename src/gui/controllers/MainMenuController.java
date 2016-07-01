@@ -145,15 +145,6 @@ public class MainMenuController {
         }
 
 
-
-
-
-
-
-
-
-
-
     }
 
     private void editProfile() throws IOException {

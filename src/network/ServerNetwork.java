@@ -78,16 +78,15 @@ public class ServerNetwork {
     }
 
     public boolean sendResponse(NetworkRequest request) throws IOException {
-        // TODO
-        // switch based on request method
+
         String method = request.getMethod();
         NetworkResponse networkResponse = null;
 
         switch (method){
             case "recoverPassword":
-                // call method from serverAccountingLogicFacade with request params
-                // put returned object in Response
-                networkResponse = new NetworkResponse(null,"processed");
+                networkResponse = new NetworkResponse(
+                        serverAccountingLogicFacade.recoverPassword((String)request.getParams().get(0)), "processed");
+                break;
             case "signup":
                 //
         }

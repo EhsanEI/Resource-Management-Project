@@ -21,11 +21,12 @@ import businesslogic.utility.Tree;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class User {
+public class User implements Serializable {
 	public User() {
 		approved = false;
 	}
