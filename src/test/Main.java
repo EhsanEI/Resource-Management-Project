@@ -33,17 +33,19 @@ public class Main {
     public static void main(String[] args) throws PersistentException {
         PersistentTransaction t = businesslogic.accounting.user.OODPersistentManager.instance().getSession().beginTransaction();
 
-        signup();
+//        signup();
 
 //        registerProject();
 
-//        registerRequirement();
-
 //        registerNewResource();
+
+//        registerRequirement();
 
 //        registerResourceAllocation();
 
 //        reportFlowResourceAllocations();
+
+        assignModules();
 
         t.commit();
     }
@@ -109,7 +111,7 @@ public class Main {
 
 
         }catch(Exception ex) {
-                ex.printStackTrace();
+            ex.printStackTrace();
         }
     }
 
@@ -194,7 +196,7 @@ public class Main {
     }
 
     public static void registerProject() {
-        int userID = 1;
+        int userID = 2;
 
         Module m = ModuleDAO.createModule();
         m.setName("some module");
@@ -239,17 +241,27 @@ public class Main {
 
     public static void registerRequirement() {
         try {
-            int userID = 1;
-            int informationResourceID = 1;
+            int userID = 2;
+            int informationResourceID = 2;
             Requirement requirement = RequirementDAO.createRequirement();
             requirement.setStartDate("4/4/73");
             requirement.setEndDate("4/3/76");
             requirement.setQuantity(2);
             requirement.setResourceName("printer");
             requirement.setResourceType("PhysicalResource");
-            requirement.setRequirementPriority(RequirementPriorityEnum.ESSENTIAL.ordinal());
+            requirement.setRequirementPriority(RequirementPriorityEnum.ORDINARY.ordinal());
             requirement.setInformationResource(ModuleDAO.getModuleByORMID(informationResourceID));
             ServerProjectManagerLogicFacade.getInstance().registerRequirement(userID, requirement);
+
+            Requirement requirement2 = RequirementDAO.createRequirement();
+            requirement2.setStartDate("6/6/66");
+            requirement2.setEndDate("4/8/77");
+            requirement2.setQuantity(1);
+            requirement2.setResourceName("signed up user");
+            requirement2.setResourceType("HumanResource");
+            requirement2.setRequirementPriority(RequirementPriorityEnum.ESSENTIAL.ordinal());
+            requirement2.setInformationResource(ModuleDAO.getModuleByORMID(informationResourceID));
+            ServerProjectManagerLogicFacade.getInstance().registerRequirement(userID, requirement2);
         }
         catch(PersistentException ex) {
             ex.printStackTrace();
@@ -266,11 +278,12 @@ public class Main {
     }
 
     public static void assignModules() {
-        int userID = 1;
+        int userID = 2;
         Project[] projects = ServerProjectManagerLogicFacade.getInstance().getProjectList(userID);
 
         for(Project project: projects) {
             System.out.println(project.getName());
+            ServerProjectManagerLogicFacade.getInstance().getProgrammers(project);
         }
     }
 
@@ -283,7 +296,7 @@ public class Main {
         resource.addSpec("Color", "CMYK");
         resource.addSpec("Rate", "20 PPM");
 
-        int userID = 2;
+        int userID = 3;
 
         ServerResourceManagerLogicFacade.getInstance().registerNewResource(userID, resource);
 
@@ -298,7 +311,7 @@ public class Main {
     }
 
     public static void registerResourceAllocation() {
-        int userID = 2;
+        int userID = 3;
         int reqIndex = 0;
         int resourceIndex = 0;
         Requirement[] requirements = ServerResourceManagerLogicFacade.getInstance().getRequirements(userID);
@@ -319,6 +332,27 @@ public class Main {
 
         System.out.println(allocation.getRequirement().getResourceName());
         ServerResourceManagerLogicFacade.getInstance().registerResourceAllocation(userID, allocation, resources);
+
+        int reqIndex2 = 1;
+        int resourceIndex2 = 0;
+        Requirement[] requirements2 = ServerResourceManagerLogicFacade.getInstance().getRequirements(userID);
+//        for (Requirement req: requirements2) {
+//            System.out.println(req.getResourceName() + "," + req.getResourceType());
+//        }
+
+        Resource[] resources2 = ServerResourceManagerLogicFacade.getInstance().getResources(userID,
+                "HumanResource", "signed up user");
+
+//        for(Resource resource:resources2) {
+//            System.out.println(resource.getID());
+//        }
+
+        Allocation allocation2 = Allocation_DAO.createAllocation_();
+        allocation2.setRequirement(requirements[reqIndex2]);
+        allocation2.addResources(resources2);
+
+        System.out.println(allocation2.getRequirement().getResourceName());
+        ServerResourceManagerLogicFacade.getInstance().registerResourceAllocation(userID, allocation2, resources2);
     }
 
     private static void reportResources() {
