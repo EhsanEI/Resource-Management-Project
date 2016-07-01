@@ -7,6 +7,7 @@ import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
 import businesslogic.distribution.resource.HumanResource;
 import businesslogic.distribution.resource.Spec;
+import businesslogic.utility.Notification;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
@@ -37,7 +38,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
     }
 
     @Override
-    public boolean signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
+    public Notification signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
 
         try {
 
@@ -55,26 +56,34 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             }
 
             UserDAO.save(user);
-            return true;
+
+            Notification notification = new Notification();
+            notification.setContent("Signup was successful.");
+            return notification;
         } catch (PersistentException e) {
-            return false;
         }
+
+        Notification notification = new Notification();
+        notification.setContent("Your request has been submitted.");
+        return notification;
     }
 
     @Override
-    public void logout(int UserID) {
-        Authentication.getInstance().logout(UserID);
+    public boolean logout(int UserID) {
+        return Authentication.getInstance().logout(UserID);
     }
 
     @Override
-    public String recoverPassword(String username) {
+    public Notification recoverPassword(String username) {
         StringBuffer condition = new StringBuffer();
         condition.append("username = '").append(username).append("'");
         User[] users = null;
         try {
             users = UserDAO.listUserByQuery(condition.toString(),null);
         } catch (PersistentException e) {
-            e.printStackTrace();
+            Notification notification = new Notification();
+            notification.setContent("User was not found.");
+            return notification;
         }
 
         if(users != null && users.length == 1) {
@@ -88,18 +97,28 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             try {
                 UserDAO.save(user);
             } catch (PersistentException e) {
-                e.printStackTrace();
+                Notification notification = new Notification();
+                notification.setContent("Cannot save the changes.");
+                return notification;
             }
         }
-        return  null;
+        Notification notification = new Notification();
+        notification.setContent("Cannot recover password.");
+        return notification;
     }
 
     @Override
-    public void editProfile(User user) {
+    public Notification editProfile(User user) {
         try {
+            UserDAO.delete(user.getCreatorUser());
             UserDAO.save(user);
+            Notification notification = new Notification();
+            notification.setContent("Your request has been submitted.");
+            return notification;
         } catch (PersistentException e) {
-            e.printStackTrace();
         }
+        Notification notification = new Notification();
+        notification.setContent("Cannot save the changes.");
+        return notification;
     }
 }

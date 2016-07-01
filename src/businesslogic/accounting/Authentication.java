@@ -57,20 +57,22 @@ public class Authentication {
         }
     }
 
-    public void logout(int userID) {
+    public boolean logout(int userID) {
         StringBuffer condition = new StringBuffer("");
         condition.append("ID = ").append(userID);
         User[] queryResults = null;
         try {
             queryResults = UserDAO.listUserByQuery(condition.toString(), null);
         } catch (PersistentException e) {
-            e.printStackTrace();
+            return false;
         }
 
         if(queryResults != null && queryResults.length == 1) {
             User user = queryResults[0];
             onlineUsersInformation.remove(user);
+            return true;
         }
+        return false;
     }
 
     private String hash(String input) {

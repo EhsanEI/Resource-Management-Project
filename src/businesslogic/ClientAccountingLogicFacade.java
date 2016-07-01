@@ -5,6 +5,7 @@ import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
 import businesslogic.distribution.resource.HumanResource;
+import businesslogic.utility.Notification;
 import network.ClientNetwork;
 import network.NetworkRequest;
 
@@ -37,24 +38,26 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
     }
 
     @Override
-    public boolean signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
+    public Notification signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
+        return null;
+    }
+
+    @Override
+    public boolean logout(int UserID) {
         return false;
     }
 
     @Override
-    public void logout(int UserID) {
-
-    }
-
-    @Override
-    public String recoverPassword(String username) throws IOException {
-        return clientNetwork.sendRequest(new NetworkRequest(username, null)).getMessage();
+    public Notification recoverPassword(String username) throws IOException {
+        Notification notification = new Notification();
+        notification.setContent(clientNetwork.sendRequest(new NetworkRequest(username, null)).getMessage());
+        return notification;
     }
 
 
     @Override
-    public void editProfile(User user) {
-
+    public Notification editProfile(User user) {
+        return null;
     }
 
 }

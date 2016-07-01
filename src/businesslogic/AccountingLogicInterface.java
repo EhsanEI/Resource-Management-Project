@@ -5,6 +5,7 @@ import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
 import businesslogic.distribution.resource.HumanResource;
+import businesslogic.utility.Notification;
 
 import java.io.IOException;
 
@@ -13,8 +14,8 @@ import java.io.IOException;
  */
 public interface AccountingLogicInterface {
     AuthenticationResult login(String username, String password);
-    boolean signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources);
-    void logout(int UserID);
-    String recoverPassword(String username) throws IOException;
-    void editProfile(User user);
+    Notification signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources);
+    boolean logout(int UserID);
+    Notification recoverPassword(String username) throws IOException;
+    Notification editProfile(User user);
 }
