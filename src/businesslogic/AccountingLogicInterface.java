@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public interface AccountingLogicInterface {
     AuthenticationResult login(String username, String password);
-    void signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources);
+    boolean signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources);
     void logout(int UserID);
     String recoverPassword(String username) throws IOException;
     void editProfile(User user);
