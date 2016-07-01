@@ -140,7 +140,7 @@ public class Main {
 
     public static void recoverPassword() {
         AccountingLogicInterface f = ServerAccountingLogicFacade.getInstance();
-        f.recoverPassword("ali");
+        //f.recoverPassword("ali");
     }
 
     public static void signup() {

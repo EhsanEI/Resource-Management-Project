@@ -6,7 +6,6 @@ import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
 import businesslogic.distribution.resource.HumanResource;
-import businesslogic.distribution.resource.HumanResourceDAO;
 import businesslogic.distribution.resource.Spec;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
@@ -39,6 +38,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
 
     @Override
     public boolean signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
+
         try {
 
             for(Object ujObject: user.getORM_UserJobs()) {
@@ -54,10 +54,6 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
                 SpecialtyDAO.save(specialty);
             }
 
-            for(HumanResource humanResource: humanResources) {
-                HumanResourceDAO.save(humanResource);
-            }
-
             UserDAO.save(user);
             return true;
         } catch (PersistentException e) {
@@ -71,7 +67,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
     }
 
     @Override
-    public void recoverPassword(String username) {
+    public String recoverPassword(String username) {
         StringBuffer condition = new StringBuffer();
         condition.append("username = '").append(username).append("'");
         User[] users = null;
@@ -95,6 +91,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
                 e.printStackTrace();
             }
         }
+        return  null;
     }
 
     @Override

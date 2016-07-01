@@ -7,8 +7,9 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 /**
- * Created by qizilbash on 7/1/2016.
+ * Created by Esi on 6/25/2016.
  */
+
 public class ClientNetwork {
     private ServerSocket listener;
     private Socket destiny;
@@ -19,9 +20,9 @@ public class ClientNetwork {
         new Thread(){
             public void run(){
                 try {
-                    System.out.println("Waiting for Client ...");
+                    System.out.println("Waiting for Server ...");
                     destiny = listener.accept();
-                    System.out.println("Connected to the server ...");
+                    System.out.println("Connected to the Server ...");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

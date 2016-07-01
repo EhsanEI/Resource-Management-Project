@@ -6,6 +6,8 @@ import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
 import businesslogic.distribution.resource.HumanResource;
 
+import java.io.IOException;
+
 /**
  * Created by Esi on 6/22/2016.
  */
@@ -13,6 +15,6 @@ public interface AccountingLogicInterface {
     AuthenticationResult login(String username, String password);
     void signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources);
     void logout(int UserID);
-    void recoverPassword(String username);
+    String recoverPassword(String username) throws IOException;
     void editProfile(User user);
 }

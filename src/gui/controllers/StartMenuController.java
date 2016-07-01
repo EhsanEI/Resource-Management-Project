@@ -3,6 +3,7 @@ package gui.controllers;
  * Created by qizilbash on 6/23/2016.
  */
 
+import businesslogic.ClientAccountingLogicFacade;
 import gui.MainMenu;
 import javafx.animation.*;
 import javafx.fxml.FXML;
@@ -14,10 +15,15 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
+import network.ClientNetwork;
 
+import java.io.IOException;
+import java.net.ServerSocket;
 
 
 public class StartMenuController{
+
+    private ClientAccountingLogicFacade clientAccountingLogicFacade;
 
     @FXML private Pane mainPane;
     @FXML private ImageView backGroundImage;
@@ -44,6 +50,11 @@ public class StartMenuController{
 
     private double animationTime = 700;
 
+    @FXML
+    private void initialize() throws IOException, ClassNotFoundException {
+        clientAccountingLogicFacade = ClientAccountingLogicFacade.getInstance();
+    }
+
     @FXML private void signInPressed() throws Exception {
         System.out.println(usernameTextField.getText() + "@" + passwordField.getText());
         stage = (Stage) usernameTextField.getScene().getWindow();
@@ -61,8 +72,8 @@ public class StartMenuController{
         changePane2SignUp();
     }
 
-    @FXML private void recoverPasswordPressed() {
-        System.out.println("recover password pressed");
+    @FXML private void recoverPasswordPressed() throws IOException {
+        System.out.println(clientAccountingLogicFacade.recoverPassword("me"));
     }
 
     private void changePane2SignIn(){
@@ -187,12 +198,6 @@ public class StartMenuController{
 
         backGroundImage.setFitHeight(500);
         backGroundImage.setFitWidth(490);
-
-
-
-
-
-
 
 
         passwordTextField = new TextField();
