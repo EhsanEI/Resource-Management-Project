@@ -15,10 +15,5 @@ public class ServerStart {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ServerNetwork serverNetwork = new ServerNetwork(new ServerSocket(9090));
         serverNetwork.communicate();
-        Scanner scanner = new Scanner(System.in);
-        while (true){
-            String message = scanner.nextLine();
-            serverNetwork.sendRequest(new NetworkRequest(message,null));
-        }
     }
 }

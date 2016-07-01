@@ -18,7 +18,7 @@ public class ClientStart {
         Scanner scanner = new Scanner(System.in);
         while (true){
             String message = scanner.nextLine();
-            clientNetwork.sendRequest(new NetworkRequest(message,null));
+            System.out.println(clientNetwork.sendRequest(new NetworkRequest(message, null)).getMessage());
         }
     }
 }

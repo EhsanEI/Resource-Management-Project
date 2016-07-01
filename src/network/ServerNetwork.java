@@ -38,7 +38,7 @@ public class ServerNetwork {
                     while (true) {
                         source = null;
 
-                        while (true){
+                        while (true) {
                             try {
                                 source = new Socket("", 9091);
                                 break;
@@ -47,7 +47,8 @@ public class ServerNetwork {
                             }
                         }
 
-                        while (true) {
+                        while (true)
+                        {
                             ObjectInputStream clientInputStream = null;
                             try {
                                 clientInputStream = new ObjectInputStream(source.getInputStream());
@@ -62,24 +63,25 @@ public class ServerNetwork {
                             } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                             }
-                            System.out.println(networkRequest.getMethod());
+                            try {
+                                sendResponse(networkRequest);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
                         }
-
                     }
                 }
             }
         }.start();
     }
 
-    public boolean sendRequest(NetworkRequest request) throws IOException {
+    public boolean sendResponse(NetworkRequest request) throws IOException {
+        // TODO
+        // switch based on request method
+        NetworkResponse networkResponse = new NetworkResponse(null,"processed");
+
         ObjectOutputStream clientOutputStream = new ObjectOutputStream(destiny.getOutputStream());
-        clientOutputStream.writeObject(request);
+        clientOutputStream.writeObject(networkResponse);
         return true;
-    }
-
-
-
-    public void sendResponse(NetworkResponse response) {
-        //TODO
     }
 }

@@ -3,7 +3,6 @@ package network;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -31,52 +30,37 @@ public class ClientNetwork {
     }
 
 
-
     public void communicate() throws IOException, ClassNotFoundException {
-
-        new Thread(){
-            public void run(){
-                while (true){
-                    while (true) {
-                        source = null;
-
-                        while (true){
-                            try {
-                                source = new Socket("", 9090);
-                                break;
-                            } catch (Exception e) {
-                                continue;
-                            }
-                        }
-
-                        while (true) {
-                            ObjectInputStream clientInputStream = null;
-                            try {
-                                clientInputStream = new ObjectInputStream(source.getInputStream());
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            }
-                            NetworkRequest networkRequest = null;
-                            try {
-                                networkRequest = (NetworkRequest) clientInputStream.readObject();
-                            } catch (IOException e) {
-                                e.printStackTrace();
-                            } catch (ClassNotFoundException e) {
-                                e.printStackTrace();
-                            }
-                            System.out.println(networkRequest.getMethod());
-                        }
-
-                    }
-                }
+        while (true) {
+            try {
+                source = new Socket("", 9090);
+                return;
+            } catch (Exception e) {
+                continue;
             }
-        }.start();
+        }
     }
 
+    public NetworkResponse sendRequest(NetworkRequest request) throws IOException {
 
-    public boolean sendRequest(NetworkRequest request) throws IOException {
         ObjectOutputStream clientOutputStream = new ObjectOutputStream(destiny.getOutputStream());
         clientOutputStream.writeObject(request);
-        return true;
+
+        ObjectInputStream clientInputStream = null;
+        try {
+            clientInputStream = new ObjectInputStream(source.getInputStream());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        NetworkResponse networkResponse = null;
+        try {
+            networkResponse = (NetworkResponse) clientInputStream.readObject();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        return networkResponse;
     }
 }
