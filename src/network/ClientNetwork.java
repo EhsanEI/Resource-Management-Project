@@ -9,6 +9,7 @@ import java.net.Socket;
 /**
  * Created by Esi on 6/25/2016.
  */
+
 public class ClientNetwork {
     private ServerSocket listener;
     private Socket destiny;
