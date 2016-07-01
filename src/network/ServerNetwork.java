@@ -1,15 +1,10 @@
 package network;
 
-import main.networktest.Banana;
-import sun.nio.ch.Net;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-/**
- * Created by qizilbash on 7/1/2016.
- */
+
 public class ServerNetwork {
 
     private ServerSocket listener;
