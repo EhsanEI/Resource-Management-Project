@@ -11,6 +11,7 @@ import java.net.Socket;
  * Created by qizilbash on 7/1/2016.
  */
 public class ServerNetwork {
+
     private ServerSocket listener;
     private Socket destiny;
     private Socket source;
