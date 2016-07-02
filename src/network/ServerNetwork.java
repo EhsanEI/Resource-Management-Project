@@ -1,5 +1,7 @@
 package network;
 
+import businesslogic.ServerAccountingLogicFacade;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -9,12 +11,14 @@ import java.net.Socket;
  */
 public class ServerNetwork {
 
+    private ServerAccountingLogicFacade serverAccountingLogicFacade;
     private ServerSocket listener;
     private Socket destiny;
     private Socket source;
 
     public ServerNetwork(ServerSocket serverSocket) throws IOException {
         listener = serverSocket;
+        serverAccountingLogicFacade = ServerAccountingLogicFacade.getInstance();
         new Thread(){
             public void run(){
                 try {
@@ -76,11 +80,18 @@ public class ServerNetwork {
     public boolean sendResponse(NetworkRequest request) throws IOException {
         // TODO
         // switch based on request method
+        String method = request.getMethod();
         NetworkResponse networkResponse = null;
 
-        if(request.getMethod().equals("me")){
-            networkResponse = new NetworkResponse(null,"processed");
+        switch (method){
+            case "recoverPassword":
+                // call method from serverAccountingLogicFacade with request params
+                // put returned object in Response
+                networkResponse = new NetworkResponse(null,"processed");
+            case "signup":
+                //
         }
+
 
         ObjectOutputStream clientOutputStream = new ObjectOutputStream(destiny.getOutputStream());
         clientOutputStream.writeObject(networkResponse);
