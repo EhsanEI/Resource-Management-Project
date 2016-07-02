@@ -65,9 +65,10 @@ public class StartMenuController{
 
     @FXML
     private void signInPressed() throws Exception {
-        System.out.println(usernameTextField.getText() + "@" + passwordField.getText());
         stage = (Stage) usernameTextField.getScene().getWindow();
+        System.out.println(usernameTextField.getText() + "@" + passwordField.getText());
         stage.close();
+        
 
         // verifies the user and handle it
         // if user null returns
