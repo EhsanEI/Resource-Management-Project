@@ -8,9 +8,12 @@ import businesslogic.distribution.resource.HumanResource;
 import businesslogic.utility.Notification;
 import network.ClientNetwork;
 import network.NetworkRequest;
+import network.NetworkResponse;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.ServerSocket;
+import java.util.ArrayList;
 
 /**
  * Created by Esi on 6/22/2016.
@@ -33,31 +36,43 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
     }
 
     @Override
-    public AuthenticationResult login(String username, String password) {
-        return null;
+    public AuthenticationResult login(String username, String password) throws IOException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(username);
+        params.add(password);
+        return (AuthenticationResult)clientNetwork.sendRequest(new NetworkRequest("login", params)).getResponse();
     }
 
     @Override
-    public Notification signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
-        return null;
+    public Notification signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) throws IOException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(user);
+        params.add(jobs);
+        params.add(specialties);
+        params.add(humanResources);
+        return (Notification) clientNetwork.sendRequest(new NetworkRequest("signup", params)).getResponse();
     }
 
     @Override
-    public boolean logout(int UserID) {
-        return false;
+    public boolean logout(int UserID) throws IOException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(UserID);
+        return (boolean) clientNetwork.sendRequest(new NetworkRequest("logout",params)).getResponse();
     }
 
     @Override
     public Notification recoverPassword(String username) throws IOException {
-        Notification notification = new Notification();
-        notification.setContent(clientNetwork.sendRequest(new NetworkRequest(username, null)).getMessage());
-        return notification;
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(username);
+        return (Notification) clientNetwork.sendRequest(new NetworkRequest("recoverPassword", params)).getResponse();
     }
 
 
     @Override
-    public Notification editProfile(User user) {
-        return null;
+    public Notification editProfile(User user) throws IOException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(user);
+        return (Notification) clientNetwork.sendRequest(new NetworkRequest("recoverPassword", params)).getResponse();
     }
 
 }

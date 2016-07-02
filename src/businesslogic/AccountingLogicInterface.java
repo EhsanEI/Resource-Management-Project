@@ -13,9 +13,9 @@ import java.io.IOException;
  * Created by Esi on 6/22/2016.
  */
 public interface AccountingLogicInterface {
-    AuthenticationResult login(String username, String password);
-    Notification signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources);
-    boolean logout(int UserID);
+    AuthenticationResult login(String username, String password) throws IOException;
+    Notification signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) throws IOException;
+    boolean logout(int UserID) throws IOException;
     Notification recoverPassword(String username) throws IOException;
-    Notification editProfile(User user);
+    Notification editProfile(User user) throws IOException;
 }
