@@ -73,7 +73,7 @@ public class StartMenuController{
     }
 
     @FXML private void recoverPasswordPressed() throws IOException {
-        System.out.println(clientAccountingLogicFacade.recoverPassword("me"));
+        System.out.println(clientAccountingLogicFacade.recoverPassword("me").getContent());
     }
 
     private void changePane2SignIn(){
