@@ -8,6 +8,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -33,7 +35,7 @@ public class MainMenu {
             case 2:
                 fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/programmer/ProgrammerView.fxml"));
                 root = fxmlLoader.load();
-                ProgrammerGuiController programmerGuiController= fxmlLoader.<ProgrammerGuiController>getController();
+                ProgrammerGuiController programmerGuiController = fxmlLoader.<ProgrammerGuiController>getController();
                 programmerGuiController.setUser(user);
                 programmerGuiController.initializeGenerally();
                 programmerGuiController.initializeSpecifically();
@@ -61,6 +63,15 @@ public class MainMenu {
         stage.setTitle("ERP System");
         stage.getIcons().add(new Image(getClass().getResource("resources/erp.png").toString()));
         stage.setScene(new Scene(root, stageH, stageW));
+
+        /*
+        StackPane rootPane = new StackPane();
+        Scene scene = new Scene(rootPane,...);
+        Pane pane1 = new Pane();
+        Pane pane2 = new Pane();
+        rootPane.getChildren().addAll(pane1,pane2);
+        */
+
         stage.setHeight(stageH);
         stage.setWidth(stageW);
         stage.show();

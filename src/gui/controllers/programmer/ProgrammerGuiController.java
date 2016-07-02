@@ -27,8 +27,6 @@ public class ProgrammerGuiController extends MainMenuController implements iMain
     @FXML
     private AnchorPane moduleCreationPane;
 
-    private AnchorPane onTheTopPane;
-
     @FXML
     private Button moduleCreationButton;
     @FXML
@@ -42,6 +40,7 @@ public class ProgrammerGuiController extends MainMenuController implements iMain
 
     @FXML
     private void initialize(){
+
         onTheTopPane = emptyPane;
     }
 
