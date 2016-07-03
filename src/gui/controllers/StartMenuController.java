@@ -4,12 +4,17 @@ package gui.controllers;
  */
 
 import businesslogic.ClientAccountingLogicFacade;
-import businesslogic.accounting.user.User;
+import businesslogic.accounting.Permission;
+import businesslogic.accounting.ResourceManagement;
+import businesslogic.accounting.job.*;
+import businesslogic.accounting.user.*;
+import businesslogic.distribution.resource.HumanResource;
+import businesslogic.distribution.resource.HumanResourceDAO;
+import businesslogic.utility.Notification;
 import gui.MainMenu;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
@@ -18,14 +23,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-import network.ClientNetwork;
 
 import java.io.IOException;
-import java.net.ServerSocket;
+import java.util.ArrayList;
 import java.util.Optional;
 
 
@@ -47,6 +49,18 @@ public class StartMenuController{
     @FXML private ComboBox<String> userTypeCombo;
     @FXML private ListView<String> jobsListView;
     @FXML private ListView<String> specialtiesListView;
+
+    private ArrayList<Specialty> specialties = new ArrayList<>();
+    private ArrayList<String> jobTitles = new ArrayList<>();
+
+    //add job fields
+    @FXML private ComboBox<String> jobTypeCombo;
+    @FXML private ListView<String> jobsListViewInJobAddition;
+
+    // add specialty fields
+    @FXML private TextField specialtyTitleTextField;
+    @FXML private Slider proficiencyLevelSlider;
+    @FXML private ListView<String> specialtiesListViewInspecialtyAddition;
 
 
 
@@ -78,11 +92,22 @@ public class StartMenuController{
     private void initialize() throws IOException, ClassNotFoundException {
         clientAccountingLogicFacade = ClientAccountingLogicFacade.getInstance();
         onTheTopPane = signinPane;
+
+        for(JobType jobType : JobType.values())
+            jobTypeCombo.getItems().add(jobType.getTitle());
+
+        for(UserType userType : UserType.values())
+            userTypeCombo.getItems().add(userType.getTitle());
+
+
     }
 
     @FXML
     private void signInPressed() throws Exception {
-        User user = clientAccountingLogicFacade.login(usernameTextField.getText(), passwordField.getText()).getUser();
+        //User user = clientAccountingLogicFacade.login(usernameTextField.getText(), passwordField.getText()).getUser();
+        User user = new User();
+        user.addPermission(new Permission());
+
         if(user != null)
             new MainMenu().start(stage,user);
         else{
@@ -140,31 +165,164 @@ public class StartMenuController{
         animatePaneChange(signinPane,false);
     }
 
-    public void registerButtonPressed(ActionEvent event){
+    public void registerButtonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
+        User user = null;
+        ArrayList<Job> jobs = new ArrayList<>();
+
+        String userType = userTypeCombo.getValue();
+
+        if(userType == UserType.Admin.getTitle()){
+            user = new Admin();
+        }else if(userType == UserType.Emplpyee.getTitle()){
+            user = new Employee();
+        }else if(userType == UserType.HighLevelManager.getTitle()){
+            user = new HighLevelManager();
+        }else if(userType == UserType.MiddleLevelManager.getTitle()){
+            user = new MiddleLevelManager();
+        }
+
+        user.setUsername(signupUsernameTextField.getText());
+        if(!signupPasswordTextField.getText().equals( confirmationTextField.getText())){
+
+            confirmationTextField.getScene().getRoot().setDisable(true);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Password Wrong!");
+            alert.setContentText("Passwords texts dose not match!");
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+
+            stage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
+
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                usernameTextField.getScene().getRoot().setDisable(false);
+                return;
+            }
+        }
+        user.setPassword(signupPasswordTextField.getText());
+        user.setEmail(emailTextField.getText());
+
+        HumanResource humanResource = HumanResourceDAO.createHumanResource();
+        ArrayList<HumanResource> humanResources = new ArrayList<>();
+        for(String job : jobTitles){
+            if(job == JobType.Programming.getTitle()){
+                Programming programming= new Programming();
+                jobs.add(programming);
+                humanResource.setProgramming(programming);
+                humanResource.setName(signupUsernameTextField.getText());
+                humanResource.setUniqueIdentifier("HumanResource_" + signupUsernameTextField.getText());
+                humanResources.add(humanResource);
+            }else if(job == JobType.ProjectManagement.getTitle()){
+                jobs.add(new ProjectManagement());
+            }else if(job == JobType.ResourceManagement.getTitle()){
+                jobs.add(new ResourceManagement());
+            }
+        }
+
+        // fields check
+        if(signupUsernameTextField.getText().equals("") || signupPasswordTextField.getText().equals("")|| emailTextField.getText().equals(""))
+        {
+            confirmationTextField.getScene().getRoot().setDisable(true);
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Wrong Inputs!");
+            System.out.println(user);
+            if(signupUsernameTextField.getText().equals(""))
+                alert.setContentText("Empty username!");
+            else if( signupPasswordTextField.getText().equals(""))
+                alert.setContentText("Empty password");
+            else
+                alert.setContentText("Empty email address!");
+
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+
+            stage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
+
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                usernameTextField.getScene().getRoot().setDisable(false);
+                return;
+            }
+        }
+
+/*
+        Notification notification = clientAccountingLogicFacade.signup(user, jobs.toArray(new Job[jobs.size()]),
+                specialties.toArray(new Specialty[specialties.size()]),
+                humanResources.toArray(new HumanResource[humanResources.size()]));
+*/
+
+        Notification notification = new Notification("hi " + signupUsernameTextField.getText() + "!");
+
+        signupPasswordTextField.getScene().getRoot().setDisable(true);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Sign up notification");
+        alert.setContentText(notification.getContent());
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+
+        stage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
+
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK)
+            signupUsernameTextField.getScene().getRoot().setDisable(false);
+
+        backFromSignupButtonPressed(null);
+
 
     }
-
-
 
 
     public void backFromSpecialtyAdditionPressed(Event event) {
+
         animatePaneChange(signupPane,false);
+
+        specialtiesListView.getItems().removeAll();
+
+        for(String specialty : specialtiesListViewInspecialtyAddition.getItems())
+            specialtiesListView.getItems().add(specialty);
     }
 
     public void singleSpecialtyAddButtonPressed(ActionEvent event) {
+        Specialty specialty = SpecialtyDAO.createSpecialty();
+        specialty.setTitle(specialtyTitleTextField.getText());
+        specialty.setProficiencyLevel((int)(proficiencyLevelSlider.getValue() / proficiencyLevelSlider.getMax()));
+        specialties.add(specialty);
+        specialtiesListViewInspecialtyAddition.getItems().add(specialty.getTitle());
+
     }
 
     public void backFromJobAdditionPressed(Event event) {
         animatePaneChange(signupPane, false);
+        jobsListView.getItems().removeAll();
+        for(String job : jobsListViewInJobAddition.getItems())
+            jobsListView.getItems().add(job);
     }
 
     public void singleJobAddButtonPressed(ActionEvent event) {
+        if (jobTypeCombo.getValue() == JobType.Programming.getTitle() && !jobsListViewInJobAddition.getItems().contains(jobTypeCombo.getValue())) {
+            jobTitles.add(jobTypeCombo.getValue());
+            jobsListViewInJobAddition.getItems().add(jobTypeCombo.getValue());
+        } else if (jobTypeCombo.getValue() == JobType.ProjectManagement.getTitle()  && !jobsListViewInJobAddition.getItems().contains(jobTypeCombo.getValue())) {
+            jobTitles.add(jobTypeCombo.getValue());
+            jobsListViewInJobAddition.getItems().add(jobTypeCombo.getValue());
+        }else if (jobTypeCombo.getValue() == JobType.ResourceManagement.getTitle()  && !jobsListViewInJobAddition.getItems().contains(jobTypeCombo.getValue())) {
+            jobTitles.add(jobTypeCombo.getValue());
+            jobsListViewInJobAddition.getItems().add(jobTypeCombo.getValue());
+        }
     }
 
     public void addSpecialtyButtonPressed(ActionEvent event) {
+        animatePaneChange(specialtyAdditionPane,true);
     }
 
     public void addJobButtonPressed(ActionEvent event) {
+        animatePaneChange(jobAdditionPane,true);
     }
 
     public void animatePaneChange(AnchorPane anchorPane, boolean direction){
@@ -200,5 +358,21 @@ public class StartMenuController{
         timeline.play();
 
         timeline.setOnFinished(event -> onTheTopPane = anchorPane);
+    }
+
+    public void singleJobRemoveButtonPressed(ActionEvent event) {
+        for(String job : jobTitles)
+            if(job == jobsListViewInJobAddition.getSelectionModel().getSelectedItem())
+                jobTitles.remove(job);
+
+
+        jobsListViewInJobAddition.getItems().remove(jobsListViewInJobAddition.getSelectionModel().getSelectedItem());
+    }
+
+    public void singleSpecialtyRemoveButtonPressed(ActionEvent event) {
+        for(Specialty specialty : specialties)
+            if(specialty.getTitle() == specialtiesListViewInspecialtyAddition.getSelectionModel().getSelectedItem())
+                specialties.remove(specialty.getTitle());
+        specialtiesListViewInspecialtyAddition.getItems().remove(specialtiesListViewInspecialtyAddition.getSelectionModel().getSelectedItem());
     }
 }
