@@ -3,7 +3,6 @@ package gui.controllers;
 import businesslogic.accounting.Permission;
 import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.user.User;
-import com.sun.deploy.perf.PerfRollup;
 import gui.StartMenu;
 import gui.controllers.accounting.HelpViewController;
 import gui.controllers.accounting.ProfileEditController;
@@ -14,6 +13,7 @@ import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,6 +22,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 import javafx.util.Duration;
 
 
@@ -368,13 +369,13 @@ public class MainMenuController {
     private void editProfile() throws IOException {
         Stage viewProfileStage = new Stage();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/accounting/EditProfileGui.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/accounting/EditProfileGui.fxml"));
         Parent warningRoot = fxmlLoader.load();
         ProfileEditController controller = fxmlLoader.<ProfileEditController>getController();
-        //controller.setUser(user);
+        controller.setUser(user);
 
 
-        viewProfileStage.getIcons().add(new Image(getClass().getResource("../../resources/erp.png").toString()));
+        viewProfileStage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
         viewProfileStage.setScene(new Scene(warningRoot,390,190));
         viewProfileStage.setTitle("Profile Edit");
         viewProfileStage.setResizable(false);
@@ -382,21 +383,25 @@ public class MainMenuController {
 
 
 
-        viewProfileStage.setOnHiding(event -> rootPane.setDisable(false));
-
+        viewProfileStage.setOnHiding(new EventHandler<WindowEvent>() {
+            @Override
+            public void handle(WindowEvent event) {
+                rootPane.setDisable(false);
+            }
+        });
         rootPane.setDisable(true);
     }
 
     private void showAbout() throws IOException {
         Stage viewProfileStage = new Stage();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/HelpGui.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/HelpView.fxml"));
         Parent warningRoot = fxmlLoader.load();
         HelpViewController controller = fxmlLoader.<HelpViewController>getController();
 
 
-        viewProfileStage.getIcons().add(new Image(getClass().getResource("../../resources/erp.png").toString()));
-        viewProfileStage.setScene(new Scene(warningRoot,390,190));
+        viewProfileStage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
+        viewProfileStage.setScene(new Scene(warningRoot,390,240));
         viewProfileStage.setTitle("Profile Edit");
         viewProfileStage.setResizable(false);
         viewProfileStage.show();
