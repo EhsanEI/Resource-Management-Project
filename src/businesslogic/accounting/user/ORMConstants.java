@@ -79,5 +79,9 @@ public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	final int KEY_USER_USERJOBS = 582740117;
 
 	final int KEY_RESOURCE_SPECS = 696969696;
+
+	final int KEY_USER_USERPERMISSIONS = 582740118;
+
+	final int KEY_PERMISSION_USERPERMISSIONS = 110933944;
 	
 }
