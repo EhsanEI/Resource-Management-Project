@@ -12,6 +12,5 @@ import java.net.ServerSocket;
 public class ServerStart {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
         ServerNetwork serverNetwork = new ServerNetwork(new ServerSocket(9090));
-        serverNetwork.communicate();
     }
 }

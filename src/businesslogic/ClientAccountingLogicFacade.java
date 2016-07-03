@@ -13,6 +13,7 @@ import network.NetworkResponse;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.ArrayList;
 
 /**
@@ -29,14 +30,13 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
     public static ClientAccountingLogicFacade getInstance() throws IOException, ClassNotFoundException {
         if(clientAccountingLogicFacade == null) {
             clientAccountingLogicFacade = new ClientAccountingLogicFacade();
-            clientNetwork = new ClientNetwork(new ServerSocket(9091));
-            clientNetwork.communicate();
+            clientNetwork = new ClientNetwork(new Socket("",9090));
         }
         return clientAccountingLogicFacade;
     }
 
     @Override
-    public AuthenticationResult login(String username, String password) throws IOException {
+    public AuthenticationResult login(String username, String password) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(username);
         params.add(password);
@@ -44,7 +44,7 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
     }
 
     @Override
-    public Notification signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) throws IOException {
+    public Notification signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(user);
         params.add(jobs);
@@ -54,14 +54,14 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
     }
 
     @Override
-    public boolean logout(int UserID) throws IOException {
+    public boolean logout(int UserID) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(UserID);
         return (boolean) clientNetwork.sendRequest(new NetworkRequest("logout",params)).getResponse();
     }
 
     @Override
-    public Notification recoverPassword(String username) throws IOException {
+    public Notification recoverPassword(String username) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(username);
         return (Notification) clientNetwork.sendRequest(new NetworkRequest("recoverPassword", params)).getResponse();
@@ -69,7 +69,7 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
 
 
     @Override
-    public Notification editProfile(User user) throws IOException {
+    public Notification editProfile(User user) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(user);
         return (Notification) clientNetwork.sendRequest(new NetworkRequest("recoverPassword", params)).getResponse();

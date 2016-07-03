@@ -6,6 +6,7 @@ import network.ServerNetwork;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.net.Socket;
 import java.util.Scanner;
 
 /**
@@ -13,8 +14,8 @@ import java.util.Scanner;
  */
 public class ClientStart {
     public static void main(String[] args) throws IOException, ClassNotFoundException {
-        ClientNetwork clientNetwork = new ClientNetwork(new ServerSocket(9091));
-        clientNetwork.communicate();
+        ClientNetwork clientNetwork = new ClientNetwork(new Socket("",9090));
+
         Scanner scanner = new Scanner(System.in);
         while (true){
             String message = scanner.nextLine();

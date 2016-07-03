@@ -87,7 +87,7 @@ public class StartMenuController{
     }
 
     @FXML
-    private void recoverPasswordPressed() throws IOException {
+    private void recoverPasswordPressed() throws IOException, ClassNotFoundException {
         System.out.println(clientAccountingLogicFacade.recoverPassword(usernameTextField.getText()).getContent());
     }
 
