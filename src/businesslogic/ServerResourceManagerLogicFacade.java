@@ -17,6 +17,8 @@ import businesslogic.report.FlowReport;
 import businesslogic.report.ResourceReport;
 import businesslogic.report.ResourceRequirementReport;
 import businesslogic.utility.Date;
+import businesslogic.utility.Notification;
+import businesslogic.utility.NotificationDAO;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 
@@ -45,7 +47,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
 
     @Override
-    public void registerResourceAllocation(int userID, Allocation allocation, Resource[] resources) {
+    public Notification registerResourceAllocation(int userID, Allocation allocation, Resource[] resources) {
         try{
 
             User user = UserDAO.getUserByORMID(userID);
@@ -73,15 +75,28 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
             RequirementDAO.save(allocation.getRequirement());
 
-            //TODO add notification to allocation.getRequirement().getProjectManagement()
+            Notification projectManagerNotification = NotificationDAO.createNotification();
+            projectManagerNotification .setContent("A resource manager responded to your requirement for "
+                    + allocation.getRequirement().getResourceName() + ".");
+            allocation.getRequirement().getProjectManagement().addNotification(projectManagerNotification );
+
+            NotificationDAO.save(projectManagerNotification);
+            ProjectManagementDAO.save(allocation.getRequirement().getProjectManagement());
+
+            Notification notification = NotificationDAO.createNotification();
+            notification.setContent("The allocation has been registered successfully.");
+            return notification;
         }
         catch (PersistentException ex) {
             ex.printStackTrace();
         }
+        Notification notification = NotificationDAO.createNotification();
+        notification.setContent("The allocation cannot be registered.");
+        return notification;
     }
 
     @Override
-    public InformationResource[] getInformationResources(int uesrID) {
+    public InformationResource[] getInformationResources(int userID) {
         try {
             PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
             List<InformationResource> informationResourceList= session
@@ -91,9 +106,8 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             return informationResourceList.toArray(new InformationResource[informationResourceList.size()]);
         }
         catch(PersistentException ex) {
-
         }
-        return new Project[0];
+        return null;
     }
 
     @Override
@@ -109,7 +123,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
         } catch (PersistentException ex) {
             ex.printStackTrace();
         }
-        return new String[0];
+        return null;
     }
 
     @Override
@@ -121,9 +135,8 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             return requirementList.toArray(new Requirement[requirementList.size()]);
         }
         catch(PersistentException ex) {
-            ex.printStackTrace();
         }
-        return new Requirement[0];
+        return null;
     }
 
     @Override
@@ -144,30 +157,33 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             return resourceList.toArray(new Resource[resourceList.size()]);
         }
         catch(PersistentException ex) {
-            ex.printStackTrace();
         }
-        return new Resource[0];
+        return null;
     }
 
     @Override
-    public boolean registerNewResource(int userID, Resource newResource) {
+    public Notification registerNewResource(int userID, Resource newResource) {
         try {
             User user = UserDAO.getUserByORMID(userID);
             ResourceManagement rm = getResourceManagement(user);
 
             if(rm == null) {
-                return false;
-                //TODO send notification
+                Notification notification = NotificationDAO.createNotification();
+                notification.setContent("The user is not a resource manager.");
+                return notification;
             }
 
             ResourceDAO.save(newResource);
-            return true;
+            Notification notification = NotificationDAO.createNotification();
+            notification.setContent("The resource has been registered successfully.");
+            return notification;
         }
         catch (PersistentException ex) {
             ex.printStackTrace();
         }
-        //TODO send notification
-        return false;
+        Notification notification = NotificationDAO.createNotification();
+        notification.setContent("The resource cannot be registered.");
+        return notification;
 
     }
 
@@ -179,7 +195,6 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             return report;
         }
         catch (PersistentException ex) {
-            ex.printStackTrace();
         }
         return null;
     }
@@ -197,7 +212,6 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             return report;
         }
         catch (PersistentException ex) {
-            ex.printStackTrace();
         }
         return null;
     }
@@ -210,7 +224,6 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             return report;
         }
         catch (PersistentException ex) {
-            ex.printStackTrace();
         }
         return null;
     }
@@ -218,7 +231,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     @Override
     public Project[] predictEssentialResourceAllocations(Project project) {
 
-        Requirement[] requirements = project.getRequirements();
+        Requirement[] requirements = project.getRequirementsRecursive();
 
         Project[] allProjects = getAllProjectList();
 
@@ -228,8 +241,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             if(p.getID() == project.getID()) {
                 continue;
             }
-            Requirement [] rs = p.getRequirements();
-
+            Requirement [] rs = p.getRequirementsRecursive();
             boolean similar = false;
             for(Requirement r: rs) {
                 for(Requirement requirement: requirements) {
@@ -261,9 +273,8 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             return projectsList.toArray(new Project[projectsList.size()]);
         }
         catch(PersistentException ex) {
-
         }
-        return new Project[0];
+        return null;
     }
 
     private ResourceManagement getResourceManagement(User user) {

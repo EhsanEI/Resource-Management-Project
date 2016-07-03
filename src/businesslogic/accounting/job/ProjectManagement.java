@@ -15,6 +15,7 @@ package businesslogic.accounting.job;
 
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.InformationResource;
+import businesslogic.utility.Notification;
 
 import java.util.Set;
 
@@ -108,13 +109,12 @@ public class ProjectManagement extends businesslogic.accounting.job.Job {
 	}
 	
 	public businesslogic.utility.Notification[] getNotifications() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		Set<Notification> castedNotifications = getORM_Notification();
+		return castedNotifications.toArray(new Notification[castedNotifications.size()]);
 	}
 	
 	public void addNotification(businesslogic.utility.Notification notification) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		getORM_Notification().add(notification);
 	}
 	
 	public String toString() {

@@ -9,18 +9,19 @@ import businesslogic.report.FlowReport;
 import businesslogic.report.ResourceReport;
 import businesslogic.report.ResourceRequirementReport;
 import businesslogic.utility.Date;
+import businesslogic.utility.Notification;
 
 /**
  * Created by Esi on 6/22/2016.
  */
 public interface ResourceManagerLogicInterface {
-    void registerResourceAllocation(int userID, Allocation allocation, Resource[] resources);
+    Notification registerResourceAllocation(int userID, Allocation allocation, Resource[] resources);
     InformationResource[] getInformationResources(int uesrID);
     String[] getResourceNames(int userID, String resourceType);
     FlowReport reportFlowResourceAllocations(Resource resource, String startDate, String endDate);
     Requirement[] getRequirements(int userID);
     Resource[] getResources(int userID, String resourceType, String resourceName);
-    boolean registerNewResource(int userID, Resource newResource);
+    Notification registerNewResource(int userID, Resource newResource);
     ResourceReport reportResources();
     FlowReport reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate);
     ResourceRequirementReport reportResourceRequirements(InformationResource informationResource);
