@@ -2,10 +2,7 @@ package gui;
 
 import businesslogic.accounting.user.User;
 import gui.controllers.MainMenuController;
-import gui.controllers.admin.AdminGuiController;
-import gui.controllers.programmer.ProgrammerGuiController;
-import gui.controllers.projectmanager.ProjectManagerGuiController;
-import gui.controllers.resourcemanager.ResourceManagerGuiController;
+
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
