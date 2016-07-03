@@ -1,4 +1,4 @@
-package gui.controllers;
+package gui.controllers.accounting;
 
 
 import javafx.fxml.FXML;

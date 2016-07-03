@@ -73,7 +73,7 @@ public class StartMenuController{
         // verifies the user and handle it
         // if user null returns
         // else sends the user for main menu
-        new MainMenu().start(stage, Integer.parseInt(usernameTextField.getText()));
+        new MainMenu().start(stage, null);
     }
 
 
