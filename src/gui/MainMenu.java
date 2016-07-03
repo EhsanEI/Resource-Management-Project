@@ -67,6 +67,7 @@ public class MainMenu {
         stage.setScene(new Scene(root, stageH, stageW));
 
         /*
+
         StackPane rootPane = new StackPane();
         Scene scene = new Scene(rootPane,...);
         Pane pane1 = new Pane();
