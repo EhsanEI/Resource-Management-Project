@@ -21,7 +21,7 @@ public class MainMenu {
 
     public void start(Stage stage, User user) throws Exception {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/MainMenuView"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/MainMenuView.fxml"));
         root = fxmlLoader.load();
 
         MainMenuController mainMenuController = fxmlLoader.<MainMenuController>getController();

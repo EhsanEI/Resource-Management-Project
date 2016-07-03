@@ -5,6 +5,7 @@ package gui.controllers;
 
 import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.accounting.Permission;
+import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.ResourceManagement;
 import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.*;
@@ -105,8 +106,35 @@ public class StartMenuController{
     @FXML
     private void signInPressed() throws Exception {
         //User user = clientAccountingLogicFacade.login(usernameTextField.getText(), passwordField.getText()).getUser();
+
+        ////////////////////// Create a typical user ////////////////
         User user = new User();
-        user.addPermission(new Permission());
+        user.setUsername("qizilbash");
+        user.setPassword("pass");
+        user.setEmail("email");
+
+        Permission permission1 = new Permission();
+        permission1.setTitle(PermissionTitles.SYSTEM_CONFIGURATION.getTitleText());
+
+        Permission permission2 = new Permission();
+        permission2.setTitle(PermissionTitles.MODULE_CREATION.getTitleText());
+
+        Permission permission3 = new Permission();
+        permission3.setTitle(PermissionTitles.REQUIREMENT_REGISTRATION.getTitleText());
+
+        Permission permission4 = new Permission();
+        permission4.setTitle(PermissionTitles.NEW_RESOURCE_REGISTRATION.getTitleText());
+
+
+        user.addPermission(permission1);
+        user.addPermission(permission2);
+        user.addPermission(permission3);
+        user.addPermission(permission4);
+
+
+        user.setApproved(true);
+
+        ////////////////////////////////////////////////////////////
 
         if(user != null)
             new MainMenu().start(stage,user);
