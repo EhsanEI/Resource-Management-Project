@@ -6,6 +6,7 @@ import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.Employee;
 import businesslogic.accounting.user.EmployeeDAO;
 import businesslogic.accounting.user.User;
+import businesslogic.accounting.user.UserDAO;
 import businesslogic.distribution.Allocation;
 import businesslogic.distribution.Allocation_DAO;
 import businesslogic.distribution.requirement.Requirement;
@@ -17,6 +18,7 @@ import businesslogic.report.Report;
 import businesslogic.utility.Date;
 import businesslogic.utility.DateDAO;
 import businesslogic.utility.Table;
+import businesslogic.utility.Tree;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
@@ -47,7 +49,7 @@ public class Main {
 
 //        assignModules();
 
-        predictEssentialResourceAllocations();
+        viewProfile();
 
         t.commit();
     }
@@ -428,6 +430,19 @@ public class Main {
 
         FlowReport report = ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[resourceInd], "4/4/70", "4/3/79");
         report.getTable().print();
+
+    }
+
+    public static void viewProfile() {
+        int userID = 1;
+        try {
+            User user = UserDAO.getUserByORMID(userID);
+            Tree<String> info = user.getJobInfo();
+            info.print();
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

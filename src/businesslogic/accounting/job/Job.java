@@ -75,8 +75,7 @@ public class Job {
 	}
 	
 	public Tree<String> getInfo() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return new Tree<>(getClass().toString());
 	}
 	
 	public String toString() {
