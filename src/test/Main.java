@@ -19,6 +19,7 @@ import businesslogic.utility.Date;
 import businesslogic.utility.DateDAO;
 import businesslogic.utility.Table;
 import businesslogic.utility.Tree;
+import network.Email;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
@@ -48,8 +49,6 @@ public class Main {
 //        reportFlowResourceAllocations();
 
 //        assignModules();
-
-        viewProfile();
 
         t.commit();
     }
@@ -444,6 +443,11 @@ public class Main {
         }
 
 
+    }
+
+    public static void sendEmail() {
+        Email email = new Email("Hello!", "ehsan.silverman@gmail.com");
+        email.send();
     }
 
 }

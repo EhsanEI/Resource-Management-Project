@@ -7,5 +7,5 @@ import businesslogic.accounting.user.User;
  */
 public interface ManagerLogicInterface {
     User[] getUnapprovedUsers();
-    void approveUser(User newUser, boolean accepted);
+    boolean approveUser(User newUser, boolean accepted);
 }
