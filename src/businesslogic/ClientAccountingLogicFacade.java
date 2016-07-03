@@ -31,6 +31,7 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
         if(clientAccountingLogicFacade == null) {
             clientAccountingLogicFacade = new ClientAccountingLogicFacade();
             clientNetwork = new ClientNetwork(new Socket("",9090));
+
         }
         return clientAccountingLogicFacade;
     }
@@ -41,6 +42,7 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
         params.add(username);
         params.add(password);
         return (AuthenticationResult)clientNetwork.sendRequest(new NetworkRequest("login", params)).getResponse();
+
     }
 
     @Override

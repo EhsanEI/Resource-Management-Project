@@ -4,24 +4,29 @@ package gui.controllers;
  */
 
 import businesslogic.ClientAccountingLogicFacade;
+import businesslogic.accounting.user.User;
 import gui.MainMenu;
 import javafx.animation.*;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import network.ClientNetwork;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import java.util.Optional;
 
 
 public class StartMenuController{
@@ -31,6 +36,19 @@ public class StartMenuController{
     private AnchorPane onTheTopPane;
     @FXML private AnchorPane signinPane;
     @FXML private AnchorPane signupPane;
+    @FXML private AnchorPane specialtyAdditionPane;
+    @FXML private AnchorPane jobAdditionPane;
+
+    //sign up fields
+    @FXML private TextField signupUsernameTextField;
+    @FXML private TextField signupPasswordTextField;
+    @FXML private TextField confirmationTextField;
+    @FXML private TextField emailTextField;
+    @FXML private ComboBox<String> userTypeCombo;
+    @FXML private ListView<String> jobsListView;
+    @FXML private ListView<String> specialtiesListView;
+
+
 
     @FXML private ImageView backGroundImage;
 
@@ -57,30 +75,39 @@ public class StartMenuController{
     private double animationTime = 700;
 
     @FXML
-    private void
-    initialize() throws IOException, ClassNotFoundException {
+    private void initialize() throws IOException, ClassNotFoundException {
         clientAccountingLogicFacade = ClientAccountingLogicFacade.getInstance();
         onTheTopPane = signinPane;
     }
 
     @FXML
     private void signInPressed() throws Exception {
-        stage = (Stage) usernameTextField.getScene().getWindow();
-        System.out.println(usernameTextField.getText() + "@" + passwordField.getText());
-        stage.close();
-        
+        User user = clientAccountingLogicFacade.login(usernameTextField.getText(), passwordField.getText()).getUser();
+        if(user != null)
+            new MainMenu().start(stage,user);
+        else{
+            usernameTextField.getScene().getRoot().setDisable(true);
 
-        // verifies the user and handle it
-        // if user null returns
-        // else sends the user for main menu
-        new MainMenu().start(stage, null);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Login Failed!");
+            alert.setContentText(clientAccountingLogicFacade.recoverPassword(usernameTextField.getText()).getContent());
+
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+
+            stage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
+
+
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK)
+                usernameTextField.getScene().getRoot().setDisable(false);
+        }
     }
 
 
     @FXML
     private void signUpPressed() {
         stage = (Stage) usernameTextField.getScene().getWindow();
-        System.out.println("sign up pressed");
         backGroundImage.setFitHeight(620);
         stage.setHeight(620);
         animatePaneChange(signupPane, true);
@@ -88,7 +115,22 @@ public class StartMenuController{
 
     @FXML
     private void recoverPasswordPressed() throws IOException, ClassNotFoundException {
-        System.out.println(clientAccountingLogicFacade.recoverPassword(usernameTextField.getText()).getContent());
+
+        usernameTextField.getScene().getRoot().setDisable(true);
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Password Recovery");
+        alert.setContentText(clientAccountingLogicFacade.recoverPassword(usernameTextField.getText()).getContent());
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+
+        stage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
+
+
+        Optional<ButtonType> result = alert.showAndWait();
+
+        if (result.get() == ButtonType.OK)
+            usernameTextField.getScene().getRoot().setDisable(false);
+
     }
 
 
@@ -98,7 +140,31 @@ public class StartMenuController{
         animatePaneChange(signinPane,false);
     }
 
-    public void registerButtonPressed(ActionEvent event) {
+    public void registerButtonPressed(ActionEvent event){
+
+    }
+
+
+
+
+    public void backFromSpecialtyAdditionPressed(Event event) {
+        animatePaneChange(signupPane,false);
+    }
+
+    public void singleSpecialtyAddButtonPressed(ActionEvent event) {
+    }
+
+    public void backFromJobAdditionPressed(Event event) {
+        animatePaneChange(signupPane, false);
+    }
+
+    public void singleJobAddButtonPressed(ActionEvent event) {
+    }
+
+    public void addSpecialtyButtonPressed(ActionEvent event) {
+    }
+
+    public void addJobButtonPressed(ActionEvent event) {
     }
 
     public void animatePaneChange(AnchorPane anchorPane, boolean direction){
@@ -135,6 +201,4 @@ public class StartMenuController{
 
         timeline.setOnFinished(event -> onTheTopPane = anchorPane);
     }
-
-
 }
