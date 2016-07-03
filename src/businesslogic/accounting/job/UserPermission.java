@@ -13,24 +13,24 @@
  */
 package businesslogic.accounting.job;
 
-public class UserJob {
-	public UserJob() {
+public class UserPermission {
+	public UserPermission() {
 	}
-	
+
 	private int ID;
-	
+
 	private void setID(int value) {
 		this.ID = value;
 	}
-	
+
 	public int getID() {
 		return ID;
 	}
-	
+
 	public int getORMID() {
 		return getID();
 	}
-
+	
 	public String toString() {
 		return String.valueOf(getID());
 	}

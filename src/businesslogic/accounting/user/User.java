@@ -13,10 +13,7 @@
  */
 package businesslogic.accounting.user;
 
-import businesslogic.accounting.job.Job;
-import businesslogic.accounting.job.JobDAO;
-import businesslogic.accounting.job.UserJob;
-import businesslogic.accounting.job.UserJobDAO;
+import businesslogic.accounting.job.*;
 import businesslogic.utility.Tree;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
@@ -37,6 +34,9 @@ public class User implements Serializable {
 		}
 		else if (key == businesslogic.accounting.user.ORMConstants.KEY_USER_USERJOBS) {
 			return ORM_userJobs;
+		}
+		else if (key == ORMConstants.KEY_USER_USERPERMISSIONS) {
+			return ORM_userPermissions;
 		}
 		
 		return null;
@@ -74,6 +74,8 @@ public class User implements Serializable {
 	private java.util.Set ORM_emails = new java.util.HashSet();
 	
 	private java.util.Set ORM_userJobs = new java.util.HashSet();
+
+	private java.util.Set ORM_userPermissions = new java.util.HashSet();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -144,8 +146,19 @@ public class User implements Serializable {
 	public java.util.Set getORM_UserJobs() {
 		return ORM_userJobs;
 	}
-	
+
 	public final businesslogic.accounting.job.UserJobSetCollection userJobs = new businesslogic.accounting.job.UserJobSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_USER_USERJOBS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+
+
+	public void setORM_UserPermissions(java.util.Set value) {
+		this.ORM_userPermissions = value;
+	}
+
+	public java.util.Set getORM_userPermissions() {
+		return ORM_userPermissions;
+	}
+
+	public final businesslogic.accounting.job.UserPermissionSetCollection userPermissions = new businesslogic.accounting.job.UserPermissionSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_USER_USERPERMISSIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.accounting.job.Job[] getJobs() {
 		try {
@@ -193,11 +206,6 @@ public class User implements Serializable {
 		return new Job[0];
 	}
 	
-	public void setJobs(int[] Job) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
 	public void addJob(businesslogic.accounting.job.Job job) {
 		UserJob uj = UserJobDAO.createUserJob();
 		getORM_UserJobs().add(uj);
@@ -219,8 +227,9 @@ public class User implements Serializable {
 	}
 	
 	public void addPermission(businesslogic.accounting.Permission permission) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		UserPermission up = UserPermissionDAO.createUserPermission();
+		getORM_userPermissions().add(up);
+		permission.getORM_userPermissions().add(up);
 	}
 	
 	public void sendPassword() {

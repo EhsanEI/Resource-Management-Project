@@ -1,9 +1,7 @@
 package test;
 
 import businesslogic.*;
-import businesslogic.accounting.AuthenticationResult;
-import businesslogic.accounting.ResourceManagement;
-import businesslogic.accounting.ResourceManagementDAO;
+import businesslogic.accounting.*;
 import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.Employee;
 import businesslogic.accounting.user.EmployeeDAO;
@@ -35,7 +33,7 @@ public class Main {
     public static void main(String[] args) throws PersistentException {
         PersistentTransaction t = businesslogic.accounting.user.OODPersistentManager.instance().getSession().beginTransaction();
 
-//        signup();
+        signup();
 
 //        registerProject();
 
@@ -47,7 +45,7 @@ public class Main {
 
 //        reportFlowResourceAllocations();
 
-        assignModules();
+//        assignModules();
 
         t.commit();
     }
@@ -147,6 +145,15 @@ public class Main {
 
     public static void signup() {
 
+        Permission permission = PermissionDAO.createPermission();
+        permission.setTitle("p1");
+
+        Permission permission2 = PermissionDAO.createPermission();
+        permission2.setTitle("p2");
+
+        Permission permission3 = PermissionDAO.createPermission();
+        permission3.setTitle("p3");
+
         Employee em = EmployeeDAO.createEmployee();
         em.setUsername("signed up user");
         em.setPassword("123");
@@ -157,6 +164,7 @@ public class Main {
 
         Programming pr = ProgrammingDAO.createProgramming();
         em.addJob(pr);
+
         HumanResource hr = HumanResourceDAO.createHumanResource();
         hr.setProgramming(pr);
         hr.setName(em.getUsername());
@@ -167,6 +175,9 @@ public class Main {
         sp.setProficiencyLevel(3);
         pr.addSpecialty(sp);
 
+        em.addPermission(permission);
+        em.addPermission(permission2);
+
         Employee em2 = EmployeeDAO.createEmployee();
         em2.setUsername("user 2");
         em2.setPassword("123");
@@ -174,6 +185,27 @@ public class Main {
 
         ResourceManagement rm = ResourceManagementDAO.createResourceManagement();
         em2.addJob(rm);
+
+        try {
+
+            for(Object upObject: em.getORM_userPermissions()) {
+                UserPermission up = (UserPermission) upObject;
+                UserPermissionDAO.save(up);
+            }
+
+            for(Object upObject: permission.getORM_userPermissions()) {
+                UserPermission up = (UserPermission) upObject;
+                System.out.println(up.getID());
+            }
+
+            PermissionDAO.save(permission);
+            PermissionDAO.save(permission2);
+            PermissionDAO.save(permission3);
+
+
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
 
         Job[] jobs = {pm, pr};
         Specialty[] specialties = {sp};
