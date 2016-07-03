@@ -1,6 +1,7 @@
 package network;
 
 import businesslogic.ServerAccountingLogicFacade;
+import businesslogic.utility.Notification;
 
 import java.io.*;
 import java.net.ServerSocket;
@@ -27,7 +28,7 @@ public class ServerNetwork {
                         System.out.println("Waiting for Client ...");
                         Socket newClient = listener.accept();
                         clients.add(newClient);
-                        listen(newClient);
+                        listen(newClient,  new ObjectInputStream(newClient.getInputStream()),new ObjectOutputStream(newClient.getOutputStream()));
                         System.out.println("Client " + newClient.getPort() + " Connected!");
                     } catch (IOException e) {
                         e.printStackTrace();
@@ -37,27 +38,31 @@ public class ServerNetwork {
         }.start();
     }
 
-    public void listen(Socket client) throws IOException {
+    public void listen(Socket client, ObjectInputStream clientInputStream, ObjectOutputStream objectOutputStream) throws IOException {
 
         new Thread(){
-            ObjectInputStream clientInputStream = new ObjectInputStream(client.getInputStream());
             public void run(){
-                while (!client.isInputShutdown())
-                {
-                    try {
-                        sendResponse((NetworkRequest) clientInputStream.readObject(), client);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    } catch (ClassNotFoundException e) {
-                        e.printStackTrace();
+                NetworkRequest networkRequest = null;
+                try {
+                    while ((networkRequest = (NetworkRequest) clientInputStream.readObject()) != null)
+                    {
+                        try {
+                            sendResponse(networkRequest, objectOutputStream);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
+                } catch (IOException e) {
+                    System.out.println(client.getPort() + "  Disconnected!");
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
                 }
             }
         }.start();
     }
 
 
-    public boolean sendResponse(NetworkRequest request, Socket client) throws IOException {
+    public boolean sendResponse(NetworkRequest request, ObjectOutputStream objectOutputStream) throws IOException {
 
         String method = request.getMethod();
         NetworkResponse networkResponse = null;
@@ -65,15 +70,15 @@ public class ServerNetwork {
         switch (method){
             case "recoverPassword":
                 networkResponse = new NetworkResponse(
-                        serverAccountingLogicFacade.recoverPassword((String)request.getParams().get(0)), "processed");
+                        new Notification("no delay"), "processed");
+                        serverAccountingLogicFacade.recoverPassword((String)request.getParams().get(0));
                 break;
             case "signup":
                 //
         }
 
 
-        ObjectOutputStream clientOutputStream = new ObjectOutputStream(client.getOutputStream());
-        clientOutputStream.writeObject(networkResponse);
+        objectOutputStream.writeObject(networkResponse);
         return true;
     }
 }

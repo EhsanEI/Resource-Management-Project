@@ -18,12 +18,12 @@ public class ClientNetwork {
     public ClientNetwork(Socket server) throws IOException {
         this.server = server;
         serverOutputStream = new ObjectOutputStream(server.getOutputStream());
+        serverInputStream = new ObjectInputStream(server.getInputStream());
     }
 
 
     public NetworkResponse sendRequest(NetworkRequest request) throws IOException, ClassNotFoundException {
         serverOutputStream.writeObject(request);
-        serverInputStream = new ObjectInputStream(server.getInputStream());
         return (NetworkResponse) serverInputStream.readObject();
     }
 }
