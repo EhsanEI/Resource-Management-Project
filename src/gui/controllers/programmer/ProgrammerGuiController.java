@@ -40,7 +40,6 @@ public class ProgrammerGuiController extends MainMenuController implements iMain
 
     @FXML
     private void initialize(){
-
         onTheTopPane = emptyPane;
     }
 
@@ -60,6 +59,7 @@ public class ProgrammerGuiController extends MainMenuController implements iMain
                 e.printStackTrace();
             }
         });
+
 
         moduleMaintenance.setOnAction(event -> {
             try {

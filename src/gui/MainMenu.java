@@ -20,6 +20,7 @@ public class MainMenu {
     private double stageH = 625;
     private double stageW = 755;
     private Parent root;
+    private Parent roott;
 
     public void start(Stage stage, int user) throws Exception {
         FXMLLoader fxmlLoader;
@@ -62,6 +63,7 @@ public class MainMenu {
 
         stage.setTitle("ERP System");
         stage.getIcons().add(new Image(getClass().getResource("resources/erp.png").toString()));
+
         stage.setScene(new Scene(root, stageH, stageW));
 
         /*
