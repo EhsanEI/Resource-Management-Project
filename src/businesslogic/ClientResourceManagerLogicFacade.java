@@ -40,6 +40,11 @@ public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
+    public Notification rejectResourceAllocation(int userID, int requirementID) {
+        return null;
+    }
+
+    @Override
     public InformationResource[] getInformationResources(int uesrID) {
         return new InformationResource[0];
     }

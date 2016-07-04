@@ -16,6 +16,7 @@ import businesslogic.utility.Notification;
  */
 public interface ResourceManagerLogicInterface {
     Notification registerResourceAllocation(int userID, Allocation allocation, Resource[] resources);
+    Notification rejectResourceAllocation(int userID, int requirementID);
     InformationResource[] getInformationResources(int uesrID);
     String[] getResourceNames(int userID, String resourceType);
     FlowReport reportFlowResourceAllocations(Resource resource, String startDate, String endDate);
