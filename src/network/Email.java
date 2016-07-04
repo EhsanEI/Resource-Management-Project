@@ -13,6 +13,11 @@
  */
 package network;
 
+import javax.mail.*;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import java.util.Properties;
+
 public class Email {
 	public Email() {
 	}
@@ -62,7 +67,36 @@ public class Email {
 	}
 
 	public void send() {
-		//TODO implement
+		String username = "resourcemanagementproject@gmail.com";
+		String password = "resresres";
+		Properties props = new Properties();
+		props.put("mail.smtp.auth", "true");
+		props.put("mail.smtp.starttls.enable", "true");
+		props.put("mail.smtp.host", "smtp.gmail.com");
+		props.put("mail.smtp.port", "587");
+
+		Session session = Session.getInstance(props,
+				new javax.mail.Authenticator() {
+					protected PasswordAuthentication getPasswordAuthentication() {
+						return new PasswordAuthentication(username, password);
+					}
+				});
+
+		String subject = "Notification from resource management system";
+
+		Message msg = new MimeMessage(session);
+		try {
+			msg.setFrom(new InternetAddress(username));
+			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(getAddress()));
+			msg.setSubject(subject);
+			msg.setText(getContent());
+
+			// Send the message.
+			Transport.send(msg);
+		} catch (MessagingException e) {
+			// Error.
+			e.printStackTrace();
+		}
 	}
 	
 	public String toString() {

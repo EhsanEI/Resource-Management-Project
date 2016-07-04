@@ -11,7 +11,6 @@ public class ServerModuleLogicFacade implements ModuleLogicInterface{
     @Override
     public Module[] getModuleList(int UserID) {
         StringBuffer condition = new StringBuffer("");
-//        condition.append("").append(); TODO which job to use??
 
         Module[] result = null;
         try {
