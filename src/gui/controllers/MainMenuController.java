@@ -1,5 +1,6 @@
 package gui.controllers;
 
+import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.accounting.Permission;
 import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.user.User;
@@ -35,6 +36,8 @@ import java.util.Optional;
  */
 
 public class MainMenuController {
+
+    ClientAccountingLogicFacade clientAccountingLogicFacade;
 
     private User user;
 
@@ -83,8 +86,9 @@ public class MainMenuController {
     @FXML private AnchorPane systemAdditionPane;
     @FXML private AnchorPane initializeProjectPane;
 
-    @FXML private void initialize(){
+    @FXML private void initialize() throws IOException, ClassNotFoundException {
         onTheTopPane = emptyPane;
+        clientAccountingLogicFacade = ClientAccountingLogicFacade.getInstance();
     }
 
     public void initializeView(){
@@ -623,5 +627,9 @@ public class MainMenuController {
         timeline.play();
 
         timeline.setOnFinished(event -> onTheTopPane = anchorPane);
+    }
+
+    public void editProfileButtonPressed(ActionEvent event) {
+
     }
 }
