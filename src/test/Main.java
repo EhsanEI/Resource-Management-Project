@@ -41,13 +41,13 @@ public class Main {
 
 //        registerProject();
 
-        registerNewResource();
+//        registerNewResource();
 
 //        registerRequirement();
 
 //        registerResourceAllocation();
 
-//        reportFlowResourceAllocations();
+        reportFlowResourceAllocations();
 
 //        assignModules();
 
@@ -441,8 +441,7 @@ public class Main {
     }
 
     public static void reportFlowResourceAllocations() {
-        // This use-case has a bug. I'm fixing it.
-        int userID = 3;
+        int userID = 2;
         String resourceType = "PhysicalResource";
         int resourceNameInd = 0;
         int resourceInd = 0;
@@ -466,8 +465,8 @@ public class Main {
         endDate.setMonth(3);
         endDate.setDay(4);
 
-//        FlowReport report = ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[resourceInd], startDate, endDate);
-//        report.getTable().print();
+        FlowReport report = ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[resourceInd], startDate, endDate);
+        report.getTable().print();
 
     }
 
