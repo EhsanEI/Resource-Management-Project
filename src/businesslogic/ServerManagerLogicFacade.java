@@ -2,6 +2,9 @@ package businesslogic;
 
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
+import businesslogic.utility.Notification;
+import businesslogic.utility.NotificationDAO;
+import network.Email;
 import org.orm.PersistentException;
 
 /**
@@ -34,24 +37,28 @@ public class ServerManagerLogicFacade implements ManagerLogicInterface {
     }
 
     @Override
-    public void approveUser(User newUser, boolean accepted) {
+    public boolean approveUser(User newUser, boolean accepted) {
         User creatorUser = newUser.getCreatorUser();
-
 
         //No creator user -> Signup request
         if(creatorUser == null) {
+            Notification notification = NotificationDAO.createNotification();
             if(accepted) {
                 newUser.approve();
                 try {
                     UserDAO.save(newUser);
+                    notification.setContent("Your signup request to Resource Management System has been accepted.");
                 } catch (PersistentException e) {
                     e.printStackTrace();
+                    return false;
                 }
 
             } else {
-                //TODO send email
-                System.out.println("sending email...");
+                notification.setContent("Your signup request to Resource Management System has been rejected by a manager.");
             }
+            Email email = new Email(notification, newUser.getEmail());
+            email.send();
+            return true;
         }
         //There is a creator user -> EditProfile request
         else {
@@ -62,12 +69,18 @@ public class ServerManagerLogicFacade implements ManagerLogicInterface {
                     UserDAO.delete(creatorUser);
                 } catch (PersistentException e) {
                     e.printStackTrace();
+                    return false;
                 }
 
             } else {
-                //TODO add notification
-                System.out.println("adding notification...");
+                try {
+                    UserDAO.delete(newUser);
+                } catch (PersistentException e) {
+                    e.printStackTrace();
+                    return false;
+                }
             }
+            return true;
         }
     }
 }

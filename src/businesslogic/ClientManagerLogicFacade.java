@@ -12,7 +12,7 @@ public class ClientManagerLogicFacade implements ManagerLogicInterface {
     }
 
     @Override
-    public void approveUser(User newUser, boolean accepted) {
-
+    public boolean approveUser(User newUser, boolean accepted) {
+        return false;
     }
 }
