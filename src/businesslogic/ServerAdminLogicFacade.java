@@ -14,7 +14,7 @@ public class ServerAdminLogicFacade implements AdminLogicInterface{
 
         SystemConfiguration oldConfiguration = null;
         try {
-            oldConfiguration = SystemConfigurationDAO.getSystemConfigurationByORMID(0);
+            oldConfiguration = SystemConfigurationDAO.getSystemConfigurationByORMID(1);
             SystemConfigurationDAO.delete(oldConfiguration);
         } catch (PersistentException e) {
         }

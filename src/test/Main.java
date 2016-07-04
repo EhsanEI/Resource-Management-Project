@@ -50,6 +50,8 @@ public class Main {
 
 //        assignModules();
 
+        sendEmail();
+
         t.commit();
     }
 
