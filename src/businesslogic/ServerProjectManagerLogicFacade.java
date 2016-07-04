@@ -111,7 +111,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
     public InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) {
         try {
             if(technologies.length < 1) {
-                return new Project[0];
+                return null;
             }
 
             StringBuffer condition = new StringBuffer("");

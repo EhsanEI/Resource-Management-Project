@@ -19,7 +19,7 @@ public class ResourceReport extends Report{
         super();
     }
 
-    public ResourceReport(String date) {
+    public ResourceReport(Date date) {
         super(date);
     }
 

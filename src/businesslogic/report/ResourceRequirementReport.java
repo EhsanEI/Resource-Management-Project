@@ -21,7 +21,7 @@ public class ResourceRequirementReport  extends Report{
         informationResource = InformationResourceDAO.getInformationResourceByORMID(informationResourceID);
     }
 
-    public ResourceRequirementReport(String date, int informationResourceID) throws PersistentException{
+    public ResourceRequirementReport(Date date, int informationResourceID) throws PersistentException{
         super(date);
         informationResource = InformationResourceDAO.getInformationResourceByORMID(informationResourceID);
     }

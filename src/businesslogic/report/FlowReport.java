@@ -10,12 +10,13 @@ import businesslogic.utility.Table;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 
-import java.util.Date;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import businesslogic.utility.Date;
 import java.util.Set;
 
 /**
@@ -23,28 +24,28 @@ import java.util.Set;
  */
 public class FlowReport  extends Report{
     private Resource resource;
-    private String startDate;
-    private String endDate;
+    private Date startDate;
+    private Date endDate;
 
-    public FlowReport(Resource resource, String startDate, String endDate) {
+    public FlowReport(Resource resource, Date startDate, Date endDate) {
         super();
         this.resource = resource;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public FlowReport(Resource resource, String startDate, String endDate, String date) {
+    public FlowReport(Resource resource, Date startDate, Date endDate, Date date) {
         super(date);
         this.resource = resource;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
@@ -64,17 +65,16 @@ public class FlowReport  extends Report{
 
             DateFormat df = new SimpleDateFormat("dd/mm/yy");
 
-            Date reqStartDate = null;
-            Date reqEndDate = null;
-            Date startDate = null;
-            Date endDate = null;
+            java.util.Date reqStartDate = null;
+            java.util.Date reqEndDate = null;
+            java.util.Date startDate = null;
+            java.util.Date endDate = null;
             try {
                 reqStartDate = df.parse(requirement.getStartDate());
                 reqEndDate = df.parse(requirement.getEndDate());
-                startDate = df.parse(getStartDate());
-                endDate = df.parse(getEndDate());
+                startDate = df.parse(getStartDate().toString());
+                endDate = df.parse(getEndDate().toString());
             } catch (ParseException e) {
-                //TODO really do something here
                 return null;
             }
 

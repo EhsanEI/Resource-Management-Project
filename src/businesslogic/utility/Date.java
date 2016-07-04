@@ -13,8 +13,21 @@
  */
 package businesslogic.utility;
 
+import java.util.Calendar;
+
 public class Date {
 	public Date() {
+	}
+
+	public Date(java.util.Date date) {
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		setYear(cal.get(Calendar.YEAR));
+		setMonth(cal.get(Calendar.MONTH));
+		setDay(cal.get(Calendar.DATE));
+		setHour(cal.get(Calendar.HOUR));
+		setMinute(cal.get(Calendar.MINUTE));
+		setSecond(cal.get(Calendar.SECOND));
 	}
 	
 	private int ID;
@@ -92,7 +105,7 @@ public class Date {
 	}
 	
 	public String toString() {
-		return String.valueOf(getID());
+		return String.format("%02d", getDay()) + "/" + String.format("%02d", getMonth()) + "/" + String.format("%02d", getYear());
 	}
 	
 }
