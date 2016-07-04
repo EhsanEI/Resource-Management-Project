@@ -16,6 +16,7 @@ public class MainMenu {
 
     private double stageH = 625;
     private double stageW = 755;
+
     private Parent root;
 
 

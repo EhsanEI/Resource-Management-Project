@@ -11,11 +11,28 @@ import businesslogic.report.ResourceReport;
 import businesslogic.report.ResourceRequirementReport;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
+import network.ClientNetwork;
+
+import java.io.IOException;
 
 /**
  * Created by Esi on 6/22/2016.
  */
 public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInterface{
+
+    private static ClientResourceManagerLogicFacade instance;
+    private static ClientNetwork clientNetwork;
+
+    private ClientResourceManagerLogicFacade() {
+    }
+
+    public static ClientResourceManagerLogicFacade getInstance() throws IOException {
+        if(instance == null) {
+            instance = new ClientResourceManagerLogicFacade();
+            clientNetwork = ClientNetwork.getInstance();
+        }
+        return instance;
+    }
 
     @Override
     public Notification registerResourceAllocation(int userID, Allocation allocation, Resource[] resources) {

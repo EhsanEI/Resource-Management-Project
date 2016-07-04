@@ -45,7 +45,6 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
         return instance;
     }
 
-
     @Override
     public Notification registerResourceAllocation(int userID, Allocation allocation, Resource[] resources) {
         try{
