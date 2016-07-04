@@ -30,8 +30,7 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
     public static ClientAccountingLogicFacade getInstance() throws IOException, ClassNotFoundException {
         if(clientAccountingLogicFacade == null) {
             clientAccountingLogicFacade = new ClientAccountingLogicFacade();
-            clientNetwork = new ClientNetwork(new Socket("",9090));
-
+            clientNetwork = ClientNetwork.getInstance();
         }
         return clientAccountingLogicFacade;
     }

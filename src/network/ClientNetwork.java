@@ -10,9 +10,20 @@ import java.net.Socket;
  */
 
 public class ClientNetwork {
+
+
     private Socket server;
     private ObjectOutputStream serverOutputStream;
     private ObjectInputStream serverInputStream;
+
+    private static ClientNetwork clientNetwork;
+
+    public static ClientNetwork getInstance() throws IOException {
+        if(clientNetwork == null){
+            clientNetwork = new ClientNetwork(new Socket("",9090));
+        }
+        return clientNetwork;
+    }
 
 
     public ClientNetwork(Socket server) throws IOException {
