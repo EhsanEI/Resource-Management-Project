@@ -156,7 +156,7 @@ public class User implements Serializable {
 		this.ORM_userPermissions = value;
 	}
 
-	public java.util.Set getORM_userPermissions() {
+	public java.util.Set getORM_UserPermissions() {
 		return ORM_userPermissions;
 	}
 
@@ -229,8 +229,8 @@ public class User implements Serializable {
 	
 	public void addPermission(businesslogic.accounting.Permission permission) {
 		UserPermission up = UserPermissionDAO.createUserPermission();
-		getORM_userPermissions().add(up);
-		permission.getORM_userPermissions().add(up);
+		getORM_UserPermissions().add(up);
+		permission.getORM_UserPermissions().add(up);
 	}
 	
 	public void sendPassword(String password) throws MessagingException {

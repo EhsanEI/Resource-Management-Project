@@ -51,7 +51,11 @@ public class Main {
 
 //        assignModules();
 
-        sendEmail();
+//        sendEmail();
+        
+//        test2();
+        
+        test3();
 
         t.commit();
     }
@@ -101,6 +105,12 @@ public class Main {
 
 //            Permission per = PermissionDAO.listPermissionByQuery("Title = 'fuckdb'",null)[0];
 //            PermissionDAO.delete(per);
+            
+            UserPermission up = UserPermissionDAO.createUserPermission();
+            
+            Set<UserPermission> ups = new HashSet<UserPermission>();
+            ups.add(up);
+            em.setORM_UserPermissions(ups);
 
             UserJob uj = UserJobDAO.createUserJob();
 
@@ -110,9 +120,17 @@ public class Main {
 
             Programming pr = ProgrammingDAO.createProgramming();
             pr.setORM_UserJobs(ujs);
+            
+            Permission p = PermissionDAO.createPermission();
+            p.setTitle("fuckdb");
+            p.setORM_UserPermissions(ups);
+            
+            UserPermissionDAO.save(up);
+            PermissionDAO.save(p);
 
             UserJobDAO.save(uj);
             ProgrammingDAO.save(pr);
+            
             EmployeeDAO.save(em);
 
 

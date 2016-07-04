@@ -40,11 +40,11 @@ public class Permission {
 	
 	private String title;
 
-	public void setORM_userPermissions(java.util.Set value) {
+	public void setORM_UserPermissions(java.util.Set value) {
 		this.ORM_userPermissions = value;
 	}
 
-	public java.util.Set getORM_userPermissions() {
+	public java.util.Set getORM_UserPermissions() {
 		return ORM_userPermissions;
 	}
 

@@ -23,7 +23,7 @@ CREATE TABLE RequirementPriority (ID int IDENTITY NOT NULL, PRIMARY KEY (ID));
 CREATE TABLE ResourceState (ID int IDENTITY NOT NULL, PRIMARY KEY (ID));
 CREATE TABLE Email (ID int IDENTITY NOT NULL, UserID int NOT NULL, Content varchar(255) NULL, Address varchar(255) NULL, PRIMARY KEY (ID));
 CREATE TABLE UserJob (ID int IDENTITY NOT NULL, JobID int NOT NULL, UserID int NOT NULL, [User] int NULL, Job int NULL, PRIMARY KEY (ID));
--- CREATE TABLE UserPermission (ID int IDENTITY NOT NULL, PermissionID int NOT NULL, UserID int NOT NULL, PRIMARY KEY (ID));
+CREATE TABLE UserPermission (ID int IDENTITY NOT NULL, PermissionID int NOT NULL, UserID int NOT NULL, [User] int NULL, Permission int NULL, PRIMARY KEY (ID));
 CREATE TABLE ResourceAllocation (ID int IDENTITY NOT NULL, ResourceID2 int NOT NULL, [Allocation ID] int NOT NULL, Resource int NULL, Allocation int NULL, PRIMARY KEY (ID));
 CREATE TABLE Resource_Specialty (ResourceID2 int NOT NULL, SpecialtyID int NOT NULL, PRIMARY KEY (ResourceID2, SpecialtyID));
 ALTER TABLE User_jobs ADD CONSTRAINT FKUser_jobs688007 FOREIGN KEY (UserID) REFERENCES [User] (ID);

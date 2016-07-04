@@ -28,6 +28,7 @@ public class UserCriteria extends AbstractORMCriteria {
 	public final BooleanExpression approved;
 	public final CollectionExpression emails;
 	public final CollectionExpression userJobs;
+	public final CollectionExpression userPermissions;
 	
 	public UserCriteria(Criteria criteria) {
 		super(criteria);
@@ -40,6 +41,7 @@ public class UserCriteria extends AbstractORMCriteria {
 		approved = new BooleanExpression("approved", this);
 		emails = new CollectionExpression("ORM_Emails", this);
 		userJobs = new CollectionExpression("ORM_UserJobs", this);
+		userPermissions = new CollectionExpression("ORM_UserPermissions", this);
 	}
 	
 	public UserCriteria(PersistentSession session) {
@@ -60,6 +62,10 @@ public class UserCriteria extends AbstractORMCriteria {
 	
 	public businesslogic.accounting.job.UserJobCriteria createUserJobsCriteria() {
 		return new businesslogic.accounting.job.UserJobCriteria(createCriteria("ORM_UserJobs"));
+	}
+	
+	public businesslogic.accounting.job.UserPermissionCriteria createUserPermissionsCriteria() {
+		return new businesslogic.accounting.job.UserPermissionCriteria(createCriteria("ORM_UserPermissions"));
 	}
 	
 	public User uniqueUser() {

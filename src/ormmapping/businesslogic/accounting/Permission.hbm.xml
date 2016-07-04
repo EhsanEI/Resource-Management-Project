@@ -11,5 +11,9 @@ License Type: Evaluation
 			</generator>
 		</id>
 		<property name="title" column="Title" type="string" length="255" not-null="false" lazy="false"/>
+		<set name="ORM_UserPermissions" lazy="true" cascade="save-update,lock" inverse="false">
+			<key column="PermissionID" not-null="false"/>
+			<one-to-many class="businesslogic.accounting.job.UserPermission"/>
+		</set>
 	</class>
 </hibernate-mapping>
