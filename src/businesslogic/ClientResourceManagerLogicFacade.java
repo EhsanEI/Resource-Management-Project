@@ -10,6 +10,7 @@ import businesslogic.report.FlowReport;
 import businesslogic.report.ResourceReport;
 import businesslogic.report.ResourceRequirementReport;
 import businesslogic.utility.Date;
+import businesslogic.utility.Notification;
 
 /**
  * Created by Esi on 6/22/2016.
@@ -17,8 +18,8 @@ import businesslogic.utility.Date;
 public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInterface{
 
     @Override
-    public void registerResourceAllocation(int userID, Allocation allocation, Resource[] resources) {
-
+    public Notification registerResourceAllocation(int userID, Allocation allocation, Resource[] resources) {
+        return null;
     }
 
     @Override
@@ -47,8 +48,8 @@ public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public boolean registerNewResource(int userID, Resource newResource) {
-        return false;
+    public Notification registerNewResource(int userID, Resource newResource) {
+        return null;
     }
 
     @Override

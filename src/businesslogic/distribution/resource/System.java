@@ -13,6 +13,12 @@
  */
 package businesslogic.distribution.resource;
 
+import businesslogic.distribution.requirement.Requirement;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Set;
+
 public class System extends businesslogic.distribution.resource.InformationResource {
 	public System() {
 	}
@@ -56,6 +62,17 @@ public class System extends businesslogic.distribution.resource.InformationResou
 
 	public void addSubsystem(Subsystem subsystem) {
 		getORM_Subsystems().add(subsystem);
+	}
+
+	public Requirement[] getRequirementsRecursive() {
+		ArrayList<Requirement> requirements = new ArrayList<>();
+		requirements.addAll(Arrays.asList(getRequirements()));
+
+		for(Subsystem subsystem: (Set<Subsystem>) getORM_Subsystems()) {
+			requirements.addAll(Arrays.asList(subsystem.getRequirementsRecursive()));
+		}
+
+		return requirements.toArray(new Requirement[requirements.size()]);
 	}
 	
 	public String toString() {

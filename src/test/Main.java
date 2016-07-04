@@ -33,7 +33,7 @@ public class Main {
     public static void main(String[] args) throws PersistentException {
         PersistentTransaction t = businesslogic.accounting.user.OODPersistentManager.instance().getSession().beginTransaction();
 
-        signup();
+//        signup();
 
 //        registerProject();
 
@@ -46,6 +46,8 @@ public class Main {
 //        reportFlowResourceAllocations();
 
 //        assignModules();
+
+        predictEssentialResourceAllocations();
 
         t.commit();
     }
@@ -175,8 +177,8 @@ public class Main {
         sp.setProficiencyLevel(3);
         pr.addSpecialty(sp);
 
-        em.addPermission(permission);
-        em.addPermission(permission2);
+//        em.addPermission(permission);
+//        em.addPermission(permission2);
 
         Employee em2 = EmployeeDAO.createEmployee();
         em2.setUsername("user 2");
@@ -186,26 +188,26 @@ public class Main {
         ResourceManagement rm = ResourceManagementDAO.createResourceManagement();
         em2.addJob(rm);
 
-        try {
-
-            for(Object upObject: em.getORM_userPermissions()) {
-                UserPermission up = (UserPermission) upObject;
-                UserPermissionDAO.save(up);
-            }
-
-            for(Object upObject: permission.getORM_userPermissions()) {
-                UserPermission up = (UserPermission) upObject;
-                System.out.println(up.getID());
-            }
-
-            PermissionDAO.save(permission);
-            PermissionDAO.save(permission2);
-            PermissionDAO.save(permission3);
-
-
-        } catch (PersistentException e) {
-            e.printStackTrace();
-        }
+//        try {
+//
+//            for(Object upObject: em.getORM_userPermissions()) {
+//                UserPermission up = (UserPermission) upObject;
+//                UserPermissionDAO.save(up);
+//            }
+//
+//            for(Object upObject: permission.getORM_userPermissions()) {
+//                UserPermission up = (UserPermission) upObject;
+//                System.out.println(up.getID());
+//            }
+//
+//            PermissionDAO.save(permission);
+//            PermissionDAO.save(permission2);
+//            PermissionDAO.save(permission3);
+//
+//
+//        } catch (PersistentException e) {
+//            e.printStackTrace();
+//        }
 
         Job[] jobs = {pm, pr};
         Specialty[] specialties = {sp};
@@ -347,7 +349,13 @@ public class Main {
         for(Project project:projects) {
             System.out.println(project.getName());
         }
-        //TODO
+
+        int projectInd = 0;
+        Project[] results = ServerResourceManagerLogicFacade.getInstance().predictEssentialResourceAllocations(projects[projectInd]);
+        for(Project project:results) {
+            System.out.println(project.getName());
+        }
+
     }
 
     public static void registerResourceAllocation() {

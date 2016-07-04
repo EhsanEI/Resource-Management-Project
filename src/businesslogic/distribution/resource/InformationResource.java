@@ -104,6 +104,10 @@ public class InformationResource extends businesslogic.distribution.resource.Res
 		Set<Requirement> requirementSet = getORM_Requirements();
 		return requirementSet.toArray(new Requirement[requirementSet.size()]);
 	}
+
+	public Requirement[] getRequirementsRecursive() {
+		return null;
+	}
 	
 	public void addRequirement(businesslogic.distribution.requirement.Requirement requirement) {
 		getORM_Requirements().add(requirement);

@@ -14,6 +14,11 @@
 package businesslogic.distribution.resource;
 
 import businesslogic.accounting.job.Specialty;
+import businesslogic.distribution.requirement.Requirement;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Set;
 
 public class Module extends businesslogic.distribution.resource.InformationResource {
 	public Module() {
@@ -159,6 +164,13 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 
 	public void addSpecialty(Specialty specialty) {
 		getORM_Specialties().add(specialty);
+	}
+
+	public Requirement[] getRequirementsRecursive() {
+		ArrayList<Requirement> requirements = new ArrayList<>();
+		requirements.addAll(Arrays.asList(getRequirements()));
+
+		return requirements.toArray(new Requirement[requirements.size()]);
 	}
 	
 	public String toString() {
