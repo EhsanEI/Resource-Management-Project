@@ -41,7 +41,7 @@ public class Main {
 
 //        registerProject();
 
-//        registerNewResource();
+        registerNewResource();
 
 //        registerRequirement();
 
@@ -55,7 +55,7 @@ public class Main {
         
 //        test2();
         
-        test3();
+//        test3();
 
         t.commit();
     }
@@ -352,6 +352,7 @@ public class Main {
     }
 
     public static void registerNewResource() {
+        int userID = 2;
 
         PhysicalResource resource = PhysicalResourceDAO.createPhysicalResource();
 
@@ -360,9 +361,15 @@ public class Main {
         resource.addSpec("Color", "CMYK");
         resource.addSpec("Rate", "20 PPM");
 
-        int userID = 2;
-
         ServerResourceManagerLogicFacade.getInstance().registerNewResource(userID, resource);
+
+        FinancialResource resource2 = FinancialResourceDAO.createFinancialResource();
+
+        resource2.setName("Building");
+        resource2.setUniqueIdentifier("BS69");
+        resource2.setFinancialValue(1000);
+
+        ServerResourceManagerLogicFacade.getInstance().registerNewResource(userID, resource2);
 
     }
 
@@ -434,6 +441,7 @@ public class Main {
     }
 
     public static void reportFlowResourceAllocations() {
+        // This use-case has a bug. I'm fixing it.
         int userID = 3;
         String resourceType = "PhysicalResource";
         int resourceNameInd = 0;
@@ -448,7 +456,17 @@ public class Main {
         Resource[] resources = ServerResourceManagerLogicFacade.getInstance()
                 .getResources(userID, resourceType, resourceNames[resourceNameInd]);
 
-//        FlowReport report = ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[resourceInd], "4/4/70", "4/3/79");
+        Date startDate = new Date();
+        startDate.setYear(70);
+        startDate.setMonth(4);
+        startDate.setDay(4);
+
+        Date endDate = new Date();
+        endDate.setYear(79);
+        endDate.setMonth(3);
+        endDate.setDay(4);
+
+//        FlowReport report = ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[resourceInd], startDate, endDate);
 //        report.getTable().print();
 
     }
