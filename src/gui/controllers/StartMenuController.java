@@ -4,8 +4,6 @@ package gui.controllers;
  */
 
 import businesslogic.ClientAccountingLogicFacade;
-import businesslogic.accounting.Permission;
-import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.ResourceManagement;
 import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.*;
@@ -37,6 +35,7 @@ public class StartMenuController{
     private ClientAccountingLogicFacade clientAccountingLogicFacade;
 
     private AnchorPane onTheTopPane;
+    @FXML private AnchorPane mainPane;
     @FXML private AnchorPane signinPane;
     @FXML private AnchorPane signupPane;
     @FXML private AnchorPane specialtyAdditionPane;
@@ -61,7 +60,9 @@ public class StartMenuController{
     // add specialty fields
     @FXML private TextField specialtyTitleTextField;
     @FXML private Slider proficiencyLevelSlider;
-    @FXML private ListView<String> specialtiesListViewInspecialtyAddition;
+    @FXML private ListView<String> specialtiesListViewInSpecialtyAddition;
+    @FXML private Button addSpecialtyButton;
+
 
 
 
@@ -83,15 +84,19 @@ public class StartMenuController{
 
     private Stage stage;
 
-
-
     private Timeline timeline;
 
     private double animationTime = 700;
 
+    public void setStage(Stage stage){
+        this.stage = stage;
+    }
+
     @FXML
     private void initialize() throws IOException, ClassNotFoundException {
+
         clientAccountingLogicFacade = ClientAccountingLogicFacade.getInstance();
+
         onTheTopPane = signinPane;
 
         for(JobType jobType : JobType.values())
@@ -100,41 +105,13 @@ public class StartMenuController{
         for(UserType userType : UserType.values())
             userTypeCombo.getItems().add(userType.getTitle());
 
-
     }
 
     @FXML
     private void signInPressed() throws Exception {
         //User user = clientAccountingLogicFacade.login(usernameTextField.getText(), passwordField.getText()).getUser();
-
-        ////////////////////// Create a typical user ////////////////
+        // TODO
         User user = new User();
-        user.setUsername("qizilbash");
-        user.setPassword("pass");
-        user.setEmail("email");
-
-        Permission permission1 = new Permission();
-        permission1.setTitle(PermissionTitles.SYSTEM_CONFIGURATION.getTitleText());
-
-        Permission permission2 = new Permission();
-        permission2.setTitle(PermissionTitles.MODULE_CREATION.getTitleText());
-
-        Permission permission3 = new Permission();
-        permission3.setTitle(PermissionTitles.REQUIREMENT_REGISTRATION.getTitleText());
-
-        Permission permission4 = new Permission();
-        permission4.setTitle(PermissionTitles.NEW_RESOURCE_REGISTRATION.getTitleText());
-
-
-        user.addPermission(permission1);
-        user.addPermission(permission2);
-        user.addPermission(permission3);
-        user.addPermission(permission4);
-
-
-        user.setApproved(true);
-
-        ////////////////////////////////////////////////////////////
 
         if(user != null)
             new MainMenu().start(stage,user);
@@ -164,6 +141,13 @@ public class StartMenuController{
         backGroundImage.setFitHeight(620);
         stage.setHeight(620);
         animatePaneChange(signupPane, true);
+        if(!jobsListView.getItems().contains(JobType.Programming.getTitle())){
+            addSpecialtyButton.setDisable(true);
+            specialtiesListView.setDisable(true);
+        }else {
+            addSpecialtyButton.setDisable(false);
+            specialtiesListView.setDisable(false);
+        }
     }
 
     @FXML
@@ -276,6 +260,7 @@ public class StartMenuController{
                 return;
             }
         }
+        // TODO
 
 /*
         Notification notification = clientAccountingLogicFacade.signup(user, jobs.toArray(new Job[jobs.size()]),
@@ -312,7 +297,7 @@ public class StartMenuController{
 
         specialtiesListView.getItems().removeAll();
 
-        for(String specialty : specialtiesListViewInspecialtyAddition.getItems())
+        for(String specialty : specialtiesListViewInSpecialtyAddition.getItems())
             specialtiesListView.getItems().add(specialty);
     }
 
@@ -321,15 +306,26 @@ public class StartMenuController{
         specialty.setTitle(specialtyTitleTextField.getText());
         specialty.setProficiencyLevel((int)(proficiencyLevelSlider.getValue() / proficiencyLevelSlider.getMax()));
         specialties.add(specialty);
-        specialtiesListViewInspecialtyAddition.getItems().add(specialty.getTitle());
+        specialtiesListViewInSpecialtyAddition.getItems().add(specialty.getTitle());
 
     }
 
     public void backFromJobAdditionPressed(Event event) {
         animatePaneChange(signupPane, false);
-        jobsListView.getItems().removeAll();
+        jobsListView.getItems().removeAll(jobsListView.getItems());
+
         for(String job : jobsListViewInJobAddition.getItems())
             jobsListView.getItems().add(job);
+
+        if(!jobsListView.getItems().contains(JobType.Programming.getTitle())){
+            addSpecialtyButton.setDisable(true);
+            specialtiesListView.setDisable(true);
+            specialtiesListView.getItems().removeAll(specialtiesListView.getItems());
+            specialties.removeAll(specialties);
+        }else {
+            addSpecialtyButton.setDisable(false);
+            specialtiesListView.setDisable(false);
+        }
     }
 
     public void singleJobAddButtonPressed(ActionEvent event) {
@@ -389,18 +385,19 @@ public class StartMenuController{
     }
 
     public void singleJobRemoveButtonPressed(ActionEvent event) {
+        String jobToRemove = null;
         for(String job : jobTitles)
             if(job == jobsListViewInJobAddition.getSelectionModel().getSelectedItem())
-                jobTitles.remove(job);
-
+                jobToRemove = job;
+        jobTitles.remove(jobToRemove);
 
         jobsListViewInJobAddition.getItems().remove(jobsListViewInJobAddition.getSelectionModel().getSelectedItem());
     }
 
     public void singleSpecialtyRemoveButtonPressed(ActionEvent event) {
         for(Specialty specialty : specialties)
-            if(specialty.getTitle() == specialtiesListViewInspecialtyAddition.getSelectionModel().getSelectedItem())
+            if(specialty.getTitle() == specialtiesListViewInSpecialtyAddition.getSelectionModel().getSelectedItem())
                 specialties.remove(specialty.getTitle());
-        specialtiesListViewInspecialtyAddition.getItems().remove(specialtiesListViewInspecialtyAddition.getSelectionModel().getSelectedItem());
+        specialtiesListViewInSpecialtyAddition.getItems().remove(specialtiesListViewInSpecialtyAddition.getSelectionModel().getSelectedItem());
     }
 }

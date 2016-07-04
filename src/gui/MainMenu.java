@@ -20,8 +20,9 @@ public class MainMenu {
 
 
     public void start(Stage stage, User user) throws Exception {
-
+        stage.hide();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/MainMenuView.fxml"));
+
         root = fxmlLoader.load();
 
         MainMenuController mainMenuController = fxmlLoader.<MainMenuController>getController();
@@ -34,6 +35,7 @@ public class MainMenu {
         stage.setHeight(stageH);
         stage.setWidth(stageW);
         stage.setResizable(false);
+        stage.setX(400);
         stage.show();
 
     }

@@ -17,7 +17,12 @@ public enum PermissionTitles {
 
     ESSENTIAL_RESOURCE_ALLOCATION_PREDICTION("Predict Essential Resource Allocation"),
     NEW_RESOURCE_REGISTRATION("Register New Resource"),
-    RESOURCE_ALLOCATION_REGISTRATION("Register Resource Allocation");
+    RESOURCE_ALLOCATION_REGISTRATION("Register Resource Allocation"),
+
+    RESOURCE_ALLOCATION_FLOW_REPORT("Resource Allocation Flow Report"),
+    RESOURCE_REQUIREMENTS_REPORT("Resource Requirements Report"),
+
+    RESOURCES_REPORT("Resources Report");
 
 
     private String titleText;

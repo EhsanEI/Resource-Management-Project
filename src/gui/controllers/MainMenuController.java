@@ -1,7 +1,9 @@
 package gui.controllers;
 
 import businesslogic.accounting.Permission;
+import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.user.User;
+import com.sun.deploy.perf.PerfRollup;
 import gui.StartMenu;
 import gui.controllers.accounting.HelpViewController;
 import gui.controllers.accounting.ProfileEditController;
@@ -24,6 +26,7 @@ import javafx.util.Duration;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 /**
@@ -110,7 +113,46 @@ public class MainMenuController {
     private void initializePermissionMenu() {
         permissionMenu = new Menu("Permissions");
 
-        Permission[] permissions = user.getPermissions();
+
+
+        ////////////////////// Create a typical user ////////////////
+       /* User user = new User();
+        user.setUsername("qizilbash");
+        user.setPassword("pass");
+        user.setEmail("email");*/
+
+        Permission permission1 = new Permission();
+        permission1.setTitle(PermissionTitles.SYSTEM_CONFIGURATION.getTitleText());
+
+        Permission permission2 = new Permission();
+        permission2.setTitle(PermissionTitles.MODULE_CREATION.getTitleText());
+
+        Permission permission3 = new Permission();
+        permission3.setTitle(PermissionTitles.REQUIREMENT_REGISTRATION.getTitleText());
+
+        Permission permission4 = new Permission();
+        permission4.setTitle(PermissionTitles.NEW_RESOURCE_REGISTRATION.getTitleText());
+
+/*
+        user.addPermission(permission1);
+        user.addPermission(permission2);
+        user.addPermission(permission3);
+        user.addPermission(permission4);
+
+        user.setApproved(true);
+*/
+        ////////////////////////////////////////////////////////////
+
+        ArrayList<Permission> permissionsList = new ArrayList<>();
+
+        for(PermissionTitles title : PermissionTitles.values()){
+            Permission permission = new Permission();
+            permission.setTitle(title.getTitleText());
+            permissionsList.add(permission);
+        }
+
+
+        Permission[] permissions = permissionsList.toArray(new Permission[permissionsList.size()]);
 
         for(Permission permission : permissions )
             switch (permission.getTitle()) {
@@ -164,17 +206,17 @@ public class MainMenuController {
                     registerResourceAllocationMenuItem.setOnAction(event -> registerResourceAllocationMenuItemSelected());
                     permissionMenu.getItems().add(registerResourceAllocationMenuItem);
                     break;
-                case "Resource Allocation Flow":
+                case "Resource Allocation Flow Report":
                     MenuItem reportResourceAllocationMenuItem = new MenuItem(permission.getTitle());
                     reportResourceAllocationMenuItem.setOnAction(event -> reportResourceAllocationMenuItemSelected());
                     permissionMenu.getItems().add(reportResourceAllocationMenuItem);
                     break;
-                case "Resource Requirements":
+                case "Resource Requirements Report":
                     MenuItem reportResourcerequirementMenuItem = new MenuItem(permission.getTitle());
                     reportResourcerequirementMenuItem.setOnAction(event -> reportResourcerequirementMenuItemSelected());
                     permissionMenu.getItems().add(reportResourcerequirementMenuItem);
                     break;
-                case "Resources":
+                case "Resources Report":
                     MenuItem reportResourcesMenuItem = new MenuItem(permission.getTitle());
                     reportResourcesMenuItem.setOnAction(event -> reportResourcesMenuItemSelected());
                     permissionMenu.getItems().add(reportResourcesMenuItem);
@@ -279,13 +321,13 @@ public class MainMenuController {
     public void viewProfile() throws IOException {
         Stage viewProfileStage = new Stage();
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/accounting/ViewProfileGui.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/accounting/ViewProfileGui.fxml"));
         Parent warningRoot = fxmlLoader.load();
         ProfileViewController controller = fxmlLoader.<ProfileViewController>getController();
-        //controller.setUser(user);
+        controller.setUser(user);
 
 
-        viewProfileStage.getIcons().add(new Image(getClass().getResource("../../resources/erp.png").toString()));
+        viewProfileStage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
         viewProfileStage.setScene(new Scene(warningRoot,390,190));
         viewProfileStage.setTitle("Profile View");
         viewProfileStage.setResizable(false);
@@ -308,7 +350,7 @@ public class MainMenuController {
 
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
 
-        stage.getIcons().add(new Image(getClass().getResource("../../resources/erp.png").toString()));
+        stage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
 
 
         Optional<ButtonType> result = alert.showAndWait();
@@ -351,7 +393,6 @@ public class MainMenuController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/HelpGui.fxml"));
         Parent warningRoot = fxmlLoader.load();
         HelpViewController controller = fxmlLoader.<HelpViewController>getController();
-
 
 
         viewProfileStage.getIcons().add(new Image(getClass().getResource("../../resources/erp.png").toString()));

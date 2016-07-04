@@ -280,7 +280,7 @@
                   <Font name="Cooper Black" size="12.0" />
                </font>
             </Button>
-            <ListView fx:id="specialtiesListViewInspecialtyAddition" layoutX="182.0" layoutY="240.0" prefHeight="151.0" prefWidth="196.0">
+            <ListView fx:id="specialtiesListViewInSpecialtyAddition" layoutX="182.0" layoutY="240.0" prefHeight="151.0" prefWidth="196.0">
                <effect>
                   <InnerShadow />
                </effect>
