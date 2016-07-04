@@ -80,7 +80,7 @@ public class Main {
             Employee em = EmployeeDAO.createEmployee();
             em.setUsername("ali");
             em.setPassword("123");
-            em.setEmail("e@a.com");
+            em.setEmail("e@animate.com");
             EmployeeDAO.save(em);
         } catch (PersistentException e) {
             e.printStackTrace();
@@ -181,7 +181,7 @@ public class Main {
         Employee em = EmployeeDAO.createEmployee();
         em.setUsername("signed up user");
         em.setPassword("123");
-        em.setEmail("e@a.com");
+        em.setEmail("e@animate.com");
 
         ProjectManagement pm = ProjectManagementDAO.createProjectManagement();
         em.addJob(pm);
@@ -205,7 +205,7 @@ public class Main {
         Employee em2 = EmployeeDAO.createEmployee();
         em2.setUsername("user 2");
         em2.setPassword("123");
-        em2.setEmail("e2@a.com");
+        em2.setEmail("e2@animate.com");
 
         ResourceManagement rm = ResourceManagementDAO.createResourceManagement();
         em2.addJob(rm);

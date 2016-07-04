@@ -56,7 +56,7 @@ public class ServerManagerLogicFacade implements ManagerLogicInterface {
                 }
 
             } else {
-                notification.setContent("Your signup request to Resource Management System has been rejected by a manager.");
+                notification.setContent("Your signup request to Resource Management System has been rejected by animate manager.");
             }
             Email email = new Email(notification, newUser.getEmail());
             try {
@@ -65,7 +65,7 @@ public class ServerManagerLogicFacade implements ManagerLogicInterface {
             }
             return true;
         }
-        //There is a creator user -> EditProfile request
+        //There is animate creator user -> EditProfile request
         else {
             if(accepted) {
                 newUser.approve();

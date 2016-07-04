@@ -84,17 +84,7 @@ public class SignupViewController {
 
     }
 
-    @FXML private void backFromSignUpButtonPressed(ActionEvent event) throws IOException {
-        stage.hide();
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/accounting/LoginView.fxml"));
-        Parent root = fxmlLoader.load();
-        LoginViewController loginViewController = fxmlLoader.<LoginViewController>getController();
-        loginViewController.setStage(stage);
-        stage.setScene(new Scene(root, 400, 310));
-        stage.setWidth(400);
-        stage.setHeight(310);
-        stage.show();
-    }
+
 
     @FXML private void registerButtonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
         User user = null;
@@ -113,7 +103,7 @@ public class SignupViewController {
             user = new MiddleLevelManager();
         }else{
             PasswordConfirmationTextField.getScene().getRoot().setDisable(true);
-            alert.setContentText("Please select a user type.");
+            alert.setContentText("Please select animate user type.");
             alert.setTitle("User type is empty!");
             Optional<ButtonType> result = alert.showAndWait();
 
@@ -203,7 +193,7 @@ public class SignupViewController {
         if (result.get() == ButtonType.OK)
             usernameTextField.getScene().getRoot().setDisable(false);
 
-        backFromSignUpButtonPressed(null);
+        backFromSignupButtonPressed(null);
 
 
     }
@@ -322,4 +312,15 @@ public class SignupViewController {
         timeline.setOnFinished(event -> onTheTopPane = anchorPane);
     }
 
+    @FXML private void backFromSignupButtonPressed(ActionEvent event) throws IOException {
+        stage.hide();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/accounting/LoginView.fxml"));
+        Parent root = fxmlLoader.load();
+        LoginViewController loginViewController = fxmlLoader.<LoginViewController>getController();
+        loginViewController.setStage(stage);
+        stage.setScene(new Scene(root, 400, 310));
+        stage.setWidth(400);
+        stage.setHeight(310);
+        stage.show();
+    }
 }

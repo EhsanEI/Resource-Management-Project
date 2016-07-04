@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="resourceFlowReportPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="resourceFlowReportPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.resourcemanager.FlowReportController">
    <children>
       <Button fx:id="getFlowReportButton" layoutX="633.0" layoutY="540.0" mnemonicParsing="false" onAction="#getFlowReportPressed" prefHeight="22.0" prefWidth="107.0" text="Get Report">
          <effect>
@@ -16,7 +16,7 @@
             <Font name="Cooper Black" size="12.0" />
          </font>
       </Button>
-      <ComboBox fx:id="typesCombo1" layoutX="250.0" layoutY="75.0" prefHeight="25.0" prefWidth="449.0" />
+      <ComboBox fx:id="resourceTypeCombo" layoutX="250.0" layoutY="75.0" prefHeight="25.0" prefWidth="449.0" />
       <Label fx:id="usernameLabel11" layoutX="40.0" layoutY="55.0" prefHeight="59.0" prefWidth="176.0" text="Type:">
          <effect>
             <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
@@ -49,7 +49,7 @@
             <Font name="Cooper Black" size="20.0" />
          </font>
       </Label>
-      <ComboBox fx:id="typesCombo11" layoutX="250.0" layoutY="132.0" prefHeight="25.0" prefWidth="449.0" />
+      <ComboBox fx:id="resourceNameCombo" layoutX="250.0" layoutY="132.0" prefHeight="25.0" prefWidth="449.0" />
       <Label fx:id="usernameLabel1111" layoutX="407.0" layoutY="175.0" prefHeight="59.0" prefWidth="190.0" text="To:">
          <effect>
             <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
@@ -58,12 +58,13 @@
             <Font name="Cooper Black" size="20.0" />
          </font>
       </Label>
-      <DatePicker layoutX="201.0" layoutY="192.0" />
-      <DatePicker layoutX="525.0" layoutY="192.0" />
-      <TableView layoutX="35.0" layoutY="250.0" prefHeight="250.0" prefWidth="666.0">
+      <DatePicker fx:id="fromDate" layoutX="201.0" layoutY="192.0" />
+      <DatePicker fx:id="toDate" layoutX="525.0" layoutY="192.0" />
+      <TableView fx:id="resultTable" layoutX="35.0" layoutY="250.0" prefHeight="272.0" prefWidth="666.0">
          <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
+            <TableColumn prefWidth="187.0" text="C1" />
+            <TableColumn prefWidth="247.0" text="C2" />
+            <TableColumn prefWidth="230.0" text="C2" />
          </columns>
       </TableView>
    </children>
