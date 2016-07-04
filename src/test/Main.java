@@ -36,7 +36,7 @@ import java.util.Set;
 public class Main {
     public static void main(String[] args) throws PersistentException {
         PersistentTransaction t = businesslogic.accounting.user.OODPersistentManager.instance().getSession().beginTransaction();
-
+        
 //        signup();
 
 //        registerProject();
@@ -47,7 +47,7 @@ public class Main {
 
 //        registerResourceAllocation();
 
-        reportFlowResourceAllocations();
+//        reportFlowResourceAllocations();
 
 //        assignModules();
 
@@ -61,18 +61,18 @@ public class Main {
     }
 
     public static void test1() {
-        Date d = DateDAO.createDate();
-        d.setDay(0);
-        d.setHour(0);
-        d.setMinute(0);
-        d.setMonth(0);
-        d.setSecond(0);
-        d.setYear(0);
         try {
-            DateDAO.save(d);
+            User user = UserDAO.getUserByORMID(3);
+            for(Job j:user.getJobs()) {
+                System.out.println(j.getInfo());
+            }
+            for(Permission p:user.getPermissions()) {
+                System.out.println(p.getTitle());
+            }
         } catch (PersistentException e) {
             e.printStackTrace();
         }
+
     }
 
     public static void test2() {
@@ -199,8 +199,8 @@ public class Main {
         sp.setProficiencyLevel(3);
         pr.addSpecialty(sp);
 
-//        em.addPermission(permission);
-//        em.addPermission(permission2);
+        em.addPermission(permission);
+        em.addPermission(permission2);
 
         Employee em2 = EmployeeDAO.createEmployee();
         em2.setUsername("user 2");
@@ -210,26 +210,26 @@ public class Main {
         ResourceManagement rm = ResourceManagementDAO.createResourceManagement();
         em2.addJob(rm);
 
-//        try {
-//
-//            for(Object upObject: em.getORM_userPermissions()) {
-//                UserPermission up = (UserPermission) upObject;
-//                UserPermissionDAO.save(up);
-//            }
-//
-//            for(Object upObject: permission.getORM_userPermissions()) {
-//                UserPermission up = (UserPermission) upObject;
-//                System.out.println(up.getID());
-//            }
-//
-//            PermissionDAO.save(permission);
-//            PermissionDAO.save(permission2);
-//            PermissionDAO.save(permission3);
-//
-//
-//        } catch (PersistentException e) {
-//            e.printStackTrace();
-//        }
+        try {
+
+            for(Object upObject: em.getORM_UserPermissions()) {
+                UserPermission up = (UserPermission) upObject;
+                UserPermissionDAO.save(up);
+            }
+
+            for(Object upObject: permission.getORM_UserPermissions()) {
+                UserPermission up = (UserPermission) upObject;
+                System.out.println(up.getID());
+            }
+
+            PermissionDAO.save(permission);
+            PermissionDAO.save(permission2);
+            PermissionDAO.save(permission3);
+
+
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
 
         Job[] jobs = {pm, pr};
         Specialty[] specialties = {sp};

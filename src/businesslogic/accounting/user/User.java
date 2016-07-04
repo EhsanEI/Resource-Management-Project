@@ -13,6 +13,8 @@
  */
 package businesslogic.accounting.user;
 
+import businesslogic.accounting.Permission;
+import businesslogic.accounting.PermissionDAO;
 import businesslogic.accounting.job.*;
 import businesslogic.utility.Tree;
 import network.Email;
@@ -164,43 +166,14 @@ public class User implements Serializable {
 	
 	public businesslogic.accounting.job.Job[] getJobs() {
 		try {
-			//A dirty way for getting jobs. Other ways result in errors.
-			//First get user_jobs of this user.
-			Set user_jobs = getORM_UserJobs();
-
-			//Then get all jobs in db
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
-			List<Job> allJobsList = session.createQuery("SELECT job FROM Job AS job").list();
-			Job[] allJobs = allJobsList.toArray(new Job[allJobsList.size()]);
+			PersistentSession session = OODPersistentManager.instance().getSession();
+			List<Integer> jobIDs = session
+					.createSQLQuery("SELECT JobID FROM UserJob WHERE UserID = "+ getID()).list();
 			ArrayList<Job> result = new ArrayList<>();
-
-			//Then find jobs that have the same user_job as the user.
-			for(Job job:allJobs) {
-				boolean should_add = false;
-
-				for(Object uj_object: job.getORM_UserJobs()) {
-					UserJob uj = (UserJob) uj_object;
-
-					for(Object user_uj_object:user_jobs) {
-						UserJob user_uj = (UserJob) user_uj_object;
-						if(uj.getID() == user_uj.getID()) {
-							should_add = true;
-							break;
-						}
-					}
-
-					if(should_add) {
-						break;
-					}
-				}
-
-				if(should_add) {
-					result.add(job);
-				}
+			for(int jID:jobIDs) {
+				result.add(JobDAO.getJobByORMID(jID));
 			}
-
-			Job[] result_arr = result.toArray(new Job[result.size()]);
-			return result_arr;
+			return result.toArray(new Job[result.size()]);
 		}
 		catch(PersistentException ex) {
 			ex.printStackTrace();
@@ -223,8 +196,19 @@ public class User implements Serializable {
 	}
 	
 	public businesslogic.accounting.Permission[] getPermissions() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		try {
+			PersistentSession session = OODPersistentManager.instance().getSession();
+			List<Integer> permissionIDs = session
+					.createSQLQuery("SELECT PermissionID FROM UserPermission WHERE UserID = "+ getID()).list();
+			ArrayList<Permission> result = new ArrayList<>();
+			for(int pID:permissionIDs) {
+				result.add(PermissionDAO.getPermissionByORMID(pID));
+			}
+			return result.toArray(new Permission[result.size()]);
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+		return new Permission[0];
 	}
 	
 	public void addPermission(businesslogic.accounting.Permission permission) {

@@ -125,16 +125,6 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 		setEndDate(endDate);
 		setLinesOfCode(linesOfCode);
 	}
-	
-	public ModuleState getState() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public void setState(ModuleState state) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
 
 	public String getStartDate() {
 		return startDate;
@@ -151,14 +141,9 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 	public void setEndDate(String endDate) {
 		this.endDate = endDate;
 	}
-
-	public void registerCreation(String description, String startDate, String endDate) {
-
-	}
 	
-	public void registerChange(String description, businesslogic.utility.Date startDate, businesslogic.utility.Date endDate) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+	public void addModuleChange(ModuleChange change) {
+		getORM_ModuleChanges().add(change);
 	}
 
 	public void addSpecialty(Specialty specialty) {
