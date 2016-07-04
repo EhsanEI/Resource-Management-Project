@@ -66,7 +66,7 @@ public class Email {
 		this.address = address;
 	}
 
-	public void send() {
+	public void send() throws MessagingException {
 		String username = "resourcemanagementproject@gmail.com";
 		String password = "resresres";
 		Properties props = new Properties();
@@ -85,18 +85,13 @@ public class Email {
 		String subject = "Notification from resource management system";
 
 		Message msg = new MimeMessage(session);
-		try {
-			msg.setFrom(new InternetAddress(username));
-			msg.setRecipient(Message.RecipientType.TO, new InternetAddress(getAddress()));
-			msg.setSubject(subject);
-			msg.setText(getContent());
+		msg.setFrom(new InternetAddress(username));
+		msg.setRecipient(Message.RecipientType.TO, new InternetAddress(getAddress()));
+		msg.setSubject(subject);
+		msg.setText(getContent());
 
-			// Send the message.
-			Transport.send(msg);
-		} catch (MessagingException e) {
-			// Error.
-			e.printStackTrace();
-		}
+		// Send the message.
+		Transport.send(msg);
 	}
 	
 	public String toString() {

@@ -23,6 +23,7 @@ import network.Email;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
+import javax.mail.MessagingException;
 import java.lang.System;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -449,7 +450,11 @@ public class Main {
 
     public static void sendEmail() {
         Email email = new Email("Hello!", "ehsan.silverman@gmail.com");
-        email.send();
+        try {
+            email.send();
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
     }
 
 }
