@@ -15,6 +15,7 @@ package businesslogic.accounting.job;
 
 import businesslogic.distribution.resource.Module;
 import businesslogic.distribution.resource.ModuleChange;
+import businesslogic.utility.Tree;
 
 import java.util.Set;
 
@@ -105,7 +106,16 @@ public class Programming extends businesslogic.accounting.job.Job {
 		Set<ModuleChange> castedChanges = getORM_ModuleChanges();
 		return castedChanges.toArray(new ModuleChange[castedChanges.size()]);
 	}
-	
+
+	@Override
+	public Tree<String> getInfo() {
+		Tree<String> info = new Tree<>(getClass().toString());
+		for(Specialty specialty: (Set<Specialty>) getORM_Specialties()) {
+			info.addChild(new Tree<>(specialty.getTitle()));
+		}
+		return info;
+	}
+
 	public String toString() {
 		return super.toString();
 	}

@@ -213,8 +213,7 @@ public class User implements Serializable {
 	}
 	
 	public void deleteJob(businesslogic.accounting.job.Job job) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		getORM_UserJobs().remove(job);
 	}
 	
 	public void approve() {
@@ -246,8 +245,11 @@ public class User implements Serializable {
 	}
 
 	public Tree<String> getJobInfo() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		Tree<String> info = new Tree<>("User");
+		for(Job job: getJobs()) {
+			info.addChild(job.getInfo());
+		}
+		return info;
 	}
 	
 	public String toString() {
