@@ -4,9 +4,10 @@ package businesslogic.distribution.resource;
  * Created by qizilbash on 7/4/2016.
  */
 public enum ResourceType {
-    PYSICAL("Pysical Resource"),
+    PHYSICAL("Physical Resource"),
     FINANCIAL("Financial Resource"),
-    HUMAN("Human Resource");
+    HUMAN("Human Resource"),
+    INFORMATION("Human Resource");
 
     private String title;
 

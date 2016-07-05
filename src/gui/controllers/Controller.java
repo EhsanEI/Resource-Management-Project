@@ -10,6 +10,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
+import java.io.IOException;
+
 /**
  * Created by qizilbash on 7/4/2016.
  */
@@ -22,7 +24,7 @@ public class Controller {
     public AnchorPane onTheTopPane;
     public AnchorPane empptyPane;
 
-    public void init(Stage stage, User user){
+    public void init(Stage stage, User user) throws IOException {
         setStage(stage);
         setUser(user);
         empptyPane = new AnchorPane();
@@ -33,7 +35,7 @@ public class Controller {
     public void animate(){
     }
 
-    public void specialInit(){
+    public void specialInit() throws IOException {
     }
 
     public void setUser(User user){

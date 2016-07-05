@@ -8,13 +8,31 @@ import businesslogic.distribution.resource.*;
 import businesslogic.distribution.resource.System;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
+import network.ClientNetwork;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
  * Created by Esi on 6/22/2016.
  */
 public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInterface{
+
+    private static ClientProjectManagerLogicFacade instance;
+
+    private static ClientNetwork clientNetwork;
+
+    private ClientProjectManagerLogicFacade() {
+    }
+
+    public static ClientProjectManagerLogicFacade getInstance() throws IOException {
+        if(instance == null) {
+            instance = new ClientProjectManagerLogicFacade();
+            clientNetwork = ClientNetwork.getInstance();
+        }
+        return instance;
+    }
+
     @Override
     public Notification assignModules(Map<HumanResource, Module> assignments) {
         return null;

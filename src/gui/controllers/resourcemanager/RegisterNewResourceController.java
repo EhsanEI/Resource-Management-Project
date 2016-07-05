@@ -17,7 +17,8 @@ public class RegisterNewResourceController extends Controller{
 
     @FXML private void initialize() {
         for(ResourceType type : ResourceType.values())
-            resourceTypeCombo.getItems().add(type.getTitle());
+            if(!type.equals(ResourceType.INFORMATION))
+                resourceTypeCombo.getItems().add(type.getTitle());
     }
 
 

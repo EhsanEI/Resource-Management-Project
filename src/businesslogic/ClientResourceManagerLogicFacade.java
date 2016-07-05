@@ -21,6 +21,7 @@ import java.io.IOException;
 public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInterface{
 
     private static ClientResourceManagerLogicFacade instance;
+
     private static ClientNetwork clientNetwork;
 
     private ClientResourceManagerLogicFacade() {

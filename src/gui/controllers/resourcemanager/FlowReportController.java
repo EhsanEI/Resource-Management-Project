@@ -37,6 +37,7 @@ public class FlowReportController extends Controller {
     public void specialInit(){
         for (ResourceType type : ResourceType.values())
             resourceTypeCombo.getItems().add(type.getTitle());
+
         resourceTypeCombo.setOnAction(event -> {
             try {
                 fillTheResourceNames();

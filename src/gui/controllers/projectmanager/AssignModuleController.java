@@ -1,5 +1,7 @@
 package gui.controllers.projectmanager;
 
+
+import businesslogic.distribution.requirement.RequirementPriorityEnum;
 import gui.Direction;
 import gui.controllers.Controller;
 import javafx.event.ActionEvent;
@@ -13,6 +15,10 @@ public class AssignModuleController extends Controller {
 
 
     @FXML private AnchorPane assignPane;
+
+    public void init(){
+
+    }
 
     public void animate(){
         animatePaneChange(assignPane, Direction.RIGHT);
