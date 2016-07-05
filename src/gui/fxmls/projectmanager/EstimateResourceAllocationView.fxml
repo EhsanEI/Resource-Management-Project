@@ -7,7 +7,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.projectmanager.EstimateResourceAllocationController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.projectmanager.EstimateResourceAllocationController">
    <children>
       <AnchorPane fx:id="estimateResourceAllocationPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
          <children>
@@ -43,12 +43,12 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="backupPeriod2111111" layoutX="422.0" layoutY="132.0" prefHeight="25.0" prefWidth="314.0">
+            <TextField fx:id="budgetTextField" layoutX="422.0" layoutY="132.0" prefHeight="25.0" prefWidth="314.0">
                <effect>
                   <InnerShadow />
                </effect>
             </TextField>
-            <DatePicker layoutX="183.0" layoutY="72.0" />
+            <DatePicker fx:id="startDate" layoutX="183.0" layoutY="72.0" />
             <Label fx:id="usernameLabel111112" layoutX="422.0" layoutY="55.0" prefHeight="59.0" prefWidth="119.0" text="End Date:">
                <effect>
                   <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
@@ -57,9 +57,12 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
-            <DatePicker layoutX="562.0" layoutY="72.0" />
-            <ListView layoutX="192.0" layoutY="252.0" prefHeight="200.0" prefWidth="544.0" />
-            <Label fx:id="usernameLabel1111111" layoutX="40.0" layoutY="175.0" prefHeight="59.0" prefWidth="182.0" text="Technologies:">
+            <DatePicker fx:id="endDate" layoutX="562.0" layoutY="72.0" />
+            <ListView fx:id="technologiesListView" layoutX="192.0" layoutY="265.0" prefHeight="249.0" prefWidth="544.0">
+               <effect>
+                  <InnerShadow />
+               </effect></ListView>
+            <Label fx:id="usernameLabel1111111" layoutX="40.0" layoutY="175.0" prefHeight="59.0" prefWidth="182.0" text="Technology:">
                <effect>
                   <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
                </effect>
@@ -67,11 +70,19 @@
                   <Font name="Cooper Black" size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="backupPeriod21111111" layoutX="192.0" layoutY="192.0" prefHeight="25.0" prefWidth="544.0">
+            <TextField fx:id="technologyTextField" layoutX="192.0" layoutY="192.0" prefHeight="25.0" prefWidth="544.0">
                <effect>
                   <InnerShadow />
                </effect>
             </TextField>
+            <Label fx:id="usernameLabel11111111" layoutX="40.0" layoutY="235.0" prefHeight="59.0" prefWidth="155.0" text="Technologies:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="estimationPane" layoutX="1000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
