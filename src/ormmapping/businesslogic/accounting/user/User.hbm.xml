@@ -25,6 +25,10 @@ License Type: Evaluation
 			<key column="UserID" not-null="false"/>
 			<one-to-many class="businesslogic.accounting.job.UserJob"/>
 		</set>
+		<set name="ORM_UserPermissions" lazy="true" cascade="save-update,lock" inverse="false">
+			<key column="UserID" not-null="false"/>
+			<one-to-many class="businesslogic.accounting.job.UserPermission"/>
+		</set>
 		<subclass name="businesslogic.accounting.user.Admin" discriminator-value="Admin" lazy="false">
 			<set name="ORM_SystemConfigurations" lazy="true" cascade="save-update,lock" inverse="false">
 				<key column="UserID" not-null="false"/>

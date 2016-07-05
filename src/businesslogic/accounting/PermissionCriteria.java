@@ -21,11 +21,14 @@ import org.orm.criteria.*;
 public class PermissionCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
 	public final StringExpression title;
+	public final CollectionExpression userPermissions;
+	
 	
 	public PermissionCriteria(Criteria criteria) {
 		super(criteria);
 		ID = new IntegerExpression("ID", this);
 		title = new StringExpression("title", this);
+		userPermissions = new CollectionExpression("ORM_UserPermissions", this);
 	}
 	
 	public PermissionCriteria(PersistentSession session) {
@@ -34,6 +37,10 @@ public class PermissionCriteria extends AbstractORMCriteria {
 	
 	public PermissionCriteria() throws PersistentException {
 		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
+	}
+	
+	public businesslogic.accounting.job.UserPermissionCriteria createUserPermissionsCriteria() {
+		return new businesslogic.accounting.job.UserPermissionCriteria(createCriteria("ORM_UserPermissions"));
 	}
 	
 	public Permission uniquePermission() {

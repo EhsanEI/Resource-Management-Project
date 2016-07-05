@@ -28,6 +28,7 @@ public class UserDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final BooleanExpression approved;
 	public final CollectionExpression emails;
 	public final CollectionExpression userJobs;
+	public final CollectionExpression userPermissions;
 	
 	public UserDetachedCriteria() {
 		super(businesslogic.accounting.user.User.class, businesslogic.accounting.user.UserCriteria.class);
@@ -40,6 +41,7 @@ public class UserDetachedCriteria extends AbstractORMDetachedCriteria {
 		approved = new BooleanExpression("approved", this.getDetachedCriteria());
 		emails = new CollectionExpression("ORM_Emails", this.getDetachedCriteria());
 		userJobs = new CollectionExpression("ORM_UserJobs", this.getDetachedCriteria());
+		userPermissions = new CollectionExpression("ORM_UserPermissions", this.getDetachedCriteria());
 	}
 	
 	public UserDetachedCriteria(DetachedCriteria aDetachedCriteria) {
@@ -53,6 +55,7 @@ public class UserDetachedCriteria extends AbstractORMDetachedCriteria {
 		approved = new BooleanExpression("approved", this.getDetachedCriteria());
 		emails = new CollectionExpression("ORM_Emails", this.getDetachedCriteria());
 		userJobs = new CollectionExpression("ORM_UserJobs", this.getDetachedCriteria());
+		userPermissions = new CollectionExpression("ORM_UserPermissions", this.getDetachedCriteria());
 	}
 	
 	public businesslogic.accounting.user.UserDetachedCriteria createUserCriteria() {
@@ -65,6 +68,10 @@ public class UserDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public businesslogic.accounting.job.UserJobDetachedCriteria createUserJobsCriteria() {
 		return new businesslogic.accounting.job.UserJobDetachedCriteria(createCriteria("ORM_UserJobs"));
+	}
+	
+	public businesslogic.accounting.job.UserJobDetachedCriteria createUserPermissionsCriteria() {
+		return new businesslogic.accounting.job.UserJobDetachedCriteria(createCriteria("ORM_UserPermissions"));
 	}
 	
 	public User uniqueUser(PersistentSession session) {
