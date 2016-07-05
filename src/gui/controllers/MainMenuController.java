@@ -1,6 +1,5 @@
 package gui.controllers;
 
-import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.accounting.Permission;
 import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.user.User;
@@ -28,6 +27,7 @@ public class MainMenuController {
     private Stage stage;
     private Alert alert;
     private FXMLLoader fxmlLoader;
+    private AnchorPane root;
 
     @FXML private AnchorPane mainPane;
 
@@ -47,16 +47,15 @@ public class MainMenuController {
 
 
     //For Test
-    ArrayList<Permission> permissionsList = new ArrayList<>();
+    private ArrayList<Permission> permissionsList = new ArrayList<>();
 
-    ViewProfileViewController viewProfileViewController;
-
-
+    private ViewProfileViewController viewProfileViewController;
 
 
     public void setUser(User user) {
         this.user = user;
     }
+
 
     public void initializeView() {
         initializeProfileMenu();
@@ -69,6 +68,7 @@ public class MainMenuController {
         stage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
 
     }
+
 
     private void initializeReportMenu() {
         //TODO
@@ -111,6 +111,7 @@ public class MainMenuController {
 
     }
 
+
     private void initializePermissionMenu() {
         permissionMenu = new Menu("Permissions");
 
@@ -141,7 +142,7 @@ public class MainMenuController {
                     break;
                 case "Register Module Maintenance":
                     MenuItem maintaneModuleMenuItem = new MenuItem(permission.getTitle());
-                    maintaneModuleMenuItem.setOnAction(event -> maintaneModuleMenuItemSelected());
+                    maintaneModuleMenuItem.setOnAction(event -> maintainModuleMenuItemSelected());
                     permissionMenu.getItems().add(maintaneModuleMenuItem);
                     break;
                 case "Register Requirement":
@@ -176,7 +177,13 @@ public class MainMenuController {
                     break;
                 case "Register Resource Allocation":
                     MenuItem registerResourceAllocationMenuItem = new MenuItem(permission.getTitle());
-                    registerResourceAllocationMenuItem.setOnAction(event -> registerResourceAllocationMenuItemSelected());
+                    registerResourceAllocationMenuItem.setOnAction(event -> {
+                        try {
+                            registerResourceAllocationMenuItemSelected();
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
                     permissionMenu.getItems().add(registerResourceAllocationMenuItem);
                     break;
 
@@ -185,6 +192,7 @@ public class MainMenuController {
         menuBar.getMenus().add(permissionMenu);
 
     }
+
 
     private void reportResourcesMenuItemSelected() {
 
@@ -198,8 +206,17 @@ public class MainMenuController {
 
     }
 
-    private void registerResourceAllocationMenuItemSelected() {
 
+    private void registerResourceAllocationMenuItemSelected() throws IOException {
+        fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/resourcemanager/.fxml"));
+        root = fxmlLoader.load();
+
+        viewProfileViewController = fxmlLoader.<ViewProfileViewController>getController();
+        viewProfileViewController.setStage(stage);
+        viewProfileViewController.setUser(user);
+
+        mainPane.getChildren().removeAll(mainPane.getChildren());
+        mainPane.getChildren().add(root);
     }
 
     private void registerNewResourceMenuItemSelected() {
@@ -226,7 +243,7 @@ public class MainMenuController {
 
     }
 
-    private void maintaneModuleMenuItemSelected() {
+    private void maintainModuleMenuItemSelected() {
 
     }
 
@@ -237,6 +254,7 @@ public class MainMenuController {
     private void configureSystemSelected() {
 
     }
+
 
     private void initializeHelpMenu() {
         helpMenu = new Menu("Help");
@@ -258,6 +276,7 @@ public class MainMenuController {
         mainPane.getChildren().removeAll(mainPane.getChildren());
         mainPane.getChildren().add(root);
     }
+
 
     private void initializeProfileMenu() {
         profileMenu = new Menu("Profile");
@@ -324,11 +343,13 @@ public class MainMenuController {
 
     private void viewProfile() throws IOException {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/accounting/ViewProfileView.fxml"));
-        AnchorPane root = fxmlLoader.load();
+        fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/accounting/ViewProfileView.fxml"));
+        root = fxmlLoader.load();
+
         viewProfileViewController = fxmlLoader.<ViewProfileViewController>getController();
         viewProfileViewController.setStage(stage);
         viewProfileViewController.setUser(user);
+
         mainPane.getChildren().removeAll(mainPane.getChildren());
         mainPane.getChildren().add(root);
     }
