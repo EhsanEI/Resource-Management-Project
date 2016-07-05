@@ -9,7 +9,7 @@
 
 <AnchorPane fx:id="profileViewPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.accounting.ViewProfileViewController">
    <children>
-      <Label fx:id="usernameLabel13" layoutX="40.0" layoutY="70.0" prefHeight="59.0" prefWidth="237.0" text="Under develope">
+      <Label fx:id="usernameLabel13" layoutX="40.0" layoutY="70.0" prefHeight="59.0" prefWidth="237.0" text="Username:">
          <effect>
             <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
          </effect>
@@ -25,6 +25,42 @@
             <Font name="Cooper Black" size="20.0" />
          </font>
       </Label>
-      <Button fx:id="button" layoutX="251.0" layoutY="219.0" mnemonicParsing="false" onAction="#buttonPresed" text="Button" />
+      <Label fx:id="usernameLabel131" layoutX="40.0" layoutY="130.0" prefHeight="59.0" prefWidth="237.0" text="E-mail:">
+         <effect>
+            <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+         </effect>
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="usernameLabel" layoutX="277.0" layoutY="70.0" prefHeight="59.0" prefWidth="314.0" text="username">
+         <effect>
+            <InnerShadow choke="0.29" color="#041340" height="117.25" radius="58.4625" width="118.6" />
+         </effect>
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="emailLabel" layoutX="277.0" layoutY="130.0" prefHeight="59.0" prefWidth="314.0" text="email">
+         <effect>
+            <InnerShadow choke="0.29" color="#041340" height="117.25" radius="58.4625" width="118.6" />
+         </effect>
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Label>
+      <Label fx:id="usernameLabel1311" layoutX="40.0" layoutY="190.0" prefHeight="59.0" prefWidth="237.0" text="Jobs Information:">
+         <effect>
+            <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+         </effect>
+         <font>
+            <Font name="Cooper Black" size="20.0" />
+         </font>
+      </Label>
+      <TreeView fx:id="jobsInfoTreeView" layoutX="276.0" layoutY="220.0" prefHeight="328.0" prefWidth="444.0">
+         <effect>
+            <InnerShadow />
+         </effect>
+      </TreeView>
    </children>
 </AnchorPane>

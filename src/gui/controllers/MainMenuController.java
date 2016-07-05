@@ -11,7 +11,6 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import org.jpedal.exception.PdfException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -264,17 +263,6 @@ public class MainMenuController {
     private void initializeHelpMenu() {
         helpMenu = new Menu("Help");
 
-        about = new MenuItem("User Manual");
-        helpMenu.getItems().add(about);
-        about.setOnAction(event -> {
-            try {
-                showUserManual();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (PdfException e) {
-                e.printStackTrace();
-            }
-        });
 
         about = new MenuItem("About");
         helpMenu.getItems().add(about);
@@ -287,19 +275,9 @@ public class MainMenuController {
         });
 
 
-
-
         menuBar.getMenus().add(helpMenu);
     }
 
-    private void showUserManual() throws IOException, PdfException {
-        fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/UserManualView.fxml"));
-        Pane root = fxmlLoader.load();
-        fxmlLoader.<UserManualController>getController().animate();
-        fxmlLoader.<UserManualController>getController().init();
-        mainPane.getChildren().removeAll(mainPane.getChildren());
-        mainPane.getChildren().add(root);
-    }
 
     private void showAbout() throws IOException {
         fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/HelpView.fxml"));

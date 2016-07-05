@@ -1,6 +1,9 @@
 package gui.controllers.accounting;
 
 import businesslogic.ClientAccountingLogicFacade;
+import businesslogic.accounting.ResourceManagement;
+import businesslogic.accounting.job.Job;
+import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.user.User;
 import gui.MainMenu;
 import javafx.event.ActionEvent;
@@ -63,6 +66,11 @@ public class LoginViewController {
         //User user = clientAccountingLogicFacade.login(usernameTextField.getText(), passwordField.getText()).getUser();
         // TODO
         User user = new User();
+        user.setUsername("qizilbash");
+        user.setEmail("gmail@qizilbash.com");
+        user.addJob(new ResourceManagement());
+        user.addJob(new ProjectManagement());
+        user.setPassword("12345");
 
         if(user != null)
             new MainMenu().start(stage,user);

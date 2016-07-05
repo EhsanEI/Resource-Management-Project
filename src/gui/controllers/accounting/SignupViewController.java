@@ -80,7 +80,8 @@ public class SignupViewController {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(getClass().getResource("../../resources/erp.png").toString()));
 
-
+        addSpecialtyButton.setDisable(true);
+        specialtiesListView.setDisable(true);
 
     }
 
@@ -206,12 +207,14 @@ public class SignupViewController {
 
         for(String specialty : specialtiesListViewInSpecialtyAddition.getItems())
             specialtiesListView.getItems().add(specialty);
+
+
     }
 
     @FXML private void singleSpecialtyAddButtonPressed(ActionEvent event) {
         Specialty specialty = SpecialtyDAO.createSpecialty();
         specialty.setTitle(specialtyTitleTextField.getText());
-        specialty.setProficiencyLevel((int)(proficiencyLevelSlider.getValue() / proficiencyLevelSlider.getMax()));
+        specialty.setProficiencyLevel((int)(proficiencyLevelSlider.getValue() / proficiencyLevelSlider.getMax()*10));
         specialties.add(specialty);
         specialtiesListViewInSpecialtyAddition.getItems().add(specialty.getTitle());
 

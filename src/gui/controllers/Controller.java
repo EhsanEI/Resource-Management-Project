@@ -34,7 +34,6 @@ public class Controller {
     }
 
     public void specialInit(){
-
     }
 
     public void setUser(User user){
