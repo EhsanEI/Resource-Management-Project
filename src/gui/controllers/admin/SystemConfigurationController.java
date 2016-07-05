@@ -1,8 +1,12 @@
 package gui.controllers.admin;
 
+import businesslogic.ClientAdminLogicFacade;
+import businesslogic.support.SystemConfiguration;
 import gui.controllers.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+
+import java.io.IOException;
 
 
 /**
@@ -10,7 +14,8 @@ import javafx.fxml.FXML;
  */
 public class SystemConfigurationController extends Controller {
 
-    @FXML private void configure(ActionEvent event) {
-
+    //TODO
+    @FXML private void configure(ActionEvent event) throws IOException, ClassNotFoundException {
+        ClientAdminLogicFacade.getInstance().configureSystem(new SystemConfiguration());
     }
 }

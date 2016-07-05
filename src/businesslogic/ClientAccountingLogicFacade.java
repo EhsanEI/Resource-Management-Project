@@ -41,7 +41,6 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
         params.add(username);
         params.add(password);
         return (AuthenticationResult)clientNetwork.sendRequest(new NetworkRequest("login", params)).getResponse();
-
     }
 
     @Override
