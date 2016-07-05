@@ -35,7 +35,7 @@ public class Controller {
     public void animate(){
     }
 
-    public void specialInit() throws IOException {
+    public void specialInit() throws IOException, ClassNotFoundException {
     }
 
     public void setUser(User user){

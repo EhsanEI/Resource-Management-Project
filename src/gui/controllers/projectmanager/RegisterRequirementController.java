@@ -98,6 +98,7 @@ public class RegisterRequirementController extends Controller {
         Date eDate = new Date(endDatePicker.getValue().toEpochDay());
         businesslogic.utility.Date startDate = new businesslogic.utility.Date(sDate);
         businesslogic.utility.Date endDate = new businesslogic.utility.Date(eDate);
+
         requirement.setStartDate(startDate.toString());
         requirement.setEndDate(endDate.toString());
         requirement.setQuantity(Integer.parseInt(quantityTextField.getText()));
