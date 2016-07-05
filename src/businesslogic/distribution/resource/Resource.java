@@ -13,11 +13,21 @@
  */
 package businesslogic.distribution.resource;
 
+import businesslogic.distribution.Allocation;
+import businesslogic.distribution.Allocation_DAO;
 import businesslogic.distribution.ResourceAllocation;
+import businesslogic.distribution.requirement.Requirement;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Resource {
 	public Resource() {
-		setResourceState(ResourceStateEnum.UNALLOCATED.ordinal());
 	}
 	
 	private java.util.Set this_getSet (int key) {
@@ -37,8 +47,6 @@ public class Resource {
 	};
 	
 	private int ID;
-	
-	private int resourceState;
 	
 	private String uniqueIdentifier;
 	
@@ -84,25 +92,39 @@ public class Resource {
 	
 	public final businesslogic.distribution.ResourceAllocationSetCollection resourceAllocations = new businesslogic.distribution.ResourceAllocationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
-	private void setResourceState(int value) {
-		this.resourceState = value;
-	}
-	
 	public int getResourceState() {
-		return resourceState;
-	}
-	
-	public void allocate() {
-		setResourceState(ResourceStateEnum.ALLOCATED.ordinal());
-	}
-	
-	public void deallocate() {
-		setResourceState(ResourceStateEnum.UNALLOCATED.ordinal());
-	}
-	
-	public void setState(businesslogic.distribution.resource.ResourceState state) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+		try {
+			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+
+			//Can be done easier with join
+			List<Integer> allocationIDs = session
+					.createSQLQuery("SELECT [Allocation ID] FROM ResourceAllocation WHERE ResourceID2 = " + getID()).list();
+
+
+			java.util.Date currentDate = new java.util.Date();
+			for (Integer allocationID : allocationIDs) {
+				Requirement requirement = Allocation_DAO.getAllocation_ByORMID(allocationID).getRequirement();
+
+				DateFormat df = new SimpleDateFormat("dd/mm/yy");
+
+				java.util.Date reqStartDate = null;
+				java.util.Date reqEndDate = null;
+				try {
+					reqStartDate = df.parse(requirement.getStartDate());
+					reqEndDate = df.parse(requirement.getEndDate());
+				} catch (ParseException e) {
+					return ResourceStateEnum.UNALLOCATED.ordinal();
+				}
+
+				if (reqStartDate.before(currentDate) && reqEndDate.after(currentDate)) {
+					return ResourceStateEnum.ALLOCATED.ordinal();
+				}
+			}
+
+		}catch(PersistentException e){
+		}
+		return ResourceStateEnum.UNALLOCATED.ordinal();
 	}
 
 	public void addResourceAllocation(ResourceAllocation resourceAllocation) {

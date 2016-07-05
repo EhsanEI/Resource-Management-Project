@@ -54,10 +54,6 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
             allocation.setAllocated(true);
 
-            for(Resource resource: resources) {
-                resource.allocate();
-            }
-
             InformationResource informationResource = allocation.getRequirement().getInformationResource();
             informationResource.addAllocation(allocation);
             InformationResourceDAO.save(informationResource);

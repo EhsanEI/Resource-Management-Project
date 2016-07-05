@@ -52,7 +52,9 @@ public class Main {
 //        assignModules();
 
 //        sendEmail();
-        
+
+//        test1();
+
 //        test2();
         
 //        test3();
@@ -61,7 +63,12 @@ public class Main {
     }
 
     public static void test1() {
-        System.out.println(RequirementPriorityEnum.values());
+        try {
+            Resource resource = ResourceDAO.getResourceByORMID(1);
+            System.out.println(resource.getResourceState());
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
 
     }
 
