@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import org.jpedal.exception.PdfException;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -64,7 +65,6 @@ public class MainMenuController {
         stage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
 
     }
-
 
     private void initializeReportMenu() {
         //TODO
@@ -124,7 +124,6 @@ public class MainMenuController {
             return;
 
     }
-
 
     private void initializePermissionMenu() {
         permissionMenu = new Menu("Permissions");
@@ -262,59 +261,22 @@ public class MainMenuController {
 
     }
 
-
-    private void loadFXML(String address) throws IOException {
-        fxmlLoader = new FXMLLoader(getClass().getResource(address));
-        root = fxmlLoader.load();
-        fxmlLoader.<Controller>getController().init(stage, user);
-        fxmlLoader.<Controller>getController().animate();
-        mainPane.getChildren().removeAll(mainPane.getChildren());
-        mainPane.getChildren().add(root);
-    }
-
-
-
-
-
-
-    private void estimateResourceAllocationsMenuItemSelected() {
-
-    }
-
-    private void registerProjectScaleMenuItemSelected() {
-
-    }
-
-    private void assignModuleMenuItemSelected() {
-
-    }
-
-    private void registerRequirementMenuItemSelected() {
-
-    }
-
-
-    private void maintainModuleMenuItemSelected() {
-
-    }
-
-    private void createModuleMenuItemSelected() {
-
-    }
-
-
-    private void configureSystemSelected() {
-
-    }
-
-
-
-
-
-
     private void initializeHelpMenu() {
         helpMenu = new Menu("Help");
-        about = new MenuItem("about");
+
+        about = new MenuItem("User Manual");
+        helpMenu.getItems().add(about);
+        about.setOnAction(event -> {
+            try {
+                showUserManual();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (PdfException e) {
+                e.printStackTrace();
+            }
+        });
+
+        about = new MenuItem("About");
         helpMenu.getItems().add(about);
         about.setOnAction(event -> {
             try {
@@ -323,12 +285,26 @@ public class MainMenuController {
                 e.printStackTrace();
             }
         });
+
+
+
+
         menuBar.getMenus().add(helpMenu);
+    }
+
+    private void showUserManual() throws IOException, PdfException {
+        fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/UserManualView.fxml"));
+        Pane root = fxmlLoader.load();
+        fxmlLoader.<UserManualController>getController().animate();
+        fxmlLoader.<UserManualController>getController().init();
+        mainPane.getChildren().removeAll(mainPane.getChildren());
+        mainPane.getChildren().add(root);
     }
 
     private void showAbout() throws IOException {
         fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/HelpView.fxml"));
         Pane root = fxmlLoader.load();
+        fxmlLoader.<AboutController>getController().animate();
         mainPane.getChildren().removeAll(mainPane.getChildren());
         mainPane.getChildren().add(root);
     }
@@ -389,5 +365,14 @@ public class MainMenuController {
 
     public void setStage(Stage stage) {
         this.stage = stage;
+    }
+
+    private void loadFXML(String address) throws IOException {
+        fxmlLoader = new FXMLLoader(getClass().getResource(address));
+        root = fxmlLoader.load();
+        fxmlLoader.<Controller>getController().init(stage, user);
+        fxmlLoader.<Controller>getController().animate();
+        mainPane.getChildren().removeAll(mainPane.getChildren());
+        mainPane.getChildren().add(root);
     }
 }

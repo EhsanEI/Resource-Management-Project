@@ -5,6 +5,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+import static java.lang.System.exit;
+
 /**
  * Created by Esi on 6/25/2016.
  */
@@ -20,7 +22,14 @@ public class ClientNetwork {
 
     public static ClientNetwork getInstance() throws IOException {
         if(clientNetwork == null){
-            clientNetwork = new ClientNetwork(new Socket("",9090));
+            try {
+                clientNetwork = new ClientNetwork(new Socket("", 9090));
+                System.out.println("Connected to the Server.");
+            }catch (Exception e){
+                System.out.println("Server is not running!");
+                System.out.println("Please run the server first.");
+                exit(404);
+            }
         }
         return clientNetwork;
     }
