@@ -304,7 +304,7 @@ public class MainMenuController {
     private void showAbout() throws IOException {
         fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/HelpView.fxml"));
         Pane root = fxmlLoader.load();
-        fxmlLoader.<AboutController>getController().animate();
+        fxmlLoader.<AboutViewController>getController().animate();
         mainPane.getChildren().removeAll(mainPane.getChildren());
         mainPane.getChildren().add(root);
     }

@@ -11,7 +11,6 @@ import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.FileChooser;
 import javafx.util.Duration;
 import org.jpedal.PdfDecoder;
 import org.jpedal.exception.PdfException;
@@ -133,7 +132,7 @@ public class UserManualController {
 
     }
 
-
+/*
     private Image getPageAsImage(int page, int width, int height, PdfDecoder pdf) {
 
         BufferedImage img;
@@ -203,5 +202,7 @@ public class UserManualController {
         readingFrame.setFitHeight(pH);
 
     }
+
+    */
 
 }
