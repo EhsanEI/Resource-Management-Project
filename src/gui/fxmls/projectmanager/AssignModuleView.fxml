@@ -7,10 +7,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.projectmanager.AssignModuleController">
    <children>
-      <AnchorPane fx:id="projectSelectionToAssignPane" layoutX="14010.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+      <AnchorPane fx:id="assignPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
          <children>
             <Button fx:id="getModulesAndProgrammersButton" layoutX="529.0" layoutY="540.0" mnemonicParsing="false" onAction="#getModulesAndProgrammersPressed" prefHeight="22.0" prefWidth="211.0" text="Get Modules and Programmers">
                <effect>
@@ -39,7 +38,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="moduleAssignmentPane" layoutX="13010.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+      <AnchorPane fx:id="moduleAssignmentPane" layoutX="1000.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
          <children>
             <Button fx:id="ModuleAssignButton" layoutX="636.0" layoutY="540.0" mnemonicParsing="false" onAction="#assignModulePressed" prefHeight="22.0" prefWidth="104.0" text="Assign">
                <effect>

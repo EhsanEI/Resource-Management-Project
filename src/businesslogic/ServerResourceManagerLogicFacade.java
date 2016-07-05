@@ -200,7 +200,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
             if(rm == null) {
                 Notification notification = NotificationDAO.createNotification();
-                notification.setContent("The user is not a resource manager.");
+                notification.setContent("The user is not animate resource manager.");
                 return notification;
             }
 

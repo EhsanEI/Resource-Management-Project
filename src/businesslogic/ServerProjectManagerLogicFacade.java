@@ -71,7 +71,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
 
             if(pm == null) {
                 Notification notification = NotificationDAO.createNotification();
-                notification.setContent("The user is not a project manager.");
+                notification.setContent("The user is not animate project manager.");
                 return notification;
             }
 

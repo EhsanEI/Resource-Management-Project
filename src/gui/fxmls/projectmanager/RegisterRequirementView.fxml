@@ -7,10 +7,9 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.projectmanager.RegisterRequirementController">
    <children>
-      <AnchorPane fx:id="selectInformationResourcePane" layoutX="12010.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
+      <AnchorPane fx:id="selectInformationResourcePane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0">
          <children>
             <Button fx:id="RegisterARequirementButton" layoutX="566.0" layoutY="540.0" mnemonicParsing="false" onAction="#RegisterARequirementPressed" prefHeight="22.0" prefWidth="174.0" text="Register a Requirement">
                <effect>

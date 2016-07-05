@@ -113,7 +113,7 @@ public class SignupViewController {
             user = new MiddleLevelManager();
         }else{
             PasswordConfirmationTextField.getScene().getRoot().setDisable(true);
-            alert.setContentText("Please select a user type.");
+            alert.setContentText("Please select animate user type.");
             alert.setTitle("User type is empty!");
             Optional<ButtonType> result = alert.showAndWait();
 

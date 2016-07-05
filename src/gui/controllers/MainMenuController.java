@@ -4,8 +4,6 @@ import businesslogic.accounting.Permission;
 import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.user.User;
 import gui.StartMenu;
-import gui.controllers.accounting.EditProfileViewController;
-import gui.controllers.accounting.ViewProfileViewController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
@@ -49,8 +47,6 @@ public class MainMenuController {
     //For Test
     private ArrayList<Permission> permissionsList = new ArrayList<>();
 
-    private ViewProfileViewController viewProfileViewController;
-
 
     public void setUser(User user) {
         this.user = user;
@@ -90,17 +86,35 @@ public class MainMenuController {
                 switch (permission.getTitle()) {
                     case "Resource Allocation Flow Report":
                         MenuItem reportResourceAllocationMenuItem = new MenuItem(permission.getTitle());
-                        reportResourceAllocationMenuItem.setOnAction(event -> reportResourceAllocationFlowMenuItemSelected());
+                        reportResourceAllocationMenuItem.setOnAction(event -> {
+                            try {
+                                loadFXML("../fxmls/resourcemanager/FlowReportView.fxml");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
                         reportMenu.getItems().add(reportResourceAllocationMenuItem);
                         break;
                     case "Resource Requirements Report":
-                        MenuItem reportResourcerequirementMenuItem = new MenuItem(permission.getTitle());
-                        reportResourcerequirementMenuItem.setOnAction(event -> reportResourceRequirementMenuItemSelected());
-                        reportMenu.getItems().add(reportResourcerequirementMenuItem);
+                        MenuItem reportResourceRequirementMenuItem = new MenuItem(permission.getTitle());
+                        reportResourceRequirementMenuItem.setOnAction(event -> {
+                            try {
+                                loadFXML("../fxmls/resourcemanager/ResourceRequirementsReportView.fxml");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
+                        reportMenu.getItems().add(reportResourceRequirementMenuItem);
                         break;
                     case "Resources Report":
                         MenuItem reportResourcesMenuItem = new MenuItem(permission.getTitle());
-                        reportResourcesMenuItem.setOnAction(event -> reportResourcesMenuItemSelected());
+                        reportResourcesMenuItem.setOnAction(event -> {
+                            try {
+                                loadFXML("../fxmls/resourcemanager/ResourceReportView.fxml");
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        });
                         reportMenu.getItems().add(reportResourcesMenuItem);
                         break;
                 }
@@ -132,54 +146,109 @@ public class MainMenuController {
             switch (permission.getTitle()) {
                 case "Configure System":
                     MenuItem configureSystemMenuItem = new MenuItem(permission.getTitle());
-                    configureSystemMenuItem.setOnAction(event -> configureSystemSelected());
+                    configureSystemMenuItem.setOnAction(event -> {
+                        try {
+                            loadFXML("../fxmls/admin/SystemConfigurationView.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
+
                     permissionMenu.getItems().add(configureSystemMenuItem);
                     break;
                 case "Register Module Creation":
                     MenuItem createModuleMenuItem = new MenuItem(permission.getTitle());
-                    createModuleMenuItem.setOnAction(event -> createModuleMenuItemSelected());
+                    createModuleMenuItem.setOnAction(event -> {
+                        try {
+                            loadFXML("../fxmls/programmer/ModuleCreationView.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
                     permissionMenu.getItems().add(createModuleMenuItem);
                     break;
                 case "Register Module Maintenance":
                     MenuItem maintaneModuleMenuItem = new MenuItem(permission.getTitle());
-                    maintaneModuleMenuItem.setOnAction(event -> maintainModuleMenuItemSelected());
+                    maintaneModuleMenuItem.setOnAction(event -> {
+                        try {
+                            loadFXML("../fxmls/programmer/ModuleMaintenanceView.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
                     permissionMenu.getItems().add(maintaneModuleMenuItem);
                     break;
                 case "Register Requirement":
                     MenuItem registerRequirementMenuItem = new MenuItem(permission.getTitle());
-                    registerRequirementMenuItem.setOnAction(event -> registerRequirementMenuItemSelected());
+                    registerRequirementMenuItem.setOnAction(event -> {
+                        try {
+                            loadFXML("../fxmls/projectmanager/RegisterRequirementView.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
                     permissionMenu.getItems().add(registerRequirementMenuItem);
                     break;
                 case "Assign Module":
                     MenuItem assignModuleMenuItem = new MenuItem(permission.getTitle());
-                    assignModuleMenuItem.setOnAction(event -> assignModuleMenuItemSelected());
+                    assignModuleMenuItem.setOnAction(event -> {
+                        try {
+                            loadFXML("../fxmls/projectmanager/AssignModuleView.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
                     permissionMenu.getItems().add(assignModuleMenuItem);
                     break;
                 case "Register Project Scale":
                     MenuItem registerProjectScaleMenuItem = new MenuItem(permission.getTitle());
-                    registerProjectScaleMenuItem.setOnAction(event -> registerProjectScaleMenuItemSelected());
+                    registerProjectScaleMenuItem.setOnAction(event -> {
+                        try {
+                            loadFXML("../fxmls/projectmanager/RegisterProjectScaleView.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
                     permissionMenu.getItems().add(registerProjectScaleMenuItem);
                     break;
                 case "Estimate Resource Allocations":
                     MenuItem estimateResourceAllocationsMenuItem = new MenuItem(permission.getTitle());
-                    estimateResourceAllocationsMenuItem.setOnAction(event -> estimateResourceAllocationsMenuItemSelected());
+                    estimateResourceAllocationsMenuItem.setOnAction(event -> {
+                        try {
+                            loadFXML("../fxmls/projectmanager/EstimateResourceAllocationView.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
                     permissionMenu.getItems().add(estimateResourceAllocationsMenuItem);
                     break;
                 case "Predict Essential Resource Allocation":
                     MenuItem predictEssentialResourceAllocationMenuItem = new MenuItem(permission.getTitle());
-                    predictEssentialResourceAllocationMenuItem.setOnAction(event -> predictEssentialResourceAllocationMenuItemSelected());
+                    predictEssentialResourceAllocationMenuItem.setOnAction(event -> {
+                        try {
+                            loadFXML("../fxmls/resourcemanager/PredictEssentialResourceAllocationsView.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
                     permissionMenu.getItems().add(predictEssentialResourceAllocationMenuItem);
                     break;
                 case "Register New Resource":
                     MenuItem registerNewResourceMenuItem = new MenuItem(permission.getTitle());
-                    registerNewResourceMenuItem.setOnAction(event -> registerNewResourceMenuItemSelected());
+                    registerNewResourceMenuItem.setOnAction(event -> {
+                        try {
+                            loadFXML("../fxmls/resourcemanager/RegisterNewResourceView.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    });
                     permissionMenu.getItems().add(registerNewResourceMenuItem);
                     break;
                 case "Register Resource Allocation":
                     MenuItem registerResourceAllocationMenuItem = new MenuItem(permission.getTitle());
                     registerResourceAllocationMenuItem.setOnAction(event -> {
                         try {
-                            registerResourceAllocationMenuItemSelected();
+                            loadFXML("../fxmls/resourcemanager/ResourceAllocationView.fxml");
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
@@ -194,38 +263,19 @@ public class MainMenuController {
     }
 
 
-    private void reportResourcesMenuItemSelected() {
-
-    }
-
-    private void reportResourceRequirementMenuItemSelected() {
-
-    }
-
-    private void reportResourceAllocationFlowMenuItemSelected() {
-
-    }
-
-
-    private void registerResourceAllocationMenuItemSelected() throws IOException {
-        fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/resourcemanager/.fxml"));
+    private void loadFXML(String address) throws IOException {
+        fxmlLoader = new FXMLLoader(getClass().getResource(address));
         root = fxmlLoader.load();
-
-        viewProfileViewController = fxmlLoader.<ViewProfileViewController>getController();
-        viewProfileViewController.setStage(stage);
-        viewProfileViewController.setUser(user);
-
+        fxmlLoader.<Controller>getController().init(stage, user);
+        fxmlLoader.<Controller>getController().animate();
         mainPane.getChildren().removeAll(mainPane.getChildren());
         mainPane.getChildren().add(root);
     }
 
-    private void registerNewResourceMenuItemSelected() {
 
-    }
 
-    private void predictEssentialResourceAllocationMenuItemSelected() {
 
-    }
+
 
     private void estimateResourceAllocationsMenuItemSelected() {
 
@@ -243,6 +293,7 @@ public class MainMenuController {
 
     }
 
+
     private void maintainModuleMenuItemSelected() {
 
     }
@@ -251,9 +302,14 @@ public class MainMenuController {
 
     }
 
+
     private void configureSystemSelected() {
 
     }
+
+
+
+
 
 
     private void initializeHelpMenu() {
@@ -277,13 +333,12 @@ public class MainMenuController {
         mainPane.getChildren().add(root);
     }
 
-
     private void initializeProfileMenu() {
         profileMenu = new Menu("Profile");
         viewProfile = new MenuItem("View Profile");
         viewProfile.setOnAction(event -> {
             try {
-                viewProfile();
+                loadFXML("../fxmls/accounting/ViewProfileView.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -292,7 +347,7 @@ public class MainMenuController {
         editProfile = new MenuItem("Edit Profile");
         editProfile.setOnAction(event -> {
             try {
-                editProfile();
+                loadFXML("../fxmls/accounting/EditProfileView.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -324,34 +379,12 @@ public class MainMenuController {
         if (result.get() == ButtonType.OK){
             stage = (Stage) mainPane.getScene().getWindow();
             stage.close();
+            //TODO
             //ClientAccountingLogicFacade.getInstance().logout(user.getID());
             new StartMenu().start(stage);
         } else {
            mainPane.setDisable(false);
         }
-    }
-
-    private void editProfile() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/accounting/EditProfileView.fxml"));
-        AnchorPane root = fxmlLoader.load();
-        EditProfileViewController editProfileViewController = fxmlLoader.<EditProfileViewController>getController();
-        editProfileViewController.setStage(stage);
-        editProfileViewController.setUser(user);
-        mainPane.getChildren().removeAll(mainPane.getChildren());
-        mainPane.getChildren().add(root);
-    }
-
-    private void viewProfile() throws IOException {
-
-        fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/accounting/ViewProfileView.fxml"));
-        root = fxmlLoader.load();
-
-        viewProfileViewController = fxmlLoader.<ViewProfileViewController>getController();
-        viewProfileViewController.setStage(stage);
-        viewProfileViewController.setUser(user);
-
-        mainPane.getChildren().removeAll(mainPane.getChildren());
-        mainPane.getChildren().add(root);
     }
 
     public void setStage(Stage stage) {
