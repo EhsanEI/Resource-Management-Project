@@ -2,7 +2,7 @@ package gui;
 /**
  * Created by qizilbash on 6/24/2016.
  */
-import gui.controllers.StartMenuController;
+import gui.controllers.accounting.LoginViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -22,11 +22,10 @@ public class StartMenu extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/StartMenuView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/accounting/LoginView.fxml"));
         Parent root = fxmlLoader.load();
-        StartMenuController startMenuController = fxmlLoader.<StartMenuController>getController();
-
-        startMenuController.setStage(stage);
+        LoginViewController loginViewController = fxmlLoader.<LoginViewController>getController();
+        loginViewController.setStage(stage);
 
         stage.setTitle("ERP System");
         stage.setScene(new Scene(root, 400, 290));
