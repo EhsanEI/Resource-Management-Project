@@ -13,6 +13,12 @@
  */
 package businesslogic.accounting.user;
 
+import businesslogic.accounting.PermissionTitles;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Manager extends businesslogic.accounting.user.User {
 	public Manager() {
 	}
@@ -58,6 +64,16 @@ public class Manager extends businesslogic.accounting.user.User {
 	}
 	
 	public final businesslogic.accounting.user.UserSetCollection users = new businesslogic.accounting.user.UserSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_MANAGER_USERS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+
+	@Override
+	public PermissionTitles[] getPermissions() {
+		Set<PermissionTitles> permissions = new HashSet<>();
+		permissions.addAll(Arrays.asList(super.getPermissions()));
+
+		permissions.add(PermissionTitles.USER_APPROVAL);
+
+		return permissions.toArray(new PermissionTitles[permissions.size()]);
+	}
 	
 	public String toString() {
 		return super.toString();

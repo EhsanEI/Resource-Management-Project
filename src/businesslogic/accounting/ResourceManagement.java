@@ -15,6 +15,9 @@ package businesslogic.accounting;
 
 import businesslogic.distribution.Allocation;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class ResourceManagement extends businesslogic.accounting.job.Job {
 	public ResourceManagement() {
 	}
@@ -63,6 +66,17 @@ public class ResourceManagement extends businesslogic.accounting.job.Job {
 
 	public void addAllocation(Allocation allocation) {
 		getORM_Allocation_s().add(allocation);
+	}
+
+	@Override
+	public PermissionTitles[] getPermissions() {
+		Set<PermissionTitles> permissions = new HashSet<>();
+		permissions.add(PermissionTitles.RESOURCE_ALLOCATION_REGISTRATION);
+		permissions.add(PermissionTitles.NEW_RESOURCE_REGISTRATION);
+		permissions.add(PermissionTitles.RESOURCES_REPORT);
+		permissions.add(PermissionTitles.RESOURCE_REQUIREMENTS_REPORT);
+		permissions.add(PermissionTitles.RESOURCE_ALLOCATION_FLOW_REPORT);
+		return permissions.toArray(new PermissionTitles[permissions.size()]);
 	}
 	
 	public String toString() {

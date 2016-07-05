@@ -13,10 +13,13 @@
  */
 package businesslogic.accounting.job;
 
+import businesslogic.accounting.Permission;
+import businesslogic.accounting.PermissionTitles;
 import businesslogic.distribution.resource.Module;
 import businesslogic.distribution.resource.ModuleChange;
 import businesslogic.utility.Tree;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class Programming extends businesslogic.accounting.job.Job {
@@ -114,6 +117,14 @@ public class Programming extends businesslogic.accounting.job.Job {
 			info.addChild(new Tree<>(specialty.getTitle()));
 		}
 		return info;
+	}
+
+	@Override
+	public PermissionTitles[] getPermissions() {
+		Set<PermissionTitles> permissions = new HashSet<>();
+		permissions.add(PermissionTitles.MODULE_CREATION);
+		permissions.add(PermissionTitles.MODULE_MAINTAINE);
+		return permissions.toArray(new PermissionTitles[permissions.size()]);
 	}
 
 	public String toString() {

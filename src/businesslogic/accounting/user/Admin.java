@@ -13,6 +13,12 @@
  */
 package businesslogic.accounting.user;
 
+import businesslogic.accounting.PermissionTitles;
+
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
 public class Admin extends businesslogic.accounting.user.User {
 	public Admin() {
 	}
@@ -43,15 +49,15 @@ public class Admin extends businesslogic.accounting.user.User {
 	}
 	
 	public final businesslogic.support.SystemConfigurationSetCollection systemConfigurations = new businesslogic.support.SystemConfigurationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_ADMIN_SYSTEMCONFIGURATIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
-	
-	public Admin(String username, String password, String email, businesslogic.accounting.job.Job[] jobs) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
-	}
-	
-	public void configureSystem(businesslogic.utility.Date date, businesslogic.support.BackupFormat backupFormat, int backupPeriodDays) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+
+	@Override
+	public PermissionTitles[] getPermissions() {
+		Set<PermissionTitles> permissions = new HashSet<>();
+		permissions.addAll(Arrays.asList(super.getPermissions()));
+
+		permissions.add(PermissionTitles.SYSTEM_CONFIGURATION);
+
+		return permissions.toArray(new PermissionTitles[permissions.size()]);
 	}
 	
 	public String toString() {

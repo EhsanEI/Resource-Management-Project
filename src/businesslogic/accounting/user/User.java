@@ -15,6 +15,7 @@ package businesslogic.accounting.user;
 
 import businesslogic.accounting.Permission;
 import businesslogic.accounting.PermissionDAO;
+import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.job.*;
 import businesslogic.utility.Tree;
 import network.Email;
@@ -23,9 +24,7 @@ import org.orm.PersistentSession;
 
 import javax.mail.MessagingException;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class User implements Serializable {
 	public User() {
@@ -195,28 +194,6 @@ public class User implements Serializable {
 		setApproved(true);
 	}
 	
-	public businesslogic.accounting.Permission[] getPermissions() {
-		try {
-			PersistentSession session = OODPersistentManager.instance().getSession();
-			List<Integer> permissionIDs = session
-					.createSQLQuery("SELECT PermissionID FROM UserPermission WHERE UserID = "+ getID()).list();
-			ArrayList<Permission> result = new ArrayList<>();
-			for(int pID:permissionIDs) {
-				result.add(PermissionDAO.getPermissionByORMID(pID));
-			}
-			return result.toArray(new Permission[result.size()]);
-		} catch (PersistentException e) {
-			e.printStackTrace();
-		}
-		return new Permission[0];
-	}
-	
-	public void addPermission(businesslogic.accounting.Permission permission) {
-		UserPermission up = UserPermissionDAO.createUserPermission();
-		getORM_UserPermissions().add(up);
-		permission.getORM_UserPermissions().add(up);
-	}
-	
 	public void sendPassword(String password) throws MessagingException {
 		Email email = new Email(password, getEmail());
 		email.send();
@@ -236,6 +213,14 @@ public class User implements Serializable {
 			info.addChild(job.getInfo());
 		}
 		return info;
+	}
+
+	public PermissionTitles[] getPermissions() {
+		Set<PermissionTitles> permissions = new HashSet<>();
+		for(Job job: getJobs()) {
+			permissions.addAll(Arrays.asList(job.getPermissions()));
+		}
+		return permissions.toArray(new PermissionTitles[permissions.size()]);
 	}
 	
 	public String toString() {

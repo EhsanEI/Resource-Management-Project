@@ -13,10 +13,12 @@
  */
 package businesslogic.accounting.job;
 
+import businesslogic.accounting.PermissionTitles;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.utility.Notification;
 
+import java.util.HashSet;
 import java.util.Set;
 
 public class ProjectManagement extends businesslogic.accounting.job.Job {
@@ -115,6 +117,16 @@ public class ProjectManagement extends businesslogic.accounting.job.Job {
 	
 	public void addNotification(businesslogic.utility.Notification notification) {
 		getORM_Notification().add(notification);
+	}
+
+	@Override
+	public PermissionTitles[] getPermissions() {
+		Set<PermissionTitles> permissions = new HashSet<>();
+		permissions.add(PermissionTitles.MODULE_ASSIGNMENT);
+		permissions.add(PermissionTitles.PROJECT_SCALE_REGISTRATION);
+		permissions.add(PermissionTitles.RESOURCE_ALLOCATION_ESTIMATION);
+		permissions.add(PermissionTitles.REQUIREMENT_REGISTRATION);
+		return permissions.toArray(new PermissionTitles[permissions.size()]);
 	}
 	
 	public String toString() {

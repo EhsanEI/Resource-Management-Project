@@ -21,8 +21,9 @@ public enum PermissionTitles {
 
     RESOURCE_ALLOCATION_FLOW_REPORT("Resource Allocation Flow Report"),
     RESOURCE_REQUIREMENTS_REPORT("Resource Requirements Report"),
+    RESOURCES_REPORT("Resources Report"),
 
-    RESOURCES_REPORT("Resources Report");
+    USER_APPROVAL("User Approval");
 
 
     private String titleText;
