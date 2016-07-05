@@ -7,6 +7,8 @@ import businesslogic.utility.NotificationDAO;
 import network.Email;
 import org.orm.PersistentException;
 
+import javax.mail.MessagingException;
+
 /**
  * Created by Esi on 6/22/2016.
  */
@@ -57,7 +59,10 @@ public class ServerManagerLogicFacade implements ManagerLogicInterface {
                 notification.setContent("Your signup request to Resource Management System has been rejected by a manager.");
             }
             Email email = new Email(notification, newUser.getEmail());
-            email.send();
+            try {
+                email.send();
+            } catch (MessagingException e) {
+            }
             return true;
         }
         //There is a creator user -> EditProfile request

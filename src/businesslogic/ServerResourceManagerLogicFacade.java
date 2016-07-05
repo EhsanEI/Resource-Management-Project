@@ -95,6 +95,38 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
+    public Notification rejectResourceAllocation(int userID, int requirementID) {
+        Notification notification = new Notification();
+
+        Requirement requirement = null;
+        try {
+            requirement = RequirementDAO.getRequirementByORMID(requirementID);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+            notification.setContent("Requirement not found.");
+            return notification;
+        }
+
+        Notification projectManagerNotification = NotificationDAO.createNotification();
+        projectManagerNotification .setContent("A resource manager rejected your requirement for "
+                + requirement.getResourceName() + ".");
+        requirement.getProjectManagement().addNotification(projectManagerNotification );
+
+        try {
+            RequirementDAO.delete(requirement);
+            NotificationDAO.save(projectManagerNotification);
+            ProjectManagementDAO.save(requirement.getProjectManagement());
+        } catch (PersistentException e) {
+            e.printStackTrace();
+            notification.setContent("Cannot reject the requirement.");
+            return notification;
+        }
+
+        notification.setContent("The requirement has been rejected.");
+        return notification;
+    }
+
+    @Override
     public InformationResource[] getInformationResources(int userID) {
         try {
             PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();

@@ -12,6 +12,7 @@ import businesslogic.utility.Notification;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
+import javax.mail.MessagingException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
 
@@ -63,13 +64,13 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             UserDAO.save(user);
 
             Notification notification = new Notification();
-            notification.setContent("Signup was successful.");
+            notification.setContent("Your request has been submitted.");
             return notification;
         } catch (PersistentException e) {
         }
 
         Notification notification = new Notification();
-        notification.setContent("Your request has been submitted.");
+        notification.setContent("Signup was not successful.");
         return notification;
     }
 
@@ -83,11 +84,14 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
         StringBuffer condition = new StringBuffer();
         condition.append("username = '").append(username).append("'");
         User[] users = null;
+
+        Notification notification = new Notification();
+        StringBuffer msg = new StringBuffer("");
         try {
             users = UserDAO.listUserByQuery(condition.toString(),null);
         } catch (PersistentException e) {
-            Notification notification = new Notification();
-            notification.setContent("User was not found.");
+            msg.append("User was not found.");
+            notification.setContent(msg.toString());
             return notification;
         }
 
@@ -98,17 +102,24 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             String randomPassword = new BigInteger(130, random).toString(32);
 
             user.setPassword(randomPassword);
+            try {
+                user.sendPassword(randomPassword);
+            } catch (MessagingException e) {
+                msg.append("Cannot send the new password.");
+                notification.setContent(msg.toString());
+                return notification;
+            }
 
             try {
                 UserDAO.save(user);
             } catch (PersistentException e) {
-                Notification notification = new Notification();
-                notification.setContent("Cannot save the changes.");
+                msg.append("Cannot save the changes.");
+                notification.setContent(msg.toString());
                 return notification;
             }
         }
-        Notification notification = new Notification();
-        notification.setContent("Cannot recover password.");
+        msg.append("The new password has been sent.");
+        notification.setContent(msg.toString());
         return notification;
     }
 

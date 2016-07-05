@@ -15,9 +15,11 @@ package businesslogic.accounting.user;
 
 import businesslogic.accounting.job.*;
 import businesslogic.utility.Tree;
+import network.Email;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 
+import javax.mail.MessagingException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -231,9 +233,9 @@ public class User implements Serializable {
 		permission.getORM_userPermissions().add(up);
 	}
 	
-	public void sendPassword() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+	public void sendPassword(String password) throws MessagingException {
+		Email email = new Email(password, getEmail());
+		email.send();
 	}
 
 	public businesslogic.accounting.user.User getCreatorUser() {
