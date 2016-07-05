@@ -2,6 +2,7 @@ package gui;
 /**
  * Created by qizilbash on 6/24/2016.
  */
+import businesslogic.ClientAccountingLogicFacade;
 import gui.controllers.accounting.LoginViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,8 @@ public class StartMenu extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
+
+        ClientAccountingLogicFacade.getInstance();
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/accounting/LoginView.fxml"));
         Parent root = fxmlLoader.load();

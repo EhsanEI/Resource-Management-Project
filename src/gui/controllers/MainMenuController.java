@@ -1,5 +1,6 @@
 package gui.controllers;
 
+import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.accounting.Permission;
 import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.user.User;
@@ -11,6 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -25,6 +27,7 @@ public class MainMenuController {
     private User user;
     private Stage stage;
     private Alert alert;
+    private FXMLLoader fxmlLoader;
 
     @FXML private AnchorPane mainPane;
 
@@ -240,13 +243,20 @@ public class MainMenuController {
         about = new MenuItem("about");
         helpMenu.getItems().add(about);
         about.setOnAction(event -> {
-            showAbout();
+            try {
+                showAbout();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         });
         menuBar.getMenus().add(helpMenu);
     }
 
-    private void showAbout() {
-
+    private void showAbout() throws IOException {
+        fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/HelpView.fxml"));
+        Pane root = fxmlLoader.load();
+        mainPane.getChildren().removeAll(mainPane.getChildren());
+        mainPane.getChildren().add(root);
     }
 
     private void initializeProfileMenu() {
@@ -295,6 +305,7 @@ public class MainMenuController {
         if (result.get() == ButtonType.OK){
             stage = (Stage) mainPane.getScene().getWindow();
             stage.close();
+            //ClientAccountingLogicFacade.getInstance().logout(user.getID());
             new StartMenu().start(stage);
         } else {
            mainPane.setDisable(false);
