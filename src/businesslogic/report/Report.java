@@ -10,22 +10,22 @@ import java.text.SimpleDateFormat;
  * Created by Esi on 6/23/2016.
  */
 public abstract class Report {
-    private String date;
+    private Date date;
     private Table table;
 
     public Report() {
-        this.date = new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date());
+        this.date = new Date(new java.util.Date());
     }
 
-    public Report(String date) {
+    public Report(Date date) {
         this.date = date;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 

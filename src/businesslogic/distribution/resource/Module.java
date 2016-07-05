@@ -152,9 +152,8 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 		this.endDate = endDate;
 	}
 
-	public void registerCreation(String description, businesslogic.utility.Date startDate, businesslogic.utility.Date endDate) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+	public void registerCreation(String description, String startDate, String endDate) {
+
 	}
 	
 	public void registerChange(String description, businesslogic.utility.Date startDate, businesslogic.utility.Date endDate) {

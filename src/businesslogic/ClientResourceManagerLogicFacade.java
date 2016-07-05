@@ -55,11 +55,6 @@ public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public FlowReport reportFlowResourceAllocations(Resource resource, String startDate, String endDate) {
-        return null;
-    }
-
-    @Override
     public Requirement[] getRequirements(int userID) {
         return new Requirement[0];
     }

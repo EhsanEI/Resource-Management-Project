@@ -19,7 +19,6 @@ public interface ResourceManagerLogicInterface {
     Notification rejectResourceAllocation(int userID, int requirementID);
     InformationResource[] getInformationResources(int uesrID);
     String[] getResourceNames(int userID, String resourceType);
-    FlowReport reportFlowResourceAllocations(Resource resource, String startDate, String endDate);
     Requirement[] getRequirements(int userID);
     Resource[] getResources(int userID, String resourceType, String resourceName);
     Notification registerNewResource(int userID, Resource newResource);

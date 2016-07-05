@@ -232,11 +232,6 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
     @Override
     public FlowReport reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate) {
-        return null;
-    }
-
-    @Override
-    public FlowReport reportFlowResourceAllocations(Resource resource, String startDate, String endDate) {
         try {
             FlowReport report = new FlowReport(resource, startDate, endDate);
             report.makeReport();

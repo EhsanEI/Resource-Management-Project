@@ -448,8 +448,8 @@ public class Main {
         Resource[] resources = ServerResourceManagerLogicFacade.getInstance()
                 .getResources(userID, resourceType, resourceNames[resourceNameInd]);
 
-        FlowReport report = ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[resourceInd], "4/4/70", "4/3/79");
-        report.getTable().print();
+//        FlowReport report = ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[resourceInd], "4/4/70", "4/3/79");
+//        report.getTable().print();
 
     }
 
