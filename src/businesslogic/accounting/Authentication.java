@@ -49,6 +49,9 @@ public class Authentication {
         if(queryResults == null || queryResults.length != 1) {
             Notification notification = new Notification("Invalid username and/or password!");
             return new AuthenticationResult(null, notification);
+        } else if(queryResults[0].getApproved() == false) {
+            Notification notification = new Notification("Your request is pending manager's approval!");
+            return new AuthenticationResult(null, notification);
         } else {
             User user = queryResults[0];
             onlineUsersInformation.add(user);

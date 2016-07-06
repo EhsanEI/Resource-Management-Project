@@ -102,6 +102,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             String randomPassword = new BigInteger(130, random).toString(32);
 
             user.setPassword(randomPassword);
+
             try {
                 user.sendPassword(randomPassword);
             } catch (MessagingException e) {
@@ -117,8 +118,13 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
                 notification.setContent(msg.toString());
                 return notification;
             }
+
+            msg.append("The new password has been sent.");
+            notification.setContent(msg.toString());
+            return notification;
         }
-        msg.append("The new password has been sent.");
+
+        msg.append("User was not found.");
         notification.setContent(msg.toString());
         return notification;
     }

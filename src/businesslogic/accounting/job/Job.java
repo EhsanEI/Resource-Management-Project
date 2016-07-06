@@ -20,11 +20,12 @@ import businesslogic.utility.Tree;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Job {
+public class Job implements Serializable{
 	public Job() {
 	}
 	

@@ -1,6 +1,10 @@
 package network;
 
 import businesslogic.ServerAccountingLogicFacade;
+import businesslogic.accounting.job.Job;
+import businesslogic.accounting.job.Specialty;
+import businesslogic.accounting.user.User;
+import businesslogic.distribution.resource.HumanResource;
 import businesslogic.utility.Notification;
 
 import java.io.*;
@@ -67,14 +71,20 @@ public class ServerNetwork {
         String method = request.getMethod();
         NetworkResponse networkResponse = null;
 
+        System.out.println("msg:");
+        System.out.println(request.getMethod());
+        System.out.println(request.getParams());
         switch (method){
             case "recoverPassword":
                 networkResponse = new NetworkResponse(
-                        new Notification("no delay"), "processed");
-                        serverAccountingLogicFacade.recoverPassword((String)request.getParams().get(0));
+                        serverAccountingLogicFacade.recoverPassword((String)request.getParams().get(0)), "processed");
                 break;
             case "signup":
-                //
+                networkResponse = new NetworkResponse(
+                        serverAccountingLogicFacade.signup((User)request.getParams().get(0),
+                                (Job[]) request.getParams().get(1),(Specialty[]) request.getParams().get(2),
+                                (HumanResource[]) request.getParams().get(3)), "processed");
+                break;
         }
 
 
