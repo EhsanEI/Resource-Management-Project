@@ -1,5 +1,6 @@
 package gui.controllers.accounting;
 
+import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.accounting.ResourceManagement;
 import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.*;
@@ -175,13 +176,13 @@ public class SignUpView {
         }
 
         // TODO
-        /*
+
         Notification notification = ClientAccountingLogicFacade.getInstance().signup(user, jobs.toArray(new Job[jobs.size()]),
                 specialties.toArray(new Specialty[specialties.size()]),
                 humanResources.toArray(new HumanResource[humanResources.size()]));
-        */
 
-        Notification notification = new Notification("hi " + usernameTextField.getText() + "!");
+
+        //Notification notification = new Notification("hi " + usernameTextField.getText() + "!");
 
         passwordTextField.getScene().getRoot().setDisable(true);
 
