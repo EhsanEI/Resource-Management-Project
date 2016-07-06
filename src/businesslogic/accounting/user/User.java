@@ -13,14 +13,14 @@
  */
 package businesslogic.accounting.user;
 
-import businesslogic.accounting.Permission;
-import businesslogic.accounting.PermissionDAO;
 import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.job.*;
 import businesslogic.utility.Tree;
 import network.Email;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
+import orm.OODPersistentManager;
+import orm.ORMConstants;
 
 import javax.mail.MessagingException;
 import java.io.Serializable;
@@ -32,10 +32,10 @@ public class User implements Serializable {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_USER_EMAILS) {
+		if (key == ORMConstants.KEY_USER_EMAILS) {
 			return ORM_emails;
 		}
-		else if (key == businesslogic.accounting.user.ORMConstants.KEY_USER_USERJOBS) {
+		else if (key == ORMConstants.KEY_USER_USERJOBS) {
 			return ORM_userJobs;
 		}
 		else if (key == ORMConstants.KEY_USER_USERPERMISSIONS) {
@@ -46,7 +46,7 @@ public class User implements Serializable {
 	}
 	
 	private void this_setOwner(Object owner, int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_USER_USER) {
+		if (key == ORMConstants.KEY_USER_USER) {
 			this.user = (businesslogic.accounting.user.User) owner;
 		}
 	}
@@ -140,7 +140,7 @@ public class User implements Serializable {
 		return ORM_emails;
 	}
 	
-	public final network.EmailSetCollection emails = new network.EmailSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_USER_EMAILS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final network.EmailSetCollection emails = new network.EmailSetCollection(this, _ormAdapter, ORMConstants.KEY_USER_EMAILS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public void setORM_UserJobs(java.util.Set value) {
 		this.ORM_userJobs = value;
@@ -150,7 +150,7 @@ public class User implements Serializable {
 		return ORM_userJobs;
 	}
 
-	public final businesslogic.accounting.job.UserJobSetCollection userJobs = new businesslogic.accounting.job.UserJobSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_USER_USERJOBS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.accounting.job.UserJobSetCollection userJobs = new businesslogic.accounting.job.UserJobSetCollection(this, _ormAdapter, ORMConstants.KEY_USER_USERJOBS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 
 
 	public void setORM_UserPermissions(java.util.Set value) {
@@ -161,7 +161,6 @@ public class User implements Serializable {
 		return ORM_userPermissions;
 	}
 
-	public final businesslogic.accounting.job.UserPermissionSetCollection userPermissions = new businesslogic.accounting.job.UserPermissionSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_USER_USERPERMISSIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.accounting.job.Job[] getJobs() {
 		try {

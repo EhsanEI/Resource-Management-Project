@@ -13,12 +13,14 @@
  */
 package businesslogic.distribution.resource;
 
+import orm.ORMConstants;
+
 public class ModuleChange {
 	public ModuleChange() {
 	}
 	
 	private void this_setOwner(Object owner, int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_MODULECHANGE_DATE) {
+		if (key == ORMConstants.KEY_MODULECHANGE_DATE) {
 			this.date = (businesslogic.utility.Date) owner;
 		}
 	}

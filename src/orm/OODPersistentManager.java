@@ -11,7 +11,7 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package businesslogic.accounting.user;
+package orm;
 
 import org.orm.*;
 import org.orm.cfg.JDBCConnectionSetting;

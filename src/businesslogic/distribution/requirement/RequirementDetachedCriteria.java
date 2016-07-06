@@ -49,10 +49,6 @@ public class RequirementDetachedCriteria extends AbstractORMDetachedCriteria {
 		quantity = new IntegerExpression("quantity", this.getDetachedCriteria());
 	}
 	
-	public businesslogic.distribution.requirement.RequirementPriorityDetachedCriteria createRequirementPriorityCriteria() {
-		return new businesslogic.distribution.requirement.RequirementPriorityDetachedCriteria(createCriteria("requirementPriority"));
-	}
-	
 	public Requirement uniqueRequirement(PersistentSession session) {
 		return (Requirement) super.createExecutableCriteria(session).uniqueResult();
 	}

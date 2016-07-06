@@ -17,13 +17,14 @@ import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
+import orm.OODPersistentManager;
 
 import java.util.List;
 
 public class UserPermissionDAO {
 	public static UserPermission loadUserPermissionByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadUserPermissionByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -34,7 +35,7 @@ public class UserPermissionDAO {
 
 	public static UserPermission getUserPermissionByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getUserPermissionByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -45,7 +46,7 @@ public class UserPermissionDAO {
 
 	public static UserPermission loadUserPermissionByORMID(int ID, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadUserPermissionByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -56,7 +57,7 @@ public class UserPermissionDAO {
 
 	public static UserPermission getUserPermissionByORMID(int ID, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getUserPermissionByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -107,7 +108,7 @@ public class UserPermissionDAO {
 
 	public static List queryUserPermission(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryUserPermission(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -118,7 +119,7 @@ public class UserPermissionDAO {
 
 	public static List queryUserPermission(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryUserPermission(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -129,7 +130,7 @@ public class UserPermissionDAO {
 
 	public static UserPermission[] listUserPermissionByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listUserPermissionByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -140,7 +141,7 @@ public class UserPermissionDAO {
 
 	public static UserPermission[] listUserPermissionByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listUserPermissionByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -206,7 +207,7 @@ public class UserPermissionDAO {
 
 	public static UserPermission loadUserPermissionByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadUserPermissionByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -217,7 +218,7 @@ public class UserPermissionDAO {
 
 	public static UserPermission loadUserPermissionByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadUserPermissionByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -244,7 +245,7 @@ public class UserPermissionDAO {
 
 	public static java.util.Iterator iterateUserPermissionByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateUserPermissionByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -255,7 +256,7 @@ public class UserPermissionDAO {
 
 	public static java.util.Iterator iterateUserPermissionByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateUserPermissionByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -303,7 +304,7 @@ public class UserPermissionDAO {
 
 	public static boolean save(UserPermission userPermission) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(userPermission);
+			OODPersistentManager.instance().saveObject(userPermission);
 			return true;
 		}
 		catch (Exception e) {
@@ -314,7 +315,7 @@ public class UserPermissionDAO {
 
 	public static boolean delete(UserPermission userPermission) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(userPermission);
+			OODPersistentManager.instance().deleteObject(userPermission);
 			return true;
 		}
 		catch (Exception e) {
@@ -325,7 +326,7 @@ public class UserPermissionDAO {
 
 	public static boolean refresh(UserPermission userPermission) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(userPermission);
+			OODPersistentManager.instance().getSession().refresh(userPermission);
 			return true;
 		}
 		catch (Exception e) {
@@ -336,7 +337,7 @@ public class UserPermissionDAO {
 
 	public static boolean evict(UserPermission userPermission) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(userPermission);
+			OODPersistentManager.instance().getSession().evict(userPermission);
 			return true;
 		}
 		catch (Exception e) {

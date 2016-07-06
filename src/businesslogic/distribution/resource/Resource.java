@@ -13,17 +13,17 @@
  */
 package businesslogic.distribution.resource;
 
-import businesslogic.distribution.Allocation;
 import businesslogic.distribution.Allocation_DAO;
 import businesslogic.distribution.ResourceAllocation;
 import businesslogic.distribution.requirement.Requirement;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
+import orm.OODPersistentManager;
+import orm.ORMConstants;
 
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Resource {
@@ -31,7 +31,7 @@ public class Resource {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS) {
+		if (key == ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS) {
 			return ORM_resourceAllocations;
 		}
 		
@@ -90,12 +90,12 @@ public class Resource {
 		return ORM_resourceAllocations;
 	}
 	
-	public final businesslogic.distribution.ResourceAllocationSetCollection resourceAllocations = new businesslogic.distribution.ResourceAllocationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.ResourceAllocationSetCollection resourceAllocations = new businesslogic.distribution.ResourceAllocationSetCollection(this, _ormAdapter, ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public int getResourceState() {
 
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 
 			//Can be done easier with join
 			List<Integer> allocationIDs = session

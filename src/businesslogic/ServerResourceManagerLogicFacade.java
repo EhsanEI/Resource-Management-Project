@@ -1,8 +1,7 @@
 package businesslogic;
 
-import businesslogic.accounting.ResourceManagement;
+import businesslogic.accounting.job.ResourceManagement;
 import businesslogic.accounting.job.Job;
-import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.job.ProjectManagementDAO;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
@@ -13,6 +12,7 @@ import businesslogic.distribution.ResourceAllocationDAO;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.requirement.RequirementDAO;
 import businesslogic.distribution.resource.*;
+import businesslogic.prediction.ResourceAllocationPrediction;
 import businesslogic.report.FlowReport;
 import businesslogic.report.ResourceReport;
 import businesslogic.report.ResourceRequirementReport;
@@ -21,9 +21,8 @@ import businesslogic.utility.Notification;
 import businesslogic.utility.NotificationDAO;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
+import orm.OODPersistentManager;
 
-import java.lang.System;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -125,7 +124,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     @Override
     public InformationResource[] getInformationResources(int userID) {
         try {
-            PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+            PersistentSession session = OODPersistentManager.instance().getSession();
             List<InformationResource> informationResourceList= session
                     .createQuery("SELECT resource FROM Resource AS resource WHERE " +
                             "Discriminator IN ('Project','System','Subsystem', 'Module')").list();
@@ -143,7 +142,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             StringBuffer condition = new StringBuffer("");
             condition.append("SELECT DISTINCT Name2 FROM Resource WHERE Discriminator = '").append(resourceType)
                     .append("'");
-            PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+            PersistentSession session = OODPersistentManager.instance().getSession();
             List<String> resourceNameList = session
                     .createSQLQuery(condition.toString()).list();
             return resourceNameList.toArray(new String[resourceNameList.size()]);
@@ -156,7 +155,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     @Override
     public Requirement[] getRequirements(int userID) {
         try {
-            PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+            PersistentSession session = OODPersistentManager.instance().getSession();
             List<Requirement> requirementList= session
                     .createQuery("SELECT requirement FROM Requirement AS requirement").list();
             return requirementList.toArray(new Requirement[requirementList.size()]);
@@ -173,7 +172,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             condition.append("SELECT resource.ID2 FROM Resource AS resource WHERE resource.Discriminator = '")
                     .append(resourceType).append("' AND resource.Name2 = '").append(resourceName).append("'");
 
-            PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+            PersistentSession session = OODPersistentManager.instance().getSession();
             List<Integer> idList= session
                     .createSQLQuery(condition.toString()).list();
 
@@ -251,45 +250,17 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public Project[] predictEssentialResourceAllocations(Project project) {
-
-        Requirement[] requirements = project.getRequirementsRecursive();
-
+    public InformationResource[] predictEssentialResourceAllocations(Project project) {
         Project[] allProjects = getAllProjectList();
-
-        ArrayList<Project> resultList = new ArrayList<>();
-
-        for(Project p:allProjects) {
-            if(p.getID() == project.getID()) {
-                continue;
-            }
-            Requirement [] rs = p.getRequirementsRecursive();
-            boolean similar = false;
-            for(Requirement r: rs) {
-                for(Requirement requirement: requirements) {
-                    if (r.getResourceType().equals(requirement.getResourceType()) &&
-                            r.getResourceName().equals(requirement.getResourceName())) {
-                        similar = true;
-                        break;
-                    }
-                }
-                if(similar) {
-                    break;
-                }
-            }
-
-            if(similar) {
-                resultList.add(p);
-            }
-        }
-
-        return resultList.toArray(new Project[resultList.size()]);
+        ResourceAllocationPrediction resourceAllocationPrediction = new ResourceAllocationPrediction(project, allProjects);
+        resourceAllocationPrediction.search();
+        return resourceAllocationPrediction.getResults();
     }
 
     @Override
     public Project[] getAllProjectList() {
         try {
-            PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+            PersistentSession session = OODPersistentManager.instance().getSession();
             List<Project> projectsList = session
                     .createQuery("SELECT resource FROM Resource AS resource WHERE Discriminator = 'Project'").list();
             return projectsList.toArray(new Project[projectsList.size()]);

@@ -4,11 +4,16 @@
  */
 package ormsamples;
 
+import businesslogic.accounting.job.ResourceManagement;
+import businesslogic.accounting.job.ResourceManagementCriteria;
+import businesslogic.accounting.job.ResourceManagementDAO;
 import businesslogic.distribution.Allocation;
 import org.orm.*;
+import orm.OODPersistentManager;
+
 public class RetrieveAndUpdateOODData {
 	public void retrieveAndUpdateTestData() throws PersistentException {
-		PersistentTransaction t = businesslogic.accounting.user.OODPersistentManager.instance().getSession().beginTransaction();
+		PersistentTransaction t = OODPersistentManager.instance().getSession().beginTransaction();
 		try {
 			businesslogic.accounting.user.User businessLogicAccountingUserUser = businesslogic.accounting.user.UserDAO.loadUserByQuery(null, null);
 			// Update the properties of the persistent object
@@ -64,9 +69,9 @@ public class RetrieveAndUpdateOODData {
 			businesslogic.accounting.job.ProjectManagement businessLogicAccountingJobProjectManagement = businesslogic.accounting.job.ProjectManagementDAO.loadProjectManagementByQuery(null, null);
 			// Update the properties of the persistent object
 			businesslogic.accounting.job.ProjectManagementDAO.save(businessLogicAccountingJobProjectManagement);
-			businesslogic.accounting.ResourceManagement businessLogicAccountingResourceManagement = businesslogic.accounting.ResourceManagementDAO.loadResourceManagementByQuery(null, null);
+			ResourceManagement businessLogicAccountingResourceManagement = ResourceManagementDAO.loadResourceManagementByQuery(null, null);
 			// Update the properties of the persistent object
-			businesslogic.accounting.ResourceManagementDAO.save(businessLogicAccountingResourceManagement);
+			ResourceManagementDAO.save(businessLogicAccountingResourceManagement);
 			businesslogic.accounting.job.Programming businessLogicAccountingJobProgramming = businesslogic.accounting.job.ProgrammingDAO.loadProgrammingByQuery(null, null);
 			// Update the properties of the persistent object
 			businesslogic.accounting.job.ProgrammingDAO.save(businessLogicAccountingJobProgramming);
@@ -82,21 +87,10 @@ public class RetrieveAndUpdateOODData {
 			businesslogic.accounting.user.HighLevelManager businessLogicAccountingUserHighLevelManager = businesslogic.accounting.user.HighLevelManagerDAO.loadHighLevelManagerByQuery(null, null);
 			// Update the properties of the persistent object
 			businesslogic.accounting.user.HighLevelManagerDAO.save(businessLogicAccountingUserHighLevelManager);
-			businesslogic.accounting.Permission businessLogicAccountingPermission = businesslogic.accounting.PermissionDAO.loadPermissionByQuery(null, null);
-			// Update the properties of the persistent object
-			businesslogic.accounting.PermissionDAO.save(businessLogicAccountingPermission);
-			businesslogic.utility.Date businessLogicUtilityDate = businesslogic.utility.DateDAO.loadDateByQuery(null, null);
-			// Update the properties of the persistent object
-			businesslogic.utility.DateDAO.save(businessLogicUtilityDate);
 			businesslogic.utility.Notification businessLogicUtilityNotification = businesslogic.utility.NotificationDAO.loadNotificationByQuery(null, null);
 			// Update the properties of the persistent object
 			businesslogic.utility.NotificationDAO.save(businessLogicUtilityNotification);
-			businesslogic.distribution.requirement.RequirementPriority businessLogicDistributionRequirementRequirementPriority = businesslogic.distribution.requirement.RequirementPriorityDAO.loadRequirementPriorityByQuery(null, null);
 			// Update the properties of the persistent object
-			businesslogic.distribution.requirement.RequirementPriorityDAO.save(businessLogicDistributionRequirementRequirementPriority);
-			businesslogic.distribution.resource.ResourceState businessLogicDistributionResourceResourceState = businesslogic.distribution.resource.ResourceStateDAO.loadResourceStateByQuery(null, null);
-			// Update the properties of the persistent object
-			businesslogic.distribution.resource.ResourceStateDAO.save(businessLogicDistributionResourceResourceState);
 			network.Email networkEmail = network.EmailDAO.loadEmailByQuery(null, null);
 			// Update the properties of the persistent object
 			network.EmailDAO.save(networkEmail);
@@ -224,7 +218,7 @@ public class RetrieveAndUpdateOODData {
 		System.out.println(businessLogicAccountingJobProjectManagementCriteria.uniqueProjectManagement());
 		
 		System.out.println("Retrieving ResourceManagement by ResourceManagementCriteria");
-		businesslogic.accounting.ResourceManagementCriteria businessLogicAccountingResourceManagementCriteria = new businesslogic.accounting.ResourceManagementCriteria();
+		ResourceManagementCriteria businessLogicAccountingResourceManagementCriteria = new ResourceManagementCriteria();
 		// Please uncomment the follow line and fill in parameter(s)
 		//businessLogicAccountingResourceManagementCriteria.ID.eq();
 		System.out.println(businessLogicAccountingResourceManagementCriteria.uniqueResourceManagement());
@@ -258,36 +252,12 @@ public class RetrieveAndUpdateOODData {
 		// Please uncomment the follow line and fill in parameter(s)
 		//businessLogicAccountingUserHighLevelManagerCriteria.ID.eq();
 		System.out.println(businessLogicAccountingUserHighLevelManagerCriteria.uniqueHighLevelManager());
-		
-		System.out.println("Retrieving Permission by PermissionCriteria");
-		businesslogic.accounting.PermissionCriteria businessLogicAccountingPermissionCriteria = new businesslogic.accounting.PermissionCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//businessLogicAccountingPermissionCriteria.ID.eq();
-		System.out.println(businessLogicAccountingPermissionCriteria.uniquePermission());
-		
-		System.out.println("Retrieving Date by DateCriteria");
-		businesslogic.utility.DateCriteria businessLogicUtilityDateCriteria = new businesslogic.utility.DateCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//businessLogicUtilityDateCriteria.ID.eq();
-		System.out.println(businessLogicUtilityDateCriteria.uniqueDate());
-		
+
 		System.out.println("Retrieving Notification by NotificationCriteria");
 		businesslogic.utility.NotificationCriteria businessLogicUtilityNotificationCriteria = new businesslogic.utility.NotificationCriteria();
 		// Please uncomment the follow line and fill in parameter(s)
 		//businessLogicUtilityNotificationCriteria.ID.eq();
 		System.out.println(businessLogicUtilityNotificationCriteria.uniqueNotification());
-		
-		System.out.println("Retrieving RequirementPriority by RequirementPriorityCriteria");
-		businesslogic.distribution.requirement.RequirementPriorityCriteria businessLogicDistributionRequirementRequirementPriorityCriteria = new businesslogic.distribution.requirement.RequirementPriorityCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//businessLogicDistributionRequirementRequirementPriorityCriteria.ID.eq();
-		System.out.println(businessLogicDistributionRequirementRequirementPriorityCriteria.uniqueRequirementPriority());
-		
-		System.out.println("Retrieving ResourceState by ResourceStateCriteria");
-		businesslogic.distribution.resource.ResourceStateCriteria businessLogicDistributionResourceResourceStateCriteria = new businesslogic.distribution.resource.ResourceStateCriteria();
-		// Please uncomment the follow line and fill in parameter(s)
-		//businessLogicDistributionResourceResourceStateCriteria.ID.eq();
-		System.out.println(businessLogicDistributionResourceResourceStateCriteria.uniqueResourceState());
 		
 		System.out.println("Retrieving Email by EmailCriteria");
 		network.EmailCriteria networkEmailCriteria = new network.EmailCriteria();
@@ -318,7 +288,7 @@ public class RetrieveAndUpdateOODData {
 				//retrieveAndUpdateOODData.retrieveByCriteria();
 			}
 			finally {
-				businesslogic.accounting.user.OODPersistentManager.instance().disposePersistentManager();
+				OODPersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

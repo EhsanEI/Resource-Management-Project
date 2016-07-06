@@ -17,6 +17,7 @@ import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
+import orm.OODPersistentManager;
 
 public class ModuleChangeCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
@@ -41,11 +42,7 @@ public class ModuleChangeCriteria extends AbstractORMCriteria {
 	}
 	
 	public ModuleChangeCriteria() throws PersistentException {
-		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
-	}
-	
-	public businesslogic.utility.DateCriteria createDateCriteria() {
-		return new businesslogic.utility.DateCriteria(createCriteria("date"));
+		this(OODPersistentManager.instance().getSession());
 	}
 	
 	public ModuleChange uniqueModuleChange() {

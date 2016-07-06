@@ -14,6 +14,7 @@
 package businesslogic.distribution.resource;
 
 import businesslogic.distribution.requirement.Requirement;
+import orm.ORMConstants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +25,7 @@ public class Project extends businesslogic.distribution.resource.InformationReso
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_PROJECT_SYSTEMS) {
+		if (key == ORMConstants.KEY_PROJECT_SYSTEMS) {
 			return ORM_systems;
 		}
 		
@@ -58,7 +59,7 @@ public class Project extends businesslogic.distribution.resource.InformationReso
 		return ORM_systems;
 	}
 	
-	public final businesslogic.distribution.resource.SystemSetCollection systems = new businesslogic.distribution.resource.SystemSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROJECT_SYSTEMS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.resource.SystemSetCollection systems = new businesslogic.distribution.resource.SystemSetCollection(this, _ormAdapter, ORMConstants.KEY_PROJECT_SYSTEMS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 
 	public void addSystem(System system) {
 		getORM_Systems().add(system);

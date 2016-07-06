@@ -4,8 +4,13 @@
  */
 package ormsamples;
 
+import businesslogic.accounting.job.ResourceManagement;
+import businesslogic.accounting.job.ResourceManagementCriteria;
+import businesslogic.accounting.job.ResourceManagementDAO;
 import businesslogic.distribution.Allocation;
 import org.orm.*;
+import orm.OODPersistentManager;
+
 public class ListOODData {
 	private static final int ROW_COUNT = 100;
 	
@@ -155,7 +160,7 @@ public class ListOODData {
 		System.out.println(length + " record(s) retrieved.");
 		
 		System.out.println("Listing ResourceManagement...");
-		businesslogic.accounting.ResourceManagement[] businessLogicAccountingResourceManagements = businesslogic.accounting.ResourceManagementDAO.listResourceManagementByQuery(null, null);
+		ResourceManagement[] businessLogicAccountingResourceManagements = ResourceManagementDAO.listResourceManagementByQuery(null, null);
 		length = Math.min(businessLogicAccountingResourceManagements.length, ROW_COUNT);
 		for (int i = 0; i < length; i++) {
 			System.out.println(businessLogicAccountingResourceManagements[i]);
@@ -202,43 +207,11 @@ public class ListOODData {
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
-		System.out.println("Listing Permission...");
-		businesslogic.accounting.Permission[] businessLogicAccountingPermissions = businesslogic.accounting.PermissionDAO.listPermissionByQuery(null, null);
-		length = Math.min(businessLogicAccountingPermissions.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(businessLogicAccountingPermissions[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
-		System.out.println("Listing Date...");
-		businesslogic.utility.Date[] businessLogicUtilityDates = businesslogic.utility.DateDAO.listDateByQuery(null, null);
-		length = Math.min(businessLogicUtilityDates.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(businessLogicUtilityDates[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
 		System.out.println("Listing Notification...");
 		businesslogic.utility.Notification[] businessLogicUtilityNotifications = businesslogic.utility.NotificationDAO.listNotificationByQuery(null, null);
 		length = Math.min(businessLogicUtilityNotifications.length, ROW_COUNT);
 		for (int i = 0; i < length; i++) {
 			System.out.println(businessLogicUtilityNotifications[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
-		System.out.println("Listing RequirementPriority...");
-		businesslogic.distribution.requirement.RequirementPriority[] businessLogicDistributionRequirementRequirementPrioritys = businesslogic.distribution.requirement.RequirementPriorityDAO.listRequirementPriorityByQuery(null, null);
-		length = Math.min(businessLogicDistributionRequirementRequirementPrioritys.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(businessLogicDistributionRequirementRequirementPrioritys[i]);
-		}
-		System.out.println(length + " record(s) retrieved.");
-		
-		System.out.println("Listing ResourceState...");
-		businesslogic.distribution.resource.ResourceState[] businessLogicDistributionResourceResourceStates = businesslogic.distribution.resource.ResourceStateDAO.listResourceStateByQuery(null, null);
-		length = Math.min(businessLogicDistributionResourceResourceStates.length, ROW_COUNT);
-		for (int i = 0; i < length; i++) {
-			System.out.println(businessLogicDistributionResourceResourceStates[i]);
 		}
 		System.out.println(length + " record(s) retrieved.");
 		
@@ -486,11 +459,11 @@ public class ListOODData {
 		System.out.println(length + " ProjectManagement record(s) retrieved."); 
 		
 		System.out.println("Listing ResourceManagement by Criteria...");
-		businesslogic.accounting.ResourceManagementCriteria businessLogicAccountingResourceManagementCriteria = new businesslogic.accounting.ResourceManagementCriteria();
+		ResourceManagementCriteria businessLogicAccountingResourceManagementCriteria = new ResourceManagementCriteria();
 		// Please uncomment the follow line and fill in parameter(s) 
 		//businessLogicAccountingResourceManagementCriteria.ID.eq();
 		businessLogicAccountingResourceManagementCriteria.setMaxResults(ROW_COUNT);
-		businesslogic.accounting.ResourceManagement[] businessLogicAccountingResourceManagements = businessLogicAccountingResourceManagementCriteria.listResourceManagement();
+		ResourceManagement[] businessLogicAccountingResourceManagements = businessLogicAccountingResourceManagementCriteria.listResourceManagement();
 		length =businessLogicAccountingResourceManagements== null ? 0 : Math.min(businessLogicAccountingResourceManagements.length, ROW_COUNT); 
 		for (int i = 0; i < length; i++) {
 			 System.out.println(businessLogicAccountingResourceManagements[i]);
@@ -555,31 +528,8 @@ public class ListOODData {
 		for (int i = 0; i < length; i++) {
 			 System.out.println(businessLogicAccountingUserHighLevelManagers[i]);
 		}
-		System.out.println(length + " HighLevelManager record(s) retrieved."); 
-		
-		System.out.println("Listing Permission by Criteria...");
-		businesslogic.accounting.PermissionCriteria businessLogicAccountingPermissionCriteria = new businesslogic.accounting.PermissionCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//businessLogicAccountingPermissionCriteria.ID.eq();
-		businessLogicAccountingPermissionCriteria.setMaxResults(ROW_COUNT);
-		businesslogic.accounting.Permission[] businessLogicAccountingPermissions = businessLogicAccountingPermissionCriteria.listPermission();
-		length =businessLogicAccountingPermissions== null ? 0 : Math.min(businessLogicAccountingPermissions.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(businessLogicAccountingPermissions[i]);
-		}
-		System.out.println(length + " Permission record(s) retrieved."); 
-		
-		System.out.println("Listing Date by Criteria...");
-		businesslogic.utility.DateCriteria businessLogicUtilityDateCriteria = new businesslogic.utility.DateCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//businessLogicUtilityDateCriteria.ID.eq();
-		businessLogicUtilityDateCriteria.setMaxResults(ROW_COUNT);
-		businesslogic.utility.Date[] businessLogicUtilityDates = businessLogicUtilityDateCriteria.listDate();
-		length =businessLogicUtilityDates== null ? 0 : Math.min(businessLogicUtilityDates.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(businessLogicUtilityDates[i]);
-		}
-		System.out.println(length + " Date record(s) retrieved."); 
+		System.out.println(length + " HighLevelManager record(s) retrieved.");
+
 		
 		System.out.println("Listing Notification by Criteria...");
 		businesslogic.utility.NotificationCriteria businessLogicUtilityNotificationCriteria = new businesslogic.utility.NotificationCriteria();
@@ -591,31 +541,7 @@ public class ListOODData {
 		for (int i = 0; i < length; i++) {
 			 System.out.println(businessLogicUtilityNotifications[i]);
 		}
-		System.out.println(length + " Notification record(s) retrieved."); 
-		
-		System.out.println("Listing RequirementPriority by Criteria...");
-		businesslogic.distribution.requirement.RequirementPriorityCriteria businessLogicDistributionRequirementRequirementPriorityCriteria = new businesslogic.distribution.requirement.RequirementPriorityCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//businessLogicDistributionRequirementRequirementPriorityCriteria.ID.eq();
-		businessLogicDistributionRequirementRequirementPriorityCriteria.setMaxResults(ROW_COUNT);
-		businesslogic.distribution.requirement.RequirementPriority[] businessLogicDistributionRequirementRequirementPrioritys = businessLogicDistributionRequirementRequirementPriorityCriteria.listRequirementPriority();
-		length =businessLogicDistributionRequirementRequirementPrioritys== null ? 0 : Math.min(businessLogicDistributionRequirementRequirementPrioritys.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(businessLogicDistributionRequirementRequirementPrioritys[i]);
-		}
-		System.out.println(length + " RequirementPriority record(s) retrieved."); 
-		
-		System.out.println("Listing ResourceState by Criteria...");
-		businesslogic.distribution.resource.ResourceStateCriteria businessLogicDistributionResourceResourceStateCriteria = new businesslogic.distribution.resource.ResourceStateCriteria();
-		// Please uncomment the follow line and fill in parameter(s) 
-		//businessLogicDistributionResourceResourceStateCriteria.ID.eq();
-		businessLogicDistributionResourceResourceStateCriteria.setMaxResults(ROW_COUNT);
-		businesslogic.distribution.resource.ResourceState[] businessLogicDistributionResourceResourceStates = businessLogicDistributionResourceResourceStateCriteria.listResourceState();
-		length =businessLogicDistributionResourceResourceStates== null ? 0 : Math.min(businessLogicDistributionResourceResourceStates.length, ROW_COUNT); 
-		for (int i = 0; i < length; i++) {
-			 System.out.println(businessLogicDistributionResourceResourceStates[i]);
-		}
-		System.out.println(length + " ResourceState record(s) retrieved."); 
+		System.out.println(length + " Notification record(s) retrieved.");
 		
 		System.out.println("Listing Email by Criteria...");
 		network.EmailCriteria networkEmailCriteria = new network.EmailCriteria();
@@ -663,7 +589,7 @@ public class ListOODData {
 				//listOODData.listByCriteria();
 			}
 			finally {
-				businesslogic.accounting.user.OODPersistentManager.instance().disposePersistentManager();
+				OODPersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

@@ -15,13 +15,14 @@ package businesslogic.distribution.resource;
 
 import org.orm.*;
 import org.hibernate.Query;
-import org.hibernate.LockMode;
+import orm.OODPersistentManager;
+
 import java.util.List;
 
 public class ResourceDAO {
 	public static Resource loadResourceByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadResourceByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +33,7 @@ public class ResourceDAO {
 	
 	public static Resource getResourceByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getResourceByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +44,7 @@ public class ResourceDAO {
 	
 	public static Resource loadResourceByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadResourceByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +55,7 @@ public class ResourceDAO {
 	
 	public static Resource getResourceByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getResourceByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +106,7 @@ public class ResourceDAO {
 	
 	public static List queryResource(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryResource(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +117,7 @@ public class ResourceDAO {
 	
 	public static List queryResource(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryResource(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +128,7 @@ public class ResourceDAO {
 	
 	public static Resource[] listResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +139,7 @@ public class ResourceDAO {
 	
 	public static Resource[] listResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +205,7 @@ public class ResourceDAO {
 	
 	public static Resource loadResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +216,7 @@ public class ResourceDAO {
 	
 	public static Resource loadResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +243,7 @@ public class ResourceDAO {
 	
 	public static java.util.Iterator iterateResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +254,7 @@ public class ResourceDAO {
 	
 	public static java.util.Iterator iterateResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +302,7 @@ public class ResourceDAO {
 	
 	public static boolean save(businesslogic.distribution.resource.Resource resource) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(resource);
+			OODPersistentManager.instance().saveObject(resource);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +313,7 @@ public class ResourceDAO {
 	
 	public static boolean delete(businesslogic.distribution.resource.Resource resource) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(resource);
+			OODPersistentManager.instance().deleteObject(resource);
 			return true;
 		}
 		catch (Exception e) {
@@ -323,7 +324,7 @@ public class ResourceDAO {
 	
 	public static boolean refresh(businesslogic.distribution.resource.Resource resource) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(resource);
+			OODPersistentManager.instance().getSession().refresh(resource);
 			return true;
 		}
 		catch (Exception e) {
@@ -334,7 +335,7 @@ public class ResourceDAO {
 	
 	public static boolean evict(businesslogic.distribution.resource.Resource resource) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(resource);
+			OODPersistentManager.instance().getSession().evict(resource);
 			return true;
 		}
 		catch (Exception e) {

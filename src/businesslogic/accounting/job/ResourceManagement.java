@@ -11,9 +11,11 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package businesslogic.accounting;
+package businesslogic.accounting.job;
 
+import businesslogic.accounting.PermissionTitles;
 import businesslogic.distribution.Allocation;
+import orm.ORMConstants;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -23,10 +25,10 @@ public class ResourceManagement extends businesslogic.accounting.job.Job {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_RESOURCEMANAGEMENT_RESOURCES) {
+		if (key == ORMConstants.KEY_RESOURCEMANAGEMENT_RESOURCES) {
 			return ORM_resources;
 		}
-		else if (key == businesslogic.accounting.user.ORMConstants.KEY_RESOURCEMANAGEMENT_ALLOCATION_S) {
+		else if (key == ORMConstants.KEY_RESOURCEMANAGEMENT_ALLOCATION_S) {
 			return ORM_allocation_s;
 		}
 		
@@ -52,7 +54,7 @@ public class ResourceManagement extends businesslogic.accounting.job.Job {
 		return ORM_resources;
 	}
 	
-	public final businesslogic.distribution.resource.ResourceSetCollection resources = new businesslogic.distribution.resource.ResourceSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_RESOURCEMANAGEMENT_RESOURCES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.resource.ResourceSetCollection resources = new businesslogic.distribution.resource.ResourceSetCollection(this, _ormAdapter, ORMConstants.KEY_RESOURCEMANAGEMENT_RESOURCES, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_Allocation_s(java.util.Set value) {
 		this.ORM_allocation_s = value;
@@ -62,7 +64,7 @@ public class ResourceManagement extends businesslogic.accounting.job.Job {
 		return ORM_allocation_s;
 	}
 	
-	public final businesslogic.distribution.Allocation_SetCollection allocation_s = new businesslogic.distribution.Allocation_SetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_RESOURCEMANAGEMENT_ALLOCATION_S, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.Allocation_SetCollection allocation_s = new businesslogic.distribution.Allocation_SetCollection(this, _ormAdapter, ORMConstants.KEY_RESOURCEMANAGEMENT_ALLOCATION_S, ORMConstants.KEY_MUL_ONE_TO_MANY);
 
 	public void addAllocation(Allocation allocation) {
 		getORM_Allocation_s().add(allocation);

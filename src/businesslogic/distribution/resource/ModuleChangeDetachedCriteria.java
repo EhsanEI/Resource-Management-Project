@@ -46,10 +46,6 @@ public class ModuleChangeDetachedCriteria extends AbstractORMDetachedCriteria {
 		endDate = new StringExpression("endDate", this.getDetachedCriteria());
 	}
 	
-	public businesslogic.utility.DateDetachedCriteria createDateCriteria() {
-		return new businesslogic.utility.DateDetachedCriteria(createCriteria("date"));
-	}
-	
 	public ModuleChange uniqueModuleChange(PersistentSession session) {
 		return (ModuleChange) super.createExecutableCriteria(session).uniqueResult();
 	}

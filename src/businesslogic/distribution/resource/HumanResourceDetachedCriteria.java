@@ -56,10 +56,6 @@ public class HumanResourceDetachedCriteria extends AbstractORMDetachedCriteria {
 		return new businesslogic.accounting.job.ProgrammingDetachedCriteria(createCriteria("programming"));
 	}
 	
-	public businesslogic.distribution.resource.ResourceStateDetachedCriteria createResourceStateCriteria() {
-		return new businesslogic.distribution.resource.ResourceStateDetachedCriteria(createCriteria("resourceState"));
-	}
-	
 	public businesslogic.distribution.ResourceAllocationDetachedCriteria createResourceAllocationsCriteria() {
 		return new businesslogic.distribution.ResourceAllocationDetachedCriteria(createCriteria("ORM_ResourceAllocations"));
 	}

@@ -13,7 +13,7 @@
  */
 package businesslogic.accounting;
 
-import businesslogic.accounting.user.ORMConstants;
+import orm.ORMConstants;
 
 public class Permission {
 	public Permission() {
@@ -48,7 +48,7 @@ public class Permission {
 		return ORM_userPermissions;
 	}
 
-	public final businesslogic.accounting.job.UserPermissionSetCollection userPermissions = new businesslogic.accounting.job.UserPermissionSetCollection(this, _ormAdapter, ORMConstants.KEY_PERMISSION_USERPERMISSIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.accounting.job.UserPermissionSetCollection userPermissions = new businesslogic.accounting.job.UserPermissionSetCollection(this, _ormAdapter, ORMConstants.KEY_PERMISSION_USERPERMISSIONS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setID(int value) {
 		this.ID = value;

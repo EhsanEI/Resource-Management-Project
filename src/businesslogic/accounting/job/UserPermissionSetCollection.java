@@ -15,6 +15,7 @@ package businesslogic.accounting.job;
 
 import org.orm.PersistentException;
 import org.orm.PersistentManager;
+import orm.OODPersistentManager;
 
 public class UserPermissionSetCollection extends org.orm.util.ORMSet {
 	public UserPermissionSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
@@ -92,7 +93,7 @@ public class UserPermissionSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return businesslogic.accounting.user.OODPersistentManager.instance();
+		return OODPersistentManager.instance();
 	}
 	
 }

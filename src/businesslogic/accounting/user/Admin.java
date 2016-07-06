@@ -14,6 +14,7 @@
 package businesslogic.accounting.user;
 
 import businesslogic.accounting.PermissionTitles;
+import orm.ORMConstants;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -24,7 +25,7 @@ public class Admin extends businesslogic.accounting.user.User {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_ADMIN_SYSTEMCONFIGURATIONS) {
+		if (key == ORMConstants.KEY_ADMIN_SYSTEMCONFIGURATIONS) {
 			return ORM_systemConfigurations;
 		}
 		
@@ -48,7 +49,7 @@ public class Admin extends businesslogic.accounting.user.User {
 		return ORM_systemConfigurations;
 	}
 	
-	public final businesslogic.support.SystemConfigurationSetCollection systemConfigurations = new businesslogic.support.SystemConfigurationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_ADMIN_SYSTEMCONFIGURATIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.support.SystemConfigurationSetCollection systemConfigurations = new businesslogic.support.SystemConfigurationSetCollection(this, _ormAdapter, ORMConstants.KEY_ADMIN_SYSTEMCONFIGURATIONS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 
 	@Override
 	public PermissionTitles[] getPermissions() {

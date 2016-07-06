@@ -33,7 +33,7 @@ License Type: Evaluation
 				<one-to-many class="businesslogic.utility.Notification"/>
 			</set>
 		</subclass>
-		<subclass name="businesslogic.accounting.ResourceManagement" discriminator-value="ResourceManagement" lazy="false">
+		<subclass name="businesslogic.accounting.job.ResourceManagement" discriminator-value="ResourceManagement" lazy="false">
 			<set name="ORM_Resources" lazy="true" cascade="save-update,lock" inverse="false">
 				<key column="JobID2" not-null="false"/>
 				<one-to-many class="businesslogic.distribution.resource.Resource"/>

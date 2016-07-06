@@ -3,7 +3,6 @@ package gui.controllers.projectmanager;
 import businesslogic.ClientProjectManagerLogicFacade;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.requirement.RequirementDAO;
-import businesslogic.distribution.requirement.RequirementPriority;
 import businesslogic.distribution.requirement.RequirementPriorityEnum;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.distribution.resource.ModuleDAO;

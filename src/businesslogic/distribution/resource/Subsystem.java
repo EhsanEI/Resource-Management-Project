@@ -14,6 +14,7 @@
 package businesslogic.distribution.resource;
 
 import businesslogic.distribution.requirement.Requirement;
+import orm.ORMConstants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +25,7 @@ public class Subsystem extends businesslogic.distribution.resource.InformationRe
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_SUBSYSTEM_MODULES) {
+		if (key == ORMConstants.KEY_SUBSYSTEM_MODULES) {
 			return ORM_modules;
 		}
 		
@@ -48,7 +49,7 @@ public class Subsystem extends businesslogic.distribution.resource.InformationRe
 		return ORM_modules;
 	}
 	
-	public final businesslogic.distribution.resource.ModuleSetCollection modules = new businesslogic.distribution.resource.ModuleSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_SUBSYSTEM_MODULES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.resource.ModuleSetCollection modules = new businesslogic.distribution.resource.ModuleSetCollection(this, _ormAdapter, ORMConstants.KEY_SUBSYSTEM_MODULES, ORMConstants.KEY_MUL_ONE_TO_MANY);
 
 	public void addModule(Module module) {
 		getORM_Modules().add(module);

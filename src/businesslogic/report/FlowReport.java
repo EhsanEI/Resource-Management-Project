@@ -1,6 +1,5 @@
 package businesslogic.report;
 
-import businesslogic.distribution.Allocation;
 import businesslogic.distribution.Allocation_DAO;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.InformationResource;
@@ -17,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import businesslogic.utility.Date;
-import java.util.Set;
+import orm.OODPersistentManager;
 
 /**
  * Created by Esi on 6/23/2016.
@@ -51,7 +50,7 @@ public class FlowReport  extends Report{
 
     @Override
     public Table makeReport() throws PersistentException{
-        PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+        PersistentSession session = OODPersistentManager.instance().getSession();
 
         //Can be done easier with join
         List<Integer> allocationIDs = session

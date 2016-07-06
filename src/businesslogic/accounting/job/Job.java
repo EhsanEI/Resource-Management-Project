@@ -13,24 +13,17 @@
  */
 package businesslogic.accounting.job;
 
-import businesslogic.accounting.Permission;
-import businesslogic.accounting.PermissionDAO;
-import businesslogic.accounting.PermissionTitles;
 import businesslogic.utility.Tree;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
+import orm.ORMConstants;
 
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class Job implements Serializable{
 	public Job() {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_JOB_USERJOBS) {
+		if (key == ORMConstants.KEY_JOB_USERJOBS) {
 			return ORM_userJobs;
 		}
 		
@@ -68,7 +61,7 @@ public class Job implements Serializable{
 		return ORM_userJobs;
 	}
 	
-	public final businesslogic.accounting.job.UserJobSetCollection userJobs = new businesslogic.accounting.job.UserJobSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_JOB_USERJOBS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.accounting.job.UserJobSetCollection userJobs = new businesslogic.accounting.job.UserJobSetCollection(this, _ormAdapter, ORMConstants.KEY_JOB_USERJOBS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.accounting.PermissionTitles[] getPermissions() {
 		return null;

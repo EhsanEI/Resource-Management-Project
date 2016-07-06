@@ -70,10 +70,6 @@ public class InformationResourceDetachedCriteria extends AbstractORMDetachedCrit
 		return new businesslogic.distribution.requirement.RequirementDetachedCriteria(createCriteria("ORM_Requirements"));
 	}
 	
-	public businesslogic.distribution.resource.ResourceStateDetachedCriteria createResourceStateCriteria() {
-		return new businesslogic.distribution.resource.ResourceStateDetachedCriteria(createCriteria("resourceState"));
-	}
-	
 	public businesslogic.distribution.ResourceAllocationDetachedCriteria createResourceAllocationsCriteria() {
 		return new businesslogic.distribution.ResourceAllocationDetachedCriteria(createCriteria("ORM_ResourceAllocations"));
 	}

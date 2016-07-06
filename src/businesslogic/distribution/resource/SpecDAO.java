@@ -17,13 +17,14 @@ import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
+import orm.OODPersistentManager;
 
 import java.util.List;
 
 public class SpecDAO {
 	public static Spec loadSpecByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadSpecByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -34,7 +35,7 @@ public class SpecDAO {
 	
 	public static Spec getSpecByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getSpecByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -45,7 +46,7 @@ public class SpecDAO {
 	
 	public static Spec loadSpecByORMID(int ID, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadSpecByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -56,7 +57,7 @@ public class SpecDAO {
 
 	public static Spec getSpecByORMID(int ID, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getSpecByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -107,7 +108,7 @@ public class SpecDAO {
 
 	public static List querySpec(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return querySpec(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -118,7 +119,7 @@ public class SpecDAO {
 
 	public static List querySpec(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return querySpec(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -129,7 +130,7 @@ public class SpecDAO {
 
 	public static Spec[] listSpecByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listSpecByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -140,7 +141,7 @@ public class SpecDAO {
 
 	public static Spec[] listSpecByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listSpecByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -206,7 +207,7 @@ public class SpecDAO {
 
 	public static Spec loadSpecByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadSpecByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -217,7 +218,7 @@ public class SpecDAO {
 
 	public static Spec loadSpecByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadSpecByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -244,7 +245,7 @@ public class SpecDAO {
 
 	public static java.util.Iterator iterateSpecByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateSpecByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -255,7 +256,7 @@ public class SpecDAO {
 
 	public static java.util.Iterator iterateSpecByQuery(String condition, String orderBy, LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateSpecByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -303,7 +304,7 @@ public class SpecDAO {
 
 	public static boolean save(Spec Spec) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(Spec);
+			OODPersistentManager.instance().saveObject(Spec);
 			return true;
 		}
 		catch (Exception e) {
@@ -314,7 +315,7 @@ public class SpecDAO {
 
 	public static boolean delete(Spec Spec) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(Spec);
+			OODPersistentManager.instance().deleteObject(Spec);
 			return true;
 		}
 		catch (Exception e) {
@@ -325,7 +326,7 @@ public class SpecDAO {
 
 	public static boolean refresh(Spec Spec) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(Spec);
+			OODPersistentManager.instance().getSession().refresh(Spec);
 			return true;
 		}
 		catch (Exception e) {
@@ -336,7 +337,7 @@ public class SpecDAO {
 
 	public static boolean evict(Spec Spec) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(Spec);
+			OODPersistentManager.instance().getSession().evict(Spec);
 			return true;
 		}
 		catch (Exception e) {

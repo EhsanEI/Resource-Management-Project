@@ -14,6 +14,7 @@
 package businesslogic.distribution.resource;
 
 import businesslogic.distribution.requirement.Requirement;
+import orm.ORMConstants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -24,7 +25,7 @@ public class System extends businesslogic.distribution.resource.InformationResou
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_SYSTEM_SUBSYSTEMS) {
+		if (key == ORMConstants.KEY_SYSTEM_SUBSYSTEMS) {
 			return ORM_subsystems;
 		}
 		
@@ -58,7 +59,7 @@ public class System extends businesslogic.distribution.resource.InformationResou
 		return ORM_subsystems;
 	}
 	
-	public final businesslogic.distribution.resource.SubsystemSetCollection subsystems = new businesslogic.distribution.resource.SubsystemSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_SYSTEM_SUBSYSTEMS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.resource.SubsystemSetCollection subsystems = new businesslogic.distribution.resource.SubsystemSetCollection(this, _ormAdapter, ORMConstants.KEY_SYSTEM_SUBSYSTEMS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 
 	public void addSubsystem(Subsystem subsystem) {
 		getORM_Subsystems().add(subsystem);

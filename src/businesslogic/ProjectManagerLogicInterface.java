@@ -1,11 +1,7 @@
 package businesslogic;
 
-import businesslogic.accounting.job.Specialty;
-import businesslogic.accounting.user.User;
 import businesslogic.distribution.requirement.Requirement;
-import businesslogic.distribution.requirement.ResourceRequirementPriority;
 import businesslogic.distribution.resource.*;
-import businesslogic.distribution.resource.System;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 

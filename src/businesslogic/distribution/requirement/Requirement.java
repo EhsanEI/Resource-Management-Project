@@ -15,32 +15,15 @@ package businesslogic.distribution.requirement;
 
 import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.job.ProjectManagementDAO;
-import businesslogic.accounting.user.User;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.distribution.resource.InformationResourceDAO;
-import businesslogic.utility.Quantity;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import org.orm.PersistentTransaction;
-
-import java.util.List;
+import orm.OODPersistentManager;
 
 public class Requirement {
 	public Requirement() {
 	}
-	
-//	private void this_setOwner(Object owner, int key) {
-//		if (key == businesslogic.accounting.user.ORMConstants.KEY_REQUIREMENT_REQUIREMENTPRIORITY) {
-//			this.requirementPriority = (businesslogic.distribution.requirement.RequirementPriority) owner;
-//		}
-//	}
-	
-//	org.orm.util.ORMAdapter _ormAdapter = new org.orm.util.AbstractORMAdapter() {
-//		public void setOwner(Object owner, int key) {
-//			this_setOwner(owner, key);
-//		}
-//
-//	};
 	
 	private int ID;
 	
@@ -122,7 +105,7 @@ public class Requirement {
 
 	public ProjectManagement getProjectManagement() {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			Integer jobID = (Integer) session.createSQLQuery("SELECT JobID FROM Requirement WHERE ID = " + getID()).list().get(0);
 			return ProjectManagementDAO.getProjectManagementByORMID(jobID);
 		}
@@ -138,7 +121,7 @@ public class Requirement {
 
 	public InformationResource getInformationResource() {
 		try{
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			Integer irID = (Integer) session.createSQLQuery("SELECT ResourceID2 FROM Requirement WHERE ID = "+ getID()).uniqueResult();
 			return InformationResourceDAO.getInformationResourceByORMID(irID);
 		}

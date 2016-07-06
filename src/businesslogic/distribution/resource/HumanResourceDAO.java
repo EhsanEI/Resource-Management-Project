@@ -15,13 +15,14 @@ package businesslogic.distribution.resource;
 
 import org.orm.*;
 import org.hibernate.Query;
-import org.hibernate.LockMode;
+import orm.OODPersistentManager;
+
 import java.util.List;
 
 public class HumanResourceDAO {
 	public static HumanResource loadHumanResourceByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadHumanResourceByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +33,7 @@ public class HumanResourceDAO {
 	
 	public static HumanResource getHumanResourceByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getHumanResourceByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +44,7 @@ public class HumanResourceDAO {
 	
 	public static HumanResource loadHumanResourceByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadHumanResourceByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +55,7 @@ public class HumanResourceDAO {
 	
 	public static HumanResource getHumanResourceByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getHumanResourceByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +106,7 @@ public class HumanResourceDAO {
 	
 	public static List queryHumanResource(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryHumanResource(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +117,7 @@ public class HumanResourceDAO {
 	
 	public static List queryHumanResource(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryHumanResource(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +128,7 @@ public class HumanResourceDAO {
 	
 	public static HumanResource[] listHumanResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listHumanResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +139,7 @@ public class HumanResourceDAO {
 	
 	public static HumanResource[] listHumanResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listHumanResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +205,7 @@ public class HumanResourceDAO {
 	
 	public static HumanResource loadHumanResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadHumanResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +216,7 @@ public class HumanResourceDAO {
 	
 	public static HumanResource loadHumanResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadHumanResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +243,7 @@ public class HumanResourceDAO {
 	
 	public static java.util.Iterator iterateHumanResourceByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateHumanResourceByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +254,7 @@ public class HumanResourceDAO {
 	
 	public static java.util.Iterator iterateHumanResourceByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateHumanResourceByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +302,7 @@ public class HumanResourceDAO {
 	
 	public static boolean save(businesslogic.distribution.resource.HumanResource humanResource) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(humanResource);
+			OODPersistentManager.instance().saveObject(humanResource);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +313,7 @@ public class HumanResourceDAO {
 	
 	public static boolean delete(businesslogic.distribution.resource.HumanResource humanResource) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(humanResource);
+			OODPersistentManager.instance().deleteObject(humanResource);
 			return true;
 		}
 		catch (Exception e) {
@@ -323,7 +324,7 @@ public class HumanResourceDAO {
 	
 	public static boolean refresh(businesslogic.distribution.resource.HumanResource humanResource) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(humanResource);
+			OODPersistentManager.instance().getSession().refresh(humanResource);
 			return true;
 		}
 		catch (Exception e) {
@@ -334,7 +335,7 @@ public class HumanResourceDAO {
 	
 	public static boolean evict(businesslogic.distribution.resource.HumanResource humanResource) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(humanResource);
+			OODPersistentManager.instance().getSession().evict(humanResource);
 			return true;
 		}
 		catch (Exception e) {

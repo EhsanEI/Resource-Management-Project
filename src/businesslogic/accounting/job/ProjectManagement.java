@@ -17,6 +17,7 @@ import businesslogic.accounting.PermissionTitles;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.utility.Notification;
+import orm.ORMConstants;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -26,16 +27,16 @@ public class ProjectManagement extends businesslogic.accounting.job.Job {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_PROJECTMANAGEMENT_INFORMATIONRESOURCES) {
+		if (key == ORMConstants.KEY_PROJECTMANAGEMENT_INFORMATIONRESOURCES) {
 			return ORM_informationResources;
 		}
-		else if (key == businesslogic.accounting.user.ORMConstants.KEY_PROJECTMANAGEMENT_SPECIALTIES) {
+		else if (key == ORMConstants.KEY_PROJECTMANAGEMENT_SPECIALTIES) {
 			return ORM_specialties;
 		}
-		else if (key == businesslogic.accounting.user.ORMConstants.KEY_PROJECTMANAGEMENT_REQUIREMENTS) {
+		else if (key == ORMConstants.KEY_PROJECTMANAGEMENT_REQUIREMENTS) {
 			return ORM_requirements;
 		}
-		else if (key == businesslogic.accounting.user.ORMConstants.KEY_PROJECTMANAGEMENT_NOTIFICATION) {
+		else if (key == ORMConstants.KEY_PROJECTMANAGEMENT_NOTIFICATION) {
 			return ORM_notification;
 		}
 		
@@ -65,7 +66,7 @@ public class ProjectManagement extends businesslogic.accounting.job.Job {
 		return ORM_informationResources;
 	}
 	
-	public final businesslogic.distribution.resource.InformationResourceSetCollection informationResources = new businesslogic.distribution.resource.InformationResourceSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROJECTMANAGEMENT_INFORMATIONRESOURCES, businesslogic.accounting.user.ORMConstants.KEY_INFORMATIONRESOURCE_PROJECTMANAGEMENT, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.resource.InformationResourceSetCollection informationResources = new businesslogic.distribution.resource.InformationResourceSetCollection(this, _ormAdapter, ORMConstants.KEY_PROJECTMANAGEMENT_INFORMATIONRESOURCES, ORMConstants.KEY_INFORMATIONRESOURCE_PROJECTMANAGEMENT, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_Specialties(java.util.Set value) {
 		this.ORM_specialties = value;
@@ -75,7 +76,7 @@ public class ProjectManagement extends businesslogic.accounting.job.Job {
 		return ORM_specialties;
 	}
 	
-	public final businesslogic.accounting.job.SpecialtySetCollection specialties = new businesslogic.accounting.job.SpecialtySetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROJECTMANAGEMENT_SPECIALTIES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.accounting.job.SpecialtySetCollection specialties = new businesslogic.accounting.job.SpecialtySetCollection(this, _ormAdapter, ORMConstants.KEY_PROJECTMANAGEMENT_SPECIALTIES, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_Requirements(java.util.Set value) {
 		this.ORM_requirements = value;
@@ -85,7 +86,7 @@ public class ProjectManagement extends businesslogic.accounting.job.Job {
 		return ORM_requirements;
 	}
 	
-	public final businesslogic.distribution.requirement.RequirementSetCollection requirements = new businesslogic.distribution.requirement.RequirementSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROJECTMANAGEMENT_REQUIREMENTS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.requirement.RequirementSetCollection requirements = new businesslogic.distribution.requirement.RequirementSetCollection(this, _ormAdapter, ORMConstants.KEY_PROJECTMANAGEMENT_REQUIREMENTS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_Notification(java.util.Set value) {
 		this.ORM_notification = value;
@@ -95,7 +96,7 @@ public class ProjectManagement extends businesslogic.accounting.job.Job {
 		return ORM_notification;
 	}
 	
-	public final businesslogic.utility.NotificationSetCollection notification = new businesslogic.utility.NotificationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROJECTMANAGEMENT_NOTIFICATION, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.utility.NotificationSetCollection notification = new businesslogic.utility.NotificationSetCollection(this, _ormAdapter, ORMConstants.KEY_PROJECTMANAGEMENT_NOTIFICATION, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.distribution.resource.InformationResource[] getInformationResources() {
 		Set<InformationResource> informationResourceSet = getORM_InformationResources();

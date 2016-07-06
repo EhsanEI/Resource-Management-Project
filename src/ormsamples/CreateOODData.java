@@ -4,11 +4,15 @@
  */
 package ormsamples;
 
+import businesslogic.accounting.job.ResourceManagement;
+import businesslogic.accounting.job.ResourceManagementDAO;
 import businesslogic.distribution.Allocation;
 import org.orm.*;
+import orm.OODPersistentManager;
+
 public class CreateOODData {
 	public void createTestData() throws PersistentException {
-		PersistentTransaction t = businesslogic.accounting.user.OODPersistentManager.instance().getSession().beginTransaction();
+		PersistentTransaction t = OODPersistentManager.instance().getSession().beginTransaction();
 		try {
 			businesslogic.accounting.user.User businessLogicAccountingUserUser = businesslogic.accounting.user.UserDAO.createUser();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : userJobs, emails, approved, user
@@ -64,9 +68,9 @@ public class CreateOODData {
 			businesslogic.accounting.job.ProjectManagement businessLogicAccountingJobProjectManagement = businesslogic.accounting.job.ProjectManagementDAO.createProjectManagement();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : notification, requirements, specialties
 			businesslogic.accounting.job.ProjectManagementDAO.save(businessLogicAccountingJobProjectManagement);
-			businesslogic.accounting.ResourceManagement businessLogicAccountingResourceManagement = businesslogic.accounting.ResourceManagementDAO.createResourceManagement();
+			ResourceManagement businessLogicAccountingResourceManagement = ResourceManagementDAO.createResourceManagement();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : allocation_s, resources
-			businesslogic.accounting.ResourceManagementDAO.save(businessLogicAccountingResourceManagement);
+			ResourceManagementDAO.save(businessLogicAccountingResourceManagement);
 			businesslogic.accounting.job.Programming businessLogicAccountingJobProgramming = businesslogic.accounting.job.ProgrammingDAO.createProgramming();
 			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : moduleChanges
 			businesslogic.accounting.job.ProgrammingDAO.save(businessLogicAccountingJobProgramming);
@@ -82,21 +86,10 @@ public class CreateOODData {
 			businesslogic.accounting.user.HighLevelManager businessLogicAccountingUserHighLevelManager = businesslogic.accounting.user.HighLevelManagerDAO.createHighLevelManager();
 			// Initialize the properties of the persistent object here
 			businesslogic.accounting.user.HighLevelManagerDAO.save(businessLogicAccountingUserHighLevelManager);
-			businesslogic.accounting.Permission businessLogicAccountingPermission = businesslogic.accounting.PermissionDAO.createPermission();
-			// Initialize the properties of the persistent object here
-			businesslogic.accounting.PermissionDAO.save(businessLogicAccountingPermission);
-			businesslogic.utility.Date businessLogicUtilityDate = businesslogic.utility.DateDAO.createDate();
-			// TODO Initialize the properties of the persistent object here, the following properties must be initialized before saving : year, month, day, hour, minute, second
-			businesslogic.utility.DateDAO.save(businessLogicUtilityDate);
 			businesslogic.utility.Notification businessLogicUtilityNotification = businesslogic.utility.NotificationDAO.createNotification();
 			// Initialize the properties of the persistent object here
 			businesslogic.utility.NotificationDAO.save(businessLogicUtilityNotification);
-			businesslogic.distribution.requirement.RequirementPriority businessLogicDistributionRequirementRequirementPriority = businesslogic.distribution.requirement.RequirementPriorityDAO.createRequirementPriority();
 			// Initialize the properties of the persistent object here
-			businesslogic.distribution.requirement.RequirementPriorityDAO.save(businessLogicDistributionRequirementRequirementPriority);
-			businesslogic.distribution.resource.ResourceState businessLogicDistributionResourceResourceState = businesslogic.distribution.resource.ResourceStateDAO.createResourceState();
-			// Initialize the properties of the persistent object here
-			businesslogic.distribution.resource.ResourceStateDAO.save(businessLogicDistributionResourceResourceState);
 			network.Email networkEmail = network.EmailDAO.createEmail();
 			// Initialize the properties of the persistent object here
 			network.EmailDAO.save(networkEmail);
@@ -121,7 +114,7 @@ public class CreateOODData {
 				createOODData.createTestData();
 			}
 			finally {
-				businesslogic.accounting.user.OODPersistentManager.instance().disposePersistentManager();
+				OODPersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

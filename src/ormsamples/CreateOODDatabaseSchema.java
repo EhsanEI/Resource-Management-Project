@@ -5,11 +5,13 @@
 package ormsamples;
 
 import org.orm.*;
+import orm.OODPersistentManager;
+
 public class CreateOODDatabaseSchema {
 	public static void main(String[] args) {
 		try {
-			ORMDatabaseInitiator.createSchema(businesslogic.accounting.user.OODPersistentManager.instance());
-			businesslogic.accounting.user.OODPersistentManager.instance().disposePersistentManager();
+			ORMDatabaseInitiator.createSchema(OODPersistentManager.instance());
+			OODPersistentManager.instance().disposePersistentManager();
 		}
 		catch (Exception e) {
 			e.printStackTrace();

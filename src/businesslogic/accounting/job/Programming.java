@@ -13,11 +13,11 @@
  */
 package businesslogic.accounting.job;
 
-import businesslogic.accounting.Permission;
 import businesslogic.accounting.PermissionTitles;
 import businesslogic.distribution.resource.Module;
 import businesslogic.distribution.resource.ModuleChange;
 import businesslogic.utility.Tree;
+import orm.ORMConstants;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -27,13 +27,13 @@ public class Programming extends businesslogic.accounting.job.Job {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_PROGRAMMING_SPECIALTIES) {
+		if (key == ORMConstants.KEY_PROGRAMMING_SPECIALTIES) {
 			return ORM_specialties;
 		}
-		else if (key == businesslogic.accounting.user.ORMConstants.KEY_PROGRAMMING_MODULES) {
+		else if (key == ORMConstants.KEY_PROGRAMMING_MODULES) {
 			return ORM_modules;
 		}
-		else if (key == businesslogic.accounting.user.ORMConstants.KEY_PROGRAMMING_MODULECHANGES) {
+		else if (key == ORMConstants.KEY_PROGRAMMING_MODULECHANGES) {
 			return ORM_moduleChanges;
 		}
 		
@@ -61,7 +61,7 @@ public class Programming extends businesslogic.accounting.job.Job {
 		return ORM_specialties;
 	}
 	
-	public final businesslogic.accounting.job.SpecialtySetCollection specialties = new businesslogic.accounting.job.SpecialtySetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROGRAMMING_SPECIALTIES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.accounting.job.SpecialtySetCollection specialties = new businesslogic.accounting.job.SpecialtySetCollection(this, _ormAdapter, ORMConstants.KEY_PROGRAMMING_SPECIALTIES, ORMConstants.KEY_MUL_ONE_TO_MANY);
 
 	public void setORM_Modules(java.util.Set value) {
 		this.ORM_modules = value;
@@ -71,7 +71,7 @@ public class Programming extends businesslogic.accounting.job.Job {
 		return ORM_modules;
 	}
 	
-	public final businesslogic.distribution.resource.ModuleSetCollection modules = new businesslogic.distribution.resource.ModuleSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROGRAMMING_MODULES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.resource.ModuleSetCollection modules = new businesslogic.distribution.resource.ModuleSetCollection(this, _ormAdapter, ORMConstants.KEY_PROGRAMMING_MODULES, ORMConstants.KEY_MUL_ONE_TO_MANY);
 
 	public void setORM_ModuleChanges(java.util.Set value) {
 		this.ORM_moduleChanges = value;
@@ -81,7 +81,7 @@ public class Programming extends businesslogic.accounting.job.Job {
 		return ORM_moduleChanges;
 	}
 	
-	public final businesslogic.distribution.resource.ModuleChangeSetCollection moduleChanges = new businesslogic.distribution.resource.ModuleChangeSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_PROGRAMMING_MODULECHANGES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.resource.ModuleChangeSetCollection moduleChanges = new businesslogic.distribution.resource.ModuleChangeSetCollection(this, _ormAdapter, ORMConstants.KEY_PROGRAMMING_MODULECHANGES, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public Specialty[] getSpecialties() {
 		Set<Specialty> castedSpecialities = getORM_Specialties();

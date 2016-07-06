@@ -18,6 +18,8 @@ import businesslogic.distribution.resource.Resource;
 import businesslogic.distribution.resource.ResourceDAO;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
+import orm.OODPersistentManager;
+import orm.ORMConstants;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,10 +30,10 @@ public class Allocation {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_ALLOCATION__REQUIREMENTS) {
+		if (key == ORMConstants.KEY_ALLOCATION__REQUIREMENTS) {
 			return ORM_requirements;
 		}
-		else if (key == businesslogic.accounting.user.ORMConstants.KEY_ALLOCATION__RESOURCEALLOCATIONS) {
+		else if (key == ORMConstants.KEY_ALLOCATION__RESOURCEALLOCATIONS) {
 			return ORM_resourceAllocations;
 		}
 		
@@ -81,7 +83,7 @@ public class Allocation {
 		return ORM_requirements;
 	}
 	
-	public final businesslogic.distribution.requirement.RequirementSetCollection requirements = new businesslogic.distribution.requirement.RequirementSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_ALLOCATION__REQUIREMENTS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.requirement.RequirementSetCollection requirements = new businesslogic.distribution.requirement.RequirementSetCollection(this, _ormAdapter, ORMConstants.KEY_ALLOCATION__REQUIREMENTS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_ResourceAllocations(java.util.Set value) {
 		this.ORM_resourceAllocations = value;
@@ -91,7 +93,7 @@ public class Allocation {
 		return ORM_resourceAllocations;
 	}
 	
-	public final businesslogic.distribution.ResourceAllocationSetCollection resourceAllocations = new businesslogic.distribution.ResourceAllocationSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_ALLOCATION__RESOURCEALLOCATIONS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.ResourceAllocationSetCollection resourceAllocations = new businesslogic.distribution.ResourceAllocationSetCollection(this, _ormAdapter, ORMConstants.KEY_ALLOCATION__RESOURCEALLOCATIONS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public businesslogic.distribution.requirement.Requirement getRequirement() {
 		if(getORM_Requirements().isEmpty()) {
@@ -108,7 +110,7 @@ public class Allocation {
 	public Resource[] getResources() {
 		//This method can be called after allocation and resourceAllocation are saved to db
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			List<Integer> resourceIDs = session
 					.createSQLQuery("SELECT ResourceID2 FROM ResourceAllocation WHERE [Allocation ID] = "+ getID()).list();
 			ArrayList<Resource> result = new ArrayList<>();

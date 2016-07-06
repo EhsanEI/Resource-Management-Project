@@ -1,7 +1,7 @@
 package gui.controllers.accounting;
 
 import businesslogic.ClientAccountingLogicFacade;
-import businesslogic.accounting.ResourceManagement;
+import businesslogic.accounting.job.ResourceManagement;
 import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.user.User;
 import gui.MainMenu;

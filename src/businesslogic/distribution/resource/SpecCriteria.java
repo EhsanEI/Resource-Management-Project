@@ -13,13 +13,13 @@
  */
 package businesslogic.distribution.resource;
 
-import businesslogic.accounting.job.UserJob;
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.AbstractORMCriteria;
 import org.orm.criteria.IntegerExpression;
 import org.orm.criteria.StringExpression;
+import orm.OODPersistentManager;
 
 public class SpecCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
@@ -38,7 +38,7 @@ public class SpecCriteria extends AbstractORMCriteria {
 	}
 	
 	public SpecCriteria() throws PersistentException {
-		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
+		this(OODPersistentManager.instance().getSession());
 	}
 	
 	public Spec uniqueSpec() {

@@ -15,20 +15,20 @@ package businesslogic.distribution.resource;
 
 import businesslogic.accounting.job.Specialty;
 import businesslogic.distribution.requirement.Requirement;
+import orm.ORMConstants;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Set;
 
 public class Module extends businesslogic.distribution.resource.InformationResource {
 	public Module() {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_MODULE_SPECIALTIES) {
+		if (key == ORMConstants.KEY_MODULE_SPECIALTIES) {
 			return ORM_specialties;
 		}
-		else if (key == businesslogic.accounting.user.ORMConstants.KEY_MODULE_MODULECHANGES) {
+		else if (key == ORMConstants.KEY_MODULE_MODULECHANGES) {
 			return ORM_moduleChanges;
 		}
 		
@@ -36,7 +36,7 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 	}
 	
 	private void this_setOwner(Object owner, int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_MODULE_DATE) {
+		if (key == ORMConstants.KEY_MODULE_DATE) {
 			this.date = (businesslogic.utility.Date) owner;
 		}
 	}
@@ -99,7 +99,7 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 		return ORM_specialties;
 	}
 	
-	public final businesslogic.accounting.job.SpecialtySetCollection specialties = new businesslogic.accounting.job.SpecialtySetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_MODULE_SPECIALTIES, businesslogic.accounting.user.ORMConstants.KEY_MUL_MANY_TO_MANY);
+	public final businesslogic.accounting.job.SpecialtySetCollection specialties = new businesslogic.accounting.job.SpecialtySetCollection(this, _ormAdapter, ORMConstants.KEY_MODULE_SPECIALTIES, ORMConstants.KEY_MUL_MANY_TO_MANY);
 	
 	private void setORM_ModuleChanges(java.util.Set value) {
 		this.ORM_moduleChanges = value;
@@ -109,7 +109,7 @@ public class Module extends businesslogic.distribution.resource.InformationResou
 		return ORM_moduleChanges;
 	}
 	
-	public final businesslogic.distribution.resource.ModuleChangeSetCollection moduleChanges = new businesslogic.distribution.resource.ModuleChangeSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_MODULE_MODULECHANGES, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.resource.ModuleChangeSetCollection moduleChanges = new businesslogic.distribution.resource.ModuleChangeSetCollection(this, _ormAdapter, ORMConstants.KEY_MODULE_MODULECHANGES, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public void setDate(businesslogic.utility.Date value) {
 		this.date = value;

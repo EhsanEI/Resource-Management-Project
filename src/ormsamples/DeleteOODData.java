@@ -4,11 +4,15 @@
  */
 package ormsamples;
 
+import businesslogic.accounting.job.ResourceManagement;
+import businesslogic.accounting.job.ResourceManagementDAO;
 import businesslogic.distribution.Allocation;
 import org.orm.*;
+import orm.OODPersistentManager;
+
 public class DeleteOODData {
 	public void deleteTestData() throws PersistentException {
-		PersistentTransaction t = businesslogic.accounting.user.OODPersistentManager.instance().getSession().beginTransaction();
+		PersistentTransaction t = OODPersistentManager.instance().getSession().beginTransaction();
 		try {
 			businesslogic.accounting.user.User businessLogicAccountingUserUser = businesslogic.accounting.user.UserDAO.loadUserByQuery(null, null);
 			// Delete the persistent object
@@ -64,9 +68,9 @@ public class DeleteOODData {
 			businesslogic.accounting.job.ProjectManagement businessLogicAccountingJobProjectManagement = businesslogic.accounting.job.ProjectManagementDAO.loadProjectManagementByQuery(null, null);
 			// Delete the persistent object
 			businesslogic.accounting.job.ProjectManagementDAO.delete(businessLogicAccountingJobProjectManagement);
-			businesslogic.accounting.ResourceManagement businessLogicAccountingResourceManagement = businesslogic.accounting.ResourceManagementDAO.loadResourceManagementByQuery(null, null);
+			ResourceManagement businessLogicAccountingResourceManagement = ResourceManagementDAO.loadResourceManagementByQuery(null, null);
 			// Delete the persistent object
-			businesslogic.accounting.ResourceManagementDAO.delete(businessLogicAccountingResourceManagement);
+			ResourceManagementDAO.delete(businessLogicAccountingResourceManagement);
 			businesslogic.accounting.job.Programming businessLogicAccountingJobProgramming = businesslogic.accounting.job.ProgrammingDAO.loadProgrammingByQuery(null, null);
 			// Delete the persistent object
 			businesslogic.accounting.job.ProgrammingDAO.delete(businessLogicAccountingJobProgramming);
@@ -82,21 +86,11 @@ public class DeleteOODData {
 			businesslogic.accounting.user.HighLevelManager businessLogicAccountingUserHighLevelManager = businesslogic.accounting.user.HighLevelManagerDAO.loadHighLevelManagerByQuery(null, null);
 			// Delete the persistent object
 			businesslogic.accounting.user.HighLevelManagerDAO.delete(businessLogicAccountingUserHighLevelManager);
-			businesslogic.accounting.Permission businessLogicAccountingPermission = businesslogic.accounting.PermissionDAO.loadPermissionByQuery(null, null);
 			// Delete the persistent object
-			businesslogic.accounting.PermissionDAO.delete(businessLogicAccountingPermission);
-			businesslogic.utility.Date businessLogicUtilityDate = businesslogic.utility.DateDAO.loadDateByQuery(null, null);
-			// Delete the persistent object
-			businesslogic.utility.DateDAO.delete(businessLogicUtilityDate);
 			businesslogic.utility.Notification businessLogicUtilityNotification = businesslogic.utility.NotificationDAO.loadNotificationByQuery(null, null);
 			// Delete the persistent object
 			businesslogic.utility.NotificationDAO.delete(businessLogicUtilityNotification);
-			businesslogic.distribution.requirement.RequirementPriority businessLogicDistributionRequirementRequirementPriority = businesslogic.distribution.requirement.RequirementPriorityDAO.loadRequirementPriorityByQuery(null, null);
 			// Delete the persistent object
-			businesslogic.distribution.requirement.RequirementPriorityDAO.delete(businessLogicDistributionRequirementRequirementPriority);
-			businesslogic.distribution.resource.ResourceState businessLogicDistributionResourceResourceState = businesslogic.distribution.resource.ResourceStateDAO.loadResourceStateByQuery(null, null);
-			// Delete the persistent object
-			businesslogic.distribution.resource.ResourceStateDAO.delete(businessLogicDistributionResourceResourceState);
 			network.Email networkEmail = network.EmailDAO.loadEmailByQuery(null, null);
 			// Delete the persistent object
 			network.EmailDAO.delete(networkEmail);
@@ -121,7 +115,7 @@ public class DeleteOODData {
 				deleteOODData.deleteTestData();
 			}
 			finally {
-				businesslogic.accounting.user.OODPersistentManager.instance().disposePersistentManager();
+				OODPersistentManager.instance().disposePersistentManager();
 			}
 		}
 		catch (Exception e) {

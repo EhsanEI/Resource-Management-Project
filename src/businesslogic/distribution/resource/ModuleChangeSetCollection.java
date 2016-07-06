@@ -14,6 +14,7 @@
 package businesslogic.distribution.resource;
 
 import org.orm.*;
+import orm.OODPersistentManager;
 
 public class ModuleChangeSetCollection extends org.orm.util.ORMSet {
 	public ModuleChangeSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
@@ -93,7 +94,7 @@ public class ModuleChangeSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return businesslogic.accounting.user.OODPersistentManager.instance();
+		return OODPersistentManager.instance();
 	}
 	
 }

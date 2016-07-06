@@ -25,6 +25,6 @@ public interface ResourceManagerLogicInterface {
     ResourceReport reportResources();
     FlowReport reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate);
     ResourceRequirementReport reportResourceRequirements(InformationResource informationResource);
-    Project[] predictEssentialResourceAllocations(Project project);
+    InformationResource[] predictEssentialResourceAllocations(Project project);
     Project[] getAllProjectList();
 }

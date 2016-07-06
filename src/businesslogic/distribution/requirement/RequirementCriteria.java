@@ -17,6 +17,7 @@ import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
+import orm.OODPersistentManager;
 
 public class RequirementCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
@@ -43,11 +44,7 @@ public class RequirementCriteria extends AbstractORMCriteria {
 	}
 	
 	public RequirementCriteria() throws PersistentException {
-		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
-	}
-	
-	public RequirementPriorityCriteria createRequirementPriorityCriteria() {
-		return new RequirementPriorityCriteria(createCriteria("requirementPriority"));
+		this(OODPersistentManager.instance().getSession());
 	}
 	
 	public Requirement uniqueRequirement() {

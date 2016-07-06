@@ -48,11 +48,7 @@ public class FinancialResourceDetachedCriteria extends AbstractORMDetachedCriter
 		resourceAllocations = new CollectionExpression("ORM_ResourceAllocations", this.getDetachedCriteria());
 		financialValue = new IntegerExpression("financialValue", this.getDetachedCriteria());
 	}
-	
-	public businesslogic.distribution.resource.ResourceStateDetachedCriteria createResourceStateCriteria() {
-		return new businesslogic.distribution.resource.ResourceStateDetachedCriteria(createCriteria("resourceState"));
-	}
-	
+
 	public businesslogic.distribution.ResourceAllocationDetachedCriteria createResourceAllocationsCriteria() {
 		return new businesslogic.distribution.ResourceAllocationDetachedCriteria(createCriteria("ORM_ResourceAllocations"));
 	}

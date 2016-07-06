@@ -15,6 +15,7 @@ package businesslogic.distribution.resource;
 
 import businesslogic.distribution.Allocation;
 import businesslogic.distribution.requirement.Requirement;
+import orm.ORMConstants;
 
 import java.util.Set;
 
@@ -23,10 +24,10 @@ public class InformationResource extends businesslogic.distribution.resource.Res
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_INFORMATIONRESOURCE_ALLOCATION_S) {
+		if (key == ORMConstants.KEY_INFORMATIONRESOURCE_ALLOCATION_S) {
 			return ORM_allocation_s;
 		}
-		else if (key == businesslogic.accounting.user.ORMConstants.KEY_INFORMATIONRESOURCE_REQUIREMENTS) {
+		else if (key == ORMConstants.KEY_INFORMATIONRESOURCE_REQUIREMENTS) {
 			return ORM_requirements;
 		}
 		
@@ -34,7 +35,7 @@ public class InformationResource extends businesslogic.distribution.resource.Res
 	}
 	
 	private void this_setOwner(Object owner, int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_INFORMATIONRESOURCE_PROJECTMANAGEMENT) {
+		if (key == ORMConstants.KEY_INFORMATIONRESOURCE_PROJECTMANAGEMENT) {
 			this.projectManagement = (businesslogic.accounting.job.ProjectManagement) owner;
 		}
 	}
@@ -88,7 +89,7 @@ public class InformationResource extends businesslogic.distribution.resource.Res
 		return ORM_allocation_s;
 	}
 	
-	public final businesslogic.distribution.Allocation_SetCollection allocation_s = new businesslogic.distribution.Allocation_SetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_INFORMATIONRESOURCE_ALLOCATION_S, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.Allocation_SetCollection allocation_s = new businesslogic.distribution.Allocation_SetCollection(this, _ormAdapter, ORMConstants.KEY_INFORMATIONRESOURCE_ALLOCATION_S, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	private void setORM_Requirements(java.util.Set value) {
 		this.ORM_requirements = value;
@@ -98,7 +99,7 @@ public class InformationResource extends businesslogic.distribution.resource.Res
 		return ORM_requirements;
 	}
 	
-	public final businesslogic.distribution.requirement.RequirementSetCollection requirements = new businesslogic.distribution.requirement.RequirementSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_INFORMATIONRESOURCE_REQUIREMENTS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.distribution.requirement.RequirementSetCollection requirements = new businesslogic.distribution.requirement.RequirementSetCollection(this, _ormAdapter, ORMConstants.KEY_INFORMATIONRESOURCE_REQUIREMENTS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public Requirement[] getRequirements() {
 		Set<Requirement> requirementSet = getORM_Requirements();

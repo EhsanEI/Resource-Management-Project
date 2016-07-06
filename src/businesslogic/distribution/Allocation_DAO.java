@@ -15,13 +15,14 @@ package businesslogic.distribution;
 
 import org.orm.*;
 import org.hibernate.Query;
+import orm.OODPersistentManager;
 
 import java.util.List;
 
 public class Allocation_DAO {
 	public static Allocation loadAllocation_ByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadAllocation_ByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +33,7 @@ public class Allocation_DAO {
 	
 	public static Allocation getAllocation_ByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getAllocation_ByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +44,7 @@ public class Allocation_DAO {
 	
 	public static Allocation loadAllocation_ByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadAllocation_ByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +55,7 @@ public class Allocation_DAO {
 	
 	public static Allocation getAllocation_ByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getAllocation_ByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +106,7 @@ public class Allocation_DAO {
 	
 	public static List queryAllocation_(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryAllocation_(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +117,7 @@ public class Allocation_DAO {
 	
 	public static List queryAllocation_(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryAllocation_(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +128,7 @@ public class Allocation_DAO {
 	
 	public static Allocation[] listAllocation_ByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listAllocation_ByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +139,7 @@ public class Allocation_DAO {
 	
 	public static Allocation[] listAllocation_ByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listAllocation_ByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +205,7 @@ public class Allocation_DAO {
 	
 	public static Allocation loadAllocation_ByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadAllocation_ByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +216,7 @@ public class Allocation_DAO {
 	
 	public static Allocation loadAllocation_ByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadAllocation_ByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +243,7 @@ public class Allocation_DAO {
 	
 	public static java.util.Iterator iterateAllocation_ByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateAllocation_ByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +254,7 @@ public class Allocation_DAO {
 	
 	public static java.util.Iterator iterateAllocation_ByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateAllocation_ByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +302,7 @@ public class Allocation_DAO {
 	
 	public static boolean save(Allocation allocation_) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(allocation_);
+			OODPersistentManager.instance().saveObject(allocation_);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +313,7 @@ public class Allocation_DAO {
 	
 	public static boolean delete(Allocation allocation_) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(allocation_);
+			OODPersistentManager.instance().deleteObject(allocation_);
 			return true;
 		}
 		catch (Exception e) {
@@ -323,7 +324,7 @@ public class Allocation_DAO {
 	
 	public static boolean refresh(Allocation allocation_) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(allocation_);
+			OODPersistentManager.instance().getSession().refresh(allocation_);
 			return true;
 		}
 		catch (Exception e) {
@@ -334,7 +335,7 @@ public class Allocation_DAO {
 	
 	public static boolean evict(Allocation allocation_) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(allocation_);
+			OODPersistentManager.instance().getSession().evict(allocation_);
 			return true;
 		}
 		catch (Exception e) {

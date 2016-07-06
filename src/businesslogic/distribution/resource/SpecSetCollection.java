@@ -15,6 +15,7 @@ package businesslogic.distribution.resource;
 
 import org.orm.PersistentException;
 import org.orm.PersistentManager;
+import orm.OODPersistentManager;
 
 public class SpecSetCollection extends org.orm.util.ORMSet {
 	public SpecSetCollection(Object owner, org.orm.util.ORMAdapter adapter, int ownerKey, int targetKey, int collType) {
@@ -92,7 +93,7 @@ public class SpecSetCollection extends org.orm.util.ORMSet {
 	}
 	
 	protected PersistentManager getPersistentManager() throws PersistentException {
-		return businesslogic.accounting.user.OODPersistentManager.instance();
+		return OODPersistentManager.instance();
 	}
 	
 }

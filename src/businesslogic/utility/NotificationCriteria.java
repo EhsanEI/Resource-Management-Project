@@ -17,6 +17,7 @@ import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
+import orm.OODPersistentManager;
 
 public class NotificationCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
@@ -33,7 +34,7 @@ public class NotificationCriteria extends AbstractORMCriteria {
 	}
 	
 	public NotificationCriteria() throws PersistentException {
-		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
+		this(OODPersistentManager.instance().getSession());
 	}
 	
 	public Notification uniqueNotification() {

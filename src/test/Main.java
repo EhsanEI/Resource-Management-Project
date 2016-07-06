@@ -16,12 +16,12 @@ import businesslogic.distribution.resource.*;
 import businesslogic.report.FlowReport;
 import businesslogic.report.Report;
 import businesslogic.utility.Date;
-import businesslogic.utility.DateDAO;
 import businesslogic.utility.Table;
 import businesslogic.utility.Tree;
 import network.Email;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
+import orm.OODPersistentManager;
 
 import javax.mail.MessagingException;
 import java.lang.System;
@@ -35,7 +35,7 @@ import java.util.Set;
  */
 public class Main {
     public static void main(String[] args) throws PersistentException {
-        PersistentTransaction t = businesslogic.accounting.user.OODPersistentManager.instance().getSession().beginTransaction();
+        PersistentTransaction t = OODPersistentManager.instance().getSession().beginTransaction();
 
 //        signup();
 
@@ -47,7 +47,13 @@ public class Main {
 
 //        registerResourceAllocation();
 
+//        reportResources();
+
+//        reportResourceRequirements();
+
 //        reportFlowResourceAllocations();
+
+//        predictEssentialResourceAllocations();
 
 //        assignModules();
 
@@ -84,57 +90,6 @@ public class Main {
         }
     }
 
-    public static void test3() {
-        try {
-            Employee[] ems = EmployeeDAO.listEmployeeByQuery("Username = 'ali' and password = 123", null);
-            System.out.println(ems.length);
-            for(Employee em:ems) {
-                System.out.println(em.getEmail());
-            }
-
-
-//            Employee[] ems = EmployeeDAO.listEmployeeByQuery("Username = 'ali'", null);
-            Employee em = ems[0];
-
-//            Permission per = PermissionDAO.createPermission();
-//            per.setTitle("fuckdb");
-//            PermissionDAO.save(per);
-
-//            Permission per = PermissionDAO.listPermissionByQuery("Title = 'fuckdb'",null)[0];
-//            PermissionDAO.delete(per);
-            
-            UserPermission up = UserPermissionDAO.createUserPermission();
-            
-            Set<UserPermission> ups = new HashSet<UserPermission>();
-            ups.add(up);
-            em.setORM_UserPermissions(ups);
-
-            UserJob uj = UserJobDAO.createUserJob();
-
-            Set<UserJob> ujs = new HashSet<UserJob>();
-            ujs.add(uj);
-            em.setORM_UserJobs(ujs);
-
-            Programming pr = ProgrammingDAO.createProgramming();
-            pr.setORM_UserJobs(ujs);
-            
-            Permission p = PermissionDAO.createPermission();
-            p.setTitle("fuckdb");
-            p.setORM_UserPermissions(ups);
-            
-            UserPermissionDAO.save(up);
-            PermissionDAO.save(p);
-
-            UserJobDAO.save(uj);
-            ProgrammingDAO.save(pr);
-            
-            EmployeeDAO.save(em);
-
-
-        }catch(Exception ex) {
-            ex.printStackTrace();
-        }
-    }
 
     public static void test4() {
         try {
@@ -344,8 +299,8 @@ public class Main {
         }
 
         int projectInd = 0;
-        Project[] results = ServerResourceManagerLogicFacade.getInstance().predictEssentialResourceAllocations(projects[projectInd]);
-        for(Project project:results) {
+        InformationResource[] results = ServerResourceManagerLogicFacade.getInstance().predictEssentialResourceAllocations(projects[projectInd]);
+        for(InformationResource project:results) {
             System.out.println(project.getName());
         }
 

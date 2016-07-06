@@ -49,10 +49,6 @@ public class PhysicalResourceDetachedCriteria extends AbstractORMDetachedCriteri
 		specs = new StringExpression("specs", this.getDetachedCriteria());
 	}
 	
-	public businesslogic.distribution.resource.ResourceStateDetachedCriteria createResourceStateCriteria() {
-		return new businesslogic.distribution.resource.ResourceStateDetachedCriteria(createCriteria("resourceState"));
-	}
-	
 	public businesslogic.distribution.ResourceAllocationDetachedCriteria createResourceAllocationsCriteria() {
 		return new businesslogic.distribution.ResourceAllocationDetachedCriteria(createCriteria("ORM_ResourceAllocations"));
 	}

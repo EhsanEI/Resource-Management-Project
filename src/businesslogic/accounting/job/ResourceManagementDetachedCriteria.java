@@ -11,7 +11,7 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package businesslogic.accounting;
+package businesslogic.accounting.job;
 
 import java.util.List;
 import org.hibernate.criterion.DetachedCriteria;
@@ -25,7 +25,7 @@ public class ResourceManagementDetachedCriteria extends AbstractORMDetachedCrite
 	public final CollectionExpression allocation_s;
 	
 	public ResourceManagementDetachedCriteria() {
-		super(businesslogic.accounting.ResourceManagement.class, businesslogic.accounting.ResourceManagementCriteria.class);
+		super(ResourceManagement.class, ResourceManagementCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		userJobs = new CollectionExpression("ORM_UserJobs", this.getDetachedCriteria());
 		resources = new CollectionExpression("ORM_Resources", this.getDetachedCriteria());
@@ -33,7 +33,7 @@ public class ResourceManagementDetachedCriteria extends AbstractORMDetachedCrite
 	}
 	
 	public ResourceManagementDetachedCriteria(DetachedCriteria aDetachedCriteria) {
-		super(aDetachedCriteria, businesslogic.accounting.ResourceManagementCriteria.class);
+		super(aDetachedCriteria, ResourceManagementCriteria.class);
 		ID = new IntegerExpression("ID", this.getDetachedCriteria());
 		userJobs = new CollectionExpression("ORM_UserJobs", this.getDetachedCriteria());
 		resources = new CollectionExpression("ORM_Resources", this.getDetachedCriteria());

@@ -15,13 +15,14 @@ package businesslogic.distribution.resource;
 
 import org.orm.*;
 import org.hibernate.Query;
-import org.hibernate.LockMode;
+import orm.OODPersistentManager;
+
 import java.util.List;
 
 public class ModuleChangeDAO {
 	public static ModuleChange loadModuleChangeByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadModuleChangeByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +33,7 @@ public class ModuleChangeDAO {
 	
 	public static ModuleChange getModuleChangeByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getModuleChangeByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +44,7 @@ public class ModuleChangeDAO {
 	
 	public static ModuleChange loadModuleChangeByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadModuleChangeByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +55,7 @@ public class ModuleChangeDAO {
 	
 	public static ModuleChange getModuleChangeByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getModuleChangeByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +106,7 @@ public class ModuleChangeDAO {
 	
 	public static List queryModuleChange(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryModuleChange(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +117,7 @@ public class ModuleChangeDAO {
 	
 	public static List queryModuleChange(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryModuleChange(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +128,7 @@ public class ModuleChangeDAO {
 	
 	public static ModuleChange[] listModuleChangeByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listModuleChangeByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +139,7 @@ public class ModuleChangeDAO {
 	
 	public static ModuleChange[] listModuleChangeByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listModuleChangeByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +205,7 @@ public class ModuleChangeDAO {
 	
 	public static ModuleChange loadModuleChangeByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadModuleChangeByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +216,7 @@ public class ModuleChangeDAO {
 	
 	public static ModuleChange loadModuleChangeByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadModuleChangeByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +243,7 @@ public class ModuleChangeDAO {
 	
 	public static java.util.Iterator iterateModuleChangeByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateModuleChangeByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +254,7 @@ public class ModuleChangeDAO {
 	
 	public static java.util.Iterator iterateModuleChangeByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateModuleChangeByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +302,7 @@ public class ModuleChangeDAO {
 	
 	public static boolean save(businesslogic.distribution.resource.ModuleChange moduleChange) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(moduleChange);
+			OODPersistentManager.instance().saveObject(moduleChange);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +313,7 @@ public class ModuleChangeDAO {
 	
 	public static boolean delete(businesslogic.distribution.resource.ModuleChange moduleChange) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(moduleChange);
+			OODPersistentManager.instance().deleteObject(moduleChange);
 			return true;
 		}
 		catch (Exception e) {
@@ -323,7 +324,7 @@ public class ModuleChangeDAO {
 	
 	public static boolean refresh(businesslogic.distribution.resource.ModuleChange moduleChange) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(moduleChange);
+			OODPersistentManager.instance().getSession().refresh(moduleChange);
 			return true;
 		}
 		catch (Exception e) {
@@ -334,7 +335,7 @@ public class ModuleChangeDAO {
 	
 	public static boolean evict(businesslogic.distribution.resource.ModuleChange moduleChange) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(moduleChange);
+			OODPersistentManager.instance().getSession().evict(moduleChange);
 			return true;
 		}
 		catch (Exception e) {

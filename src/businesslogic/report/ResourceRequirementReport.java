@@ -3,11 +3,11 @@ package businesslogic.report;
 import businesslogic.distribution.requirement.RequirementPriorityEnum;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.distribution.resource.InformationResourceDAO;
-import businesslogic.distribution.resource.ResourceStateEnum;
 import businesslogic.utility.Date;
 import businesslogic.utility.Table;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
+import orm.OODPersistentManager;
 
 import java.util.List;
 
@@ -28,7 +28,7 @@ public class ResourceRequirementReport  extends Report{
 
     @Override
     public Table makeReport() throws PersistentException{
-        PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+        PersistentSession session = OODPersistentManager.instance().getSession();
 
 
         List<Object[]> result = session

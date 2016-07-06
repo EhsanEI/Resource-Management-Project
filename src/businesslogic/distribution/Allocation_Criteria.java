@@ -17,6 +17,7 @@ import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
+import orm.OODPersistentManager;
 
 public class Allocation_Criteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
@@ -37,7 +38,7 @@ public class Allocation_Criteria extends AbstractORMCriteria {
 	}
 	
 	public Allocation_Criteria() throws PersistentException {
-		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
+		this(OODPersistentManager.instance().getSession());
 	}
 	
 	public businesslogic.distribution.requirement.RequirementCriteria createRequirementsCriteria() {

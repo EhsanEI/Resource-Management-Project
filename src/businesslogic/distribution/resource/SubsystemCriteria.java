@@ -17,6 +17,7 @@ import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
+import orm.OODPersistentManager;
 
 public class SubsystemCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
@@ -51,7 +52,7 @@ public class SubsystemCriteria extends AbstractORMCriteria {
 	}
 	
 	public SubsystemCriteria() throws PersistentException {
-		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
+		this(OODPersistentManager.instance().getSession());
 	}
 	
 	public businesslogic.distribution.resource.ModuleCriteria createModulesCriteria() {
@@ -68,10 +69,6 @@ public class SubsystemCriteria extends AbstractORMCriteria {
 	
 	public businesslogic.distribution.requirement.RequirementCriteria createRequirementsCriteria() {
 		return new businesslogic.distribution.requirement.RequirementCriteria(createCriteria("ORM_Requirements"));
-	}
-	
-	public ResourceStateCriteria createResourceStateCriteria() {
-		return new ResourceStateCriteria(createCriteria("resourceState"));
 	}
 	
 	public businesslogic.distribution.ResourceAllocationCriteria createResourceAllocationsCriteria() {

@@ -17,6 +17,7 @@ import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import org.orm.criteria.*;
+import orm.OODPersistentManager;
 
 public class EmailCriteria extends AbstractORMCriteria {
 	public final IntegerExpression ID;
@@ -35,7 +36,7 @@ public class EmailCriteria extends AbstractORMCriteria {
 	}
 	
 	public EmailCriteria() throws PersistentException {
-		this(businesslogic.accounting.user.OODPersistentManager.instance().getSession());
+		this(OODPersistentManager.instance().getSession());
 	}
 	
 	public Email uniqueEmail() {

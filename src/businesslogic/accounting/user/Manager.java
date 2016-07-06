@@ -14,6 +14,7 @@
 package businesslogic.accounting.user;
 
 import businesslogic.accounting.PermissionTitles;
+import orm.ORMConstants;
 
 import java.util.Arrays;
 import java.util.HashSet;
@@ -24,10 +25,10 @@ public class Manager extends businesslogic.accounting.user.User {
 	}
 	
 	private java.util.Set this_getSet (int key) {
-		if (key == businesslogic.accounting.user.ORMConstants.KEY_MANAGER_JOBS) {
+		if (key == ORMConstants.KEY_MANAGER_JOBS) {
 			return ORM_jobs;
 		}
-		else if (key == businesslogic.accounting.user.ORMConstants.KEY_MANAGER_USERS) {
+		else if (key == ORMConstants.KEY_MANAGER_USERS) {
 			return ORM_users;
 		}
 		
@@ -53,7 +54,7 @@ public class Manager extends businesslogic.accounting.user.User {
 		return ORM_jobs;
 	}
 	
-	public final businesslogic.accounting.job.JobSetCollection jobs = new businesslogic.accounting.job.JobSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_MANAGER_JOBS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.accounting.job.JobSetCollection jobs = new businesslogic.accounting.job.JobSetCollection(this, _ormAdapter, ORMConstants.KEY_MANAGER_JOBS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public void setORM_Users(java.util.Set value) {
 		this.ORM_users = value;
@@ -63,7 +64,7 @@ public class Manager extends businesslogic.accounting.user.User {
 		return ORM_users;
 	}
 	
-	public final businesslogic.accounting.user.UserSetCollection users = new businesslogic.accounting.user.UserSetCollection(this, _ormAdapter, businesslogic.accounting.user.ORMConstants.KEY_MANAGER_USERS, businesslogic.accounting.user.ORMConstants.KEY_MUL_ONE_TO_MANY);
+	public final businesslogic.accounting.user.UserSetCollection users = new businesslogic.accounting.user.UserSetCollection(this, _ormAdapter, ORMConstants.KEY_MANAGER_USERS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 
 	@Override
 	public PermissionTitles[] getPermissions() {

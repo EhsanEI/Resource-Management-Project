@@ -3,20 +3,20 @@ package businesslogic;
 import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.job.ProjectManagementDAO;
-import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
 import businesslogic.distribution.Allocation;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.requirement.RequirementDAO;
-import businesslogic.distribution.requirement.ResourceRequirementPriority;
 import businesslogic.distribution.resource.*;
 import businesslogic.distribution.resource.System;
+import businesslogic.prediction.ResourceAllocationEstimation;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 import businesslogic.utility.NotificationDAO;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
+import orm.OODPersistentManager;
 
 import java.util.*;
 
@@ -109,33 +109,10 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
 
     @Override
     public InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) {
-        try {
-            if(technologies.length < 1) {
-                return null;
-            }
-
-            StringBuffer condition = new StringBuffer("");
-            condition.append("SELECT ID2 FROM Resource WHERE Technologies IN ('").append(technologies[0]);
-            for(int i = 1;i < technologies.length; i++) {
-                condition.append("','").append(technologies[i]);
-            }
-            condition.append("')");
-
-            condition.append(" OR budget = ").append(budget);
-
-            PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
-            List<Integer> resultIDs = session.createSQLQuery(condition.toString()).list();
-
-            ArrayList<InformationResource> result = new ArrayList<>();
-            for(Integer id:resultIDs) {
-                result.add(InformationResourceDAO.getInformationResourceByORMID(id));
-            }
-            return result.toArray(new InformationResource[result.size()]);
-        }
-        catch(PersistentException ex) {
-            ex.printStackTrace();
-        }
-        return null;
+        ResourceAllocationEstimation resourceAllocationEstimation =
+                new ResourceAllocationEstimation(technologies, startDate, endDate, budget);
+        resourceAllocationEstimation.search();
+        return resourceAllocationEstimation.getResults();
     }
 
     @Override
@@ -237,7 +214,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
     @Override
     public String[] getResourceNames(int userID, String ResourceType ) {
         try {
-            PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+            PersistentSession session = OODPersistentManager.instance().getSession();
             StringBuffer condition = new StringBuffer("");
             condition.append("SELECT resource.name FROM Resource AS resource WHERE Discriminator = '")
                     .append(ResourceType).append("'");

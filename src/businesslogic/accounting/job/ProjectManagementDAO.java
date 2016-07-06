@@ -15,13 +15,14 @@ package businesslogic.accounting.job;
 
 import org.orm.*;
 import org.hibernate.Query;
-import org.hibernate.LockMode;
+import orm.OODPersistentManager;
+
 import java.util.List;
 
 public class ProjectManagementDAO {
 	public static ProjectManagement loadProjectManagementByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadProjectManagementByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -32,7 +33,7 @@ public class ProjectManagementDAO {
 	
 	public static ProjectManagement getProjectManagementByORMID(int ID) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getProjectManagementByORMID(session, ID);
 		}
 		catch (Exception e) {
@@ -43,7 +44,7 @@ public class ProjectManagementDAO {
 	
 	public static ProjectManagement loadProjectManagementByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadProjectManagementByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -54,7 +55,7 @@ public class ProjectManagementDAO {
 	
 	public static ProjectManagement getProjectManagementByORMID(int ID, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return getProjectManagementByORMID(session, ID, lockMode);
 		}
 		catch (Exception e) {
@@ -105,7 +106,7 @@ public class ProjectManagementDAO {
 	
 	public static List queryProjectManagement(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryProjectManagement(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -116,7 +117,7 @@ public class ProjectManagementDAO {
 	
 	public static List queryProjectManagement(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return queryProjectManagement(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -127,7 +128,7 @@ public class ProjectManagementDAO {
 	
 	public static ProjectManagement[] listProjectManagementByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listProjectManagementByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -138,7 +139,7 @@ public class ProjectManagementDAO {
 	
 	public static ProjectManagement[] listProjectManagementByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return listProjectManagementByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -204,7 +205,7 @@ public class ProjectManagementDAO {
 	
 	public static ProjectManagement loadProjectManagementByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadProjectManagementByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -215,7 +216,7 @@ public class ProjectManagementDAO {
 	
 	public static ProjectManagement loadProjectManagementByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return loadProjectManagementByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -242,7 +243,7 @@ public class ProjectManagementDAO {
 	
 	public static java.util.Iterator iterateProjectManagementByQuery(String condition, String orderBy) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateProjectManagementByQuery(session, condition, orderBy);
 		}
 		catch (Exception e) {
@@ -253,7 +254,7 @@ public class ProjectManagementDAO {
 	
 	public static java.util.Iterator iterateProjectManagementByQuery(String condition, String orderBy, org.hibernate.LockMode lockMode) throws PersistentException {
 		try {
-			PersistentSession session = businesslogic.accounting.user.OODPersistentManager.instance().getSession();
+			PersistentSession session = OODPersistentManager.instance().getSession();
 			return iterateProjectManagementByQuery(session, condition, orderBy, lockMode);
 		}
 		catch (Exception e) {
@@ -301,7 +302,7 @@ public class ProjectManagementDAO {
 	
 	public static boolean save(businesslogic.accounting.job.ProjectManagement projectManagement) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().saveObject(projectManagement);
+			OODPersistentManager.instance().saveObject(projectManagement);
 			return true;
 		}
 		catch (Exception e) {
@@ -312,7 +313,7 @@ public class ProjectManagementDAO {
 	
 	public static boolean delete(businesslogic.accounting.job.ProjectManagement projectManagement) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().deleteObject(projectManagement);
+			OODPersistentManager.instance().deleteObject(projectManagement);
 			return true;
 		}
 		catch (Exception e) {
@@ -356,7 +357,7 @@ public class ProjectManagementDAO {
 	
 	public static boolean refresh(businesslogic.accounting.job.ProjectManagement projectManagement) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().refresh(projectManagement);
+			OODPersistentManager.instance().getSession().refresh(projectManagement);
 			return true;
 		}
 		catch (Exception e) {
@@ -367,7 +368,7 @@ public class ProjectManagementDAO {
 	
 	public static boolean evict(businesslogic.accounting.job.ProjectManagement projectManagement) throws PersistentException {
 		try {
-			businesslogic.accounting.user.OODPersistentManager.instance().getSession().evict(projectManagement);
+			OODPersistentManager.instance().getSession().evict(projectManagement);
 			return true;
 		}
 		catch (Exception e) {

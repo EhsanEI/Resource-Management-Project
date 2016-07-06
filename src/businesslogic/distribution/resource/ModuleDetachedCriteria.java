@@ -82,10 +82,6 @@ public class ModuleDetachedCriteria extends AbstractORMDetachedCriteria {
 		moduleChanges = new CollectionExpression("ORM_ModuleChanges", this.getDetachedCriteria());
 	}
 	
-	public businesslogic.utility.DateDetachedCriteria createDateCriteria() {
-		return new businesslogic.utility.DateDetachedCriteria(createCriteria("date"));
-	}
-	
 	public businesslogic.accounting.job.SpecialtyDetachedCriteria createSpecialtiesCriteria() {
 		return new businesslogic.accounting.job.SpecialtyDetachedCriteria(createCriteria("ORM_Specialties"));
 	}
@@ -104,10 +100,6 @@ public class ModuleDetachedCriteria extends AbstractORMDetachedCriteria {
 	
 	public businesslogic.distribution.requirement.RequirementDetachedCriteria createRequirementsCriteria() {
 		return new businesslogic.distribution.requirement.RequirementDetachedCriteria(createCriteria("ORM_Requirements"));
-	}
-	
-	public businesslogic.distribution.resource.ResourceStateDetachedCriteria createResourceStateCriteria() {
-		return new businesslogic.distribution.resource.ResourceStateDetachedCriteria(createCriteria("resourceState"));
 	}
 	
 	public businesslogic.distribution.ResourceAllocationDetachedCriteria createResourceAllocationsCriteria() {

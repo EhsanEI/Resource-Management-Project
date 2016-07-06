@@ -11,7 +11,7 @@
  * Licensee: 
  * License Type: Evaluation
  */
-package businesslogic.accounting.user;
+package orm;
 
 public interface ORMConstants extends org.orm.util.ORMBaseConstants {
 	final int KEY_ADMIN_SYSTEMCONFIGURATIONS = 1719571804;
