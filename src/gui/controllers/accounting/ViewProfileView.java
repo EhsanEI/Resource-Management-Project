@@ -18,7 +18,7 @@ import java.util.ArrayList;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class ViewProfileViewController extends Controller{
+public class ViewProfileView extends Controller{
 
     @FXML private AnchorPane profileViewPane;
 

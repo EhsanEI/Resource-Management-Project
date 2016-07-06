@@ -19,7 +19,7 @@ import java.util.Optional;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class MainMenuController {
+public class MainMenuView {
 
     private User user;
     private Stage stage;
@@ -90,6 +90,8 @@ public class MainMenuController {
                                 loadFXML("../fxmls/resourcemanager/FlowReportView.fxml");
                             } catch (IOException e) {
                                 e.printStackTrace();
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
                             }
                         });
                         reportMenu.getItems().add(reportResourceAllocationMenuItem);
@@ -101,6 +103,8 @@ public class MainMenuController {
                                 loadFXML("../fxmls/resourcemanager/ResourceRequirementsReportView.fxml");
                             } catch (IOException e) {
                                 e.printStackTrace();
+                            } catch (ClassNotFoundException e) {
+                                e.printStackTrace();
                             }
                         });
                         reportMenu.getItems().add(reportResourceRequirementMenuItem);
@@ -111,6 +115,8 @@ public class MainMenuController {
                             try {
                                 loadFXML("../fxmls/resourcemanager/ResourceReportView.fxml");
                             } catch (IOException e) {
+                                e.printStackTrace();
+                            } catch (ClassNotFoundException e) {
                                 e.printStackTrace();
                             }
                         });
@@ -149,6 +155,8 @@ public class MainMenuController {
                             loadFXML("../fxmls/admin/SystemConfigurationView.fxml");
                         } catch (IOException e) {
                             e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
                         }
                     });
 
@@ -161,6 +169,8 @@ public class MainMenuController {
                             loadFXML("../fxmls/programmer/ModuleCreationView.fxml");
                         } catch (IOException e) {
                             e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
                         }
                     });
                     permissionMenu.getItems().add(createModuleMenuItem);
@@ -171,6 +181,8 @@ public class MainMenuController {
                         try {
                             loadFXML("../fxmls/programmer/ModuleMaintenanceView.fxml");
                         } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
                     });
@@ -183,6 +195,8 @@ public class MainMenuController {
                             loadFXML("../fxmls/projectmanager/RegisterRequirementView.fxml");
                         } catch (IOException e) {
                             e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
                         }
                     });
                     permissionMenu.getItems().add(registerRequirementMenuItem);
@@ -193,6 +207,8 @@ public class MainMenuController {
                         try {
                             loadFXML("../fxmls/projectmanager/AssignModuleView.fxml");
                         } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
                     });
@@ -205,6 +221,8 @@ public class MainMenuController {
                             loadFXML("../fxmls/projectmanager/RegisterProjectScaleView.fxml");
                         } catch (IOException e) {
                             e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
                         }
                     });
                     permissionMenu.getItems().add(registerProjectScaleMenuItem);
@@ -215,6 +233,8 @@ public class MainMenuController {
                         try {
                             loadFXML("../fxmls/projectmanager/EstimateResourceAllocationView.fxml");
                         } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
                     });
@@ -227,6 +247,8 @@ public class MainMenuController {
                             loadFXML("../fxmls/resourcemanager/PredictEssentialResourceAllocationsView.fxml");
                         } catch (IOException e) {
                             e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
                         }
                     });
                     permissionMenu.getItems().add(predictEssentialResourceAllocationMenuItem);
@@ -238,6 +260,8 @@ public class MainMenuController {
                             loadFXML("../fxmls/resourcemanager/RegisterNewResourceView.fxml");
                         } catch (IOException e) {
                             e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
                         }
                     });
                     permissionMenu.getItems().add(registerNewResourceMenuItem);
@@ -248,6 +272,8 @@ public class MainMenuController {
                         try {
                             loadFXML("../fxmls/resourcemanager/ResourceAllocationView.fxml");
                         } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
                             e.printStackTrace();
                         }
                     });
@@ -282,7 +308,7 @@ public class MainMenuController {
     private void showAbout() throws IOException {
         fxmlLoader = new FXMLLoader(getClass().getResource("../fxmls/HelpView.fxml"));
         Pane root = fxmlLoader.load();
-        fxmlLoader.<AboutViewController>getController().animate();
+        fxmlLoader.<AboutView>getController().animate();
         mainPane.getChildren().removeAll(mainPane.getChildren());
         mainPane.getChildren().add(root);
     }
@@ -295,6 +321,8 @@ public class MainMenuController {
                 loadFXML("../fxmls/accounting/ViewProfileView.fxml");
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         });
 
@@ -303,6 +331,8 @@ public class MainMenuController {
             try {
                 loadFXML("../fxmls/accounting/EditProfileView.fxml");
             } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
                 e.printStackTrace();
             }
         });
@@ -345,7 +375,7 @@ public class MainMenuController {
         this.stage = stage;
     }
 
-    private void loadFXML(String address) throws IOException {
+    private void loadFXML(String address) throws IOException, ClassNotFoundException {
         fxmlLoader = new FXMLLoader(getClass().getResource(address));
         root = fxmlLoader.load();
         fxmlLoader.<Controller>getController().init(stage, user);

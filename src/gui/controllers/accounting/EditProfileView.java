@@ -20,7 +20,7 @@ import java.util.ArrayList;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class EditProfileViewController extends Controller {
+public class EditProfileView extends Controller {
 
 
     private Alert alert;

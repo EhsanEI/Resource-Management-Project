@@ -25,7 +25,7 @@ import java.util.Date;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class ModuleMaintenanceController extends Controller {
+public class ModuleMaintenanceView extends Controller {
 
     @FXML private AnchorPane moduleMaintenancePane;
     @FXML private ComboBox<String> modulesCombo;

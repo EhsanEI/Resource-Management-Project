@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class AssignModuleController extends Controller {
+public class AssignModuleView extends Controller {
 
 
     @FXML private AnchorPane assignPane;

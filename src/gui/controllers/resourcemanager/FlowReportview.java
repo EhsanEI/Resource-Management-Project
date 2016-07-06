@@ -23,7 +23,7 @@ import java.util.Date;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class FlowReportController extends Controller {
+public class FlowReportview extends Controller {
 
     @FXML private DatePicker fromDate;
     @FXML private DatePicker toDate;

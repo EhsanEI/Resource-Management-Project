@@ -3,7 +3,7 @@ package gui;
  * Created by qizilbash on 6/24/2016.
  */
 import businesslogic.ClientAccountingLogicFacade;
-import gui.controllers.accounting.LoginViewController;
+import gui.controllers.accounting.LoginView;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,8 +27,8 @@ public class StartMenu extends Application {
 
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("fxmls/accounting/LoginView.fxml"));
         Parent root = fxmlLoader.load();
-        LoginViewController loginViewController = fxmlLoader.<LoginViewController>getController();
-        loginViewController.setStage(stage);
+        LoginView loginView = fxmlLoader.<LoginView>getController();
+        loginView.setStage(stage);
 
         stage.setTitle("ERP System");
         stage.setScene(new Scene(root, 400, 290));

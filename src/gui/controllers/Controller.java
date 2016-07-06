@@ -24,7 +24,7 @@ public class Controller {
     public AnchorPane onTheTopPane;
     public AnchorPane empptyPane;
 
-    public void init(Stage stage, User user) throws IOException {
+    public void init(Stage stage, User user) throws IOException, ClassNotFoundException {
         setStage(stage);
         setUser(user);
         empptyPane = new AnchorPane();

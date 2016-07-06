@@ -24,7 +24,7 @@ import java.util.Optional;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class ResourceAllocationController extends Controller{
+public class ResourceAllocationView extends Controller{
 
     private Alert alert;
 

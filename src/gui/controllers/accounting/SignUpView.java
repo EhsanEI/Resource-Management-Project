@@ -29,7 +29,7 @@ import java.util.Optional;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class SignupViewController {
+public class SignUpView {
 
     private double animationTime = 700;
 
@@ -319,8 +319,8 @@ public class SignupViewController {
         stage.hide();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/accounting/LoginView.fxml"));
         Parent root = fxmlLoader.load();
-        LoginViewController loginViewController = fxmlLoader.<LoginViewController>getController();
-        loginViewController.setStage(stage);
+        LoginView loginView = fxmlLoader.<LoginView>getController();
+        loginView.setStage(stage);
         stage.setScene(new Scene(root, 400, 310));
         stage.setWidth(400);
         stage.setHeight(310);

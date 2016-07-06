@@ -25,7 +25,7 @@ import java.util.Optional;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class RegisterRequirementController extends Controller {
+public class RegisterRequirementView extends Controller {
 
     @FXML private AnchorPane registerRequirementPane;
     @FXML private AnchorPane selectInformationResourcePane;

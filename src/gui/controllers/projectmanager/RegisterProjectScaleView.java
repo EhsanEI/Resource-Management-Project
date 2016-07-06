@@ -7,7 +7,7 @@ import javafx.event.Event;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class RegisterProjectScaleController extends Controller {
+public class RegisterProjectScaleView extends Controller {
     public void addSystemPressed(ActionEvent event) {
     }
 

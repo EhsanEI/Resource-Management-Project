@@ -6,7 +6,8 @@ import javafx.event.ActionEvent;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class PredictEssentialResourcceAllocation extends Controller{
-    public void predictPressed(ActionEvent event) {
+public class ResourceReportView extends Controller{
+    public void getResourceReportPressed(ActionEvent event) {
+
     }
 }

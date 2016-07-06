@@ -19,7 +19,7 @@ import java.io.IOException;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class EstimateResourceAllocationController extends Controller {
+public class EstimateResourceAllocationView extends Controller {
 
     @FXML private AnchorPane estimateResourceAllocationPane;
     @FXML private AnchorPane estimationPane;

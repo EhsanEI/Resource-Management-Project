@@ -2,7 +2,6 @@ package gui.controllers.accounting;
 
 import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.accounting.ResourceManagement;
-import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.user.User;
 import gui.MainMenu;
@@ -12,7 +11,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -24,7 +22,7 @@ import java.util.Optional;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class LoginViewController {
+public class LoginView {
 
 
     private  Stage stage;
@@ -54,8 +52,8 @@ public class LoginViewController {
         stage.hide();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../../fxmls/accounting/SignupView.fxml"));
         Parent root = fxmlLoader.load();
-        SignupViewController signupViewController = fxmlLoader.<SignupViewController>getController();
-        signupViewController.setStage(stage);
+        SignUpView signUpView = fxmlLoader.<SignUpView>getController();
+        signUpView.setStage(stage);
         stage.setScene(new Scene(root,400,600));
         stage.setWidth(400);
         stage.setHeight(620);

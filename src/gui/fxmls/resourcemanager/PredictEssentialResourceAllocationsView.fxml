@@ -7,7 +7,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="essentialResourcesPredictionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.resourcemanager.PredictEssentialResourcceAllocation">
+<AnchorPane fx:id="essentialResourcesPredictionPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.resourcemanager.PredictEssentialResourcceAllocationView">
    <children>
       <Button fx:id="predictButton" layoutX="596.0" layoutY="540.0" mnemonicParsing="false" onAction="#predictPressed" prefHeight="22.0" prefWidth="144.0" text="Predict">
          <effect>

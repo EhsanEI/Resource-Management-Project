@@ -11,7 +11,7 @@ import javafx.scene.control.ComboBox;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class RegisterNewResourceController extends Controller{
+public class RegisterNewResourceView extends Controller{
 
     @FXML private ComboBox<String> resourceTypeCombo;
 

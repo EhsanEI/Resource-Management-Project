@@ -12,7 +12,7 @@ import javafx.util.Duration;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class AboutViewController {
+public class AboutView {
 
     private double animationTime = 1500;
 

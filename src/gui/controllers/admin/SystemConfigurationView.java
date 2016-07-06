@@ -14,7 +14,7 @@ import java.io.IOException;
 /**
  * Created by qizilbash on 7/4/2016.
  */
-public class SystemConfigurationController extends Controller {
+public class SystemConfigurationView extends Controller {
 
     //TODO
 

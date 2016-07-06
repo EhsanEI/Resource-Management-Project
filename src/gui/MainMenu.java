@@ -2,7 +2,7 @@ package gui;
 
 import businesslogic.accounting.user.User;
 
-import gui.controllers.MainMenuController;
+import gui.controllers.MainMenuView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -27,10 +27,10 @@ public class MainMenu {
 
         root = fxmlLoader.load();
 
-        MainMenuController mainMenuController = fxmlLoader.<MainMenuController>getController();
-        mainMenuController.setUser(user);
-        mainMenuController.setStage(stage);
-        mainMenuController.initializeView();
+        MainMenuView mainMenuView = fxmlLoader.<MainMenuView>getController();
+        mainMenuView.setUser(user);
+        mainMenuView.setStage(stage);
+        mainMenuView.initializeView();
 
         stage.setTitle("ERP System");
         stage.getIcons().add(new Image(getClass().getResource("resources/erp.png").toString()));
