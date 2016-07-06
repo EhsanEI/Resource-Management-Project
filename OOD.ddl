@@ -6,12 +6,10 @@ CREATE TABLE Requirement (ID int IDENTITY NOT NULL, RequirementPriorityID int NO
 CREATE TABLE ModuleChange (ID int IDENTITY NOT NULL, DateID int NOT NULL, JobID int NOT NULL, ResourceID2 int NOT NULL, Description varchar(255) NULL, StartDate datetime NULL, EndDate datetime NULL, PRIMARY KEY (ID));
 CREATE TABLE SystemConfiguration (ID int IDENTITY NOT NULL, UserID int NOT NULL, [Date] datetime NULL, BackupPreiodDays int NOT NULL, BackupFormat int NULL, PRIMARY KEY (ID));
 CREATE TABLE Allocation (ID int IDENTITY NOT NULL, JobID int NOT NULL, ResourceID2 int NOT NULL, Requirement int NULL, Allocated bit NOT NULL, PRIMARY KEY (ID));
-CREATE TABLE Permission (ID int IDENTITY NOT NULL, Title varchar(255) NULL, PRIMARY KEY (ID));
 CREATE TABLE Notification (ID int IDENTITY NOT NULL, JobID int NOT NULL, Content varchar(255) NULL, PRIMARY KEY (ID));
 CREATE TABLE ResourceState (ID int IDENTITY NOT NULL, PRIMARY KEY (ID));
 CREATE TABLE Email (ID int IDENTITY NOT NULL, UserID int NOT NULL, Content varchar(255) NULL, Address varchar(255) NULL, PRIMARY KEY (ID));
 CREATE TABLE UserJob (ID int IDENTITY NOT NULL, JobID int NOT NULL, UserID int NOT NULL, [User] int NULL, Job int NULL, PRIMARY KEY (ID));
-CREATE TABLE UserPermission (ID int IDENTITY NOT NULL, PermissionID int NOT NULL, UserID int NOT NULL, [User] int NULL, Permission int NULL, PRIMARY KEY (ID));
 CREATE TABLE ResourceAllocation (ID int IDENTITY NOT NULL, ResourceID2 int NOT NULL, [Allocation ID] int NOT NULL, Resource int NULL, Allocation int NULL, PRIMARY KEY (ID));
 CREATE TABLE Resource_Specialty (ResourceID2 int NOT NULL, SpecialtyID int NOT NULL, PRIMARY KEY (ResourceID2, SpecialtyID));
 ALTER TABLE Resource ADD CONSTRAINT has FOREIGN KEY (JobID) REFERENCES Job (ID);
@@ -40,8 +38,6 @@ ALTER TABLE Email ADD CONSTRAINT sends FOREIGN KEY (UserID) REFERENCES [User] (I
 ALTER TABLE [User] ADD CONSTRAINT creates7 FOREIGN KEY (UserID2) REFERENCES [User] (ID);
 ALTER TABLE UserJob ADD CONSTRAINT FKUserJob15306 FOREIGN KEY (UserID) REFERENCES [User] (ID);
 ALTER TABLE UserJob ADD CONSTRAINT FKUserJob322807 FOREIGN KEY (JobID) REFERENCES Job (ID);
-ALTER TABLE UserPermission ADD CONSTRAINT AmGhezi1 FOREIGN KEY (UserID) REFERENCES [User] (ID);
-ALTER TABLE UserPermission ADD CONSTRAINT AmGhezi2 FOREIGN KEY (PermissionID) REFERENCES Permission (ID);
 ALTER TABLE ResourceAllocation ADD CONSTRAINT FKResourceAl209355 FOREIGN KEY ([Allocation ID]) REFERENCES Allocation (ID);
 ALTER TABLE ResourceAllocation ADD CONSTRAINT FKResourceAl703895 FOREIGN KEY (ResourceID2) REFERENCES Resource (ID2);
 ALTER TABLE Notification ADD CONSTRAINT FKNotificati374970 FOREIGN KEY (JobID) REFERENCES Job (ID);

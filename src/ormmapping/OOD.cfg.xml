@@ -24,11 +24,9 @@ License Type: Evaluation
 		<property name="show_sql">false</property>
 		<property name="query.substitutions">true 1, false 0, yes 'Y', no 'N'</property>
 		<!-- mapping files -->
-		<mapping resource="ormmapping/businesslogic/accounting/Permission.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/accounting/job/Job.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/accounting/job/Specialty.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/accounting/job/UserJob.hbm.xml" />
-		<mapping resource="ormmapping/businesslogic/accounting/job/UserPermission.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/accounting/user/User.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/distribution/Allocation_.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/distribution/ResourceAllocation.hbm.xml" />
@@ -37,7 +35,6 @@ License Type: Evaluation
 		<mapping resource="ormmapping/businesslogic/distribution/resource/Resource.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/distribution/resource/Spec.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/support/SystemConfiguration.hbm.xml" />
-		<mapping resource="ormmapping/businesslogic/utility/Date.hbm.xml" />
 		<mapping resource="ormmapping/businesslogic/utility/Notification.hbm.xml" />
 		<mapping resource="ormmapping/network/Email.hbm.xml" />
 	</session-factory>
