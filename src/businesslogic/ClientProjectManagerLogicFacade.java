@@ -34,10 +34,10 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public Notification assignModules(HashMap<HumanResource, Module> assignments) {
+    public Notification assignModules(HashMap<HumanResource, Module> assignments) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
-        //params.add(assignments);
-        return null;
+        params.add(assignments);
+        return (Notification)clientNetwork.sendRequest(new NetworkRequest("assignModules",params)).getResponse();
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.Map;
  */
 public interface ProjectManagerLogicInterface {
 
-    Notification assignModules(HashMap<HumanResource, Module> assignments);
+    Notification assignModules(HashMap<HumanResource, Module> assignments) throws IOException, ClassNotFoundException;
 
     Notification registerProjectScale(int UserID, Project newProject) throws IOException, ClassNotFoundException;
 

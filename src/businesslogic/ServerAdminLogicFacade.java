@@ -2,7 +2,6 @@ package businesslogic;
 
 import businesslogic.support.SystemConfiguration;
 import businesslogic.support.SystemConfigurationDAO;
-import businesslogic.utility.Date;
 import org.orm.PersistentException;
 
 /**
@@ -23,7 +22,7 @@ public class ServerAdminLogicFacade implements AdminLogicInterface{
     }
 
     @Override
-    public void configureSystem(SystemConfiguration configureSystem) {
+    public boolean configureSystem(SystemConfiguration configureSystem) {
 
         SystemConfiguration oldConfiguration = null;
         try {
@@ -47,5 +46,6 @@ public class ServerAdminLogicFacade implements AdminLogicInterface{
 
         //TODO notification
         System.out.println("sending notification...");
+        return true;
     }
 }

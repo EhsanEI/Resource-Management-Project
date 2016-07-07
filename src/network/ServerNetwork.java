@@ -16,6 +16,7 @@ import java.lang.System;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by Esi on 6/25/2016.
@@ -114,7 +115,10 @@ public class ServerNetwork {
                 );
                 break;
             case "configureSystem":
-
+                networkResponse = new NetworkResponse(
+                        ServerAdminLogicFacade.getInstance().configureSystem(
+                                (SystemConfiguration)request.getParams().get(0)
+                        ),"Processed");
                 break;
             case "getModuleList":
                 networkResponse = new NetworkResponse(
@@ -259,6 +263,12 @@ public class ServerNetwork {
             case "getAllProjectList":
                 networkResponse = new NetworkResponse(
                         ServerResourceManagerLogicFacade.getInstance().getAllProjectList(), "Processed");
+                break;
+            case "assignModules":
+                networkResponse = new NetworkResponse(
+                        ServerProjectManagerLogicFacade.getInstance().assignModules(
+                                (HashMap<HumanResource,Module>)request.getParams().get(0)
+                        ),"Processed");
                 break;
         }
 
