@@ -1,6 +1,5 @@
 package gui.controllers;
 
-import businesslogic.accounting.Permission;
 import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.user.User;
 import gui.StartMenu;
@@ -45,7 +44,7 @@ public class MainMenuView {
 
 
     //For Test
-    private ArrayList<Permission> permissionsList = new ArrayList<>();
+    private ArrayList<PermissionTitles> permissionsList = new ArrayList<>();
 
 
     public void setUser(User user) {
@@ -68,23 +67,23 @@ public class MainMenuView {
     private void initializeReportMenu() {
         //TODO
         // get user permissions and check she has report permission or not
-        Permission[] permissions = permissionsList.toArray(new Permission[permissionsList.size()]);
+        PermissionTitles[] permissions = permissionsList.toArray(new PermissionTitles[permissionsList.size()]);
         boolean isReportMenu = false;
 
 
-        for( Permission permission : permissionsList)
-            if(permission.getTitle() == PermissionTitles.RESOURCE_ALLOCATION_FLOW_REPORT.getTitleText() ||
-                    permission.getTitle() == PermissionTitles.RESOURCE_REQUIREMENTS_REPORT.getTitleText() ||
-                    permission.getTitle() == PermissionTitles.RESOURCES_REPORT.getTitleText())
+        for( PermissionTitles permission : permissionsList)
+            if(permission.getTitleText() == PermissionTitles.RESOURCE_ALLOCATION_FLOW_REPORT.getTitleText() ||
+                    permission.getTitleText() == PermissionTitles.RESOURCE_REQUIREMENTS_REPORT.getTitleText() ||
+                    permission.getTitleText() == PermissionTitles.RESOURCES_REPORT.getTitleText())
                 isReportMenu = true;
 
         if(isReportMenu){
             reportMenu = new Menu("Report");
 
-            for(Permission permission : permissionsList )
-                switch (permission.getTitle()) {
+            for(PermissionTitles permission : permissionsList )
+                switch (permission.getTitleText()) {
                     case "Resource Allocation Flow Report":
-                        MenuItem reportResourceAllocationMenuItem = new MenuItem(permission.getTitle());
+                        MenuItem reportResourceAllocationMenuItem = new MenuItem(permission.getTitleText());
                         reportResourceAllocationMenuItem.setOnAction(event -> {
                             try {
                                 loadFXML("../fxmls/resourcemanager/FlowReportView.fxml");
@@ -97,7 +96,7 @@ public class MainMenuView {
                         reportMenu.getItems().add(reportResourceAllocationMenuItem);
                         break;
                     case "Resource Requirements Report":
-                        MenuItem reportResourceRequirementMenuItem = new MenuItem(permission.getTitle());
+                        MenuItem reportResourceRequirementMenuItem = new MenuItem(permission.getTitleText());
                         reportResourceRequirementMenuItem.setOnAction(event -> {
                             try {
                                 loadFXML("../fxmls/resourcemanager/ResourceRequirementsReportView.fxml");
@@ -110,7 +109,7 @@ public class MainMenuView {
                         reportMenu.getItems().add(reportResourceRequirementMenuItem);
                         break;
                     case "Resources Report":
-                        MenuItem reportResourcesMenuItem = new MenuItem(permission.getTitle());
+                        MenuItem reportResourcesMenuItem = new MenuItem(permission.getTitleText());
                         reportResourcesMenuItem.setOnAction(event -> {
                             try {
                                 loadFXML("../fxmls/resourcemanager/ResourceReportView.fxml");
@@ -138,18 +137,16 @@ public class MainMenuView {
         // For Test
         ////////////////////////////////////////////////////////////
         for(PermissionTitles title : PermissionTitles.values()){
-            Permission permission = new Permission();
-            permission.setTitle(title.getTitleText());
-            permissionsList.add(permission);
+            permissionsList.add(title);
         }
 
-        Permission[] permissions = permissionsList.toArray(new Permission[permissionsList.size()]);
+        PermissionTitles[] permissions = permissionsList.toArray(new PermissionTitles[permissionsList.size()]);
         ////////////////////////////////////////////////////////////
 
-        for(Permission permission : permissions )
-            switch (permission.getTitle()) {
+        for(PermissionTitles permission : permissions )
+            switch (permission.getTitleText()) {
                 case "Configure System":
-                    MenuItem configureSystemMenuItem = new MenuItem(permission.getTitle());
+                    MenuItem configureSystemMenuItem = new MenuItem(permission.getTitleText());
                     configureSystemMenuItem.setOnAction(event -> {
                         try {
                             loadFXML("../fxmls/admin/SystemConfigurationView.fxml");
@@ -163,7 +160,7 @@ public class MainMenuView {
                     permissionMenu.getItems().add(configureSystemMenuItem);
                     break;
                 case "Register Module Creation":
-                    MenuItem createModuleMenuItem = new MenuItem(permission.getTitle());
+                    MenuItem createModuleMenuItem = new MenuItem(permission.getTitleText());
                     createModuleMenuItem.setOnAction(event -> {
                         try {
                             loadFXML("../fxmls/programmer/ModuleCreationView.fxml");
@@ -176,7 +173,7 @@ public class MainMenuView {
                     permissionMenu.getItems().add(createModuleMenuItem);
                     break;
                 case "Register Module Maintenance":
-                    MenuItem maintaneModuleMenuItem = new MenuItem(permission.getTitle());
+                    MenuItem maintaneModuleMenuItem = new MenuItem(permission.getTitleText());
                     maintaneModuleMenuItem.setOnAction(event -> {
                         try {
                             loadFXML("../fxmls/programmer/ModuleMaintenanceView.fxml");
@@ -189,7 +186,7 @@ public class MainMenuView {
                     permissionMenu.getItems().add(maintaneModuleMenuItem);
                     break;
                 case "Register Requirement":
-                    MenuItem registerRequirementMenuItem = new MenuItem(permission.getTitle());
+                    MenuItem registerRequirementMenuItem = new MenuItem(permission.getTitleText());
                     registerRequirementMenuItem.setOnAction(event -> {
                         try {
                             loadFXML("../fxmls/projectmanager/RegisterRequirementView.fxml");
@@ -202,7 +199,7 @@ public class MainMenuView {
                     permissionMenu.getItems().add(registerRequirementMenuItem);
                     break;
                 case "Assign Module":
-                    MenuItem assignModuleMenuItem = new MenuItem(permission.getTitle());
+                    MenuItem assignModuleMenuItem = new MenuItem(permission.getTitleText());
                     assignModuleMenuItem.setOnAction(event -> {
                         try {
                             loadFXML("../fxmls/projectmanager/AssignModuleView.fxml");
@@ -215,7 +212,7 @@ public class MainMenuView {
                     permissionMenu.getItems().add(assignModuleMenuItem);
                     break;
                 case "Register Project Scale":
-                    MenuItem registerProjectScaleMenuItem = new MenuItem(permission.getTitle());
+                    MenuItem registerProjectScaleMenuItem = new MenuItem(permission.getTitleText());
                     registerProjectScaleMenuItem.setOnAction(event -> {
                         try {
                             loadFXML("../fxmls/projectmanager/RegisterProjectScaleView.fxml");
@@ -228,7 +225,7 @@ public class MainMenuView {
                     permissionMenu.getItems().add(registerProjectScaleMenuItem);
                     break;
                 case "Estimate Resource Allocations":
-                    MenuItem estimateResourceAllocationsMenuItem = new MenuItem(permission.getTitle());
+                    MenuItem estimateResourceAllocationsMenuItem = new MenuItem(permission.getTitleText());
                     estimateResourceAllocationsMenuItem.setOnAction(event -> {
                         try {
                             loadFXML("../fxmls/projectmanager/EstimateResourceAllocationView.fxml");
@@ -241,7 +238,7 @@ public class MainMenuView {
                     permissionMenu.getItems().add(estimateResourceAllocationsMenuItem);
                     break;
                 case "Predict Essential Resource Allocation":
-                    MenuItem predictEssentialResourceAllocationMenuItem = new MenuItem(permission.getTitle());
+                    MenuItem predictEssentialResourceAllocationMenuItem = new MenuItem(permission.getTitleText());
                     predictEssentialResourceAllocationMenuItem.setOnAction(event -> {
                         try {
                             loadFXML("../fxmls/resourcemanager/PredictEssentialResourceAllocationsView.fxml");
@@ -254,7 +251,7 @@ public class MainMenuView {
                     permissionMenu.getItems().add(predictEssentialResourceAllocationMenuItem);
                     break;
                 case "Register New Resource":
-                    MenuItem registerNewResourceMenuItem = new MenuItem(permission.getTitle());
+                    MenuItem registerNewResourceMenuItem = new MenuItem(permission.getTitleText());
                     registerNewResourceMenuItem.setOnAction(event -> {
                         try {
                             loadFXML("../fxmls/resourcemanager/RegisterNewResourceView.fxml");
@@ -267,7 +264,7 @@ public class MainMenuView {
                     permissionMenu.getItems().add(registerNewResourceMenuItem);
                     break;
                 case "Register Resource Allocation":
-                    MenuItem registerResourceAllocationMenuItem = new MenuItem(permission.getTitle());
+                    MenuItem registerResourceAllocationMenuItem = new MenuItem(permission.getTitleText());
                     registerResourceAllocationMenuItem.setOnAction(event -> {
                         try {
                             loadFXML("../fxmls/resourcemanager/ResourceAllocationView.fxml");
