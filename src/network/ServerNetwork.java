@@ -112,6 +112,8 @@ public class ServerNetwork {
         }
 
 
+        System.out.println(networkResponse == null);
+
         objectOutputStream.writeObject(networkResponse);
         return true;
     }

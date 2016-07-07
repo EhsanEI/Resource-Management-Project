@@ -52,6 +52,7 @@ public class AccountingRequestsView extends Controller{
     }
 
     @FXML private void approveButtonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
+
         if(unApprovedUsersListView.getSelectionModel().getSelectedItems().isEmpty()){
             alert.setTitle("No selected user!");
             alert.setTitle("Please select at leas one user to approve!");
@@ -63,15 +64,19 @@ public class AccountingRequestsView extends Controller{
             if (result.get() == ButtonType.OK)
                 unApprovedUsersListView.getScene().getRoot().setDisable(false);
         }else{
-            for(String item : unApprovedUsersListView.getSelectionModel().getSelectedItems()){
+            ArrayList<String> processedItems = new ArrayList<>();
+            for(String item : unApprovedUsersListView.getSelectionModel().getSelectedItems())
                 for (User user : unApprovedUsers)
                     if(item.equals(getUserString(user)))
-                        ClientManagerLogicFacade.getInstance().approveUser(user, true);
-            }
+                        if(ClientManagerLogicFacade.getInstance().approveUser(user, true))
+                            processedItems.add(getUserString(user));
+
+            unApprovedUsersListView.getItems().removeAll(processedItems);
         }
     }
 
     @FXML private void rejectbuttonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
+        ArrayList<String> processedItems = new ArrayList<>();
         if(unApprovedUsersListView.getSelectionModel().getSelectedItems().isEmpty()){
             alert.setTitle("No selected user!");
             alert.setTitle("Please select at leas one user to approve!");
@@ -81,11 +86,13 @@ public class AccountingRequestsView extends Controller{
             if (result.get() == ButtonType.OK)
                 unApprovedUsersListView.getScene().getRoot().setDisable(false);
         }else{
-            for(String item : unApprovedUsersListView.getSelectionModel().getSelectedItems()){
+            for(String item : unApprovedUsersListView.getSelectionModel().getSelectedItems())
                 for (User user : unApprovedUsers)
                     if(item.equals(getUserString(user)))
-                        ClientManagerLogicFacade.getInstance().approveUser(user, false);
-            }
+                        if(ClientManagerLogicFacade.getInstance().approveUser(user, false))
+                            processedItems.add(getUserString(user));
+
+            unApprovedUsersListView.getItems().removeAll(processedItems);
         }
     }
 }
