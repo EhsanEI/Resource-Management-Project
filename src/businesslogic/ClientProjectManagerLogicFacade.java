@@ -5,8 +5,11 @@ import businesslogic.distribution.resource.*;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 import network.ClientNetwork;
+import network.NetworkRequest;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
@@ -31,46 +34,73 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
 
     @Override
     public Notification assignModules(Map<HumanResource, Module> assignments) {
+        ArrayList<Serializable> params = new ArrayList<>();
+        //params.add(assignments);
         return null;
     }
 
     @Override
-    public Notification registerProjectScale(int UserID, Project newProject) {
-        return null;
+    public Notification registerProjectScale(int UserID, Project newProject) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(UserID);
+        params.add(newProject);
+        return (Notification)clientNetwork.sendRequest(new NetworkRequest("registerProjectScale",params)).getResponse();
     }
 
     @Override
-    public InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) {
-        return new Project[0];
+    public InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(technologies);
+        params.add(startDate);
+        params.add(endDate);
+        params.add(budget);
+        return (InformationResource[])clientNetwork.sendRequest(new NetworkRequest("estimateResourceAllocations",params)).getResponse();
     }
 
     @Override
-    public Notification registerRequirement(int userID, Requirement newRequirement) {
-        return null;
+    public Notification registerRequirement(int userID, Requirement newRequirement) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
+        params.add(newRequirement);
+        return (Notification)clientNetwork.sendRequest(new NetworkRequest("registerRequirement",params)).getResponse();
     }
 
     @Override
-    public Project[] getProjectList(int userID) {
-        return new Project[0];
+    public Project[] getProjectList(int userID) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
+        return (Project[])clientNetwork.sendRequest(new NetworkRequest("getProjectList",params)).getResponse();
     }
 
     @Override
-    public HumanResource[] getProgrammers(Project project) {
-        return new HumanResource[0];
+    public HumanResource[] getProgrammers(Project project) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(project);
+
+        return (HumanResource[])clientNetwork.sendRequest(new NetworkRequest("getProgrammers",params)).getResponse();
     }
 
     @Override
-    public Module[] getModules(Project project) {
-        return new Module[0];
+    public Module[] getModules(Project project) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(project);
+        return (Module[])clientNetwork.sendRequest(new NetworkRequest("getModules",params)).getResponse();
     }
 
     @Override
-    public InformationResource[] getInformationResources(int userID) {
-        return new InformationResource[0];
+    public InformationResource[] getInformationResources(int userID) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
+        return (InformationResource[])clientNetwork.sendRequest(new NetworkRequest("getInformationResources",params)).getResponse();
     }
 
     @Override
-    public String[] getResourceNames(int userID, String resourceType) {
-        return new String[0];
+    public String[] getResourceNames(int userID, String resourceType) throws IOException, ClassNotFoundException {
+
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
+        params.add(resourceType);
+
+        return (String[])clientNetwork.sendRequest(new NetworkRequest("getResourceNames",params)).getResponse();
     }
 }

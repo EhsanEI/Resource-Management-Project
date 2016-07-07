@@ -13,9 +13,10 @@
  */
 package businesslogic.utility;
 
+import java.io.Serializable;
 import java.util.Calendar;
 
-public class Date {
+public class Date implements Serializable {
 	public Date() {
 	}
 

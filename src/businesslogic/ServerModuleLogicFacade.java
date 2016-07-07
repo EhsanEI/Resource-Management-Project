@@ -8,6 +8,19 @@ import org.orm.PersistentException;
  * Created by Esi on 6/22/2016.
  */
 public class ServerModuleLogicFacade implements ModuleLogicInterface{
+
+    private static ServerModuleLogicFacade instance;
+
+    private ServerModuleLogicFacade() {
+    }
+
+    public static ServerModuleLogicFacade getInstance() {
+        if(instance == null) {
+            instance = new ServerModuleLogicFacade();
+        }
+        return instance;
+    }
+
     @Override
     public Module[] getModuleList(int UserID) {
         StringBuffer condition = new StringBuffer("");

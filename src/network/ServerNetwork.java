@@ -1,13 +1,15 @@
 package network;
 
-import businesslogic.ServerAccountingLogicFacade;
-import businesslogic.ServerAdminLogicFacade;
-import businesslogic.ServerManagerLogicFacade;
+import businesslogic.*;
 import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
+import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.HumanResource;
+import businesslogic.distribution.resource.ModuleChange;
+import businesslogic.distribution.resource.Project;
 import businesslogic.support.SystemConfiguration;
+import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 
 import java.io.*;
@@ -113,6 +115,73 @@ public class ServerNetwork {
                 break;
             case "configureSystem":
 
+                break;
+            case "getModuleList":
+                networkResponse = new NetworkResponse(
+                        ServerModuleLogicFacade.getInstance().getModuleList((Integer)request.getParams().get(0)),
+                        "Processed");
+                break;
+            case "registerModuleMaintenance":
+                networkResponse = new NetworkResponse(
+                        ServerProgrammerLogicFacade.getInstance().registerModuleMaintenance(
+                                (Integer)request.getParams().get(0),
+                                (Integer)request.getParams().get(1),
+                                (ModuleChange[])request.getParams().get(2)),"Processed"
+                );
+                break;
+            case "registerModuleCreation":
+                networkResponse = new NetworkResponse(
+                  ServerProgrammerLogicFacade.getInstance().registerModuleCreation(
+                          (Integer)request.getParams().get(0),
+                          (Integer)request.getParams().get(1),
+                          (String) request.getParams().get(2),
+                          (Date) request.getParams().get(3),
+                          (Date) request.getParams().get(4)),"Processed"
+                );
+                break;
+
+            case "registerProjectScale":
+                networkResponse = new NetworkResponse(
+                  ServerProjectManagerLogicFacade.getInstance().registerProjectScale(
+                          (Integer)request.getParams().get(0),
+                          (Project)request.getParams().get(1)),"Processed"
+                );
+                break;
+            case "estimateResourceAllocations":
+                networkResponse = new NetworkResponse(
+                  ServerProjectManagerLogicFacade.getInstance().estimateResourceAllocations(
+                          (String[])request.getParams().get(0),
+                          (Date)request.getParams().get(1),
+                          (Date)request.getParams().get(2),
+                          (Integer)request.getParams().get(3)),"Processed"
+                );
+                break;
+            case "registerRequirement":
+                networkResponse = new NetworkResponse(
+                        ServerProjectManagerLogicFacade.getInstance().registerRequirement(
+                                (Integer)request.getParams().get(0),
+                                (Requirement) request.getParams().get(1)),"Processed");
+                break;
+            case "getProjectList":
+                networkResponse = new NetworkResponse(
+                        ServerProjectManagerLogicFacade.getInstance().getProjectList((Integer)request.getParams().get(0)),"Processed");
+                break;
+            case  "getProgrammers":
+                networkResponse = new NetworkResponse(
+                        ServerProjectManagerLogicFacade.getInstance().getProgrammers((Project)request.getParams().get(0)),"Processed");
+                break;
+            case "getModules":
+                networkResponse = new NetworkResponse(
+                        ServerProjectManagerLogicFacade.getInstance().getModules((Project)request.getParams().get(0)),"Processed");
+                break;
+            case "getInformationResources":
+                networkResponse = new NetworkResponse(
+                        ServerProjectManagerLogicFacade.getInstance().getInformationResources((Integer)request.getParams().get(0)),"Processed");
+                break;
+            case "getResourceNames":
+                networkResponse = new NetworkResponse(
+                        ServerProjectManagerLogicFacade.getInstance().getResourceNames((Integer)request.getParams().get(0),
+                                (String)request.getParams().get(1)),"Processed");
                 break;
         }
 

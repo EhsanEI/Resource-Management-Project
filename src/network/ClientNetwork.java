@@ -3,7 +3,9 @@ package network;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.net.Socket;
+import java.util.ArrayList;
 
 import static java.lang.System.exit;
 
@@ -46,4 +48,6 @@ public class ClientNetwork {
         serverOutputStream.writeObject(request);
         return (NetworkResponse) serverInputStream.readObject();
     }
+
+
 }

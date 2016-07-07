@@ -2,8 +2,11 @@ package businesslogic;
 
 import businesslogic.distribution.resource.Module;
 import network.ClientNetwork;
+import network.NetworkRequest;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Esi on 6/22/2016.
@@ -24,7 +27,9 @@ public class ClientModuleLogicFacade implements ModuleLogicInterface{
     }
 
     @Override
-    public Module[] getModuleList(int UserID) {
-        return new Module[0];
+    public Module[] getModuleList(int UserID) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(UserID);
+        return (Module[]) clientNetwork.sendRequest(new NetworkRequest("getModuleList",params)).getResponse();
     }
 }
