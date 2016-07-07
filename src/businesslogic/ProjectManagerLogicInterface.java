@@ -6,6 +6,7 @@ import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -13,7 +14,7 @@ import java.util.Map;
  */
 public interface ProjectManagerLogicInterface {
 
-    Notification assignModules(Map<HumanResource, Module> assignments);
+    Notification assignModules(HashMap<HumanResource, Module> assignments);
 
     Notification registerProjectScale(int UserID, Project newProject) throws IOException, ClassNotFoundException;
 

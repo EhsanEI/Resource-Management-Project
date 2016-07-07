@@ -38,7 +38,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public Notification assignModules(Map<HumanResource, Module> assignments) {
+    public Notification assignModules(HashMap<HumanResource, Module> assignments) {
         StringBuffer msg = new StringBuffer("");
         for(HumanResource humanResource: assignments.keySet()) {
             humanResource.getProgramming().addModule(assignments.get(humanResource));

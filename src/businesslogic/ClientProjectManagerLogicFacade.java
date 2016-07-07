@@ -10,6 +10,7 @@ import network.NetworkRequest;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -33,7 +34,7 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public Notification assignModules(Map<HumanResource, Module> assignments) {
+    public Notification assignModules(HashMap<HumanResource, Module> assignments) {
         ArrayList<Serializable> params = new ArrayList<>();
         //params.add(assignments);
         return null;

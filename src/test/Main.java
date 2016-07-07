@@ -265,7 +265,7 @@ public class Main {
         HumanResource[] programmers = ServerProjectManagerLogicFacade.getInstance().getProgrammers(project);
         Module[] modules = ServerProjectManagerLogicFacade.getInstance().getModules(project);
 
-        Map<HumanResource, Module> assignments = new HashMap<>();
+        HashMap<HumanResource, Module> assignments = new HashMap<>();
         assignments.put(programmers[programmerInd], modules[moduleInd]);
         ServerProjectManagerLogicFacade.getInstance().assignModules(assignments);
     }
