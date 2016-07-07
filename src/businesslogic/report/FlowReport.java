@@ -10,6 +10,7 @@ import org.orm.PersistentException;
 import org.orm.PersistentSession;
 
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,7 +22,7 @@ import orm.OODPersistentManager;
 /**
  * Created by Esi on 6/23/2016.
  */
-public class FlowReport  extends Report{
+public class FlowReport  extends Report implements Serializable {
     private Resource resource;
     private Date startDate;
     private Date endDate;

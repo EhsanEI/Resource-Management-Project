@@ -36,7 +36,7 @@ public class EstimateResourceAllocationView extends Controller {
 
 
 
-    public void estimatePressed(ActionEvent event) throws IOException {
+    public void estimatePressed(ActionEvent event) throws IOException, ClassNotFoundException {
 
         java.util.Date sDate = new java.util.Date(startDate.getValue().toEpochDay());
         java.util.Date eDate = new java.util.Date(endDate.getValue().toEpochDay());

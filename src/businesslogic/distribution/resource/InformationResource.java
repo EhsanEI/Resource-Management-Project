@@ -17,9 +17,10 @@ import businesslogic.distribution.Allocation;
 import businesslogic.distribution.requirement.Requirement;
 import orm.ORMConstants;
 
+import java.io.Serializable;
 import java.util.Set;
 
-public class InformationResource extends businesslogic.distribution.resource.Resource {
+public class InformationResource extends businesslogic.distribution.resource.Resource implements Serializable {
 	public InformationResource() {
 	}
 	

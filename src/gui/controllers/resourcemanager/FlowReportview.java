@@ -43,11 +43,13 @@ public class FlowReportview extends Controller {
                 fillTheResourceNames();
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
             }
         });
     }
 
-    private void fillTheResourceNames() throws IOException {
+    private void fillTheResourceNames() throws IOException, ClassNotFoundException {
         String[] names = ClientResourceManagerLogicFacade.getInstance().getResourceNames(user.getID(), resourceTypeCombo.getSelectionModel().getSelectedItem());
         for(String name : names)
             resourceNameCombo.getItems().add(name);

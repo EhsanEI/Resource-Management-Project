@@ -9,12 +9,13 @@ import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import orm.OODPersistentManager;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Esi on 6/23/2016.
  */
-public class ResourceRequirementReport  extends Report{
+public class ResourceRequirementReport  extends Report implements Serializable {
     private InformationResource informationResource;
     public ResourceRequirementReport(int informationResourceID) throws PersistentException{
         super();

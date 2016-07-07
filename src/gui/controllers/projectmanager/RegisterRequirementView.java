@@ -49,7 +49,7 @@ public class RegisterRequirementView extends Controller {
         animatePaneChange(selectInformationResourcePane, Direction.RIGHT);
     }
 
-    public void specialInit() throws IOException {
+    public void specialInit() throws IOException, ClassNotFoundException {
         informationResources = ClientProjectManagerLogicFacade.getInstance().getInformationResources(user.getID());
         informationResourcesListView.getItems().removeAll(informationResourcesListView.getItems());
         for(InformationResource informationResource : informationResources)
@@ -90,7 +90,7 @@ public class RegisterRequirementView extends Controller {
 
     }
 
-    @FXML private void RegisterRequirementPressed(ActionEvent event) throws PersistentException, IOException {
+    @FXML private void RegisterRequirementPressed(ActionEvent event) throws PersistentException, IOException, ClassNotFoundException {
        Requirement requirement = RequirementDAO.createRequirement();
 
         Date sDate = new Date(startDatePicker.getValue().toEpochDay());
@@ -113,7 +113,7 @@ public class RegisterRequirementView extends Controller {
         return informationResource.getID() + " : " + informationResource.getName();
     }
 
-    @FXML private void resourceTypeChanged(ActionEvent event) throws IOException {
+    @FXML private void resourceTypeChanged(ActionEvent event) throws IOException, ClassNotFoundException {
         String[] resourceNames = ClientProjectManagerLogicFacade.getInstance().getResourceNames(user.getID(), resourceTypeCombo.getSelectionModel().getSelectedItem());
         resourceNamesListView.getItems().removeAll(resourceNamesListView.getItems());
         for(String resource : resourceNames)
