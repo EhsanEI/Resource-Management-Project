@@ -1,6 +1,7 @@
 package network;
 
 import businesslogic.ServerAccountingLogicFacade;
+import businesslogic.ServerManagerLogicFacade;
 import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
@@ -96,6 +97,17 @@ public class ServerNetwork {
             case "editProfile":
                 networkResponse =  new NetworkResponse(
                         ServerAccountingLogicFacade.getInstance().editProfile((User)request.getParams().get(0)),"Processed");
+                break;
+            case  "approveUser":
+                networkResponse = new NetworkResponse(
+                        ServerManagerLogicFacade.getInstance().approveUser(
+                                (User)request.getParams().get(0),
+                                (boolean)request.getParams().get(1)),"Processed");
+                break;
+            case "getUnapprovedUsers":
+                networkResponse = new NetworkResponse(
+                        ServerManagerLogicFacade.getInstance().getUnapprovedUsers(),"Processed"
+                );
                 break;
         }
 

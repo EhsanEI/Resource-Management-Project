@@ -276,6 +276,19 @@ public class MainMenuView {
                     });
                     permissionMenu.getItems().add(registerResourceAllocationMenuItem);
                     break;
+                case "Accounting Requests":
+                    MenuItem accountingRequestsMenuItem = new MenuItem(permission.getTitleText());
+                    accountingRequestsMenuItem.setOnAction(event -> {
+                        try {
+                            loadFXML("../fxmls/manager/AccountingRequestsView.fxml");
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        } catch (ClassNotFoundException e) {
+                            e.printStackTrace();
+                        }
+                    });
+                    permissionMenu.getItems().add(accountingRequestsMenuItem);
+                    break;
 
             }
 

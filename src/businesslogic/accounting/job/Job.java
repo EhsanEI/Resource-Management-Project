@@ -67,7 +67,7 @@ public class Job implements Serializable{
 		return null;
 	}
 	
-	public void setPermissions(businesslogic.accounting.Permission[] permissions) {
+	public void setPermissions(businesslogic.accounting.PermissionTitles[] permissions) {
 
 	}
 	

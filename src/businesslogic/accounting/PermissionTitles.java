@@ -23,7 +23,7 @@ public enum PermissionTitles {
     RESOURCE_REQUIREMENTS_REPORT("Resource Requirements Report"),
     RESOURCES_REPORT("Resources Report"),
 
-    USER_APPROVAL("User Approval");
+    USER_APPROVAL("Accounting Requests");
 
 
     private String titleText;
