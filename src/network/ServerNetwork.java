@@ -48,7 +48,6 @@ public class ServerNetwork {
                     while ((networkRequest = (NetworkRequest) clientInputStream.readObject()) != null)
                     {
                         try {
-                            System.out.println("server net");
                             sendResponse(networkRequest, objectOutputStream);
                         } catch (IOException e) {
                             e.printStackTrace();
@@ -101,7 +100,6 @@ public class ServerNetwork {
         }
 
 
-        System.out.println(networkResponse == null);
         objectOutputStream.writeObject(networkResponse);
         return true;
     }
