@@ -32,6 +32,8 @@ public class LoginView {
     @FXML private PasswordField passwordField;
 
 
+
+
     @FXML private void recoverPasswordPressed(ActionEvent event) throws IOException, ClassNotFoundException {
 
         usernameTextField.getScene().getRoot().setDisable(true);

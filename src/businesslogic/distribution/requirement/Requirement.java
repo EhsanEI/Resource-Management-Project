@@ -21,7 +21,9 @@ import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import orm.OODPersistentManager;
 
-public class Requirement {
+import java.io.Serializable;
+
+public class Requirement implements Serializable {
 	public Requirement() {
 	}
 	

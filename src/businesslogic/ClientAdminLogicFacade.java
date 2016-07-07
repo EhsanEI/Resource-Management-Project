@@ -2,8 +2,11 @@ package businesslogic;
 
 import businesslogic.support.SystemConfiguration;
 import network.ClientNetwork;
+import network.NetworkRequest;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Esi on 6/22/2016.
@@ -23,7 +26,10 @@ public class ClientAdminLogicFacade implements AdminLogicInterface{
     }
 
     @Override
-    public void configureSystem(SystemConfiguration configureSystem) {
-
+    public void configureSystem(SystemConfiguration configureSystem) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(configureSystem);
+        clientNetwork.sendRequest(new NetworkRequest("configureSystem",params));
+        return;
     }
 }

@@ -9,6 +9,19 @@ import org.orm.PersistentException;
  * Created by Esi on 6/22/2016.
  */
 public class ServerAdminLogicFacade implements AdminLogicInterface{
+
+    private static ServerAdminLogicFacade instance;
+
+    private ServerAdminLogicFacade() {
+    }
+
+    public static ServerAdminLogicFacade getInstance() {
+        if(instance == null) {
+            instance = new ServerAdminLogicFacade();
+        }
+        return instance;
+    }
+
     @Override
     public void configureSystem(SystemConfiguration configureSystem) {
 

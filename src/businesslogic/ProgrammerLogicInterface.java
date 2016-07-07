@@ -5,11 +5,13 @@ import businesslogic.distribution.resource.ModuleChange;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 
+import java.io.IOException;
+
 /**
  * Created by Esi on 6/22/2016.
  */
 public interface ProgrammerLogicInterface {
-    Notification registerModuleCreation(int userID, int moduleID, String description, Date startDate, Date endDate);
-    Notification registerModuleMaintenance(int userID, int moduleID, ModuleChange[] changes);
+    Notification registerModuleCreation(int userID, int moduleID, String description, Date startDate, Date endDate) throws IOException, ClassNotFoundException;
+    Notification registerModuleMaintenance(int userID, int moduleID, ModuleChange[] changes) throws IOException, ClassNotFoundException;
     Module[] getModuleList(int userID);
 }

@@ -18,6 +18,19 @@ import java.util.List;
  * Created by Esi on 6/22/2016.
  */
 public class ServerProgrammerLogicFacade implements ProgrammerLogicInterface{
+
+    private static ServerProgrammerLogicFacade instance;
+
+    private ServerProgrammerLogicFacade() {
+    }
+
+    public static ServerProgrammerLogicFacade getInstance() {
+        if(instance == null) {
+            instance = new ServerProgrammerLogicFacade();
+        }
+        return instance;
+    }
+
     @Override
     public Notification registerModuleCreation(int userID, int moduleID, String description, Date startDate, Date endDate) {
         Notification notification = new Notification();

@@ -5,6 +5,7 @@ import businesslogic.distribution.resource.*;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 
+import java.io.IOException;
 import java.util.Map;
 
 /**
@@ -14,19 +15,19 @@ public interface ProjectManagerLogicInterface {
 
     Notification assignModules(Map<HumanResource, Module> assignments);
 
-    Notification registerProjectScale(int UserID, Project newProject);
+    Notification registerProjectScale(int UserID, Project newProject) throws IOException, ClassNotFoundException;
 
-    InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget);
+    InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) throws IOException, ClassNotFoundException;
 
-    Notification registerRequirement(int userID, Requirement newRequirement);
+    Notification registerRequirement(int userID, Requirement newRequirement) throws IOException, ClassNotFoundException;
 
-    Project[] getProjectList(int userID);
+    Project[] getProjectList(int userID) throws IOException, ClassNotFoundException;
 
-    HumanResource[] getProgrammers(Project project);
+    HumanResource[] getProgrammers(Project project) throws IOException, ClassNotFoundException;
 
-    Module[] getModules(Project project);
+    Module[] getModules(Project project) throws IOException, ClassNotFoundException;
 
-    InformationResource[] getInformationResources(int userID);
+    InformationResource[] getInformationResources(int userID) throws IOException, ClassNotFoundException;
 
-    String[] getResourceNames(int userID, String resourceType);
+    String[] getResourceNames(int userID, String resourceType) throws IOException, ClassNotFoundException;
 }

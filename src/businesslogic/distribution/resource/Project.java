@@ -16,11 +16,12 @@ package businesslogic.distribution.resource;
 import businesslogic.distribution.requirement.Requirement;
 import orm.ORMConstants;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
 
-public class Project extends businesslogic.distribution.resource.InformationResource {
+public class Project extends businesslogic.distribution.resource.InformationResource implements Serializable {
 	public Project() {
 	}
 	

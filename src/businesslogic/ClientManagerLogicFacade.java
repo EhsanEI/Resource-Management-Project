@@ -1,18 +1,42 @@
 package businesslogic;
 
 import businesslogic.accounting.user.User;
+import network.ClientNetwork;
+import network.NetworkRequest;
+
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Esi on 6/22/2016.
  */
 public class ClientManagerLogicFacade implements ManagerLogicInterface {
+
+
+    private static ClientNetwork clientNetwork;
+
+    private static ClientManagerLogicFacade clientManagerLogicFacade;
+
+    public static ClientManagerLogicFacade getInstance() throws IOException, ClassNotFoundException {
+        if(clientManagerLogicFacade == null) {
+            clientManagerLogicFacade = new ClientManagerLogicFacade();
+            clientNetwork = ClientNetwork.getInstance();
+        }
+        return clientManagerLogicFacade;
+    }
+
+
     @Override
-    public User[] getUnapprovedUsers() {
-        return new User[0];
+    public User[] getUnapprovedUsers() throws IOException, ClassNotFoundException {
+        return (User[])clientNetwork.sendRequest(new NetworkRequest("getUnapprovedUsers",null)).getResponse();
     }
 
     @Override
-    public boolean approveUser(User newUser, boolean accepted) {
-        return false;
+    public boolean approveUser(User user, boolean accepted) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(user);
+        params.add(accepted);
+        return (boolean) clientNetwork.sendRequest(new NetworkRequest("approveUser",params)).getResponse();
     }
 }
