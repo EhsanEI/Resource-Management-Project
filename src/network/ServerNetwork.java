@@ -1,11 +1,13 @@
 package network;
 
 import businesslogic.ServerAccountingLogicFacade;
+import businesslogic.ServerAdminLogicFacade;
 import businesslogic.ServerManagerLogicFacade;
 import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
 import businesslogic.distribution.resource.HumanResource;
+import businesslogic.support.SystemConfiguration;
 import businesslogic.utility.Notification;
 
 import java.io.*;
@@ -108,6 +110,9 @@ public class ServerNetwork {
                 networkResponse = new NetworkResponse(
                         ServerManagerLogicFacade.getInstance().getUnapprovedUsers(),"Processed"
                 );
+                break;
+            case "configureSystem":
+
                 break;
         }
 

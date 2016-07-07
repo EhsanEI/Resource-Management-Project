@@ -13,7 +13,9 @@
  */
 package businesslogic.support;
 
-public class SystemConfiguration {
+import java.io.Serializable;
+
+public class SystemConfiguration implements Serializable {
 	public SystemConfiguration() {
 	}
 	
