@@ -67,10 +67,6 @@ public class Job implements Serializable{
 		return null;
 	}
 	
-	public void setPermissions(businesslogic.accounting.PermissionTitles[] permissions) {
-
-	}
-	
 	public Tree<String> getInfo() {
 		return new Tree<>(getClass().toString());
 	}
