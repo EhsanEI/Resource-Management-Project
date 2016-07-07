@@ -86,8 +86,6 @@ public class SignUpView {
 
     }
 
-
-
     @FXML private void registerButtonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
         User user = null;
 
@@ -113,7 +111,6 @@ public class SignUpView {
                 usernameTextField.getScene().getRoot().setDisable(false);
                 return;
             }
-
         }
 
         user.setUsername(usernameTextField.getText());
@@ -131,6 +128,7 @@ public class SignUpView {
             }
 
         }
+
         user.setPassword(passwordTextField.getText());
         user.setEmail(emailTextField.getText());
 
@@ -166,7 +164,6 @@ public class SignUpView {
                 alert.setContentText("Empty email address!");
 
 
-
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == ButtonType.OK) {
@@ -180,9 +177,6 @@ public class SignUpView {
         Notification notification = ClientAccountingLogicFacade.getInstance().signup(user, jobs.toArray(new Job[jobs.size()]),
                 specialties.toArray(new Specialty[specialties.size()]),
                 humanResources.toArray(new HumanResource[humanResources.size()]));
-
-
-        //Notification notification = new Notification("hi " + usernameTextField.getText() + "!");
 
         passwordTextField.getScene().getRoot().setDisable(true);
 

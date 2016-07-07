@@ -15,7 +15,9 @@ package businesslogic.accounting.job;
 
 import businesslogic.utility.Tree;
 
-public class Specialty {
+import java.io.Serializable;
+
+public class Specialty implements Serializable {
 	public Specialty() {
 	}
 	

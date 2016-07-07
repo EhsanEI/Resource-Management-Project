@@ -13,7 +13,9 @@
  */
 package businesslogic.distribution.resource;
 
-public class HumanResource extends businesslogic.distribution.resource.Resource {
+import java.io.Serializable;
+
+public class HumanResource extends businesslogic.distribution.resource.Resource implements Serializable{
 	public HumanResource() {
 	}
 	

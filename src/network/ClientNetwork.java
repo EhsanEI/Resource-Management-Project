@@ -44,6 +44,7 @@ public class ClientNetwork {
 
     public NetworkResponse sendRequest(NetworkRequest request) throws IOException, ClassNotFoundException {
         serverOutputStream.writeObject(request);
+        System.out.println("client net");
         return (NetworkResponse) serverInputStream.readObject();
     }
 }
