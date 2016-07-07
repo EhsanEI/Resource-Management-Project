@@ -1,5 +1,6 @@
 package businesslogic;
 
+import businesslogic.distribution.resource.Module;
 import businesslogic.distribution.resource.ModuleChange;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
@@ -34,5 +35,10 @@ public class ClientProgrammerLogicFacade implements ProgrammerLogicInterface{
     @Override
     public Notification registerModuleMaintenance(int userID, int moduleID, ModuleChange[] changes) {
         return null;
+    }
+
+    @Override
+    public Module[] getModuleList(int userID) {
+        return new Module[0];
     }
 }

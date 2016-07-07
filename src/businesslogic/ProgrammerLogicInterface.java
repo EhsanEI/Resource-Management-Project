@@ -11,4 +11,5 @@ import businesslogic.utility.Notification;
 public interface ProgrammerLogicInterface {
     Notification registerModuleCreation(int userID, int moduleID, String description, Date startDate, Date endDate);
     Notification registerModuleMaintenance(int userID, int moduleID, ModuleChange[] changes);
+    Module[] getModuleList(int userID);
 }

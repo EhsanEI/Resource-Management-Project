@@ -1,12 +1,18 @@
 package businesslogic;
 
-import businesslogic.distribution.resource.Module;
-import businesslogic.distribution.resource.ModuleChange;
-import businesslogic.distribution.resource.ModuleChangeDAO;
-import businesslogic.distribution.resource.ModuleDAO;
+import businesslogic.accounting.job.Job;
+import businesslogic.accounting.job.Programming;
+import businesslogic.accounting.job.ProjectManagement;
+import businesslogic.accounting.user.User;
+import businesslogic.accounting.user.UserDAO;
+import businesslogic.distribution.resource.*;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 import org.orm.PersistentException;
+import org.orm.PersistentSession;
+import orm.OODPersistentManager;
+
+import java.util.List;
 
 /**
  * Created by Esi on 6/22/2016.
@@ -65,5 +71,26 @@ public class ServerProgrammerLogicFacade implements ProgrammerLogicInterface{
 
         notification.setContent("Module changes have been saved.");
         return notification;
+    }
+
+    @Override
+    public Module[] getModuleList(int userID) {
+        Programming programming = getProgramming(userID);
+        return programming.getModules();
+
+    }
+
+    private Programming getProgramming(int userID) {
+        try {
+            PersistentSession session = OODPersistentManager.instance().getSession();
+            User user = UserDAO.getUserByORMID(userID);
+            for(Job job:user.getJobs()) {
+                if(job instanceof Programming) {
+                    return (Programming) job;
+                }
+            }
+        } catch (PersistentException e) {
+        }
+        return null;
     }
 }
