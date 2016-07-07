@@ -1,6 +1,7 @@
 package gui.controllers.accounting;
 
 import businesslogic.ClientAccountingLogicFacade;
+import businesslogic.accounting.AuthenticationResult;
 import businesslogic.accounting.job.ResourceManagement;
 import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.user.User;
@@ -12,6 +13,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -27,6 +29,7 @@ public class LoginView {
 
     private  Stage stage;
     @FXML private TextField usernameTextField;
+    @FXML private PasswordField passwordField;
 
 
     @FXML private void recoverPasswordPressed(ActionEvent event) throws IOException, ClassNotFoundException {
@@ -61,14 +64,16 @@ public class LoginView {
     }
 
     @FXML private void signInPressed() throws Exception {
-        //User user = clientAccountingLogicFacade.login(usernameTextField.getText(), passwordField.getText()).getUser();
+        AuthenticationResult authenticationResult = ClientAccountingLogicFacade.getInstance().login(usernameTextField.getText(), passwordField.getText());
+        User user =authenticationResult.getUser();
+        /*
         // TODO
         User user = new User();
         user.setUsername("qizilbash");
         user.setEmail("gmail@qizilbash.com");
         user.addJob(new ResourceManagement());
         user.addJob(new ProjectManagement());
-        user.setPassword("12345");
+        user.setPassword("12345");*/
 
         if(user != null)
             new MainMenu().start(stage,user);
@@ -81,7 +86,7 @@ public class LoginView {
 
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
 
-            stage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
+            stage.getIcons().add(new Image(getClass().getResource("../../resources/erp.png").toString()));
 
 
             Optional<ButtonType> result = alert.showAndWait();

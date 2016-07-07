@@ -3,10 +3,12 @@ package businesslogic.accounting;
 import businesslogic.accounting.user.User;
 import businesslogic.utility.Notification;
 
+import java.io.Serializable;
+
 /**
  * Created by Esi on 6/24/2016.
  */
-public class AuthenticationResult {
+public class AuthenticationResult implements Serializable {
 
     private User user;
     private Notification notification;

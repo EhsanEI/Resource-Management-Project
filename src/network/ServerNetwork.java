@@ -17,14 +17,11 @@ import java.util.ArrayList;
  */
 public class ServerNetwork {
 
-    private ServerAccountingLogicFacade serverAccountingLogicFacade;
-
     private ServerSocket listener;
     private ArrayList<Socket> clients = new ArrayList<>();
 
     public ServerNetwork(ServerSocket serverSocket) throws IOException {
         listener = serverSocket;
-        serverAccountingLogicFacade = ServerAccountingLogicFacade.getInstance();
         new Thread(){
             public void run(){
                 while (true){
@@ -71,22 +68,36 @@ public class ServerNetwork {
         String method = request.getMethod();
         NetworkResponse networkResponse = null;
 
-        System.out.println("msg:");
-        System.out.println(request.getMethod());
-        System.out.println(request.getParams());
+
         switch (method){
-            case "recoverPassword":
+            case "login":
                 networkResponse = new NetworkResponse(
-                        serverAccountingLogicFacade.recoverPassword((String)request.getParams().get(0)), "processed");
+                        ServerAccountingLogicFacade.getInstance().login((String)request.getParams().get(0),
+                                (String)request.getParams().get(1)),"Processed");
                 break;
+
             case "signup":
                 networkResponse = new NetworkResponse(
-                        serverAccountingLogicFacade.signup((User)request.getParams().get(0),
-                                (Job[]) request.getParams().get(1),(Specialty[]) request.getParams().get(2),
-                                (HumanResource[]) request.getParams().get(3)), "processed");
+                        ServerAccountingLogicFacade.getInstance().signup((User) request.getParams().get(0),
+                                (Job[]) request.getParams().get(1), (Specialty[]) request.getParams().get(2),
+                                (HumanResource[]) request.getParams().get(3)), "Processed");
+                break;
+
+            case "logout":
+                networkResponse = new NetworkResponse(
+                        ServerAccountingLogicFacade.getInstance().logout((Integer)request.getParams().get(0)),"Processed");
+                break;
+
+            case "recoverPassword":
+                networkResponse = new NetworkResponse(
+                        ServerAccountingLogicFacade.getInstance().recoverPassword((String) request.getParams().get(0)), "processed");
+                break;
+
+            case "editProfile":
+                networkResponse =  new NetworkResponse(
+                        ServerAccountingLogicFacade.getInstance().editProfile((User)request.getParams().get(0)),"Processed");
                 break;
         }
-
 
         objectOutputStream.writeObject(networkResponse);
         return true;

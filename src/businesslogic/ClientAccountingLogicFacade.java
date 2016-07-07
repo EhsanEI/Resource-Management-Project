@@ -72,7 +72,7 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
     public Notification editProfile(User user) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(user);
-        return (Notification) clientNetwork.sendRequest(new NetworkRequest("recoverPassword", params)).getResponse();
+        return (Notification) clientNetwork.sendRequest(new NetworkRequest("editProfile", params)).getResponse();
     }
 
 }
