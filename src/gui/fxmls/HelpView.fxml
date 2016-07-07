@@ -8,7 +8,7 @@
 
 <AnchorPane fx:id="helpPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.AboutView" >
    <children>
-      <Label fx:id="usernameLabel" layoutX="117.0" layoutY="103.0" prefHeight="63.0" prefWidth="516.0" text="Powerd by Balack Rose Co.">
+      <Label fx:id="usernameLabel" layoutX="117.0" layoutY="103.0" prefHeight="63.0" prefWidth="516.0" text="Powered by Black Rose Co.">
          <effect>
             <InnerShadow choke="0.29" color="#ff7600" height="117.245" radius="58.46125" width="118.6" />
          </effect>

@@ -65,9 +65,9 @@ public class LoginView {
 
     @FXML private void signInPressed() throws Exception {
         AuthenticationResult authenticationResult = ClientAccountingLogicFacade.getInstance().login(usernameTextField.getText(), passwordField.getText());
-        User user =authenticationResult.getUser();
+        //User user =authenticationResult.getUser();
 
-        /*
+
         // For Test
         User user = new User();
         user.setUsername("qizilbash");
@@ -75,7 +75,7 @@ public class LoginView {
         user.addJob(new ResourceManagement());
         user.addJob(new ProjectManagement());
         user.setPassword("12345");
-        */
+
 
         if(user != null)
             new MainMenu().start(stage,user);
