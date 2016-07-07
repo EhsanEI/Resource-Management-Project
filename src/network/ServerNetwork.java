@@ -4,15 +4,15 @@ import businesslogic.*;
 import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.user.User;
+import businesslogic.distribution.Allocation;
 import businesslogic.distribution.requirement.Requirement;
-import businesslogic.distribution.resource.HumanResource;
-import businesslogic.distribution.resource.ModuleChange;
-import businesslogic.distribution.resource.Project;
+import businesslogic.distribution.resource.*;
 import businesslogic.support.SystemConfiguration;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 
 import java.io.*;
+import java.lang.System;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
@@ -183,10 +183,86 @@ public class ServerNetwork {
                         ServerProjectManagerLogicFacade.getInstance().getResourceNames((Integer)request.getParams().get(0),
                                 (String)request.getParams().get(1)),"Processed");
                 break;
+            case "registerResourceAllocation":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().registerResourceAllocation(
+                                (Integer)request.getParams().get(0),
+                                (Allocation)request.getParams().get(1),
+                                (Resource[])request.getParams().get(2)
+                        ),"Processed");
+                break;
+            case "rejectResourceAllocation":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().rejectResourceAllocation(
+                                (Integer) request.getParams().get(0),
+                                (Integer) request.getParams().get(1)
+                        ),"Processed");
+                break;
+            case "getInformationResourcesForResourceManager":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().getInformationResources(
+                                (Integer) request.getParams().get(0)
+                        ),"Processed");
+                break;
+            case "getResourceNamesForResourceManager":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().getResourceNames(
+                                (Integer) request.getParams().get(0),
+                                (String)request.getParams().get(1)
+                        ),"Processed");
+                break;
+            case "getRequirements":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().getRequirements(
+                                (Integer) request.getParams().get(0)
+                        ),"Processed");
+                break;
+            case "getResources":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().getResources(
+                                (Integer) request.getParams().get(0),
+                                (String)request.getParams().get(1),
+                                (String)request.getParams().get(2)
+                        ),"Processed");
+                break;
+            case "registerNewResource":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().registerNewResource(
+                                (Integer) request.getParams().get(0),
+                                (Resource)request.getParams().get(1)
+                                ), "Processed");
+                break;
+            case "reportResources":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().reportResources(), "Processed");
+                break;
+            case "reportFlowResourceAllocations":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(
+                                (Resource)request.getParams().get(0),
+                                (Date)request.getParams().get(1),
+                                (Date)request.getParams().get(2)
+                        ), "Processed");
+                break;
+            case "reportResourceRequirements":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().reportResourceRequirements(
+                                (InformationResource)request.getParams().get(0)
+                                ), "Processed");
+                break;
+            case "predictEssentialResourceAllocations":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().predictEssentialResourceAllocations(
+                                (Project)request.getParams().get(0)
+                                ), "Processed");
+                break;
+            case "getAllProjectList":
+                networkResponse = new NetworkResponse(
+                        ServerResourceManagerLogicFacade.getInstance().getAllProjectList(), "Processed");
+                break;
         }
 
 
-        System.out.println(networkResponse == null);
 
         objectOutputStream.writeObject(networkResponse);
         return true;

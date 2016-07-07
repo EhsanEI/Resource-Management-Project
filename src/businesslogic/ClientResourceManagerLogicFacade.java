@@ -12,8 +12,11 @@ import businesslogic.report.ResourceRequirementReport;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 import network.ClientNetwork;
+import network.NetworkRequest;
 
 import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Esi on 6/22/2016.
@@ -36,62 +39,95 @@ public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public Notification registerResourceAllocation(int userID, Allocation allocation, Resource[] resources) {
-        return null;
+    public Notification registerResourceAllocation(int userID, Allocation allocation, Resource[] resources) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
+        params.add(allocation);
+        params.add(resources);
+        return (Notification)clientNetwork.sendRequest(new NetworkRequest("registerResourceAllocation",params)).getResponse();
     }
 
     @Override
-    public Notification rejectResourceAllocation(int userID, int requirementID) {
-        return null;
+    public Notification rejectResourceAllocation(int userID, int requirementID) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
+        params.add(requirementID);
+        return (Notification)clientNetwork.sendRequest(new NetworkRequest("rejectResourceAllocation",params)).getResponse();
     }
 
     @Override
-    public InformationResource[] getInformationResources(int uesrID) {
-        return new InformationResource[0];
+    public InformationResource[] getInformationResources(int uesrID) throws IOException, ClassNotFoundException {
+
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(uesrID);
+        return (InformationResource[])clientNetwork.sendRequest(new NetworkRequest("getInformationResourcesForResourceManager",params)).getResponse();
     }
 
     @Override
-    public String[] getResourceNames(int userID, String resourceType) {
-        return new String[0];
+    public String[] getResourceNames(int userID, String resourceType) throws IOException, ClassNotFoundException {
+
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
+        params.add(resourceType);
+        return (String[])clientNetwork.sendRequest(new NetworkRequest("getResourceNamesForResourceManager",params)).getResponse();
     }
 
     @Override
-    public Requirement[] getRequirements(int userID) {
-        return new Requirement[0];
+    public Requirement[] getRequirements(int userID) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
+        return (Requirement[])clientNetwork.sendRequest(new NetworkRequest("getRequirements",params)).getResponse();
     }
 
     @Override
-    public Resource[] getResources(int userID, String resourceType, String resourceName) {
-        return new Resource[0];
+    public Resource[] getResources(int userID, String resourceType, String resourceName) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
+        params.add(resourceType);
+        params.add(resourceName);
+
+        return (Resource[])clientNetwork.sendRequest(new NetworkRequest("getResources",params)).getResponse();
     }
 
     @Override
-    public Notification registerNewResource(int userID, Resource newResource) {
-        return null;
+    public Notification registerNewResource(int userID, Resource newResource) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
+        params.add(newResource);
+        return (Notification)clientNetwork.sendRequest(new NetworkRequest("registerNewResource",params)).getResponse();
     }
 
     @Override
-    public ResourceReport reportResources() {
-        return null;
+    public ResourceReport reportResources() throws IOException, ClassNotFoundException {
+
+        return (ResourceReport)clientNetwork.sendRequest(new NetworkRequest("reportResources",null)).getResponse();
     }
 
     @Override
-    public FlowReport reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate) {
-        return null;
+    public FlowReport reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(resource);
+        params.add(startDate);
+        params.add(endDate);
+        return (FlowReport)clientNetwork.sendRequest(new NetworkRequest("reportFlowResourceAllocations",null)).getResponse();
     }
 
     @Override
-    public ResourceRequirementReport reportResourceRequirements(InformationResource informationResource) {
-        return null;
+    public ResourceRequirementReport reportResourceRequirements(InformationResource informationResource) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(informationResource);
+        return (ResourceRequirementReport)clientNetwork.sendRequest(new NetworkRequest("reportResourceRequirements",null)).getResponse();
     }
 
     @Override
-    public Project[] predictEssentialResourceAllocations(Project project) {
-        return new Project[0];
+    public Project[] predictEssentialResourceAllocations(Project project) throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(project);
+        return (Project[])clientNetwork.sendRequest(new NetworkRequest("predictEssentialResourceAllocations",params)).getResponse();
     }
 
     @Override
-    public Project[] getAllProjectList() {
-        return new Project[0];
+    public Project[] getAllProjectList() throws IOException, ClassNotFoundException {
+        return (Project[])clientNetwork.sendRequest(new NetworkRequest("getAllProjectList",null)).getResponse();
     }
 }

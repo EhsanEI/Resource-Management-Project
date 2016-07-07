@@ -21,11 +21,12 @@ import org.orm.PersistentSession;
 import orm.OODPersistentManager;
 import orm.ORMConstants;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-public class Allocation {
+public class Allocation implements Serializable {
 	public Allocation() {
 	}
 	

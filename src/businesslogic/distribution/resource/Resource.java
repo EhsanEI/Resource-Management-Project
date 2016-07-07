@@ -21,12 +21,14 @@ import org.orm.PersistentSession;
 import orm.OODPersistentManager;
 import orm.ORMConstants;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
-public class Resource {
+
+public class Resource implements Serializable {
 	public Resource() {
 	}
 	
