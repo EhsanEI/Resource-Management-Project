@@ -84,11 +84,11 @@ public class Resource implements Serializable {
 		return name;
 	}
 	
-	private void setORM_ResourceAllocations(java.util.Set value) {
+	public void setORM_ResourceAllocations(java.util.Set value) {
 		this.ORM_resourceAllocations = value;
 	}
 	
-	private java.util.Set getORM_ResourceAllocations() {
+	public java.util.Set getORM_ResourceAllocations() {
 		return ORM_resourceAllocations;
 	}
 	

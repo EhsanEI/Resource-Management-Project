@@ -36,7 +36,7 @@ public class Main {
     public static void main(String[] args) throws PersistentException {
         PersistentTransaction t = OODPersistentManager.instance().getSession().beginTransaction();
 
-        signup();
+//        signup();
 
 //        registerProject();
 
@@ -44,7 +44,7 @@ public class Main {
 
 //        registerRequirement();
 
-//        registerResourceAllocation();
+        registerResourceAllocation();
 
 //        reportResources();
 

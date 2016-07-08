@@ -74,7 +74,9 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             Allocation_DAO.save(allocation);
 
             for(Resource resource: resources) {
-                ResourceDAO.save(resource);
+                Resource newResource = ResourceDAO.getResourceByORMID(resource.getID());
+                newResource.setORM_ResourceAllocations(resource.getORM_ResourceAllocations());
+                ResourceDAO.save(newResource);
             }
 
             RequirementDAO.save(allocation.getRequirement());
