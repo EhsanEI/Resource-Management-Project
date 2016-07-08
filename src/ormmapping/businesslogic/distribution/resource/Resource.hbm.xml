@@ -25,7 +25,7 @@ License Type: Evaluation
 				<one-to-many class="businesslogic.distribution.Allocation"/>
 			</set>
 			<set name="ORM_Requirements" lazy="false" cascade="save-update,lock" inverse="false">
-				<key column="ResourceID2" not-null="true"/>
+				<key column="ResourceID2" not-null="false"/>
 				<one-to-many class="businesslogic.distribution.requirement.Requirement"/>
 			</set>
 			<subclass name="businesslogic.distribution.resource.Project" discriminator-value="Project" lazy="false">
