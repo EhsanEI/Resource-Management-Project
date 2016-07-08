@@ -13,5 +13,5 @@ import java.io.IOException;
 public interface ProgrammerLogicInterface {
     Notification registerModuleCreation(int userID, int moduleID, String description, Date startDate, Date endDate) throws IOException, ClassNotFoundException;
     Notification registerModuleMaintenance(int userID, int moduleID, ModuleChange[] changes) throws IOException, ClassNotFoundException;
-    Module[] getModuleList(int userID);
+    Module[] getModuleList(int userID)  throws IOException, ClassNotFoundException;
 }

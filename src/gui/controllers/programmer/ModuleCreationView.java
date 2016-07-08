@@ -1,10 +1,8 @@
 package gui.controllers.programmer;
 
-import businesslogic.ClientModuleLogicFacade;
 import businesslogic.ClientProgrammerLogicFacade;
 import businesslogic.distribution.resource.Module;
 import businesslogic.utility.Notification;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import gui.Direction;
 import gui.controllers.Controller;
 import javafx.event.ActionEvent;
@@ -40,7 +38,7 @@ public class ModuleCreationView extends Controller {
     }
 
     public void specialInit() throws IOException, ClassNotFoundException {
-        Module[] modules = ClientModuleLogicFacade.getInstance().getModuleList(user.getID());
+        Module[] modules = ClientProgrammerLogicFacade.getInstance().getModuleList(user.getID());
         if(modulesCombo.getItems().size() == 0)
             for (Module module : modules)
                 modulesCombo.getItems().add(getModuleString(module));
@@ -54,7 +52,7 @@ public class ModuleCreationView extends Controller {
         Module selectedModule = null;
         String selectedItem = modulesCombo.getSelectionModel().getSelectedItem();
 
-        for(Module module : ClientModuleLogicFacade.getInstance().getModuleList(user.getID()))
+        for(Module module : ClientProgrammerLogicFacade.getInstance().getModuleList(user.getID()))
             if(selectedItem.equals(getModuleString(module)))
                 selectedModule = module;
 
