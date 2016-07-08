@@ -1,5 +1,6 @@
 package businesslogic;
 
+import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.job.ResourceManagement;
 import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.ProjectManagementDAO;
@@ -117,13 +118,15 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
         Notification projectManagerNotification = NotificationDAO.createNotification();
         projectManagerNotification .setContent("A resource manager rejected your requirement for "
                 + requirement.getResourceName() + ".");
-        requirement.getProjectManagement().addNotification(projectManagerNotification );
 
-        requirement.getProjectManagement().removeRequirement(requirement);
+        ProjectManagement pm = requirement.getProjectManagement();
+        pm.addNotification(projectManagerNotification );
+
         try {
-            RequirementDAO.delete(requirement);
             NotificationDAO.save(projectManagerNotification);
-            ProjectManagementDAO.save(requirement.getProjectManagement());
+            pm.removeRequirement(requirement);
+            ProjectManagementDAO.save(pm);
+            RequirementDAO.delete(requirement);
         } catch (PersistentException e) {
             e.printStackTrace();
             notification.setContent("Cannot reject the requirement.");
