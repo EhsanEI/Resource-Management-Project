@@ -2,10 +2,9 @@ package gui.controllers.projectmanager;
 
 import businesslogic.ClientProjectManagerLogicFacade;
 import businesslogic.distribution.requirement.Requirement;
-import businesslogic.distribution.requirement.RequirementDAO;
 import businesslogic.distribution.requirement.RequirementPriorityEnum;
 import businesslogic.distribution.resource.InformationResource;
-import businesslogic.distribution.resource.ModuleDAO;
+
 import businesslogic.distribution.resource.ResourceType;
 import businesslogic.utility.Notification;
 import gui.Direction;
@@ -98,7 +97,7 @@ public class RegisterRequirementView extends Controller {
 
     @FXML private void RegisterRequirementPressed(ActionEvent event) throws PersistentException, IOException, ClassNotFoundException {
         PersistentTransaction t = OODPersistentManager.instance().getSession().beginTransaction();
-        Requirement requirement = RequirementDAO.createRequirement();
+        Requirement requirement = new Requirement();
 
         Date sDate = new Date(startDatePicker.getValue().toEpochDay());
         Date eDate = new Date(endDatePicker.getValue().toEpochDay());

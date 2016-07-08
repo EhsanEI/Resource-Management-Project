@@ -2,7 +2,6 @@ package gui.controllers.projectmanager;
 
 import businesslogic.ClientProjectManagerLogicFacade;
 import businesslogic.accounting.job.Specialty;
-import businesslogic.accounting.job.SpecialtyDAO;
 import businesslogic.distribution.resource.*;
 import businesslogic.distribution.resource.System;
 import businesslogic.utility.Notification;
@@ -123,7 +122,7 @@ public class RegisterProjectScaleView extends Controller {
 
     @FXML private void addSystemPressed(ActionEvent event) {
 
-        system = SystemDAO.createSystem();
+        system = new System();
         system.setName(systemNameTextField.getText());
         system.setUniqueIdentifier(systemIDTextField.getText());
         String technologiesString = "";
@@ -149,7 +148,7 @@ public class RegisterProjectScaleView extends Controller {
     }
 
     @FXML private void addSubsystemPressed(ActionEvent event) {
-        subsystem = SubsystemDAO.createSubsystem();
+        subsystem = new Subsystem();
         subsystem.setName(subsystemNameTextField.getText());
         subsystem.setUniqueIdentifier(subsystemIDTextField.getText());
         for(Module module : modules)
@@ -168,7 +167,7 @@ public class RegisterProjectScaleView extends Controller {
 
     @FXML private void addModulePressed(ActionEvent event) {
 
-        module = ModuleDAO.createModule();
+        module = new Module();
         module.setName(moduleNameTextField.getText());
 
         java.util.Date sDate = new java.util.Date(startDate.getValue().toEpochDay());
@@ -202,7 +201,7 @@ public class RegisterProjectScaleView extends Controller {
 
     @FXML private void addSpecialtyPressed(ActionEvent event) {
 
-        specialty = SpecialtyDAO.createSpecialty();
+        specialty = new Specialty();
         specialty.setTitle(specialtyNameTextField.getText());
         specialty.setProficiencyLevel( (int)(proficiencyLevelSlider.getValue() / proficiencyLevelSlider.getMax() * 10));
         specialties.add(specialty);
@@ -235,7 +234,7 @@ public class RegisterProjectScaleView extends Controller {
     @FXML private void registerProjectPressed(ActionEvent event) throws IOException, ClassNotFoundException {
 
 
-        project = ProjectDAO.createProject();
+        project = new Project();
         project.setName(projectNameTextField.getText());
         project.setUniqueIdentifier(projectIDTextField.getText());
         try {

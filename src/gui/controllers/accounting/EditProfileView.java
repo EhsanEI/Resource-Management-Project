@@ -109,7 +109,7 @@ public class EditProfileView extends Controller {
     }
 
     @FXML private void singleSpecialtyAddButtonPressed(ActionEvent event) {
-        Specialty specialty = SpecialtyDAO.createSpecialty();
+        Specialty specialty = new Specialty();
         specialty.setTitle(specialtyTitleTextField.getText());
         specialty.setProficiencyLevel((int)(proficiencyLevelSlider.getValue() / proficiencyLevelSlider.getMax() * 10));
         specialties.add(specialty);

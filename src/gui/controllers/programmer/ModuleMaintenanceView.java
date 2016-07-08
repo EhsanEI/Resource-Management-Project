@@ -3,7 +3,6 @@ package gui.controllers.programmer;
 import businesslogic.ClientProgrammerLogicFacade;
 import businesslogic.distribution.resource.Module;
 import businesslogic.distribution.resource.ModuleChange;
-import businesslogic.distribution.resource.ModuleChangeDAO;
 import businesslogic.utility.Notification;
 
 import gui.Direction;
@@ -80,7 +79,7 @@ public class ModuleMaintenanceView extends Controller {
             ArrayList<ModuleChange> moduleChanges = new ArrayList<>();
 
             for(String change : changesListView.getItems()) {
-                ModuleChange moduleChange = ModuleChangeDAO.createModuleChange();
+                ModuleChange moduleChange = new ModuleChange();
                 moduleChange.setDescription(change);
                 moduleChange.setStartDate(stDate.toString());
                 moduleChange.setEndDate(edDate.toString());

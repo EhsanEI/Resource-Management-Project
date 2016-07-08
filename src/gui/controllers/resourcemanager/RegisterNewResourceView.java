@@ -87,7 +87,7 @@ public class RegisterNewResourceView extends Controller{
             Resource resource;
 
             if(resourceTypeCombo.getSelectionModel().getSelectedItem().equals(ResourceType.FINANCIAL.getTitle())){
-                FinancialResource financialResource = FinancialResourceDAO.createFinancialResource();
+                FinancialResource financialResource = new FinancialResource();
                 financialResource.setName(resourceNameTextField.getText());
                 financialResource.setUniqueIdentifier(idTextField.getText());
                 try {
@@ -106,7 +106,7 @@ public class RegisterNewResourceView extends Controller{
 
 
             }else{
-                PhysicalResource physicalResource = PhysicalResourceDAO.createPhysicalResource();
+                PhysicalResource physicalResource = new PhysicalResource();
 
                 physicalResource.setName(resourceNameTextField.getText());
                 physicalResource.setUniqueIdentifier(idTextField.getText());

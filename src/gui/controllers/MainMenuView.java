@@ -359,6 +359,9 @@ public class MainMenuView {
         alert.setTitle("Warning!");
         alert.setContentText("Are you sure?");
 
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResource("../resources/erp.png").toString()));
+
 
         Optional<ButtonType> result = alert.showAndWait();
         if (result.get() == ButtonType.OK){

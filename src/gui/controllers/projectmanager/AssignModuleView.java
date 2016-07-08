@@ -83,6 +83,7 @@ public class AssignModuleView extends Controller {
                     selectedProject = project;
 
             humanResources = ClientProjectManagerLogicFacade.getInstance().getProgrammers(selectedProject);
+
             modules = ClientProjectManagerLogicFacade.getInstance().getModules(selectedProject);
 
             modulesListView.getItems().clear();
@@ -93,6 +94,8 @@ public class AssignModuleView extends Controller {
             programmersListView.getItems().clear();
             for (HumanResource humanResource : humanResources)
                 programmersListView.getItems().add(getProgrammerString(humanResource));
+
+            animatePaneChange(assignPane,Direction.RIGHT);
 
         }
     }
