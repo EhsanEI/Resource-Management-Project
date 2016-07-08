@@ -11,9 +11,7 @@ import gui.Direction;
 import gui.controllers.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -21,6 +19,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * Created by qizilbash on 7/4/2016.
@@ -29,13 +28,14 @@ public class ModuleMaintenanceView extends Controller {
 
     @FXML private AnchorPane moduleMaintenancePane;
     @FXML private ComboBox<String> modulesCombo;
+    @FXML private TextArea changeDescriptionTextArea;
+    @FXML private ListView<String> changesListView;
 
     private Alert alert;
 
     @FXML private DatePicker startDate;
     @FXML private DatePicker endDate;
 
-    private ArrayList<String> changes = new ArrayList<>();
 
     public void animate(){
         animatePaneChange(moduleMaintenancePane, Direction.RIGHT);
@@ -53,32 +53,73 @@ public class ModuleMaintenanceView extends Controller {
     }
 
     @FXML private void registerButtonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
-        Module selectedModule = null;
-        String selectedItem = modulesCombo.getSelectionModel().getSelectedItem();
+        if (modulesCombo.getSelectionModel().getSelectedItem().isEmpty()) {
+            alert.setContentText("Please select a module.");
+            alert.setTitle("Empty module!");
+            modulesCombo.getScene().getRoot().setDisable(true);
+            Optional<ButtonType> result = alert.showAndWait();
 
-        for(Module module : ClientModuleLogicFacade.getInstance().getModuleList(user.getID()))
-            if(selectedItem.equals(getModuleString(module)))
-                selectedModule = module;
+            if (result.get() == ButtonType.OK) {
+                modulesCombo.getScene().getRoot().setDisable(false);
+                return;
+            }
 
-        Date sDate = new Date(startDate.getValue().toEpochDay());
-        Date eDate = new Date(endDate.getValue().toEpochDay());
-        businesslogic.utility.Date stDate = new businesslogic.utility.Date(sDate);
-        businesslogic.utility.Date edDate = new businesslogic.utility.Date(eDate);
+        } else {
 
-        ModuleChange[] moduleChanges = null;
+            Module selectedModule = null;
+            String selectedItem = modulesCombo.getSelectionModel().getSelectedItem();
 
-        ModuleChange moduleChange = ModuleChangeDAO.createModuleChange();
+            for (Module module : ClientModuleLogicFacade.getInstance().getModuleList(user.getID()))
+                if (selectedItem.equals(getModuleString(module)))
+                    selectedModule = module;
+
+            Date sDate = new Date(startDate.getValue().toEpochDay());
+            Date eDate = new Date(endDate.getValue().toEpochDay());
+            businesslogic.utility.Date stDate = new businesslogic.utility.Date(sDate);
+            businesslogic.utility.Date edDate = new businesslogic.utility.Date(eDate);
+
+            ArrayList<ModuleChange> moduleChanges = new ArrayList<>();
+
+            for(String change : changesListView.getItems()) {
+                ModuleChange moduleChange = ModuleChangeDAO.createModuleChange();
+                moduleChange.setDescription(change);
+                moduleChange.setStartDate(stDate.toString());
+                moduleChange.setEndDate(edDate.toString());
+                moduleChanges.add(moduleChange);
+            }
 
 
-        Notification notification = null;
-        if( selectedModule !=null)
-            ClientProgrammerLogicFacade.getInstance().registerModuleMaintenance(user.getID(),selectedModule.getID(),null);
+
+
+            Notification notification = null;
+            if (selectedModule != null)
+                notification = ClientProgrammerLogicFacade.getInstance().registerModuleMaintenance(
+                        user.getID(), selectedModule.getID(), moduleChanges.toArray(new ModuleChange[moduleChanges.size()]));
+
+            alert.setTitle("Registration result");
+            alert.setContentText(notification.getContent());
+            modulesCombo.getScene().getRoot().setDisable(true);
+            Optional<ButtonType> result = alert.showAndWait();
+            if(result.get() == ButtonType.OK){
+                modulesCombo.getScene().getRoot().setDisable(false);
+                changesListView.getItems().removeAll(changesListView.getItems());
+                changeDescriptionTextArea.setText("");
+                return;
+            }
+
+        }
     }
 
     @FXML private void addChangePressed(ActionEvent event) {
+        changesListView.getItems().add(changeDescriptionTextArea.getText());
     }
 
     private String getModuleString( Module module){
         return String.valueOf(module.getID()) + " : " + module.getName();
+    }
+
+
+    @FXML private void comboChanged(ActionEvent event) {
+        changesListView.getItems().removeAll(changesListView.getItems());
     }
 }
