@@ -110,6 +110,10 @@ public class ProjectManagement extends businesslogic.accounting.job.Job {
 	public void addRequirement(Requirement requirement) {
 		getORM_Requirements().add(requirement);
 	}
+
+	public void removeRequirement(Requirement requirement) {
+		getORM_Requirements().remove(requirement);
+	}
 	
 	public businesslogic.utility.Notification[] getNotifications() {
 		Set<Notification> castedNotifications = getORM_Notification();

@@ -119,6 +119,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
                 + requirement.getResourceName() + ".");
         requirement.getProjectManagement().addNotification(projectManagerNotification );
 
+        requirement.getProjectManagement().removeRequirement(requirement);
         try {
             RequirementDAO.delete(requirement);
             NotificationDAO.save(projectManagerNotification);
