@@ -1,10 +1,11 @@
 package gui.controllers.accounting;
 
-import businesslogic.accounting.job.JobType;
-import businesslogic.accounting.job.Specialty;
-import businesslogic.accounting.job.SpecialtyDAO;
-import businesslogic.accounting.user.User;
-import businesslogic.accounting.user.UserType;
+import businesslogic.ClientAccountingLogicFacade;
+import businesslogic.ClientProgrammerLogicFacade;
+import businesslogic.accounting.job.*;
+import businesslogic.accounting.user.*;
+import businesslogic.utility.Notification;
+import com.sun.org.apache.xalan.internal.xsltc.dom.NthIterator;
 import gui.Direction;
 import gui.controllers.Controller;
 import javafx.event.ActionEvent;
@@ -15,7 +16,10 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
+import javax.jws.soap.SOAPBinding;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Optional;
 
 /**
  * Created by qizilbash on 7/4/2016.
@@ -76,6 +80,16 @@ public class EditProfileView extends Controller {
         emailTextField.setText(user.getEmail());
         passwordTextField.setText(user.getPassword());
         passwordConfirmationTextField.setText(user.getPassword());
+
+        Job[] jobs = user.getJobs();
+        for (Job job : jobs){
+            if(Programming.class.isInstance(job))
+                jobsListView.getItems().add(JobType.Programming.getTitle());
+            else if(ProjectManagement.class.isInstance(job))
+                jobsListView.getItems().add(JobType.ProjectManagement.getTitle());
+            else
+                jobsListView.getItems().add(JobType.ResourceManagement.getTitle());
+        }
     }
 
     @FXML private void backFromSpecialtyAdditionPressed(Event event) {
@@ -154,7 +168,48 @@ public class EditProfileView extends Controller {
     }
 
 
-    @FXML private void registerButtonPressed(ActionEvent event) {
+    @FXML private void registerButtonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
+        User newUser = null;
 
+        if(Admin.class.isInstance(user)){
+            newUser = new Admin();
+        }else if(Employee.class.isInstance(user)){
+            newUser = new Employee();
+        }else if(HighLevelManager.class.isInstance(user)){
+            newUser = new HighLevelManager();
+        }else if(MiddleLevelManager.class.isInstance(user)){
+            newUser = new MiddleLevelManager();
+        }
+
+
+        newUser.setUsername(usernameTextField.getText());
+        newUser.setPassword(passwordTextField.getText());
+        newUser.setEmail(emailTextField.getText());
+
+
+        ArrayList<Job> jobs = new ArrayList<>();
+
+        for(String job : jobTitles){
+            if(job == JobType.Programming.getTitle()){
+                Programming programming= new Programming();
+                for(Specialty specialty : specialties)
+                    programming.addSpecialty(specialty);
+                newUser.addJob(programming);
+            }else if(job == JobType.ProjectManagement.getTitle()){
+                newUser.addJob(new ProjectManagement());
+            }else if(job == JobType.ResourceManagement.getTitle()){
+                newUser.addJob(new ResourceManagement());
+            }
+        }
+
+        newUser.setCreatorUser(user);
+        Notification notification = ClientAccountingLogicFacade.getInstance().editProfile(newUser);
+
+        alert.setTitle("Result");
+        if(notification!=null)
+            alert.setContentText(notification.getContent());
+        else
+            alert.setContentText("null notification");
     }
+
 }

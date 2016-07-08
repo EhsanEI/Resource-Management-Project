@@ -17,7 +17,7 @@
             <Font name="Cooper Black" size="12.0" />
          </font>
       </Button>
-      <ComboBox fx:id="modulesCombo" layoutX="250.0" layoutY="75.0" onAction="#comboChanged" prefHeight="25.0" prefWidth="449.0" />
+      <ComboBox fx:id="modulesCombo" layoutX="250.0" layoutY="75.0" prefHeight="25.0" prefWidth="449.0" />
       <Label fx:id="usernasfhzsmeLabel1" layoutX="40.0" layoutY="55.0" prefHeight="59.0" prefWidth="176.0" text="Select a module:">
          <effect>
             <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />

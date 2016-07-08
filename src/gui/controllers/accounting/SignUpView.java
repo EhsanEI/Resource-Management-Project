@@ -134,6 +134,7 @@ public class SignUpView {
 
         HumanResource humanResource = HumanResourceDAO.createHumanResource();
         ArrayList<HumanResource> humanResources = new ArrayList<>();
+
         for(String job : jobTitles){
             if(job == JobType.Programming.getTitle()){
                 Programming programming= new Programming();

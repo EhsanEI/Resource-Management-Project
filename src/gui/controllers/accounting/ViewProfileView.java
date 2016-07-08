@@ -34,32 +34,16 @@ public class ViewProfileView extends Controller{
     public void specialInit(){
         usernameLabel.setText(user.getUsername());
         emailLabel.setText(user.getEmail());
-
         Tree<String> jobsInfo = user.getJobInfo();
 
-        //TODO
-        System.out.println(jobsInfo.getChildren().size());
-        for(Tree<String> item : jobsInfo.getChildren())
-            System.out.println(item.toString());
+        TreeItem<String> rootItem = new TreeItem<>("Jobs");
 
-
-        ArrayList<TreeItem<String>> items = new ArrayList<>();
-
-
-
-        for(Tree<String> info : jobsInfo.getChildren())
-            items.add(new TreeItem<>(info.toString()));
-
-
-
-        TreeItem<String> rootItem = new TreeItem<String> ("Inbox");
-        rootItem.setExpanded(true);
-        for (TreeItem<String> item : items) {
-            TreeItem<String> treeItem = new TreeItem<>(item.toString());
-            rootItem.getChildren().add(treeItem);
+        for(Tree<String> child : jobsInfo.getChildren()){
+            TreeItem<String> item = new TreeItem<>(child.toString());
+            rootItem.getChildren().add(item);
         }
 
-        jobsInfoTreeView = new TreeView<String> (rootItem);
+        jobsInfoTreeView.setRoot(rootItem);
 
     }
 
