@@ -6,6 +6,7 @@ import businesslogic.utility.Notification;
 import businesslogic.utility.NotificationDAO;
 import network.Email;
 import org.orm.PersistentException;
+import orm.OODPersistentManager;
 
 import javax.mail.MessagingException;
 
@@ -48,6 +49,7 @@ public class ServerManagerLogicFacade implements ManagerLogicInterface {
             if(accepted) {
                 newUser.approve();
                 try {
+                    OODPersistentManager.instance().getSession().flush();
                     UserDAO.save(newUser);
                     notification.setContent("Your signup request to Resource Management System has been accepted.");
                 } catch (PersistentException e) {

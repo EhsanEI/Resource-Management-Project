@@ -37,11 +37,13 @@ public class Main {
     public static void main(String[] args) throws PersistentException {
         PersistentTransaction t = OODPersistentManager.instance().getSession().beginTransaction();
 
+        approveUser();
+
 //        signup();
 
 //        registerProject();
 
-        registerNewResource();
+//        registerNewResource();
 
 //        registerRequirement();
 
@@ -164,6 +166,9 @@ public class Main {
 
     public static void approveUser() {
         User[] users = ServerManagerLogicFacade.getInstance().getUnapprovedUsers();
+        for(User user: users) {
+            System.out.println(user.getID());
+        }
         ServerManagerLogicFacade.getInstance().approveUser(users[0], true);
     }
 
