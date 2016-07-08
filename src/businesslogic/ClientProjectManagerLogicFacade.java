@@ -59,10 +59,11 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public Notification registerRequirement(int userID, Requirement newRequirement) throws IOException, ClassNotFoundException {
+    public Notification registerRequirement(int userID, Requirement newRequirement, InformationResource resource) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(userID);
         params.add(newRequirement);
+        params.add(resource);
         return (Notification)clientNetwork.sendRequest(new NetworkRequest("registerRequirement",params)).getResponse();
     }
 

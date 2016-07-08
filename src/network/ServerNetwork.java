@@ -165,7 +165,8 @@ public class ServerNetwork {
                 networkResponse = new NetworkResponse(
                         ServerProjectManagerLogicFacade.getInstance().registerRequirement(
                                 (Integer)request.getParams().get(0),
-                                (Requirement) request.getParams().get(1)),"Processed");
+                                (Requirement) request.getParams().get(1),
+                                (InformationResource) request.getParams().get(2)),"Processed");
                 break;
             case "getProjectList":
                 networkResponse = new NetworkResponse(

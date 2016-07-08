@@ -40,7 +40,7 @@ public class Main {
 
 //        registerProject();
 
-//        registerNewResource();
+        registerNewResource();
 
 //        registerRequirement();
 
@@ -58,7 +58,7 @@ public class Main {
 
 //        sendEmail();
 
-        test1();
+//        test1();
 
 //        test2();
         
@@ -229,8 +229,9 @@ public class Main {
             requirement.setResourceName("printer");
             requirement.setResourceType("PhysicalResource");
             requirement.setRequirementPriority(RequirementPriorityEnum.ORDINARY.ordinal());
-            requirement.setInformationResource(ModuleDAO.getModuleByORMID(informationResourceID));
-            ServerProjectManagerLogicFacade.getInstance().registerRequirement(userID, requirement);
+            Module informationResource = ModuleDAO.getModuleByORMID(informationResourceID);
+            requirement.setInformationResource(informationResource);
+            ServerProjectManagerLogicFacade.getInstance().registerRequirement(userID, requirement, informationResource);
 
             Requirement requirement2 = RequirementDAO.createRequirement();
             requirement2.setStartDate("6/6/66");
@@ -239,8 +240,9 @@ public class Main {
             requirement2.setResourceName("signed up user");
             requirement2.setResourceType("HumanResource");
             requirement2.setRequirementPriority(RequirementPriorityEnum.ESSENTIAL.ordinal());
-            requirement2.setInformationResource(ModuleDAO.getModuleByORMID(informationResourceID));
-            ServerProjectManagerLogicFacade.getInstance().registerRequirement(userID, requirement2);
+            Module informationResource2 = ModuleDAO.getModuleByORMID(informationResourceID);
+            requirement2.setInformationResource(informationResource2);
+            ServerProjectManagerLogicFacade.getInstance().registerRequirement(userID, requirement2, informationResource2);
         }
         catch(PersistentException ex) {
             ex.printStackTrace();

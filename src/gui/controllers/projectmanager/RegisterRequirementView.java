@@ -114,7 +114,7 @@ public class RegisterRequirementView extends Controller {
         requirement.setInformationResource(selectedInformationResource);
 
 
-        Notification notification = ClientProjectManagerLogicFacade.getInstance().registerRequirement(user.getID(), requirement);
+        Notification notification = ClientProjectManagerLogicFacade.getInstance().registerRequirement(user.getID(), requirement, selectedInformationResource);
         quantityTextField.setDisable(true);
         alert.setTitle("Result");
         if(notification!=null)
