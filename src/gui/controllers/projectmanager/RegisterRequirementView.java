@@ -7,9 +7,11 @@ import businesslogic.distribution.requirement.RequirementPriorityEnum;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.distribution.resource.ModuleDAO;
 import businesslogic.distribution.resource.ResourceType;
+import businesslogic.utility.Notification;
 import gui.Direction;
 import gui.controllers.Controller;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -65,7 +67,7 @@ public class RegisterRequirementView extends Controller {
             informationResourcesListView.getScene().getRoot().setDisable(true);
 
             alert.setContentText("Please select a information resource");
-            alert.setTitle("No information Resource selected");
+            alert.setTitle("Invalid Selection");
             Optional<ButtonType> result = alert.showAndWait();
 
             if (result.get() == ButtonType.OK) {
@@ -105,7 +107,21 @@ public class RegisterRequirementView extends Controller {
         requirement.setResourceType(resourceTypeCombo.getSelectionModel().getSelectedItem());
         requirement.setRequirementPriority(RequirementPriorityEnum.valueOf(priorityCombo.getSelectionModel().getSelectedItem()).ordinal());
         requirement.setInformationResource(ModuleDAO.getModuleByORMID(selectedInformationResource.getID()));
-        ClientProjectManagerLogicFacade.getInstance().registerRequirement(user.getID(), requirement);
+
+
+        Notification notification = ClientProjectManagerLogicFacade.getInstance().registerRequirement(user.getID(), requirement);
+        quantityTextField.setDisable(true);
+        alert.setTitle("Result");
+        if(notification!=null)
+            alert.setContentText(notification.getContent());
+        else
+            alert.setContentText("Null Result");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            quantityTextField.setDisable(false);
+            return;
+        }
 
     }
 
@@ -118,5 +134,9 @@ public class RegisterRequirementView extends Controller {
         resourceNamesListView.getItems().removeAll(resourceNamesListView.getItems());
         for(String resource : resourceNames)
             resourceNamesListView.getItems().add(resource);
+    }
+
+    public void backFromRequirementRegister(Event event) {
+        animatePaneChange(selectInformationResourcePane,Direction.LEFT);
     }
 }
