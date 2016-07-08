@@ -14,13 +14,13 @@ module maintenance                          ok
 About                                       ok
 
 PredictEssentialResourcceAllocationView     ok
-RegisterNewResourceView                     -
-ResourceAllocationView                      -
+RegisterNewResourceView                     ok
+ResourceAllocationView                      ok
 
 AssignModuleView                            -
 EstimateResourceAllocationView              -
 RegisterProjectScaleView                    -
-RegisterRequirementView                     -
+RegisterRequirementView                     ok
 
 
 

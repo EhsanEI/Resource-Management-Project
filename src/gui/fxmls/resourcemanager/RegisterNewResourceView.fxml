@@ -19,7 +19,7 @@
                   <Font name="Cooper Black" size="12.0" />
                </font>
             </Button>
-            <ComboBox fx:id="resourceTypeCombo" layoutX="250.0" layoutY="75.0" prefHeight="25.0" prefWidth="449.0" />
+            <ComboBox fx:id="resourceTypeCombo" layoutX="250.0" layoutY="75.0" onAction="#resourceTypeChanged" prefHeight="25.0" prefWidth="449.0" />
             <Label fx:id="usernashszfhmeLabel2" layoutX="40.0" layoutY="55.0" prefHeight="59.0" prefWidth="176.0" text="Type:">
                <effect>
                   <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
@@ -96,15 +96,20 @@
                   <InnerShadow />
                </effect>
             </TextField>
-            <TableView fx:id="specValueTable" layoutX="250.0" layoutY="308.0" prefHeight="200.0" prefWidth="449.0">
-              <columns>
-                <TableColumn prefWidth="209.0" text="Specification" />
-                <TableColumn prefWidth="273.0" text="Value" />
-              </columns>
+            <ListView fx:id="specListView" layoutX="250.0" layoutY="294.0" prefHeight="200.0" prefWidth="449.0" />
+            <TextField fx:id="creditTestField" layoutX="251.0" layoutY="252.0" prefHeight="25.0" prefWidth="155.0">
                <effect>
                   <InnerShadow />
                </effect>
-            </TableView>
+            </TextField>
+            <Label fx:id="creditLabel" layoutX="40.0" layoutY="235.0" prefHeight="59.0" prefWidth="190.0" text="Credit:">
+               <effect>
+                  <InnerShadow choke="0.29" color="#ff7600" height="115.89" radius="58.1225" width="118.6" />
+               </effect>
+               <font>
+                  <Font name="Cooper Black" size="20.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

@@ -7,6 +7,7 @@ import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.requirement.RequirementDAO;
 import businesslogic.distribution.requirement.RequirementPriorityEnum;
 import businesslogic.distribution.resource.Resource;
+import businesslogic.utility.Notification;
 import gui.Direction;
 import gui.controllers.Controller;
 import javafx.event.ActionEvent;
@@ -15,7 +16,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,30 +41,30 @@ public class ResourceAllocationView extends Controller{
     @FXML private ListView<String> requirementSpecificationListView;
     @FXML private ListView<String> relatedResourcesNamesListView;
 
-    @FXML private void initialize(){
-        onTheTopPane = resourceAllocationPane;
+    private Resource[] resources;
 
-        // TODO
-        //Requirement[] requirements = clientResourceManagerLogicFacade.getRequirements(user.getID());
-        Requirement requirement = RequirementDAO.createRequirement();
-        requirement.setStartDate("4/4/73");
-        requirement.setEndDate("4/3/76");
-        requirement.setQuantity(2);
-        requirement.setResourceName("printer");
-        requirement.setResourceType("PhysicalResource");
-        requirement.setRequirementPriority(RequirementPriorityEnum.ORDINARY.ordinal());
-        requirements.add(requirement);
+    public void animate(){
+        animatePaneChange(resourceAllocationPane,Direction.RIGHT);
+    }
+    public void specialInit() throws IOException, ClassNotFoundException {
+
+        Requirement[] requirements = ClientResourceManagerLogicFacade.getInstance().getRequirements(user.getID());
 
         for(Requirement item : requirements)
             requirementsListView.getItems().add(getRequirementString(item));
 
         alert = new Alert(Alert.AlertType.INFORMATION);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResource("../../resources/erp.png").toString()));
     }
 
-    @FXML private void acceptAllocationButtonPressed(ActionEvent event) throws IOException {
+
+
+    @FXML private void acceptAllocationButtonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
         if(relatedResourcesNamesListView.getSelectionModel().getSelectedItems().size() == 0){
             resourceAllocationPane.setDisable(true);
-            alert.setContentText("Please select at least animate resource to allocation");
+            alert.setTitle("Invalid selection");
+            alert.setContentText("Please select at least one resource to allocation");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 resourceAllocationPane.setDisable(false);
@@ -71,9 +74,7 @@ public class ResourceAllocationView extends Controller{
 
         ArrayList<Resource> allocatedResources = new ArrayList<>();
 
-        //TODO
-        //Resource[] resources = clientResourceManagerLogicFacade.getResources(user.getID(),selectedRequirement.getResourceType(),selectedRequirement.getResourceName());
-        Resource[] resources = {};
+
         for(String item : relatedResourcesNamesListView.getSelectionModel().getSelectedItems())
             for (Resource resource : resources)
                 if(getResourceString(resource) == item)
@@ -83,23 +84,55 @@ public class ResourceAllocationView extends Controller{
         allocation.setRequirement(selectedRequirement);
         allocation.addResources(allocatedResources.toArray(new Resource[allocatedResources.size()]));
 
-        //TODO
-        //ClientResourceManagerLogicFacade.getInstance().registerResourceAllocation(user.getID(), allocation, allocatedResources.toArray(new Resource[allocatedResources.size()]));
+
+        Notification notification = ClientResourceManagerLogicFacade.getInstance().registerResourceAllocation(
+                user.getID(), allocation, allocatedResources.toArray(new Resource[allocatedResources.size()]));
+
+        resourceAllocationPane.setDisable(true);
+        alert.setTitle("Result");
+        if(notification!=null)
+            alert.setContentText(notification.getContent());
+        else
+            alert.setContentText("Null Result");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            resourceAllocationPane.setDisable(false);
+            return;
+        }
+
+
     }
 
-    @FXML private void rejectAllocationButtonPressed(ActionEvent event) {
-        //clientResourceManagerLogicFacade.rejectAllocation(user.getID(), selectedRequirementToAllocation);
+    @FXML private void rejectAllocationButtonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
+        Notification notification = ClientResourceManagerLogicFacade.getInstance().rejectResourceAllocation(
+                user.getID(), selectedRequirement.getID());
+
+        resourceAllocationPane.setDisable(true);
+
+        alert.setTitle("Result");
+        if(notification!=null)
+            alert.setContentText(notification.getContent());
+        else
+            alert.setContentText("Null Result");
+
+        Optional<ButtonType> result = alert.showAndWait();
+        if (result.get() == ButtonType.OK) {
+            resourceAllocationPane.setDisable(false);
+            return;
+        }
     }
 
-    @FXML private void backFromRequirmentView(Event event) {
+    @FXML private void backFromRequirementView(Event event) {
         animatePaneChange(resourceAllocationPane, Direction.LEFT);
     }
 
-    @FXML private void viewRequirementPressed(ActionEvent event) {
+    @FXML private void viewRequirementPressed(ActionEvent event) throws IOException, ClassNotFoundException {
 
-        if(requirementsListView.getSelectionModel().getSelectedItem() == null){
+        if(requirementsListView.getSelectionModel().getSelectedItem().isEmpty()){
             requirementViewPane.setDisable(true);
-            alert.setContentText("Please select animate requirement");
+            alert.setTitle("Invalid Selection");
+            alert.setContentText("Please select a requirement");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
                 requirementViewPane.setDisable(false);
@@ -122,13 +155,12 @@ public class ResourceAllocationView extends Controller{
                 "Start Date : " + String.valueOf(selectedRequirement.getStartDate()),
                 "End Date : " + String.valueOf(selectedRequirement.getEndDate()),
                 "Quantity : " + selectedRequirement.getQuantity(),
-                "Information Resource : " + " "
+                "Information Resource : " + selectedRequirement.getInformationResource().getName()
         );
 
-        //TODO
-        //Resource[] resources = clientResourceManagerLogicFacade.getResources(user.getID(),selectedRequirement.getResourceType(),selectedRequirement.getResourceName());
+
+        resources = ClientResourceManagerLogicFacade.getInstance().getResources(user.getID(),selectedRequirement.getResourceType(),selectedRequirement.getResourceName());
         relatedResourcesNamesListView.getItems().removeAll(relatedResourcesNamesListView.getItems());
-        Resource[] resources = {};
         for (Resource resource : resources)
             relatedResourcesNamesListView.getItems().add(getResourceString(resource));
 
@@ -139,8 +171,7 @@ public class ResourceAllocationView extends Controller{
     private String getRequirementString(Requirement requirement){
         String result = "";
         result += "Name : " + requirement.getResourceName() + " --> Project : " ;
-        //TODO
-        //result +=  requirement.getInformationResource().getName();
+        result +=  requirement.getInformationResource().getName();
         return result;
     }
 
