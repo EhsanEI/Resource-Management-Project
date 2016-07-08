@@ -13,11 +13,18 @@
  */
 package businesslogic.accounting.user;
 
+import businesslogic.accounting.job.Job;
+import businesslogic.accounting.job.JobDAO;
+import businesslogic.accounting.job.UserJob;
+import businesslogic.accounting.job.UserJobDAO;
 import org.orm.*;
 import org.hibernate.Query;
 import orm.OODPersistentManager;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class UserDAO {
 	public static User loadUserByORMID(int ID) throws PersistentException {
@@ -350,6 +357,54 @@ public class UserDAO {
 			return null;
 		}
 		return users[0];
+	}
+
+	public static void fetchJobs(User user) {
+		try {
+			PersistentSession session = OODPersistentManager.instance().getSession();
+			List<Integer> jobIDs = session
+					.createSQLQuery("SELECT JobID FROM UserJob WHERE UserID = "+ user.getID()).list();
+			Set<Job> result = new HashSet<>();
+			for(int jID:jobIDs) {
+				result.add(JobDAO.getJobByORMID(jID));
+			}
+			user.setJobs(result);
+		}
+		catch(PersistentException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public static void updateJobs(User user) {
+		try {
+			PersistentSession session = OODPersistentManager.instance().getSession();
+			List<Integer> jobIDs = session
+					.createSQLQuery("SELECT JobID FROM UserJob WHERE UserID = " + user.getID()).list();
+			for (int jID : jobIDs) {
+				Job job = JobDAO.getJobByORMID(jID);
+				job.getORM_UserJobs().clear();
+				JobDAO.delete(job);
+			}
+			jobIDs.clear();
+
+			List<Integer> userJobIDs = session
+					.createSQLQuery("SELECT ID FROM UserJob WHERE UserID = " + user.getID()).list();
+			for (int ujID : userJobIDs) {
+				UserJobDAO.delete(UserJobDAO.getUserJobByORMID(ujID));
+			}
+			userJobIDs.clear();
+			user.getORM_UserJobs().clear();
+
+			for(Job job:user.getJobs()) {
+				UserJob uj = UserJobDAO.createUserJob();
+				user.getORM_UserJobs().add(uj);
+				job.getORM_UserJobs().add(uj);
+			}
+
+		} catch (PersistentException e) {
+			e.printStackTrace();
+		}
+
 	}
 	
 	public static User[] listUserByCriteria(UserCriteria userCriteria) {

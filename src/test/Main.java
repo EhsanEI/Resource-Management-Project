@@ -36,11 +36,11 @@ public class Main {
     public static void main(String[] args) throws PersistentException {
         PersistentTransaction t = OODPersistentManager.instance().getSession().beginTransaction();
 
-//        signup();
+        signup();
 
 //        registerProject();
 
-        registerNewResource();
+//        registerNewResource();
 
 //        registerRequirement();
 
@@ -70,6 +70,7 @@ public class Main {
     public static void test1() {
         try {
             User user = UserDAO.getUserByORMID(1);
+            UserDAO.fetchJobs(user);
             user.getJobInfo().print();
             System.out.println(user.getPermissions().length);
         } catch (PersistentException e) {
@@ -397,6 +398,7 @@ public class Main {
         int userID = 1;
         try {
             User user = UserDAO.getUserByORMID(userID);
+            UserDAO.fetchJobs(user);
             Tree<String> info = user.getJobInfo();
             info.print();
         } catch (PersistentException e) {

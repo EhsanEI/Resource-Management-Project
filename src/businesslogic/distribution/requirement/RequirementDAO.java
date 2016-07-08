@@ -13,6 +13,9 @@
  */
 package businesslogic.distribution.requirement;
 
+import businesslogic.accounting.job.ProjectManagementDAO;
+import businesslogic.distribution.resource.InformationResource;
+import businesslogic.distribution.resource.InformationResourceDAO;
 import org.orm.*;
 import org.hibernate.Query;
 import orm.OODPersistentManager;
@@ -354,5 +357,36 @@ public class RequirementDAO {
 	
 	public static Requirement[] listRequirementByCriteria(RequirementCriteria requirementCriteria) {
 		return requirementCriteria.listRequirement();
+	}
+
+	public static void fetchProjectManager(Requirement requirement) {
+		try {
+			PersistentSession session = OODPersistentManager.instance().getSession();
+			Integer jobID = (Integer) session.createSQLQuery("SELECT JobID FROM Requirement WHERE ID = "
+					+ requirement.getID()).list().get(0);
+			requirement.setProjectManager(ProjectManagementDAO.getProjectManagementByORMID(jobID));
+		}
+		catch (PersistentException ex) {
+			ex.printStackTrace();
+		}
+	}
+
+	public static void updateProjectManager(Requirement requirement) {
+		requirement.getProjectManagement().addRequirement(requirement);
+	}
+
+	public static void fetchInformationResource(Requirement requirement) {
+		try{
+			PersistentSession session = OODPersistentManager.instance().getSession();
+			Integer irID = (Integer) session.createSQLQuery("SELECT ResourceID2 FROM Requirement WHERE ID = "
+					+ requirement.getID()).uniqueResult();
+			requirement.setInformationResource(InformationResourceDAO.getInformationResourceByORMID(irID));
+		}
+		catch (PersistentException ex){
+		}
+	}
+
+	public static void updateInformationResource(Requirement requirement) {
+		requirement.getInformationResource().addRequirement(requirement);
 	}
 }

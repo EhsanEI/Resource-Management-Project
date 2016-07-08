@@ -79,6 +79,8 @@ public class User implements Serializable {
 	private java.util.Set ORM_userJobs = new java.util.HashSet();
 
 	private java.util.Set ORM_userPermissions = new java.util.HashSet();
+
+	private java.util.Set<Job> jobs = new HashSet<>();
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -163,26 +165,15 @@ public class User implements Serializable {
 
 	
 	public businesslogic.accounting.job.Job[] getJobs() {
-		try {
-			PersistentSession session = OODPersistentManager.instance().getSession();
-			List<Integer> jobIDs = session
-					.createSQLQuery("SELECT JobID FROM UserJob WHERE UserID = "+ getID()).list();
-			ArrayList<Job> result = new ArrayList<>();
-			for(int jID:jobIDs) {
-				result.add(JobDAO.getJobByORMID(jID));
-			}
-			return result.toArray(new Job[result.size()]);
-		}
-		catch(PersistentException ex) {
-			ex.printStackTrace();
-		}
-		return new Job[0];
+		return jobs.toArray(new Job[jobs.size()]);
 	}
-	
+
+	public void setJobs(Set jobs) {
+		this.jobs = jobs;
+	}
+
 	public void addJob(businesslogic.accounting.job.Job job) {
-		UserJob uj = UserJobDAO.createUserJob();
-		getORM_UserJobs().add(uj);
-		job.getORM_UserJobs().add(uj);
+		jobs.add(job);
 	}
 	
 	public void deleteJob(businesslogic.accounting.job.Job job) {

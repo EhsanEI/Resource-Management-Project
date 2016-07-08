@@ -54,6 +54,7 @@ public class Authentication {
             return new AuthenticationResult(null, notification);
         } else {
             User user = queryResults[0];
+            UserDAO.fetchJobs(user);
             onlineUsersInformation.add(user);
             Notification notification = new Notification("Logged in successfully!");
             return new AuthenticationResult(user, notification);

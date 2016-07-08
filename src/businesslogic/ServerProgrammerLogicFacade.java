@@ -96,6 +96,7 @@ public class ServerProgrammerLogicFacade implements ProgrammerLogicInterface{
         try {
             PersistentSession session = OODPersistentManager.instance().getSession();
             User user = UserDAO.getUserByORMID(userID);
+            UserDAO.fetchJobs(user);
             for(Job job:user.getJobs()) {
                 if(job instanceof Programming) {
                     return (Programming) job;

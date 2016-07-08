@@ -286,6 +286,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
     private ResourceManagement getResourceManagement(User user) {
         ResourceManagement rm = null;
+        UserDAO.fetchJobs(user);
         for(Job job:user.getJobs()) {
             if(job instanceof ResourceManagement) {
                 rm = (ResourceManagement) job;

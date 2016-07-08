@@ -234,6 +234,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
 
     private ProjectManagement getProjectManagement(User user) {
         ProjectManagement pm = null;
+        UserDAO.fetchJobs(user);
         for(Job job:user.getJobs()) {
             if(job instanceof ProjectManagement) {
                 pm = (ProjectManagement) job;

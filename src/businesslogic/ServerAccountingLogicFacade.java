@@ -44,6 +44,8 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
 
         try {
 
+            UserDAO.updateJobs(user);
+
             for(Object ujObject: user.getORM_UserJobs()) {
                 UserJob uj = (UserJob) ujObject;
                 UserJobDAO.save(uj);
