@@ -40,7 +40,13 @@ public class ServerManagerLogicFacade implements ManagerLogicInterface {
     }
 
     @Override
-    public boolean approveUser(User newUser, boolean accepted) {
+    public boolean approveUser(User newUser1, boolean accepted) {
+        User newUser = null;
+        try {
+            newUser = UserDAO.getUserByORMID(newUser1.getID());
+        } catch (PersistentException e) {
+            e.printStackTrace();
+        }
         User creatorUser = newUser.getCreatorUser();
 
         //No creator user -> Signup request
@@ -49,7 +55,7 @@ public class ServerManagerLogicFacade implements ManagerLogicInterface {
             if(accepted) {
                 newUser.approve();
                 try {
-                    OODPersistentManager.instance().getSession().flush();
+
                     UserDAO.save(newUser);
                     notification.setContent("Your signup request to Resource Management System has been accepted.");
                 } catch (PersistentException e) {
