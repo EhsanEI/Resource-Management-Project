@@ -25,11 +25,6 @@
             <Font name="Cooper Black" size="20.0" />
          </font>
       </Label>
-      <TableView layoutX="35.0" layoutY="88.0" prefHeight="412.0" prefWidth="666.0">
-         <columns>
-            <TableColumn prefWidth="75.0" text="C1" />
-            <TableColumn prefWidth="75.0" text="C2" />
-         </columns>
-      </TableView>
+      <TableView fx:id="resultTable" layoutX="35.0" layoutY="88.0" prefHeight="412.0" prefWidth="666.0" />
    </children>
 </AnchorPane>

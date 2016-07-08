@@ -6,6 +6,7 @@ import businesslogic.distribution.resource.ResourceType;
 import businesslogic.report.FlowReport;
 
 import businesslogic.utility.Table;
+import gui.Direction;
 import gui.controllers.Controller;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
@@ -14,17 +15,24 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.Optional;
 
 /**
  * Created by qizilbash on 7/4/2016.
  */
 public class FlowReportview extends Controller {
 
+
+    @FXML private AnchorPane resourceFlowReportPane;
     @FXML private DatePicker fromDate;
     @FXML private DatePicker toDate;
 
@@ -33,8 +41,15 @@ public class FlowReportview extends Controller {
 
     @FXML private TableView resultTable;
 
+    private Alert alert;
 
+
+    public void animate(){
+        animatePaneChange(resourceFlowReportPane, Direction.RIGHT);
+    }
     public void specialInit(){
+
+
         for (ResourceType type : ResourceType.values())
             resourceTypeCombo.getItems().add(type.getTitle());
 
@@ -47,6 +62,10 @@ public class FlowReportview extends Controller {
                 e.printStackTrace();
             }
         });
+
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResource("../../resources/erp.png").toString()));
     }
 
     private void fillTheResourceNames() throws IOException, ClassNotFoundException {
@@ -55,8 +74,8 @@ public class FlowReportview extends Controller {
             resourceNameCombo.getItems().add(name);
     }
 
-    public void getFlowReportPressed(ActionEvent event) throws IOException {
-       /*
+    public void getFlowReportPressed(ActionEvent event) throws IOException, ClassNotFoundException {
+
         if(resourceNameCombo.getSelectionModel().getSelectedItem() != null && resourceTypeCombo.getSelectionModel().getSelectedItem() != null){
             Resource[] resources = ClientResourceManagerLogicFacade.getInstance().getResources(user.getID(),
                     resourceTypeCombo.getSelectionModel().getSelectedItem(),
@@ -71,57 +90,49 @@ public class FlowReportview extends Controller {
                     startDate,endDate);
             showReport(flowReport);
         }else {
+            resultTable.getScene().getRoot().setDisable(true);
+            alert.setTitle("Empty selection!");
+            alert.setContentText("Please select a resource type and/or resource name.");
+            Optional<ButtonType> result = alert.showAndWait();
 
+            if (result.get() == ButtonType.OK) {
+                resultTable.getScene().getRoot().setDisable(false);
+                return;
+            }
         }
-        */
-
-        showReport(null);
 
     }
 
     private void showReport(FlowReport flowReport) {
-        /*Table table = flowReport.getTable();
+        Table table = flowReport.getTable();
 
         String[] headers = table.getHeaders();
-        String[][] contents = table.getContents();*/
-
-        String[] headers = {"a", "b","c"};
-        String[][] contents={{"a", "b","c"},{"a", "b","c"}};
-
-        ArrayList<TableColumn> tableColumns = new ArrayList<>();
-
-        resultTable.getColumns().removeAll(resultTable.getColumns());
-        for(String header : headers)
-            tableColumns.add(new TableColumn(header));
+        String[][] contents = table.getContents();
 
 
-
-
-
-        for (TableColumn tableColumn : tableColumns)
-            resultTable.getColumns().add(tableColumn);
-
-        resultTable.setItems(getFormattedData(contents));
-        resultTable.setVisible(true);
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-    private ObservableList getFormattedData(String[][] contents) {
         ObservableList<String[]> data = FXCollections.observableArrayList();
-        for(String[] row : contents)
-            data.add(row);
-        return data;
+        data.addAll(Arrays.asList(contents));
+
+
+
+        for (int i = 0; i < headers.length; i++) {
+            TableColumn tc = new TableColumn(headers[i]);
+            final int colNo = i;
+            tc.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<String[], String>, ObservableValue<String>>() {
+                @Override
+                public ObservableValue<String> call(TableColumn.CellDataFeatures<String[], String> p) {
+                    return new SimpleStringProperty((p.getValue()[colNo]));
+                }
+            });
+            tc.setPrefWidth(resultTable.getPrefWidth()/headers.length);
+            resultTable.getColumns().add(tc);
+        }
+
+        resultTable.setItems(data);
+
     }
+
+
 
 
 

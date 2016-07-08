@@ -1,0 +1,13 @@
+Reports                             ok
+system config                       ok
+accounting requests                 ok
+
+sign up                             ok
+log in                              ok
+
+view profile                        -
+edit profile                        -
+
+module creation                     -
+module maintenance                  -
+

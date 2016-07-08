@@ -1,11 +1,13 @@
 package gui.controllers.admin;
 
 import businesslogic.ClientAdminLogicFacade;
+import businesslogic.support.BackupFormat;
 import businesslogic.support.SystemConfiguration;
 import gui.Direction;
 import gui.controllers.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
@@ -16,9 +18,9 @@ import java.io.IOException;
  */
 public class SystemConfigurationView extends Controller {
 
-    //TODO
-
     @FXML private AnchorPane systemConfigurationPane;
+    @FXML private TextField backupPeriodDays;
+
     public void animate(){
         animatePaneChange(systemConfigurationPane, Direction.RIGHT);
     }
@@ -27,6 +29,10 @@ public class SystemConfigurationView extends Controller {
 
     }
     @FXML private void configure(ActionEvent event) throws IOException, ClassNotFoundException {
-        ClientAdminLogicFacade.getInstance().configureSystem(new SystemConfiguration());
+        SystemConfiguration systemConfiguration =new SystemConfiguration();
+        //TODO back up format not determined
+        systemConfiguration.setBackupFormat(new BackupFormat());
+        systemConfiguration.setBackupPreiodDays(Integer.parseInt(backupPeriodDays.getText()));
+        ClientAdminLogicFacade.getInstance().configureSystem(systemConfiguration);
     }
 }

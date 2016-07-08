@@ -33,7 +33,7 @@
             <Font name="Cooper Black" size="20.0" />
          </font>
       </Label>
-      <TextField fx:id="backupPeriod3" layoutX="447.0" layoutY="147.0" prefHeight="25.0" prefWidth="288.0">
+      <TextField fx:id="backupPeriodDays" layoutX="447.0" layoutY="147.0" prefHeight="25.0" prefWidth="288.0">
          <effect>
             <InnerShadow />
          </effect>

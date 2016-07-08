@@ -60,12 +60,6 @@
       </Label>
       <DatePicker fx:id="fromDate" layoutX="201.0" layoutY="192.0" />
       <DatePicker fx:id="toDate" layoutX="525.0" layoutY="192.0" />
-      <TableView fx:id="resultTable" layoutX="35.0" layoutY="250.0" prefHeight="272.0" prefWidth="666.0">
-         <columns>
-            <TableColumn prefWidth="187.0" text="C1" />
-            <TableColumn prefWidth="247.0" text="C2" />
-            <TableColumn prefWidth="230.0" text="C2" />
-         </columns>
-      </TableView>
+      <TableView fx:id="resultTable" layoutX="35.0" layoutY="250.0" prefHeight="272.0" prefWidth="666.0" />
    </children>
 </AnchorPane>
