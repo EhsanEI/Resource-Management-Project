@@ -55,7 +55,7 @@ public class ResourceRequirementsReportView extends Controller {
             for(InformationResource informationResource : informationResources)
                 if(getInfoResourceString(informationResource).equals(informationResourceCombo.getSelectionModel().getSelectedItem()))
                     selectedInformationResource = informationResource;
-            showReport(ClientResourceManagerLogicFacade.getInstance().reportResourceRequirements(selectedInformationResource));
+            showReport(ClientResourceManagerLogicFacade.getInstance().reportResourceRequirements(selectedInformationResource.getID()));
         }else {
             resultTable.getScene().getRoot().setDisable(true);
             alert.setTitle("Empty selection!");
