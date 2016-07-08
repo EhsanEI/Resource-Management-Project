@@ -17,7 +17,7 @@ PredictEssentialResourcceAllocationView     ok
 RegisterNewResourceView                     ok
 ResourceAllocationView                      ok
 
-AssignModuleView                            -
+AssignModuleView                            ok
 EstimateResourceAllocationView              -
 RegisterProjectScaleView                    -
 RegisterRequirementView                     ok
