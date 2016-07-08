@@ -5,5 +5,5 @@ package businesslogic.distribution.requirement;
  */
 public enum RequirementPriorityEnum {
     ORDINARY,
-    ESSENTIAL, RequirementPriorityEnum;
+    ESSENTIAL;
 }
