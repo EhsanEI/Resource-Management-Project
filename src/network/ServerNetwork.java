@@ -122,7 +122,7 @@ public class ServerNetwork {
                 break;
             case "getModuleList":
                 networkResponse = new NetworkResponse(
-                        ServerModuleLogicFacade.getInstance().getModuleList((Integer)request.getParams().get(0)),
+                        ServerProgrammerLogicFacade.getInstance().getModuleList((Integer)request.getParams().get(0)),
                         "Processed");
                 break;
             case "registerModuleMaintenance":

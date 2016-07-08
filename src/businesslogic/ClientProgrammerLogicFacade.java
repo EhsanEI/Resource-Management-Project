@@ -52,7 +52,9 @@ public class ClientProgrammerLogicFacade implements ProgrammerLogicInterface{
     }
 
     @Override
-    public Module[] getModuleList(int userID) {
-        return new Module[0];
+    public Module[] getModuleList(int userID)  throws IOException, ClassNotFoundException {
+        ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
+        return (Module[]) clientNetwork.sendRequest(new NetworkRequest("getModuleList",params)).getResponse();
     }
 }

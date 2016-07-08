@@ -90,7 +90,6 @@ public class ServerProgrammerLogicFacade implements ProgrammerLogicInterface{
     public Module[] getModuleList(int userID) {
         Programming programming = getProgramming(userID);
         return programming.getModules();
-
     }
 
     private Programming getProgramming(int userID) {
