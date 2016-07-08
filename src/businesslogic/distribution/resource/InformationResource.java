@@ -114,6 +114,10 @@ public class InformationResource extends businesslogic.distribution.resource.Res
 	public void addRequirement(businesslogic.distribution.requirement.Requirement requirement) {
 		getORM_Requirements().add(requirement);
 	}
+
+	public void removeRequirement(businesslogic.distribution.requirement.Requirement requirement) {
+		getORM_Requirements().remove(requirement);
+	}
 	
 	public void addAllocation(businesslogic.distribution.Allocation  allocation) {
 		getORM_Allocation_s().add(allocation);

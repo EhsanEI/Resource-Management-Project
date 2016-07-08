@@ -53,9 +53,18 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
             allocation.setAllocated(true);
 
+
+            int requirementID = allocation.getRequirement().getID();
+            Requirement requirement = RequirementDAO.getRequirementByORMID(requirementID);
+
             int informationResourceID = allocation.getRequirement().getInformationResource().getID();
             InformationResource informationResource = InformationResourceDAO.getInformationResourceByORMID(informationResourceID);
+
+
             informationResource.addAllocation(allocation);
+            informationResource.removeRequirement(allocation.getRequirement());
+            allocation.setRequirement(requirement);
+            informationResource.addRequirement(allocation.getRequirement());
             InformationResourceDAO.save(informationResource);
 
             for(ResourceAllocation ra:(Set<ResourceAllocation>)allocation.getORM_ResourceAllocations()) {
@@ -67,7 +76,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             for(Resource resource: resources) {
                 ResourceDAO.save(resource);
             }
-            
+
             RequirementDAO.save(allocation.getRequirement());
 
             Notification projectManagerNotification = NotificationDAO.createNotification();
