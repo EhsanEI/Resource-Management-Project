@@ -1,7 +1,9 @@
 package gui.controllers.projectmanager;
 
 import businesslogic.ClientProjectManagerLogicFacade;
+import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.InformationResource;
+import businesslogic.distribution.resource.Project;
 import businesslogic.utility.Date;
 import gui.Direction;
 import gui.controllers.Controller;
@@ -9,12 +11,14 @@ import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.concurrent.TransferQueue;
 
 /**
  * Created by qizilbash on 7/4/2016.
@@ -32,25 +36,96 @@ public class EstimateResourceAllocationView extends Controller {
 
     @FXML private ListView<String> technologiesListView;
 
+    @FXML private TreeView infornationResourcesTreeView;
+
     private InformationResource[] informationResources;
+    private ArrayList<String> technologies;
+
+    private Alert alert;
+
+
+    public void animate(){
+        animatePaneChange(estimateResourceAllocationPane, Direction.RIGHT);
+    }
+
+    public void specialInit(){
+        technologies.clear();
+        technologiesListView.getItems().clear();
+
+        alert = new Alert(Alert.AlertType.INFORMATION);
+        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(new Image(getClass().getResource("../../resources/erp.png").toString()));
+    }
 
 
 
-    public void estimatePressed(ActionEvent event) throws IOException, ClassNotFoundException {
+    @FXML private void estimatePressed(ActionEvent event) throws IOException, ClassNotFoundException {
+
+        technologies.clear();
+        for(String technology : technologiesListView.getItems())
+            technologies.add(technology);
+
+
+        int budget;
+        try{
+            budget = Integer.parseInt(budgetTextField.getText());
+        }catch (Exception e){
+            technologiesListView.getScene().getRoot().setDisable(true);
+
+            alert.setTitle("Invalid Entry");
+            alert.setContentText("Please enter an integer value for budget.");
+
+            technologiesListView.getScene().getRoot().setDisable(false);
+            return;
+        }
+
 
         java.util.Date sDate = new java.util.Date(startDate.getValue().toEpochDay());
         java.util.Date eDate = new java.util.Date(endDate.getValue().toEpochDay());
+
         businesslogic.utility.Date stDate = new businesslogic.utility.Date(sDate);
         businesslogic.utility.Date edDate = new businesslogic.utility.Date(eDate);
+
+
+
         informationResources = ClientProjectManagerLogicFacade.getInstance().estimateResourceAllocations(
-                technologiesListView.getItems().toArray(new String[technologiesListView.getItems().size()]),stDate,edDate,
-                Integer.parseInt(budgetTextField.getText()));
+                technologies.toArray(new String[technologies.size()]),stDate,edDate, budget);
+
+
+
+        TreeItem<String> rootItem = new TreeItem<>("Estimated Projects");
+
+        for (InformationResource informationResource : informationResources){
+            TreeItem<String> item = new TreeItem<>(informationResource.getName());
+            item.getChildren().add(new TreeItem<>("ID : " + informationResource.getID()));
+            rootItem.getChildren().addAll(item);
+
+            TreeItem<String> req = new TreeItem<>("Requirements");
+
+            for(Requirement requirement : informationResource.getRequirements()){
+                req.getChildren().clear();
+                req.getChildren().addAll(
+                        new TreeItem<>("ID : " + requirement.getID()),
+                        new TreeItem<>("Resource Name :" + requirement.getResourceName()),
+                        new TreeItem<>("Resource type : " + requirement.getResourceType()));
+                rootItem.getChildren().addAll(req);
+            }
+
+        }
+
+        infornationResourcesTreeView.setRoot(rootItem);
+
         animatePaneChange(estimationPane, Direction.RIGHT);
-        //TODO
-        //show the InformationResources
+
     }
 
-    public void backFromEstimationResultPressed(Event event) {
+    @FXML private void backFromEstimationResultPressed(Event event) {
         animatePaneChange(estimateResourceAllocationPane,Direction.LEFT);
+    }
+
+    @FXML private void addTechnologyPressed(ActionEvent event) {
+        if(technologyTextField.getText()!=""){
+            technologiesListView.getItems().addAll(technologyTextField.getText());
+        }
     }
 }

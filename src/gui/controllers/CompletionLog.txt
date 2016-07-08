@@ -18,7 +18,7 @@ RegisterNewResourceView                     ok
 ResourceAllocationView                      ok
 
 AssignModuleView                            ok
-EstimateResourceAllocationView              -
+EstimateResourceAllocationView              ok
 RegisterProjectScaleView                    -
 RegisterRequirementView                     ok
 

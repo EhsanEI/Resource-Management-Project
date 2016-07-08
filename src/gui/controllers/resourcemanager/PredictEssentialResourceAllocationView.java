@@ -133,6 +133,7 @@ public class PredictEssentialResourceAllocationView extends Controller{
 
             TreeItem<String> item = new TreeItem<>("Requirements");
             for(Requirement requirement : requirements){
+                item.getChildren().clear();
                 item.getChildren().addAll(
                         new TreeItem<>("ID : " + requirement.getID()),
                         new TreeItem<>("Resource Name :" + requirement.getResourceName()),
