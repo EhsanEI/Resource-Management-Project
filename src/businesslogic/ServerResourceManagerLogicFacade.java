@@ -156,8 +156,13 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     public Requirement[] getRequirements(int userID) {
         try {
             PersistentSession session = OODPersistentManager.instance().getSession();
-            List<Requirement> requirementList= session
-                    .createQuery("SELECT requirement FROM Requirement AS requirement").list();
+
+            List<Integer> requirementIDs= session
+                    .createSQLQuery("SELECT ID FROM Requirement WHERE [Allocation ID] IS NULL").list();
+            List<Requirement> requirementList = new ArrayList<>();
+            for(int requirementID:requirementIDs) {
+                requirementList.add(RequirementDAO.getRequirementByORMID(requirementID));
+            }
             return requirementList.toArray(new Requirement[requirementList.size()]);
         }
         catch(PersistentException ex) {
