@@ -26,7 +26,7 @@ public interface ResourceManagerLogicInterface {
     Notification registerNewResource(int userID, Resource newResource) throws IOException, ClassNotFoundException;
     ResourceReport reportResources() throws IOException, ClassNotFoundException;
     FlowReport reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate) throws IOException, ClassNotFoundException;
-    ResourceRequirementReport reportResourceRequirements(InformationResource informationResource) throws IOException, ClassNotFoundException;
+    ResourceRequirementReport reportResourceRequirements(int informationResourceID) throws IOException, ClassNotFoundException;
     InformationResource[] predictEssentialResourceAllocations(Project project) throws IOException, ClassNotFoundException;
     Project[] getAllProjectList() throws IOException, ClassNotFoundException;
 }

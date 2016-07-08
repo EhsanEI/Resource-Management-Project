@@ -238,9 +238,9 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public ResourceRequirementReport reportResourceRequirements(InformationResource informationResource) {
+    public ResourceRequirementReport reportResourceRequirements(int informationResourceID) {
         try {
-            ResourceRequirementReport report = new ResourceRequirementReport(informationResource.getID());
+            ResourceRequirementReport report = new ResourceRequirementReport(informationResourceID);
             report.makeReport();
             return report;
         }

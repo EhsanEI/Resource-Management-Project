@@ -113,9 +113,9 @@ public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public ResourceRequirementReport reportResourceRequirements(InformationResource informationResource) throws IOException, ClassNotFoundException {
+    public ResourceRequirementReport reportResourceRequirements(int informationResourceID) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
-        params.add(informationResource);
+        params.add(informationResourceID);
         return (ResourceRequirementReport)clientNetwork.sendRequest(new NetworkRequest("reportResourceRequirements",null)).getResponse();
     }
 

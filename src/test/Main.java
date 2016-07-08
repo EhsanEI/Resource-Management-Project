@@ -353,7 +353,7 @@ public class Main {
         }
         System.out.println();
         Report report = ServerResourceManagerLogicFacade.getInstance()
-                .reportResourceRequirements(informationResources[informationResourceInd]);
+                .reportResourceRequirements(informationResources[informationResourceInd].getID());
         Table table = report.getTable();
 //
         table.print();

@@ -251,7 +251,7 @@ public class ServerNetwork {
             case "reportResourceRequirements":
                 networkResponse = new NetworkResponse(
                         ServerResourceManagerLogicFacade.getInstance().reportResourceRequirements(
-                                (InformationResource)request.getParams().get(0)
+                                (Integer) request.getParams().get(0)
                                 ), "Processed");
                 break;
             case "predictEssentialResourceAllocations":
