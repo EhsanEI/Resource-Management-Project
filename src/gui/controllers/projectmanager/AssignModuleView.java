@@ -124,7 +124,7 @@ public class AssignModuleView extends Controller {
 
             Notification notification = ClientProjectManagerLogicFacade.getInstance().assignModules(assignment);
 
-            programmersListView.setDisable(true);
+            programmersListView.getScene().getRoot().setDisable(true);
             alert.setTitle("Result");
             if(notification!=null)
                 alert.setContentText(notification.getContent());
@@ -133,7 +133,7 @@ public class AssignModuleView extends Controller {
 
             Optional<ButtonType> result = alert.showAndWait();
             if (result.get() == ButtonType.OK) {
-                programmersListView.setDisable(false);
+                programmersListView.getScene().getRoot().setDisable(false);
                 return;
             }
 

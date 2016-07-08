@@ -82,7 +82,7 @@ public class FlowReportview extends Controller {
                     resourceNameCombo.getSelectionModel().getSelectedItem());
 
             Date sDate = new Date(fromDate.getValue().toEpochDay());
-            Date eDate = new Date(fromDate.getValue().toEpochDay());
+            Date eDate = new Date(toDate.getValue().toEpochDay());
             businesslogic.utility.Date startDate = new businesslogic.utility.Date(sDate);
             businesslogic.utility.Date endDate = new businesslogic.utility.Date(eDate);
 
