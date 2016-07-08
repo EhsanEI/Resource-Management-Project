@@ -64,6 +64,12 @@ public class ServerManagerLogicFacade implements ManagerLogicInterface {
                 }
 
             } else {
+				try {
+					UserDAO.delete(newUser);
+				} catch(PersistentException e) {
+                    e.printStackTrace();
+                    return false;
+                }
                 notification.setContent("Your signup request to Resource Management System has been rejected by animate manager.");
             }
             Email email = new Email(notification, newUser.getEmail());

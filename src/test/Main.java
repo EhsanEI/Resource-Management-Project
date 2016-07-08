@@ -37,8 +37,6 @@ public class Main {
     public static void main(String[] args) throws PersistentException {
         PersistentTransaction t = OODPersistentManager.instance().getSession().beginTransaction();
 
-        approveUser();
-
 //        signup();
 
 //        registerProject();
@@ -61,7 +59,7 @@ public class Main {
 
 //        sendEmail();
 
-//        test1();
+        test1();
 
 //        test2();
         
@@ -72,8 +70,9 @@ public class Main {
 
     public static void test1() {
         try {
-            Resource resource = ResourceDAO.getResourceByORMID(1);
-            System.out.println(resource.getResourceState());
+            User user = UserDAO.getUserByORMID(1);
+            user.getJobInfo().print();
+            System.out.println(user.getPermissions().length);
         } catch (PersistentException e) {
             e.printStackTrace();
         }
