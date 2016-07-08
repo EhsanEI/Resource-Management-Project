@@ -195,7 +195,16 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
             if(rm == null) {
                 Notification notification = NotificationDAO.createNotification();
-                notification.setContent("The user is not animate resource manager.");
+                notification.setContent("The user is not a resource manager.");
+                return notification;
+            }
+
+            Resource[] duplicates = ResourceDAO.listResourceByQuery("uniqueIdentifier = '" +
+                    newResource.getUniqueIdentifier() + "'", null);
+
+            if(duplicates != null && duplicates.length > 0) {
+                Notification notification = NotificationDAO.createNotification();
+                notification.setContent("There is already a resource with this identifier.");
                 return notification;
             }
 

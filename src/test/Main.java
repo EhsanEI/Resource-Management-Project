@@ -41,7 +41,7 @@ public class Main {
 
 //        registerProject();
 
-//        registerNewResource();
+        registerNewResource();
 
 //        registerRequirement();
 
@@ -276,7 +276,7 @@ public class Main {
         PhysicalResource resource = PhysicalResourceDAO.createPhysicalResource();
 
         resource.setName("printer");
-        resource.setUniqueIdentifier("HP203756");
+        resource.setUniqueIdentifier("HP203757");
         resource.addSpec("Color", "CMYK");
         resource.addSpec("Rate", "20 PPM");
 
@@ -285,10 +285,10 @@ public class Main {
         FinancialResource resource2 = FinancialResourceDAO.createFinancialResource();
 
         resource2.setName("Building");
-        resource2.setUniqueIdentifier("BS69");
+        resource2.setUniqueIdentifier("BS68");
         resource2.setFinancialValue(1000);
 
-        ServerResourceManagerLogicFacade.getInstance().registerNewResource(userID, resource2);
+        System.out.println(ServerResourceManagerLogicFacade.getInstance().registerNewResource(userID, resource2).getContent());
 
     }
 
