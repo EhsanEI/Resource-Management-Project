@@ -42,6 +42,7 @@ public class ResourceReport extends Report implements Serializable {
             tableRow[2] = (String)row[3];
 
             Resource resource = ResourceDAO.getResourceByORMID((int) row[0]);
+            ResourceDAO.fetchResourceState(resource);
             tableRow[3] = (ResourceStateEnum.values()[resource.getResourceState()]).toString();
 
             contents[i] = tableRow;

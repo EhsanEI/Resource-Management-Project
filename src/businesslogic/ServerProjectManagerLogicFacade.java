@@ -6,6 +6,7 @@ import businesslogic.accounting.job.ProjectManagementDAO;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
 import businesslogic.distribution.Allocation;
+import businesslogic.distribution.Allocation_DAO;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.requirement.RequirementDAO;
 import businesslogic.distribution.resource.*;
@@ -14,8 +15,10 @@ import businesslogic.prediction.ResourceAllocationEstimation;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 import businesslogic.utility.NotificationDAO;
+
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
+
 import orm.OODPersistentManager;
 
 import java.util.*;
@@ -124,6 +127,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
         try {
 
             User user = UserDAO.getUserByORMID(userID);
+            RequirementDAO.fetchProjectManager(newRequirement);
             newRequirement.setProjectManager(getProjectManagement(user));
             RequirementDAO.save(newRequirement);
 
@@ -182,10 +186,12 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
         }
 
         ArrayList<HumanResource> programmers = new ArrayList();
-        for(Allocation allocation : allAllocations)
+        for(Allocation allocation : allAllocations) {
+        	Allocation_DAO.fetchResources(allocation);
             for (Resource resource: allocation.getResources())
                 if(resource instanceof HumanResource)
                     programmers.add((HumanResource)resource);
+        }
 
 
         return programmers.toArray(new HumanResource[programmers.size()]);

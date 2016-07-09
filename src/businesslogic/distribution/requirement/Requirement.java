@@ -13,15 +13,15 @@
  */
 package businesslogic.distribution.requirement;
 
-import businesslogic.accounting.job.ProjectManagement;
-import businesslogic.accounting.job.ProjectManagementDAO;
-import businesslogic.distribution.resource.InformationResource;
-import businesslogic.distribution.resource.InformationResourceDAO;
+import java.io.Serializable;
+
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import orm.OODPersistentManager;
 
-import java.io.Serializable;
+import orm.OODPersistentManager;
+import businesslogic.accounting.job.ProjectManagement;
+import businesslogic.distribution.resource.InformationResource;
+import businesslogic.distribution.resource.InformationResourceDAO;
 
 public class Requirement implements Serializable {
 	public Requirement() {
@@ -40,6 +40,10 @@ public class Requirement implements Serializable {
 	private String startDate;
 
 	private String endDate;
+	
+	private ProjectManagement projectManagement;
+	
+	private InformationResource informationResource;
 	
 	private void setID(int value) {
 		this.ID = value;
@@ -103,33 +107,22 @@ public class Requirement implements Serializable {
 	
 	public void setProjectManager(ProjectManagement pm) {
 		pm.addRequirement(this);
+		this.projectManagement = pm;
 	}
+	
 
 	public ProjectManagement getProjectManagement() {
-		try {
-			PersistentSession session = OODPersistentManager.instance().getSession();
-			Integer jobID = (Integer) session.createSQLQuery("SELECT JobID FROM Requirement WHERE ID = " + getID()).list().get(0);
-			return ProjectManagementDAO.getProjectManagementByORMID(jobID);
-		}
-		catch (PersistentException ex) {
-			ex.printStackTrace();
-		}
-		return null;
+		return this.projectManagement;
 	}
 
 	public void setInformationResource(InformationResource informationResource) {
 		informationResource.addRequirement(this);
+		this.informationResource = informationResource;
+		
 	}
 
 	public InformationResource getInformationResource() {
-		try{
-			PersistentSession session = OODPersistentManager.instance().getSession();
-			Integer irID = (Integer) session.createSQLQuery("SELECT ResourceID2 FROM Requirement WHERE ID = "+ getID()).uniqueResult();
-			return InformationResourceDAO.getInformationResourceByORMID(irID);
-		}
-		catch (PersistentException ex){
-		}
-		return null;
+		return this.informationResource;
 	}
 	
 	public String toString() {

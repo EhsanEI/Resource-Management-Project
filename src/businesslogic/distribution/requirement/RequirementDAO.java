@@ -13,14 +13,15 @@
  */
 package businesslogic.distribution.requirement;
 
-import businesslogic.accounting.job.ProjectManagementDAO;
-import businesslogic.distribution.resource.InformationResource;
-import businesslogic.distribution.resource.InformationResourceDAO;
-import org.orm.*;
-import org.hibernate.Query;
-import orm.OODPersistentManager;
-
 import java.util.List;
+
+import org.hibernate.Query;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import orm.OODPersistentManager;
+import businesslogic.accounting.job.ProjectManagementDAO;
+import businesslogic.distribution.resource.InformationResourceDAO;
 
 public class RequirementDAO {
 	public static Requirement loadRequirementByORMID(int ID) throws PersistentException {
@@ -104,6 +105,17 @@ public class RequirementDAO {
 		catch (Exception e) {
 			e.printStackTrace();
 			throw new PersistentException(e);
+		}
+	}
+	
+	public static void fetchProjectManager(Requirement requirement) {
+		try {
+			PersistentSession session = OODPersistentManager.instance().getSession();
+			Integer jobID = (Integer) session.createSQLQuery("SELECT JobID FROM Requirement WHERE ID = " + requirement.getID()).list().get(0);
+			requirement.setProjectManager(ProjectManagementDAO.getProjectManagementByORMID(jobID));
+		}
+		catch (PersistentException ex) {
+			ex.printStackTrace();
 		}
 	}
 	
@@ -359,21 +371,10 @@ public class RequirementDAO {
 		return requirementCriteria.listRequirement();
 	}
 
-	public static void fetchProjectManager(Requirement requirement) {
-		try {
-			PersistentSession session = OODPersistentManager.instance().getSession();
-			Integer jobID = (Integer) session.createSQLQuery("SELECT JobID FROM Requirement WHERE ID = "
-					+ requirement.getID()).list().get(0);
-			requirement.setProjectManager(ProjectManagementDAO.getProjectManagementByORMID(jobID));
-		}
-		catch (PersistentException ex) {
-			ex.printStackTrace();
-		}
-	}
-
 	public static void updateProjectManager(Requirement requirement) {
 		requirement.getProjectManagement().addRequirement(requirement);
 	}
+	
 
 	public static void fetchInformationResource(Requirement requirement) {
 		try{
@@ -387,6 +388,7 @@ public class RequirementDAO {
 	}
 
 	public static void updateInformationResource(Requirement requirement) {
+		fetchInformationResource(requirement);
 		requirement.getInformationResource().addRequirement(requirement);
 	}
 }
