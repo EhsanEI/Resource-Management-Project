@@ -44,7 +44,7 @@ public class Main {
 
 //        registerRequirement();
 
-        registerResourceAllocation();
+//        registerResourceAllocation();
 
 //        reportResources();
 

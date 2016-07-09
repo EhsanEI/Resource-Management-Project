@@ -17,5 +17,5 @@ public interface AccountingLogicInterface {
     Notification signup(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) throws IOException, ClassNotFoundException;
     boolean logout(int UserID) throws IOException, ClassNotFoundException;
     Notification recoverPassword(String username) throws IOException, ClassNotFoundException;
-    Notification editProfile(User user) throws IOException, ClassNotFoundException;
+    Notification editProfile(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) throws IOException, ClassNotFoundException;
 }

@@ -132,10 +132,29 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
     }
 
     @Override
-    public Notification editProfile(User user) {
+    public Notification editProfile(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
         try {
-            UserDAO.delete(user.getCreatorUser());
+            UserDAO.updateJobs(user);
+
+            for(Object ujObject: user.getORM_UserJobs()) {
+                UserJob uj = (UserJob) ujObject;
+                UserJobDAO.save(uj);
+            }
+
+            for(Job job: jobs) {
+                JobDAO.save(job);
+            }
+
+            for(Specialty specialty: specialties) {
+                SpecialtyDAO.save(specialty);
+            }
+
+            for(HumanResource hr: humanResources) {
+                HumanResourceDAO.save(hr);
+            }
+
             UserDAO.save(user);
+
             Notification notification = new Notification();
             notification.setContent("Your request has been submitted.");
             return notification;
