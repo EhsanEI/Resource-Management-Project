@@ -13,6 +13,7 @@ import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 import network.ClientNetwork;
 import network.NetworkRequest;
+import network.NetworkResponse;
 
 import java.io.IOException;
 import java.io.Serializable;
@@ -100,7 +101,10 @@ public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInt
     @Override
     public ResourceReport reportResources() throws IOException, ClassNotFoundException {
 
-        return (ResourceReport)clientNetwork.sendRequest(new NetworkRequest("reportResources",null)).getResponse();
+        NetworkResponse networkResponse = clientNetwork.sendRequest(new NetworkRequest("reportResources",null));
+
+
+        return (ResourceReport)networkResponse.getResponse();
     }
 
     @Override

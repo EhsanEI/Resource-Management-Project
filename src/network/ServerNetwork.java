@@ -7,6 +7,7 @@ import businesslogic.accounting.user.User;
 import businesslogic.distribution.Allocation;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.*;
+import businesslogic.report.ResourceReport;
 import businesslogic.support.SystemConfiguration;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;

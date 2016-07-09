@@ -43,6 +43,7 @@ public class ResourceReportView extends Controller{
         String[][] contents = table.getContents();
 
 
+
         ObservableList<String[]> data = FXCollections.observableArrayList();
         data.addAll(Arrays.asList(contents));
 

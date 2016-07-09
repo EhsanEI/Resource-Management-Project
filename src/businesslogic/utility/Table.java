@@ -1,16 +1,20 @@
 package businesslogic.utility;
 
+import java.io.Serializable;
+
 /**
  * Created by Esi on 6/23/2016.
  */
-public class Table {
+public class Table implements Serializable {
+
+
     private String[] headers;
     private String[][] contents;
 
-    public Table(String[] headers, String[][] contents) {
-        this.headers = headers;
-        this.contents = contents;
+    public Table(){
+
     }
+
 
     public String[] getHeaders() {
         return headers;
@@ -18,6 +22,14 @@ public class Table {
 
     public String[][] getContents() {
         return contents;
+    }
+
+    public void setHeaders(String[] headers) {
+        this.headers = headers;
+    }
+
+    public void setContents(String[][] contents) {
+        this.contents = contents;
     }
 
     public void print() {

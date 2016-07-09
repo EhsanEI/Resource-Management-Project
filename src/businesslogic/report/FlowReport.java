@@ -101,7 +101,9 @@ public class FlowReport  extends Report implements Serializable {
             contents[i] = contentsList.get(i);
         }
 
-        Table table = new Table(headers, contents);
+        Table table = new Table();
+        table.setContents(contents);
+        table.setHeaders(headers);
         setTable(table);
         return table;
     }

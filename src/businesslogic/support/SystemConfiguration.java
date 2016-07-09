@@ -17,12 +17,17 @@ import java.io.Serializable;
 
 public class SystemConfiguration implements Serializable {
 	public SystemConfiguration() {
+
 	}
-	
+
+
+
 	private int ID;
 	
 	private int backupPreiodDays;
-	
+
+	private BackupFormat backupFormat;
+
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -54,17 +59,15 @@ public class SystemConfiguration implements Serializable {
 	}
 
 	public BackupFormat getBackupFormat() {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		return  backupFormat;
 	}
 
 	public void setBackupFormat(BackupFormat backupFormat) {
-		//TODO: Implement Method
-		throw new UnsupportedOperationException();
+		this.backupFormat = backupFormat;
 	}
 
 	public String toString() {
-		return String.valueOf(getID());
+		return backupFormat.toString();
 	}
 	
 }

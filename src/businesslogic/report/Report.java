@@ -15,6 +15,7 @@ public abstract class Report {
 
     public Report() {
         this.date = new Date(new java.util.Date());
+
     }
 
     public Report(Date date) {
