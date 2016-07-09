@@ -182,13 +182,11 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
         }
 
         ArrayList<HumanResource> programmers = new ArrayList();
-        for(Allocation allocation:allAllocations) {
-            for (Resource resource: allocation.getResources()) {
-                if(resource instanceof HumanResource) {
+        for(Allocation allocation : allAllocations)
+            for (Resource resource: allocation.getResources())
+                if(resource instanceof HumanResource)
                     programmers.add((HumanResource)resource);
-                }
-            }
-        }
+
 
         return programmers.toArray(new HumanResource[programmers.size()]);
     }

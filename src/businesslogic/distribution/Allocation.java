@@ -115,7 +115,7 @@ public class Allocation implements Serializable {
 			List<Integer> resourceIDs = session
 					.createSQLQuery("SELECT ResourceID2 FROM ResourceAllocation WHERE [Allocation ID] = "+ getID()).list();
 			ArrayList<Resource> result = new ArrayList<>();
-			for(Integer id:resourceIDs) {
+			for(Integer id : resourceIDs) {
 				result.add(ResourceDAO.getResourceByORMID(id));
 			}
 			return result.toArray(new Resource[result.size()]);

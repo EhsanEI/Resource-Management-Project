@@ -15,7 +15,9 @@ package businesslogic.distribution;
 
 import businesslogic.distribution.requirement.Requirement;
 
-public class ResourceAllocation {
+import java.io.Serializable;
+
+public class ResourceAllocation implements Serializable{
 	public ResourceAllocation() {
 	}
 	

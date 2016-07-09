@@ -3,6 +3,7 @@ package gui.controllers.accounting;
 import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.accounting.AuthenticationResult;
 
+import businesslogic.accounting.user.Manager;
 import businesslogic.accounting.user.User;
 import gui.MainMenu;
 import javafx.event.ActionEvent;

@@ -127,12 +127,14 @@ public class ServerNetwork {
                         "Processed");
                 break;
             case "registerModuleMaintenance":
+
                 networkResponse = new NetworkResponse(
                         ServerProgrammerLogicFacade.getInstance().registerModuleMaintenance(
                                 (Integer)request.getParams().get(0),
                                 (Integer)request.getParams().get(1),
                                 (ModuleChange[])request.getParams().get(2)),"Processed"
                 );
+
                 break;
             case "registerModuleCreation":
                 networkResponse = new NetworkResponse(

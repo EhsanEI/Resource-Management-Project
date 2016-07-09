@@ -109,14 +109,14 @@ public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInt
         params.add(resource);
         params.add(startDate);
         params.add(endDate);
-        return (FlowReport)clientNetwork.sendRequest(new NetworkRequest("reportFlowResourceAllocations",null)).getResponse();
+        return (FlowReport)clientNetwork.sendRequest(new NetworkRequest("reportFlowResourceAllocations",params)).getResponse();
     }
 
     @Override
     public ResourceRequirementReport reportResourceRequirements(int informationResourceID) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(informationResourceID);
-        return (ResourceRequirementReport)clientNetwork.sendRequest(new NetworkRequest("reportResourceRequirements",null)).getResponse();
+        return (ResourceRequirementReport)clientNetwork.sendRequest(new NetworkRequest("reportResourceRequirements",params)).getResponse();
     }
 
     @Override
