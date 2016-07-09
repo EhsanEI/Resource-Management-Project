@@ -5,10 +5,7 @@ import businesslogic.accounting.job.Specialty;
 import businesslogic.accounting.job.SpecialtyDAO;
 import businesslogic.distribution.resource.*;
 import businesslogic.distribution.resource.System;
-import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
-import com.sun.org.apache.xpath.internal.operations.Mod;
-import com.sun.scenario.effect.impl.state.LinearConvolveRenderState;
 import gui.Direction;
 import gui.controllers.Controller;
 import javafx.event.ActionEvent;
@@ -192,7 +189,7 @@ public class RegisterProjectScaleView extends Controller {
             module.addSpecialty(specialty);
 
         modules.add(module);
-        modulesListView.getItems().add(getModulestring(module));
+        modulesListView.getItems().add(getModuleString(module));
         specialties.clear();
         moduleNameTextField.clear();
         moduleIDTextField.clear();
@@ -214,7 +211,7 @@ public class RegisterProjectScaleView extends Controller {
     }
 
     @FXML private void backFromModules(Event event) {
-        animatePaneChange(systemAdditionPane,Direction.LEFT);
+        animatePaneChange(subsystemAdditionPane,Direction.LEFT);
     }
 
     @FXML private void backFromSpecialty(Event event) {
@@ -281,9 +278,10 @@ public class RegisterProjectScaleView extends Controller {
         return subsystem.getUniqueIdentifier() + " : " + subsystem.getName();
     }
 
-    private String getModulestring(Module module){
+    private String getModuleString(Module module){
         return module.getUniqueIdentifier() + " : " + module.getName();
     }
+
     private String getSpecialtyString(Specialty specialty){
         return specialty.getID() + " : " + specialty.getTitle();
     }
