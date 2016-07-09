@@ -1,5 +1,7 @@
 package businesslogic;
 
+import businesslogic.accounting.user.Admin;
+import businesslogic.accounting.user.AdminDAO;
 import businesslogic.support.SystemConfiguration;
 import businesslogic.support.SystemConfigurationDAO;
 import org.orm.PersistentException;
@@ -22,17 +24,28 @@ public class ServerAdminLogicFacade implements AdminLogicInterface{
     }
 
     @Override
-    public boolean configureSystem(SystemConfiguration configureSystem) {
+    public boolean configureSystem(int userID, SystemConfiguration configureSystem) {
+        Admin admin = null;
+        try {
+            admin = AdminDAO.getAdminByORMID(userID);
+        } catch (PersistentException e) {
+            e.printStackTrace();
+            return false;
+        }
 
         SystemConfiguration oldConfiguration = null;
         try {
             oldConfiguration = SystemConfigurationDAO.getSystemConfigurationByORMID(1);
+            admin.getORM_SystemConfigurations().remove(oldConfiguration);
             SystemConfigurationDAO.delete(oldConfiguration);
         } catch (PersistentException e) {
         }
 
         try {
+
+            admin.getORM_SystemConfigurations().add(configureSystem);
             SystemConfigurationDAO.save(configureSystem);
+            AdminDAO.save(admin);
         } catch (PersistentException e) {
             e.printStackTrace();
             if(oldConfiguration != null) {

@@ -41,11 +41,11 @@ public class Admin extends businesslogic.accounting.user.User {
 	
 	private java.util.Set ORM_systemConfigurations = new java.util.HashSet();
 	
-	private void setORM_SystemConfigurations(java.util.Set value) {
+	public void setORM_SystemConfigurations(java.util.Set value) {
 		this.ORM_systemConfigurations = value;
 	}
 	
-	private java.util.Set getORM_SystemConfigurations() {
+	public java.util.Set getORM_SystemConfigurations() {
 		return ORM_systemConfigurations;
 	}
 	
