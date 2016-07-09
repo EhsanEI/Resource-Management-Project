@@ -20,6 +20,7 @@ import businesslogic.report.ResourceRequirementReport;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 import businesslogic.utility.NotificationDAO;
+import businesslogic.utility.Table;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import orm.OODPersistentManager;
@@ -246,11 +247,11 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public ResourceReport reportResources() {
+    public Table reportResources() {
         try {
             ResourceReport report = new ResourceReport();
             report.makeReport();
-            return report;
+            return report.getTable();
         }
         catch (PersistentException ex) {
             ex.printStackTrace();

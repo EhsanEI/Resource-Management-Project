@@ -11,6 +11,7 @@ import businesslogic.report.ResourceReport;
 import businesslogic.support.SystemConfiguration;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
+import businesslogic.utility.Table;
 
 import java.io.*;
 import java.lang.System;
@@ -243,8 +244,8 @@ public class ServerNetwork {
                                 ), "Processed");
                 break;
             case "reportResources":
-                networkResponse = new NetworkResponse(
-                        ServerResourceManagerLogicFacade.getInstance().reportResources(), "Processed");
+                Table table = ServerResourceManagerLogicFacade.getInstance().reportResources();
+                networkResponse = new NetworkResponse(table, "Processed");
                 break;
             case "reportFlowResourceAllocations":
                 networkResponse = new NetworkResponse(

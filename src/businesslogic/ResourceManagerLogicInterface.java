@@ -10,6 +10,7 @@ import businesslogic.report.ResourceReport;
 import businesslogic.report.ResourceRequirementReport;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
+import businesslogic.utility.Table;
 
 import java.io.IOException;
 
@@ -24,7 +25,7 @@ public interface ResourceManagerLogicInterface {
     Requirement[] getRequirements(int userID) throws IOException, ClassNotFoundException;
     Resource[] getResources(int userID, String resourceType, String resourceName) throws IOException, ClassNotFoundException;
     Notification registerNewResource(int userID, Resource newResource) throws IOException, ClassNotFoundException;
-    ResourceReport reportResources() throws IOException, ClassNotFoundException;
+    Table reportResources() throws IOException, ClassNotFoundException;
     FlowReport reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate) throws IOException, ClassNotFoundException;
     ResourceRequirementReport reportResourceRequirements(int informationResourceID) throws IOException, ClassNotFoundException;
     Project[] predictEssentialResourceAllocations(Project project) throws IOException, ClassNotFoundException;

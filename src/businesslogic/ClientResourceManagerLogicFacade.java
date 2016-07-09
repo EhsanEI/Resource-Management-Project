@@ -1,7 +1,6 @@
 package businesslogic;
 
 import businesslogic.distribution.Allocation;
-import businesslogic.distribution.ResourceAllocation;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.distribution.resource.Project;
@@ -11,6 +10,7 @@ import businesslogic.report.ResourceReport;
 import businesslogic.report.ResourceRequirementReport;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
+import businesslogic.utility.Table;
 import network.ClientNetwork;
 import network.NetworkRequest;
 import network.NetworkResponse;
@@ -99,12 +99,12 @@ public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public ResourceReport reportResources() throws IOException, ClassNotFoundException {
+    public Table reportResources() throws IOException, ClassNotFoundException {
 
         NetworkResponse networkResponse = clientNetwork.sendRequest(new NetworkRequest("reportResources",null));
 
 
-        return (ResourceReport)networkResponse.getResponse();
+        return (Table)networkResponse.getResponse();
     }
 
     @Override

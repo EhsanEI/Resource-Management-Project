@@ -343,8 +343,8 @@ public class Main {
     }
 
     private static void reportResources() {
-        Report report = ServerResourceManagerLogicFacade.getInstance().reportResources();
-        Table table = report.getTable();
+        Table table = ServerResourceManagerLogicFacade.getInstance().reportResources();
+        //Table table = report.getTable();
 
         table.print();
     }

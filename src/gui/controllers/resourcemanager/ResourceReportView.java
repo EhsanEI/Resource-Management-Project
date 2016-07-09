@@ -36,8 +36,8 @@ public class ResourceReportView extends Controller{
         showReport(ClientResourceManagerLogicFacade.getInstance().reportResources());
     }
 
-    private void showReport(ResourceReport resourceReport) {
-        Table table = resourceReport.getTable();
+    private void showReport(Table table) {
+        //Table table = resourceReport.getTable();
 
         String[] headers = table.getHeaders();
         String[][] contents = table.getContents();

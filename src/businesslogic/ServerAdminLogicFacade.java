@@ -44,8 +44,9 @@ public class ServerAdminLogicFacade implements AdminLogicInterface{
         try {
 
             admin.getORM_SystemConfigurations().add(configureSystem);
-            SystemConfigurationDAO.save(configureSystem);
             AdminDAO.save(admin);
+            SystemConfigurationDAO.save(configureSystem);
+
         } catch (PersistentException e) {
             e.printStackTrace();
             if(oldConfiguration != null) {
