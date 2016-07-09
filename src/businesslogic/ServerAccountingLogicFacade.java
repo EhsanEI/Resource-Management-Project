@@ -10,6 +10,7 @@ import businesslogic.distribution.resource.HumanResourceDAO;
 import businesslogic.distribution.resource.Spec;
 import businesslogic.utility.Notification;
 import network.Email;
+import org.hibernate.NonUniqueObjectException;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 import orm.OODPersistentManager;
@@ -153,14 +154,14 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             for(Specialty specialty: specialties) {
                 try {
                     SpecialtyDAO.save(specialty);
-                }catch(PersistentException e) {
+                }catch(NonUniqueObjectException e) {
                 }
             }
 
             for(Job job: user.getJobs()) {
                 try {
                     JobDAO.save(job);
-                }catch(PersistentException e) {
+                }catch(NonUniqueObjectException e) {
                     Job newJob = JobDAO.getJobByORMID(job.getID());
                     newJob.setORM_UserJobs(job.getORM_UserJobs());
                     JobDAO.save(newJob);
@@ -170,7 +171,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             for(HumanResource hr: humanResources) {
                 try {
                     HumanResourceDAO.save(hr);
-                }catch(PersistentException e) {
+                }catch(NonUniqueObjectException e) {
                 }
             }
 
