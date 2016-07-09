@@ -134,6 +134,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
     @Override
     public Notification editProfile(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
         try {
+
             UserDAO.updateJobs(user);
 
             for(Object ujObject: user.getORM_UserJobs()) {
@@ -141,7 +142,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
                 UserJobDAO.save(uj);
             }
 
-            for(Job job: jobs) {
+            for(Job job: user.getJobs()) {
                 JobDAO.save(job);
             }
 
@@ -153,7 +154,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
                 HumanResourceDAO.save(hr);
             }
 
-            //UserDAO.save(user);
+            UserDAO.save(user);
 
             Notification notification = new Notification();
             notification.setContent("Your request has been submitted.");
