@@ -46,18 +46,20 @@ public class Authentication {
             e.printStackTrace();
         }
 
-        if(queryResults == null || queryResults.length != 1) {
+        if(queryResults == null) {
             Notification notification = new Notification("Invalid username and/or password!");
             return new AuthenticationResult(null, notification);
-        } else if(queryResults[0].getApproved() == false) {
+        } else {
+            for(User user:queryResults) {
+                if (user.getApproved()) {
+                    UserDAO.fetchJobs(user);
+                    onlineUsersInformation.add(user);
+                    Notification notification = new Notification("Logged in successfully!");
+                    return new AuthenticationResult(user, notification);
+                }
+            }
             Notification notification = new Notification("Your request is pending manager's approval!");
             return new AuthenticationResult(null, notification);
-        } else {
-            User user = queryResults[0];
-            UserDAO.fetchJobs(user);
-            onlineUsersInformation.add(user);
-            Notification notification = new Notification("Logged in successfully!");
-            return new AuthenticationResult(user, notification);
         }
     }
 

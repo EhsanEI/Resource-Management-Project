@@ -6,9 +6,11 @@ import businesslogic.utility.Notification;
 import businesslogic.utility.NotificationDAO;
 import network.Email;
 import org.orm.PersistentException;
+import org.orm.PersistentSession;
 import orm.OODPersistentManager;
 
 import javax.mail.MessagingException;
+import java.util.List;
 
 /**
  * Created by Esi on 6/22/2016.
@@ -84,6 +86,16 @@ public class ServerManagerLogicFacade implements ManagerLogicInterface {
             if(accepted) {
                 newUser.approve();
                 try {
+                    PersistentSession session = OODPersistentManager.instance().getSession();
+                    List<Integer> allRequestIDs = session
+                            .createSQLQuery("SELECT ID FROM [User] WHERE UserID2 = " + creatorUser.getID()).list();
+                    for(int requestID:allRequestIDs) {
+                        if(requestID == newUser.getID())
+                            continue;
+                        User request = UserDAO.getUserByORMID(requestID);
+                        UserDAO.delete(request);
+                    }
+                    newUser.setCreatorUser(null);
                     UserDAO.save(newUser);
                     UserDAO.delete(creatorUser);
                 } catch (PersistentException e) {

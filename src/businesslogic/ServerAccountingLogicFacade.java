@@ -12,6 +12,7 @@ import businesslogic.utility.Notification;
 import network.Email;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
+import orm.OODPersistentManager;
 
 import javax.mail.MessagingException;
 import java.math.BigInteger;
@@ -65,6 +66,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             }
 
             UserDAO.save(user);
+            OODPersistentManager.instance().getSession().flush();
 
             Notification notification = new Notification();
             notification.setContent("Your request has been submitted.");
@@ -156,8 +158,10 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
                 HumanResourceDAO.save(hr);
             }
 
-//            User creatorUser = UserDAO.getUserByORMID()
+            User creatorUser = UserDAO.getUserByORMID(user.getCreatorUser().getID());
+            user.setCreatorUser(creatorUser);
             UserDAO.save(user);
+            OODPersistentManager.instance().getSession().flush();
 
             Notification notification = new Notification();
             notification.setContent("Your request has been submitted.");
