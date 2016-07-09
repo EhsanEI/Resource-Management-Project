@@ -39,7 +39,7 @@ public class EstimateResourceAllocationView extends Controller {
     @FXML private TreeView infornationResourcesTreeView;
 
     private InformationResource[] informationResources;
-    private ArrayList<String> technologies;
+    private ArrayList<String> technologies= new ArrayList<>();
 
     private Alert alert;
 

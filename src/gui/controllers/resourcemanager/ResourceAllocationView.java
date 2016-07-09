@@ -2,10 +2,7 @@ package gui.controllers.resourcemanager;
 
 import businesslogic.ClientResourceManagerLogicFacade;
 import businesslogic.distribution.Allocation;
-import businesslogic.distribution.Allocation_DAO;
 import businesslogic.distribution.requirement.Requirement;
-import businesslogic.distribution.requirement.RequirementDAO;
-import businesslogic.distribution.requirement.RequirementPriorityEnum;
 import businesslogic.distribution.resource.Resource;
 import businesslogic.utility.Notification;
 import gui.Direction;
@@ -80,7 +77,7 @@ public class ResourceAllocationView extends Controller{
                 if(getResourceString(resource) == item)
                     allocatedResources.add(resource);
 
-        Allocation allocation = Allocation_DAO.createAllocation_();
+        Allocation allocation = new Allocation();
         allocation.setRequirement(selectedRequirement);
         allocation.addResources(allocatedResources.toArray(new Resource[allocatedResources.size()]));
 

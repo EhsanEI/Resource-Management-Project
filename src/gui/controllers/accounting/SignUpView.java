@@ -5,8 +5,6 @@ import businesslogic.accounting.job.ResourceManagement;
 import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.*;
 import businesslogic.distribution.resource.HumanResource;
-import businesslogic.distribution.resource.HumanResourceDAO;
-import businesslogic.distribution.resource.Spec;
 import businesslogic.utility.Notification;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -133,12 +131,12 @@ public class SignUpView {
         user.setPassword(passwordTextField.getText());
         user.setEmail(emailTextField.getText());
 
-        HumanResource humanResource = HumanResourceDAO.createHumanResource();
+        HumanResource humanResource = new HumanResource();
         ArrayList<HumanResource> humanResources = new ArrayList<>();
 
         for(String job : jobTitles){
             if(job.equals(JobType.Programming.getTitle())){
-                Programming programming = ProgrammingDAO.createProgramming();
+                Programming programming = new Programming();
                 jobs.add(programming);
                 humanResource.setProgramming(programming);
                 humanResource.setName(usernameTextField.getText());
@@ -148,11 +146,11 @@ public class SignUpView {
                 for(Specialty specialty : specialties)
                     programming.addSpecialty(specialty);
             }else if(job.equals(JobType.ProjectManagement.getTitle())){
-                ProjectManagement projectManagement = ProjectManagementDAO.createProjectManagement();
+                ProjectManagement projectManagement = new ProjectManagement();
                 jobs.add(projectManagement);
                 user.addJob(projectManagement);
             }else if(job.equals(JobType.ResourceManagement.getTitle())){
-                ResourceManagement resourceManagement = ResourceManagementDAO.createResourceManagement();
+                ResourceManagement resourceManagement = new ResourceManagement();
                 jobs.add(resourceManagement);
                 user.addJob(resourceManagement);
             }
@@ -214,7 +212,7 @@ public class SignUpView {
     }
 
     @FXML private void singleSpecialtyAddButtonPressed(ActionEvent event) {
-        Specialty specialty = SpecialtyDAO.createSpecialty();
+        Specialty specialty = new Specialty();
         specialty.setTitle(specialtyTitleTextField.getText());
         specialty.setProficiencyLevel((int)(proficiencyLevelSlider.getValue() / proficiencyLevelSlider.getMax()*10));
         specialties.add(specialty);

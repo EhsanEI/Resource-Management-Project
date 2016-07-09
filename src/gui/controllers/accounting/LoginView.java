@@ -2,8 +2,7 @@ package gui.controllers.accounting;
 
 import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.accounting.AuthenticationResult;
-import businesslogic.accounting.job.*;
-import businesslogic.accounting.user.ManagerDAO;
+
 import businesslogic.accounting.user.User;
 import gui.MainMenu;
 import javafx.event.ActionEvent;
@@ -71,7 +70,7 @@ public class LoginView {
 
         AuthenticationResult authenticationResult = ClientAccountingLogicFacade.getInstance().login(usernameTextField.getText(), passwordField.getText());
         user =authenticationResult.getUser();
-        //user = ManagerDAO.createManager();
+        //user = new Manager();
 
 
         if(user != null)
