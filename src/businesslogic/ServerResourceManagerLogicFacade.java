@@ -253,6 +253,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             return report;
         }
         catch (PersistentException ex) {
+            ex.printStackTrace();
         }
         return null;
     }
