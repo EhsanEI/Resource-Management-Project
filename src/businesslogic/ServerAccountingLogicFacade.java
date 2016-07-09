@@ -152,16 +152,14 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             }
 
             for(Specialty specialty: specialties) {
-                try {
+                if(SpecialtyDAO.getSpecialtyByORMID(specialty.getID()) == null)
                     SpecialtyDAO.save(specialty);
-                }catch(NonUniqueObjectException e) {
-                }
             }
 
             for(Job job: user.getJobs()) {
-                try {
+                if(JobDAO.getJobByORMID(job.getID()) == null) {
                     JobDAO.save(job);
-                }catch(NonUniqueObjectException e) {
+                }else {
                     Job newJob = JobDAO.getJobByORMID(job.getID());
                     newJob.setORM_UserJobs(job.getORM_UserJobs());
                     JobDAO.save(newJob);
@@ -169,9 +167,8 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             }
 
             for(HumanResource hr: humanResources) {
-                try {
+                if(HumanResourceDAO.getHumanResourceByORMID(hr.getID()) == null) {
                     HumanResourceDAO.save(hr);
-                }catch(NonUniqueObjectException e) {
                 }
             }
 
