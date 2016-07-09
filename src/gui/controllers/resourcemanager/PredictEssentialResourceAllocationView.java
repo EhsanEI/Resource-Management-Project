@@ -2,6 +2,7 @@ package gui.controllers.resourcemanager;
 
 import businesslogic.ClientResourceManagerLogicFacade;
 import businesslogic.distribution.requirement.Requirement;
+import businesslogic.distribution.requirement.RequirementPriorityEnum;
 import businesslogic.distribution.resource.Project;
 import businesslogic.utility.Tree;
 import gui.Direction;
@@ -25,13 +26,16 @@ public class PredictEssentialResourceAllocationView extends Controller{
     @FXML private AnchorPane essentialResourcesPredictionPane;
     @FXML private AnchorPane predictionResultPane;
     @FXML private AnchorPane projectViewPane;
+
     @FXML private TreeView predictedProjectsTreeView;
     @FXML private TreeView projectsTreeView;
     @FXML private TreeView selectedProjectTreeView;
 
 
     private Project[] projects;
+    private Project[] predictedProjects;
     private Project selectedProject;
+    private Project selectedProject2View;
 
     private Alert alert;
 
@@ -74,14 +78,18 @@ public class PredictEssentialResourceAllocationView extends Controller{
             }
 
         }else{
-            String name = (String)projectsTreeView.getSelectionModel().getSelectedItem();
+            TreeItem<String> itemm = (TreeItem<String>) projectsTreeView.getSelectionModel().getSelectedItem();
+            String name = itemm.getValue();
+
             for(Project project : projects)
                 if(project.getName().equals(name))
                     selectedProject = project;
 
-            Project[] predictedProjects  = ClientResourceManagerLogicFacade.getInstance().predictEssentialResourceAllocations(selectedProject);
+            predictedProjects  = ClientResourceManagerLogicFacade.getInstance().predictEssentialResourceAllocations(selectedProject);
 
             TreeItem<String> rootItem = new TreeItem<>("Predicted Projects");
+
+
 
             for (Project project : predictedProjects){
                 TreeItem<String> item = new TreeItem<>(project.getName());
@@ -91,6 +99,7 @@ public class PredictEssentialResourceAllocationView extends Controller{
             }
 
             predictedProjectsTreeView.setRoot(rootItem);
+
             animatePaneChange(predictionResultPane,Direction.RIGHT);
         }
     }
@@ -107,8 +116,20 @@ public class PredictEssentialResourceAllocationView extends Controller{
         animatePaneChange(predictionResultPane, Direction.LEFT);
     }
 
+
+
     @FXML private void viewProjectPressed(ActionEvent event) {
-        if(predictedProjectsTreeView.getSelectionModel().getSelectedItems().size() != 1){
+        try{
+            TreeItem<String> itemm = (TreeItem<String>) predictedProjectsTreeView.getSelectionModel().getSelectedItem();
+            String name = itemm.getValue();
+            for(Project project : predictedProjects)
+                if(project.getName().equals(name))
+                    selectedProject2View = project;
+        }catch (Exception e){
+
+        }
+
+        if(selectedProject2View == null){
             alert.setTitle("Invalid Selection");
             alert.setContentText("Please select just one project.");
 
@@ -122,14 +143,17 @@ public class PredictEssentialResourceAllocationView extends Controller{
             }
 
         }else {
-            TreeItem<String> rootItem = new TreeItem<>(selectedProject.getName());
+            TreeItem<String> rootItem = new TreeItem<>(selectedProject2View.getName());
 
             rootItem.getChildren().addAll(
-                    new TreeItem<>("ID : " + selectedProject.getID()),
-                    new TreeItem<>("Budget : " + selectedProject.getBudget()),
-                    new TreeItem<>("Unique Identifier : " + selectedProject.getUniqueIdentifier()));
+                    new TreeItem<>("ID : " + selectedProject2View.getID()),
+                    new TreeItem<>("Budget : " + selectedProject2View.getBudget()),
+                    new TreeItem<>("Unique Identifier : " + selectedProject2View.getUniqueIdentifier()));
 
-            Requirement[] requirements = selectedProject.getRequirements();
+
+            Requirement[] requirements = selectedProject2View.getRequirementsRecursive();
+
+
 
             TreeItem<String> item = new TreeItem<>("Requirements");
             for(Requirement requirement : requirements){
@@ -137,12 +161,13 @@ public class PredictEssentialResourceAllocationView extends Controller{
                 item.getChildren().addAll(
                         new TreeItem<>("ID : " + requirement.getID()),
                         new TreeItem<>("Resource Name :" + requirement.getResourceName()),
-                        new TreeItem<>("Resource type : " + requirement.getResourceType()));
+                        new TreeItem<>("Resource type : " + requirement.getResourceType()),
+                        new TreeItem<>("Priority : " + RequirementPriorityEnum.values()[requirement.getRequirementPriority()].toString()));
                 rootItem.getChildren().addAll(item);
             }
 
 
-            predictedProjectsTreeView.setRoot(rootItem);
+            selectedProjectTreeView.setRoot(rootItem);
 
             animatePaneChange(projectViewPane,Direction.RIGHT);
 

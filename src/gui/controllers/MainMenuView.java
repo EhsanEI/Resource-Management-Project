@@ -70,9 +70,9 @@ public class MainMenuView {
 
 
         for( PermissionTitles permission : permissions)
-            if(permission.getTitleText() == PermissionTitles.RESOURCE_ALLOCATION_FLOW_REPORT.getTitleText() ||
-                    permission.getTitleText() == PermissionTitles.RESOURCE_REQUIREMENTS_REPORT.getTitleText() ||
-                    permission.getTitleText() == PermissionTitles.RESOURCES_REPORT.getTitleText())
+            if(permission.getTitleText().equals(PermissionTitles.RESOURCE_ALLOCATION_FLOW_REPORT.getTitleText()) ||
+                    permission.getTitleText().equals(PermissionTitles.RESOURCE_REQUIREMENTS_REPORT.getTitleText()) ||
+                    permission.getTitleText().equals(PermissionTitles.RESOURCES_REPORT.getTitleText()))
                 isReportMenu = true;
 
         if(isReportMenu){

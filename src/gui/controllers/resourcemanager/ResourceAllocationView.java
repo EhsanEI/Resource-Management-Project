@@ -28,7 +28,7 @@ public class ResourceAllocationView extends Controller{
 
     private Alert alert;
 
-    private ArrayList<Requirement> requirements = new ArrayList<>();
+    private Requirement[] requirements;
     private Requirement selectedRequirement;
 
     @FXML private AnchorPane resourceAllocationPane;
@@ -45,7 +45,7 @@ public class ResourceAllocationView extends Controller{
     }
     public void specialInit() throws IOException, ClassNotFoundException {
 
-        Requirement[] requirements = ClientResourceManagerLogicFacade.getInstance().getRequirements(user.getID());
+        requirements = ClientResourceManagerLogicFacade.getInstance().getRequirements(user.getID());
 
         for(Requirement item : requirements)
             requirementsListView.getItems().add(getRequirementString(item));
@@ -74,7 +74,7 @@ public class ResourceAllocationView extends Controller{
 
         for(String item : relatedResourcesNamesListView.getSelectionModel().getSelectedItems())
             for (Resource resource : resources)
-                if(getResourceString(resource) == item)
+                if(getResourceString(resource).equals(item))
                     allocatedResources.add(resource);
 
         Allocation allocation = new Allocation();
@@ -120,7 +120,7 @@ public class ResourceAllocationView extends Controller{
         }
     }
 
-    @FXML private void backFromRequirementView(Event event) {
+    @FXML private void backFromRequirmentView(Event event) {
         animatePaneChange(resourceAllocationPane, Direction.LEFT);
     }
 
@@ -143,7 +143,9 @@ public class ResourceAllocationView extends Controller{
                 selectedRequirement = item;
 
 
-        requirementSpecificationListView.getItems().removeAll(requirementSpecificationListView.getItems());
+
+
+        requirementSpecificationListView.getItems().clear();
 
         requirementSpecificationListView.getItems().addAll(
                 "ID : " + String.valueOf(selectedRequirement.getID()),
@@ -177,4 +179,6 @@ public class ResourceAllocationView extends Controller{
         result += resource.getName() + " : " + resource.getResourceState();
         return result;
     }
+
+
 }

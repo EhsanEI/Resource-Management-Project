@@ -15,7 +15,9 @@ package businesslogic.distribution.resource;
 
 import orm.ORMConstants;
 
-public class ModuleChange {
+import java.io.Serializable;
+
+public class ModuleChange implements Serializable {
 	public ModuleChange() {
 	}
 	

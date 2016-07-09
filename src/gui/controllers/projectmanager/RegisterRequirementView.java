@@ -96,7 +96,7 @@ public class RegisterRequirementView extends Controller {
     }
 
     @FXML private void RegisterRequirementPressed(ActionEvent event) throws PersistentException, IOException, ClassNotFoundException {
-        PersistentTransaction t = OODPersistentManager.instance().getSession().beginTransaction();
+
         Requirement requirement = new Requirement();
 
         Date sDate = new Date(startDatePicker.getValue().toEpochDay());

@@ -100,9 +100,10 @@ public class EstimateResourceAllocationView extends Controller {
             item.getChildren().add(new TreeItem<>("ID : " + informationResource.getID()));
             rootItem.getChildren().addAll(item);
 
-            TreeItem<String> req = new TreeItem<>("Requirements");
 
-            for(Requirement requirement : informationResource.getRequirements()){
+
+            for(Requirement requirement : informationResource.getRequirementsRecursive()){
+                TreeItem<String> req = new TreeItem<>("Requirements");
                 req.getChildren().clear();
                 req.getChildren().addAll(
                         new TreeItem<>("ID : " + requirement.getID()),
