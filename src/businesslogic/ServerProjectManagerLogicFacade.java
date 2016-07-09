@@ -43,7 +43,8 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
         for(HumanResource humanResource: assignments.keySet()) {
             try {
                 HumanResource newHumanResource = HumanResourceDAO.getHumanResourceByORMID(humanResource.getID());
-                newHumanResource.getProgramming().addModule(assignments.get(humanResource));
+                Module newModule = ModuleDAO.getModuleByORMID(assignments.get(humanResource).getID());
+                newHumanResource.getProgramming().addModule(newModule);
                 HumanResourceDAO.save(newHumanResource);
                 OODPersistentManager.instance().getSession().flush();
             }
