@@ -13,6 +13,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -33,13 +34,20 @@ public class FlowReportview extends Controller {
 
 
     @FXML private AnchorPane resourceFlowReportPane;
+    @FXML private AnchorPane diagramPane;
     @FXML private DatePicker fromDate;
     @FXML private DatePicker toDate;
 
     @FXML private ComboBox<String> resourceNameCombo;
     @FXML private ComboBox<String> resourceTypeCombo;
+    @FXML private ComboBox<String> resourcesCombo;
 
     @FXML private TableView resultTable;
+
+    @FXML private Table table;
+
+    private Resource[] resources;
+    private Resource selectedResource;
 
     private Alert alert;
 
@@ -53,15 +61,7 @@ public class FlowReportview extends Controller {
         for (ResourceType type : ResourceType.values())
             resourceTypeCombo.getItems().add(type.getTitle());
 
-        resourceTypeCombo.setOnAction(event -> {
-            try {
-                fillTheResourceNames();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
-            }
-        });
+
 
         alert = new Alert(Alert.AlertType.INFORMATION);
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
@@ -69,6 +69,7 @@ public class FlowReportview extends Controller {
     }
 
     private void fillTheResourceNames() throws IOException, ClassNotFoundException {
+        resourceNameCombo.getItems().clear();
         String[] names = ClientResourceManagerLogicFacade.getInstance().getResourceNames(user.getID(), resourceTypeCombo.getSelectionModel().getSelectedItem());
         for(String name : names)
             resourceNameCombo.getItems().add(name);
@@ -76,17 +77,17 @@ public class FlowReportview extends Controller {
 
     public void getFlowReportPressed(ActionEvent event) throws IOException, ClassNotFoundException {
 
-        if(resourceNameCombo.getSelectionModel().getSelectedItem() != null && resourceTypeCombo.getSelectionModel().getSelectedItem() != null){
-            Resource[] resources = ClientResourceManagerLogicFacade.getInstance().getResources(user.getID(),
-                    resourceTypeCombo.getSelectionModel().getSelectedItem(),
-                    resourceNameCombo.getSelectionModel().getSelectedItem());
+        if(resourcesCombo.getSelectionModel().getSelectedItem() != null && resourceTypeCombo.getSelectionModel().getSelectedItem() != null){
+            for(Resource resource : resources)
+                if(resourcesCombo.getSelectionModel().getSelectedItem().equals(getResourceString(resource)))
+                    selectedResource = resource;
 
             Date sDate = new Date(fromDate.getValue().toEpochDay());
             Date eDate = new Date(toDate.getValue().toEpochDay());
             businesslogic.utility.Date startDate = new businesslogic.utility.Date(sDate);
             businesslogic.utility.Date endDate = new businesslogic.utility.Date(eDate);
 
-            Table table = ClientResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[0],
+            table = ClientResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(selectedResource,
                     startDate,endDate);
             showReport(table);
         }else {
@@ -132,8 +133,35 @@ public class FlowReportview extends Controller {
     }
 
 
+    public void viewDiagramPressed(ActionEvent event) {
+        animatePaneChange(diagramPane, Direction.RIGHT);
+        plot();
+    }
+
+    private void plot() {
+
+    }
+
+    public void backFromDiagram(Event event) {
+        animatePaneChange(resourceFlowReportPane, Direction.LEFT);
+    }
+
+
+    public void resourceNameComboChanged(ActionEvent event) throws IOException, ClassNotFoundException {
+        resourcesCombo.getItems().clear();
+        resources = ClientResourceManagerLogicFacade.getInstance().getResources(user.getID(),
+                resourceTypeCombo.getSelectionModel().getSelectedItem(),resourceNameCombo.getSelectionModel().getSelectedItem());
+        for(Resource resource : resources)
+            resourcesCombo.getItems().add(getResourceString(resource));
+    }
 
 
 
+    public void resourceTypeComboChanged(ActionEvent event) throws IOException, ClassNotFoundException {
+        fillTheResourceNames();
+    }
 
+    private String getResourceString(Resource resource){
+        return resource.getUniqueIdentifier() + " : " + resource.getName();
+    }
 }

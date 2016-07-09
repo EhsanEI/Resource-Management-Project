@@ -13,6 +13,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -30,6 +31,7 @@ import java.util.Optional;
 public class ResourceRequirementsReportView extends Controller {
 
     @FXML private AnchorPane resourceRequirementReportPane;
+    @FXML private AnchorPane diagramPane;
     @FXML private ComboBox<String> informationResourceCombo;
     @FXML private TableView resultTable;
     private InformationResource[] informationResources;
@@ -103,4 +105,18 @@ public class ResourceRequirementsReportView extends Controller {
         return informationResource.getID() + informationResource.getName();
     }
 
+
+
+    private void plot() {
+
+    }
+
+    public void backFromDiagram(Event event) {
+        animatePaneChange(resourceRequirementReportPane, Direction.LEFT);
+    }
+
+    public void viewDigram(ActionEvent event) {
+        animatePaneChange(diagramPane, Direction.RIGHT);
+        plot();
+    }
 }
