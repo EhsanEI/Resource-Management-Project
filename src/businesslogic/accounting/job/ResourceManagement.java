@@ -78,6 +78,7 @@ public class ResourceManagement extends businesslogic.accounting.job.Job {
 		permissions.add(PermissionTitles.RESOURCES_REPORT);
 		permissions.add(PermissionTitles.RESOURCE_REQUIREMENTS_REPORT);
 		permissions.add(PermissionTitles.RESOURCE_ALLOCATION_FLOW_REPORT);
+		permissions.add(PermissionTitles.ESSENTIAL_RESOURCE_ALLOCATION_PREDICTION);
 		return permissions.toArray(new PermissionTitles[permissions.size()]);
 	}
 	
