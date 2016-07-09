@@ -357,9 +357,9 @@ public class Main {
             System.out.println(i.getName());
         }
         System.out.println();
-        Report report = ServerResourceManagerLogicFacade.getInstance()
-                .reportResourceRequirements(informationResources[informationResourceInd].getID());
-        Table table = report.getTable();
+
+        Table table = ServerResourceManagerLogicFacade.getInstance()
+                .reportResourceRequirements(informationResources[informationResourceInd].getID());;
 //
         table.print();
     }
@@ -389,8 +389,8 @@ public class Main {
         endDate.setMonth(3);
         endDate.setDay(4);
 
-        FlowReport report = ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[resourceInd], startDate, endDate);
-        report.getTable().print();
+        Table table = ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[resourceInd], startDate, endDate);
+        table.print();
 
     }
 

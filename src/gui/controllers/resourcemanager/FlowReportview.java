@@ -86,9 +86,9 @@ public class FlowReportview extends Controller {
             businesslogic.utility.Date startDate = new businesslogic.utility.Date(sDate);
             businesslogic.utility.Date endDate = new businesslogic.utility.Date(eDate);
 
-            FlowReport flowReport = ClientResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[0],
+            Table table = ClientResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(resources[0],
                     startDate,endDate);
-            showReport(flowReport);
+            showReport(table);
         }else {
             resultTable.getScene().getRoot().setDisable(true);
             alert.setTitle("Empty selection!");
@@ -103,8 +103,7 @@ public class FlowReportview extends Controller {
 
     }
 
-    private void showReport(FlowReport flowReport) {
-        Table table = flowReport.getTable();
+    private void showReport(Table table) {
 
         String[] headers = table.getHeaders();
         String[][] contents = table.getContents();

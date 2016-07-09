@@ -12,6 +12,7 @@ import businesslogic.support.SystemConfiguration;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 import businesslogic.utility.Table;
+import javafx.scene.control.Tab;
 
 import java.io.*;
 import java.lang.System;
@@ -244,22 +245,20 @@ public class ServerNetwork {
                                 ), "Processed");
                 break;
             case "reportResources":
-                Table table = ServerResourceManagerLogicFacade.getInstance().reportResources();
-                networkResponse = new NetworkResponse(table, "Processed");
+                Table reportResources = ServerResourceManagerLogicFacade.getInstance().reportResources();
+                networkResponse = new NetworkResponse(reportResources, "Processed");
                 break;
             case "reportFlowResourceAllocations":
-                networkResponse = new NetworkResponse(
-                        ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(
-                                (Resource)request.getParams().get(0),
-                                (Date)request.getParams().get(1),
-                                (Date)request.getParams().get(2)
-                        ), "Processed");
+                Table reportFlowResourceAllocations = ServerResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(
+                        (Resource)request.getParams().get(0),
+                        (Date)request.getParams().get(1),
+                        (Date)request.getParams().get(2));
+
+                networkResponse = new NetworkResponse(reportFlowResourceAllocations, "Processed");
                 break;
             case "reportResourceRequirements":
-                networkResponse = new NetworkResponse(
-                        ServerResourceManagerLogicFacade.getInstance().reportResourceRequirements(
-                                (Integer) request.getParams().get(0)
-                                ), "Processed");
+                Table reportResourceRequirements =ServerResourceManagerLogicFacade.getInstance().reportResourceRequirements((Integer) request.getParams().get(0));
+                networkResponse = new NetworkResponse(reportResourceRequirements, "Processed");
                 break;
             case "predictEssentialResourceAllocations":
                 networkResponse = new NetworkResponse(

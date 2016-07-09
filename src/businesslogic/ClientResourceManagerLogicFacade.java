@@ -6,7 +6,6 @@ import businesslogic.distribution.resource.InformationResource;
 import businesslogic.distribution.resource.Project;
 import businesslogic.distribution.resource.Resource;
 import businesslogic.report.FlowReport;
-import businesslogic.report.ResourceReport;
 import businesslogic.report.ResourceRequirementReport;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
@@ -108,19 +107,19 @@ public class ClientResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public FlowReport reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate) throws IOException, ClassNotFoundException {
+    public Table reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(resource);
         params.add(startDate);
         params.add(endDate);
-        return (FlowReport)clientNetwork.sendRequest(new NetworkRequest("reportFlowResourceAllocations",params)).getResponse();
+        return (Table)clientNetwork.sendRequest(new NetworkRequest("reportFlowResourceAllocations",params)).getResponse();
     }
 
     @Override
-    public ResourceRequirementReport reportResourceRequirements(int informationResourceID) throws IOException, ClassNotFoundException {
+    public Table reportResourceRequirements(int informationResourceID) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(informationResourceID);
-        return (ResourceRequirementReport)clientNetwork.sendRequest(new NetworkRequest("reportResourceRequirements",params)).getResponse();
+        return (Table)clientNetwork.sendRequest(new NetworkRequest("reportResourceRequirements",params)).getResponse();
     }
 
     @Override

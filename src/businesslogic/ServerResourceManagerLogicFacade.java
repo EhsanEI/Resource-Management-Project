@@ -260,11 +260,11 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public FlowReport reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate) {
+    public Table reportFlowResourceAllocations(Resource resource, Date startDate, Date endDate) {
         try {
             FlowReport report = new FlowReport(resource, startDate, endDate);
             report.makeReport();
-            return report;
+            return report.getTable();
         }
         catch (PersistentException ex) {
         }
@@ -272,11 +272,11 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public ResourceRequirementReport reportResourceRequirements(int informationResourceID) {
+    public Table reportResourceRequirements(int informationResourceID) {
         try {
             ResourceRequirementReport report = new ResourceRequirementReport(informationResourceID);
             report.makeReport();
-            return report;
+            return report.getTable();
         }
         catch (PersistentException ex) {
         }

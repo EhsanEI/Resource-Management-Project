@@ -70,8 +70,8 @@ public class ResourceRequirementsReportView extends Controller {
         }
 
     }
-    private void showReport(ResourceRequirementReport resourceReport) {
-        Table table = resourceReport.getTable();
+    private void showReport(Table table) {
+
 
         String[] headers = table.getHeaders();
         String[][] contents = table.getContents();
