@@ -112,7 +112,7 @@ public class Programming extends businesslogic.accounting.job.Job {
 
 	@Override
 	public Tree<String> getInfo() {
-		Tree<String> info = new Tree<>(getClass().toString());
+		Tree<String> info = new Tree<>(JobType.Programming.getTitle());
 		for(Specialty specialty: (Set<Specialty>) getORM_Specialties()) {
 			info.addChild(new Tree<>(specialty.getTitle()));
 		}

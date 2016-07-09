@@ -13,7 +13,9 @@
  */
 package businesslogic.distribution.resource;
 
-public class Spec {
+import java.io.Serializable;
+
+public class Spec implements Serializable{
 	public Spec() {
 	}
 	

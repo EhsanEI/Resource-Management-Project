@@ -68,7 +68,13 @@ public class Job implements Serializable{
 	}
 	
 	public Tree<String> getInfo() {
-		return new Tree<>(getClass().toString());
+		if(Programming.class.isInstance(this.getClass())) {
+			Tree<String> tree = new Tree<>(JobType.Programming.getTitle());
+			return tree;
+		}else if(ProjectManagement.class.isInstance(this.getClass()))
+			return new Tree<>(JobType.ProjectManagement.getTitle());
+		else
+			return new Tree<>(JobType.ResourceManagement.getTitle());
 	}
 	
 	public String toString() {

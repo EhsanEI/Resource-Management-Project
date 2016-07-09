@@ -69,16 +69,6 @@
                   <Font name="Cooper Black" size="24.0" />
                </font>
             </Label>
-            <TextField fx:id="passwordTextField" layoutX="185.0" layoutY="167.0" prefHeight="25.0" prefWidth="196.0">
-               <effect>
-                  <InnerShadow />
-               </effect>
-            </TextField>
-            <TextField fx:id="PasswordConfirmationTextField" layoutX="185.0" layoutY="227.0" prefHeight="25.0" prefWidth="196.0">
-               <effect>
-                  <InnerShadow />
-               </effect>
-            </TextField>
             <TextField fx:id="emailTextField" layoutX="185.0" layoutY="287.0" prefHeight="25.0" prefWidth="196.0" promptText="example@example.com">
                <effect>
                   <InnerShadow />
@@ -143,6 +133,16 @@
                   <Font name="Cooper Black" size="24.0" />
                </font>
             </Label>
+            <PasswordField fx:id="PasswordConfirmationTextField" layoutX="185.0" layoutY="227.0" prefHeight="25.0" prefWidth="196.0">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </PasswordField>
+            <PasswordField fx:id="passwordTextField" layoutX="185.0" layoutY="167.0" prefHeight="25.0" prefWidth="196.0">
+               <effect>
+                  <InnerShadow />
+               </effect>
+            </PasswordField>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="jobAdditionPane" layoutX="1993.0" prefHeight="600.0" prefWidth="400.0">

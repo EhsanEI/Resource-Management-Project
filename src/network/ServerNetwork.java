@@ -83,6 +83,7 @@ public class ServerNetwork {
                 break;
 
             case "signup":
+
                 networkResponse = new NetworkResponse(
                         ServerAccountingLogicFacade.getInstance().signup((User) request.getParams().get(0),
                                 (Job[]) request.getParams().get(1), (Specialty[]) request.getParams().get(2),

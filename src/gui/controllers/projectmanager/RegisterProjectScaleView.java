@@ -104,7 +104,7 @@ public class RegisterProjectScaleView extends Controller {
         animatePaneChange(initializeProjectPane, Direction.RIGHT);
     }
 
-    public void sepcialInit(){
+    public void specialInit(){
         systems.clear();
         subsystems.clear();
         modules.clear();
@@ -119,7 +119,9 @@ public class RegisterProjectScaleView extends Controller {
     @FXML private void addTechnology(ActionEvent event) {
         if(technologyTextField.getText() != "")
             technologies.add(technologyTextField.getText());
+        technologiesListView.getItems().add(technologyTextField.getText());
         technologyTextField.setText("");
+
     }
 
     @FXML private void addSystemPressed(ActionEvent event) {

@@ -48,7 +48,8 @@ public class AccountingRequestsView extends Controller{
     }
 
     private String getUserString(User user){
-        return user.getUsername() + user.getPassword() ;
+
+        return user.getUsername() + " : " +  user.getPassword() ;
     }
 
     @FXML private void approveButtonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
@@ -75,7 +76,7 @@ public class AccountingRequestsView extends Controller{
         }
     }
 
-    @FXML private void rejectbuttonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
+    @FXML private void rejectButtonPressed(ActionEvent event) throws IOException, ClassNotFoundException {
         ArrayList<String> processedItems = new ArrayList<>();
         if(unApprovedUsersListView.getSelectionModel().getSelectedItems().isEmpty()){
             alert.setTitle("No selected user!");
@@ -89,10 +90,11 @@ public class AccountingRequestsView extends Controller{
             for(String item : unApprovedUsersListView.getSelectionModel().getSelectedItems())
                 for (User user : unApprovedUsers)
                     if(item.equals(getUserString(user)))
-                        if(ClientManagerLogicFacade.getInstance().approveUser(user, false))
-                            processedItems.add(getUserString(user));
+                        if(ClientManagerLogicFacade.getInstance().approveUser(user, false)) {
+                            unApprovedUsersListView.getItems().remove(getUserString(user));
+                        }
 
-            unApprovedUsersListView.getItems().removeAll(processedItems);
+
         }
     }
 }

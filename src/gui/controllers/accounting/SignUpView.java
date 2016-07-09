@@ -6,6 +6,7 @@ import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.*;
 import businesslogic.distribution.resource.HumanResource;
 import businesslogic.distribution.resource.HumanResourceDAO;
+import businesslogic.distribution.resource.Spec;
 import businesslogic.utility.Notification;
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
@@ -136,17 +137,24 @@ public class SignUpView {
         ArrayList<HumanResource> humanResources = new ArrayList<>();
 
         for(String job : jobTitles){
-            if(job == JobType.Programming.getTitle()){
-                Programming programming= new Programming();
+            if(job.equals(JobType.Programming.getTitle())){
+                Programming programming = ProgrammingDAO.createProgramming();
                 jobs.add(programming);
                 humanResource.setProgramming(programming);
                 humanResource.setName(usernameTextField.getText());
                 humanResource.setUniqueIdentifier("HumanResource_" + usernameTextField.getText());
                 humanResources.add(humanResource);
-            }else if(job == JobType.ProjectManagement.getTitle()){
-                jobs.add(new ProjectManagement());
-            }else if(job == JobType.ResourceManagement.getTitle()){
-                jobs.add(new ResourceManagement());
+                user.addJob(programming);
+                for(Specialty specialty : specialties)
+                    programming.addSpecialty(specialty);
+            }else if(job.equals(JobType.ProjectManagement.getTitle())){
+                ProjectManagement projectManagement = ProjectManagementDAO.createProjectManagement();
+                jobs.add(projectManagement);
+                user.addJob(projectManagement);
+            }else if(job.equals(JobType.ResourceManagement.getTitle())){
+                ResourceManagement resourceManagement = ResourceManagementDAO.createResourceManagement();
+                jobs.add(resourceManagement);
+                user.addJob(resourceManagement);
             }
         }
 
@@ -172,8 +180,6 @@ public class SignUpView {
                 return;
             }
         }
-
-        // TODO
 
         Notification notification = ClientAccountingLogicFacade.getInstance().signup(user, jobs.toArray(new Job[jobs.size()]),
                 specialties.toArray(new Specialty[specialties.size()]),

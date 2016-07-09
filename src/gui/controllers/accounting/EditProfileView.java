@@ -4,6 +4,7 @@ import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.ClientProgrammerLogicFacade;
 import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.*;
+import businesslogic.distribution.resource.Spec;
 import businesslogic.utility.Notification;
 import com.sun.org.apache.xalan.internal.xsltc.dom.NthIterator;
 import gui.Direction;
@@ -83,9 +84,14 @@ public class EditProfileView extends Controller {
 
         Job[] jobs = user.getJobs();
         for (Job job : jobs){
-            if(Programming.class.isInstance(job))
+            if(Programming.class.isInstance(job)) {
                 jobsListView.getItems().add(JobType.Programming.getTitle());
-            else if(ProjectManagement.class.isInstance(job))
+                addSpecialtyButton.setDisable(false);
+                specialtiesListView.setDisable(false);
+                Programming programming = (Programming)job;
+                for (Specialty specialty : programming.getSpecialties())
+                    specialtiesListView.getItems().addAll(specialty.getTitle());
+            }else if(ProjectManagement.class.isInstance(job))
                 jobsListView.getItems().add(JobType.ProjectManagement.getTitle());
             else
                 jobsListView.getItems().add(JobType.ResourceManagement.getTitle());
@@ -96,7 +102,7 @@ public class EditProfileView extends Controller {
 
         animatePaneChange(signUpPane, Direction.LEFT);
 
-        specialtiesListView.getItems().removeAll();
+        specialtiesListView.getItems().clear();
 
         for(String specialty : specialtiesListViewInSpecialtyAddition.getItems())
             specialtiesListView.getItems().add(specialty);
@@ -130,19 +136,22 @@ public class EditProfileView extends Controller {
     }
 
     @FXML private void singleJobAddButtonPressed(ActionEvent event) {
-        if (jobTypeCombo.getValue() == JobType.Programming.getTitle() && !jobsListViewInJobAddition.getItems().contains(jobTypeCombo.getValue())) {
+        if (jobTypeCombo.getValue().equals(JobType.Programming.getTitle()) && !jobsListViewInJobAddition.getItems().contains(jobTypeCombo.getValue())) {
             jobTitles.add(jobTypeCombo.getValue());
             jobsListViewInJobAddition.getItems().add(jobTypeCombo.getValue());
-        } else if (jobTypeCombo.getValue() == JobType.ProjectManagement.getTitle()  && !jobsListViewInJobAddition.getItems().contains(jobTypeCombo.getValue())) {
+        } else if (jobTypeCombo.getValue().equals(JobType.ProjectManagement.getTitle())  && !jobsListViewInJobAddition.getItems().contains(jobTypeCombo.getValue())) {
             jobTitles.add(jobTypeCombo.getValue());
             jobsListViewInJobAddition.getItems().add(jobTypeCombo.getValue());
-        }else if (jobTypeCombo.getValue() == JobType.ResourceManagement.getTitle()  && !jobsListViewInJobAddition.getItems().contains(jobTypeCombo.getValue())) {
+        }else if (jobTypeCombo.getValue().equals(JobType.ResourceManagement.getTitle())  && !jobsListViewInJobAddition.getItems().contains(jobTypeCombo.getValue())) {
             jobTitles.add(jobTypeCombo.getValue());
             jobsListViewInJobAddition.getItems().add(jobTypeCombo.getValue());
         }
     }
 
     @FXML private void addSpecialtyButtonPressed(ActionEvent event) {
+        specialtiesListViewInSpecialtyAddition.getItems().clear();
+        for(String item : specialtiesListView.getItems())
+            specialtiesListViewInSpecialtyAddition.getItems().add(item);
         animatePaneChange(specialtyAdditionPane,Direction.RIGHT);
     }
 
@@ -164,6 +173,11 @@ public class EditProfileView extends Controller {
     }
 
     @FXML private void addJobButtonPressed(ActionEvent event) {
+        jobsListViewInJobAddition.getItems().clear();
+
+        for(String item : jobsListView.getItems())
+            jobsListViewInJobAddition.getItems().addAll(item);
+
         animatePaneChange(jobAdditionPane,Direction.RIGHT);
     }
 

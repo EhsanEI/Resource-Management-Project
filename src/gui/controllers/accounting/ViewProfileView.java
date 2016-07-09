@@ -1,5 +1,6 @@
 package gui.controllers.accounting;
 
+import businesslogic.accounting.job.JobType;
 import businesslogic.accounting.user.User;
 import businesslogic.utility.Tree;
 import gui.Direction;
@@ -34,12 +35,19 @@ public class ViewProfileView extends Controller{
     public void specialInit(){
         usernameLabel.setText(user.getUsername());
         emailLabel.setText(user.getEmail());
+
         Tree<String> jobsInfo = user.getJobInfo();
 
         TreeItem<String> rootItem = new TreeItem<>("Jobs");
 
         for(Tree<String> child : jobsInfo.getChildren()){
-            TreeItem<String> item = new TreeItem<>(child.toString());
+            TreeItem<String> item = new TreeItem<>(child.getData());
+
+            if(child.getData().equals(JobType.Programming.getTitle())){
+                for(Tree<String> i : child.getChildren()){
+                    item.getChildren().add(new TreeItem<>(i.getData()));
+                }
+            }
             rootItem.getChildren().add(item);
         }
 

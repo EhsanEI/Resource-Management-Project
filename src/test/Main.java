@@ -27,7 +27,6 @@ import javax.mail.MessagingException;
 import java.lang.System;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Map;
 import java.util.Set;
 
 /**
@@ -76,7 +75,6 @@ public class Main {
         } catch (PersistentException e) {
             e.printStackTrace();
         }
-
     }
 
     public static void test2() {

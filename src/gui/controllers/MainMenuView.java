@@ -1,5 +1,6 @@
 package gui.controllers;
 
+import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.accounting.PermissionTitles;
 import businesslogic.accounting.user.User;
 import gui.StartMenu;
@@ -43,9 +44,6 @@ public class MainMenuView {
 
 
 
-    //For Test
-    private ArrayList<PermissionTitles> permissionsList = new ArrayList<>();
-
 
     public void setUser(User user) {
         this.user = user;
@@ -65,13 +63,13 @@ public class MainMenuView {
     }
 
     private void initializeReportMenu() {
-        //TODO
-        // get user permissions and check she has report permission or not
-        PermissionTitles[] permissions = permissionsList.toArray(new PermissionTitles[permissionsList.size()]);
+
+        PermissionTitles[] permissions = user.getPermissions();
+
         boolean isReportMenu = false;
 
 
-        for( PermissionTitles permission : permissionsList)
+        for( PermissionTitles permission : permissions)
             if(permission.getTitleText() == PermissionTitles.RESOURCE_ALLOCATION_FLOW_REPORT.getTitleText() ||
                     permission.getTitleText() == PermissionTitles.RESOURCE_REQUIREMENTS_REPORT.getTitleText() ||
                     permission.getTitleText() == PermissionTitles.RESOURCES_REPORT.getTitleText())
@@ -80,7 +78,7 @@ public class MainMenuView {
         if(isReportMenu){
             reportMenu = new Menu("Report");
 
-            for(PermissionTitles permission : permissionsList )
+            for(PermissionTitles permission : permissions )
                 switch (permission.getTitleText()) {
                     case "Resource Allocation Flow Report":
                         MenuItem reportResourceAllocationMenuItem = new MenuItem(permission.getTitleText());
@@ -132,16 +130,9 @@ public class MainMenuView {
     private void initializePermissionMenu() {
         permissionMenu = new Menu("Permissions");
 
-        //TODO
-        // get user permissions and generate based on that
-        // For Test
-        ////////////////////////////////////////////////////////////
-        for(PermissionTitles title : PermissionTitles.values()){
-            permissionsList.add(title);
-        }
 
-        PermissionTitles[] permissions = permissionsList.toArray(new PermissionTitles[permissionsList.size()]);
-        ////////////////////////////////////////////////////////////
+        PermissionTitles[] permissions = user.getPermissions();
+
 
         for(PermissionTitles permission : permissions )
             switch (permission.getTitleText()) {
@@ -373,8 +364,7 @@ public class MainMenuView {
         if (result.get() == ButtonType.OK){
             stage = (Stage) mainPane.getScene().getWindow();
             stage.close();
-            //TODO
-            //ClientAccountingLogicFacade.getInstance().logout(user.getID());
+            ClientAccountingLogicFacade.getInstance().logout(user.getID());
             new StartMenu().start(stage);
         } else {
            mainPane.setDisable(false);

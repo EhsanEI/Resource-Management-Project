@@ -13,7 +13,9 @@
  */
 package businesslogic.accounting.job;
 
-public class UserJob {
+import java.io.Serializable;
+
+public class UserJob implements Serializable{
 	public UserJob() {
 	}
 	

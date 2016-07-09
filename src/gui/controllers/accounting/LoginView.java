@@ -2,8 +2,8 @@ package gui.controllers.accounting;
 
 import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.accounting.AuthenticationResult;
-import businesslogic.accounting.job.ResourceManagement;
-import businesslogic.accounting.job.ProjectManagement;
+import businesslogic.accounting.job.*;
+import businesslogic.accounting.user.ManagerDAO;
 import businesslogic.accounting.user.User;
 import gui.MainMenu;
 import javafx.event.ActionEvent;
@@ -66,17 +66,12 @@ public class LoginView {
     }
 
     @FXML private void signInPressed() throws Exception {
+
+        User user;
+
         AuthenticationResult authenticationResult = ClientAccountingLogicFacade.getInstance().login(usernameTextField.getText(), passwordField.getText());
-        //User user =authenticationResult.getUser();
-
-
-        // For Test
-        User user = new User();
-        user.setUsername("qizilbash");
-        user.setEmail("gmail@qizilbash.com");
-        user.addJob(new ResourceManagement());
-        user.addJob(new ProjectManagement());
-        user.setPassword("12345");
+        user =authenticationResult.getUser();
+        //user = ManagerDAO.createManager();
 
 
         if(user != null)
@@ -86,7 +81,7 @@ public class LoginView {
 
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Login Failed!");
-            alert.setContentText(ClientAccountingLogicFacade.getInstance().recoverPassword(usernameTextField.getText()).getContent());
+            alert.setContentText(authenticationResult.getNotification().getContent());
 
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
 

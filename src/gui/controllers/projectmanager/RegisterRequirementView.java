@@ -18,6 +18,8 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
+import orm.OODPersistentManager;
 
 import java.io.IOException;
 import java.util.Date;
@@ -61,8 +63,9 @@ public class RegisterRequirementView extends Controller {
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
         stage.getIcons().add(new Image(getClass().getResource("../../resources/erp.png").toString()));
     }
+
     @FXML private void RegisterARequirementPressed(ActionEvent event) {
-        if(informationResourcesListView.getSelectionModel().getSelectedItems().size() !=0)
+        if(informationResourcesListView.getSelectionModel().getSelectedItems().size() !=1)
         {
             informationResourcesListView.getScene().getRoot().setDisable(true);
 
@@ -87,13 +90,15 @@ public class RegisterRequirementView extends Controller {
                 for(RequirementPriorityEnum resourcePriority : RequirementPriorityEnum.values())
                     priorityCombo.getItems().add(resourcePriority.toString());
 
+
             animatePaneChange(registerRequirementPane,Direction.RIGHT);
         }
 
     }
 
     @FXML private void RegisterRequirementPressed(ActionEvent event) throws PersistentException, IOException, ClassNotFoundException {
-       Requirement requirement = RequirementDAO.createRequirement();
+        PersistentTransaction t = OODPersistentManager.instance().getSession().beginTransaction();
+        Requirement requirement = RequirementDAO.createRequirement();
 
         Date sDate = new Date(startDatePicker.getValue().toEpochDay());
         Date eDate = new Date(endDatePicker.getValue().toEpochDay());
@@ -106,7 +111,7 @@ public class RegisterRequirementView extends Controller {
         requirement.setResourceName(resourceNamesListView.getSelectionModel().getSelectedItem());
         requirement.setResourceType(resourceTypeCombo.getSelectionModel().getSelectedItem());
         requirement.setRequirementPriority(RequirementPriorityEnum.valueOf(priorityCombo.getSelectionModel().getSelectedItem()).ordinal());
-        requirement.setInformationResource(ModuleDAO.getModuleByORMID(selectedInformationResource.getID()));
+        requirement.setInformationResource(selectedInformationResource);
 
 
         Notification notification = ClientProjectManagerLogicFacade.getInstance().registerRequirement(user.getID(), requirement);
