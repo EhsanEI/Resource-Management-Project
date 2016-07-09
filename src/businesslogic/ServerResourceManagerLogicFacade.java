@@ -109,6 +109,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
         Requirement requirement = null;
         try {
             requirement = RequirementDAO.getRequirementByORMID(requirementID);
+            OODPersistentManager.instance().getSession().flush();
         } catch (PersistentException e) {
             e.printStackTrace();
             notification.setContent("Requirement not found.");
@@ -127,6 +128,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             pm.removeRequirement(requirement);
             ProjectManagementDAO.save(pm);
             RequirementDAO.delete(requirement);
+            OODPersistentManager.instance().getSession().flush();
         } catch (PersistentException e) {
             e.printStackTrace();
             notification.setContent("Cannot reject the requirement.");

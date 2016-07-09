@@ -41,9 +41,11 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
     public Notification assignModules(HashMap<HumanResource, Module> assignments) {
         StringBuffer msg = new StringBuffer("");
         for(HumanResource humanResource: assignments.keySet()) {
-            humanResource.getProgramming().addModule(assignments.get(humanResource));
             try {
-                HumanResourceDAO.save(humanResource);
+                HumanResource newHumanResource = HumanResourceDAO.getHumanResourceByORMID(humanResource.getID());
+                newHumanResource.getProgramming().addModule(assignments.get(humanResource));
+                HumanResourceDAO.save(newHumanResource);
+                OODPersistentManager.instance().getSession().flush();
             }
             catch (PersistentException ex) {
                 ex.printStackTrace();
@@ -51,7 +53,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
             }
         }
         Notification notification = NotificationDAO.createNotification();
-        if(msg.length() == 0) {
+        if(msg.length() > 0) {
             notification.setContent(msg.toString());
         }
         else {
@@ -95,6 +97,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
             ProjectDAO.save(newProject);
 
             ProjectManagementDAO.save(pm);
+            OODPersistentManager.instance().getSession().flush();
         }
         catch(PersistentException ex) {
             ex.printStackTrace();
@@ -126,6 +129,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
             InformationResource oldResource = InformationResourceDAO.getInformationResourceByORMID(resource.getID());
             oldResource.addRequirement(newRequirement);
             InformationResourceDAO.save(oldResource);
+            OODPersistentManager.instance().getSession().flush();
             Notification notification = NotificationDAO.createNotification();
             notification.setContent("The requirement has been registered successfully.");
             return notification;
