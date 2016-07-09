@@ -18,7 +18,7 @@ public interface ProjectManagerLogicInterface {
 
     Notification registerProjectScale(int UserID, Project newProject) throws IOException, ClassNotFoundException;
 
-    InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) throws IOException, ClassNotFoundException;
+    Project[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) throws IOException, ClassNotFoundException;
 
     Notification registerRequirement(int userID, Requirement newRequirement, InformationResource resource) throws IOException, ClassNotFoundException;
 

@@ -7,6 +7,8 @@ import businesslogic.distribution.resource.Project;
 import businesslogic.distribution.resource.Resource;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Esi on 7/6/2016.
@@ -23,7 +25,7 @@ public class ResourceAllocationPrediction extends ResourceAllocationSearch {
     }
 
     @Override
-    public InformationResource[] search() {
+    public Project[] search() {
 
         Requirement[] requirements = project.getRequirementsRecursive();
 

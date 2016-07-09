@@ -112,7 +112,7 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) {
+    public Project[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) {
         ResourceAllocationEstimation resourceAllocationEstimation =
                 new ResourceAllocationEstimation(technologies, startDate, endDate, budget);
         resourceAllocationEstimation.search();

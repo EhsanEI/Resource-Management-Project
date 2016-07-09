@@ -1,14 +1,15 @@
 package businesslogic.prediction;
 
-import businesslogic.distribution.resource.InformationResource;
-import businesslogic.distribution.resource.InformationResourceDAO;
+import businesslogic.distribution.Allocation;
+import businesslogic.distribution.requirement.Requirement;
+import businesslogic.distribution.resource.*;
+import businesslogic.distribution.resource.System;
 import businesslogic.utility.Date;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
 import orm.OODPersistentManager;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Esi on 7/6/2016.
@@ -28,7 +29,7 @@ public class ResourceAllocationEstimation extends ResourceAllocationSearch {
     }
 
     @Override
-    public InformationResource[] search() {
+    public Project[] search() {
         try {
             if(technologies.length < 1) {
                 return null;
@@ -46,11 +47,27 @@ public class ResourceAllocationEstimation extends ResourceAllocationSearch {
             PersistentSession session = OODPersistentManager.instance().getSession();
             List<Integer> resultIDs = session.createSQLQuery(condition.toString()).list();
 
-            ArrayList<InformationResource> result = new ArrayList<>();
+            ArrayList<Project> projects = new ArrayList<>();
             for(Integer id:resultIDs) {
-                result.add(InformationResourceDAO.getInformationResourceByORMID(id));
+                InformationResource informationResource = InformationResourceDAO.getInformationResourceByORMID(id);
+                if(informationResource instanceof System) {
+                    int projectID = (int) session.createSQLQuery("SELECT ResourceID2 FROM Resource WHERE ID2 = "
+                            + informationResource.getID()).uniqueResult();
+                    Project project = ProjectDAO.getProjectByORMID(projectID);
+                    projects.add(project);
+                } else if(informationResource instanceof Project) {
+                    projects.add((Project) informationResource);
+                }
             }
-            setResults(result.toArray(new InformationResource[result.size()]));
+
+            ArrayList<Project> result = new ArrayList<>();
+
+            for(Project project: projects) {
+                result.add(project);
+            }
+
+
+            setResults(result.toArray(new Project[result.size()]));
             return getResults();
         }
         catch(PersistentException ex) {

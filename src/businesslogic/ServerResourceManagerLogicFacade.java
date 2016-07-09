@@ -282,7 +282,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
     }
 
     @Override
-    public InformationResource[] predictEssentialResourceAllocations(Project project) {
+    public Project[] predictEssentialResourceAllocations(Project project) {
         Project[] allProjects = getAllProjectList();
         ResourceAllocationPrediction resourceAllocationPrediction = new ResourceAllocationPrediction(project, allProjects);
         resourceAllocationPrediction.search();

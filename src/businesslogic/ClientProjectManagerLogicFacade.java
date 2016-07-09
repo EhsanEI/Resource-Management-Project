@@ -49,13 +49,13 @@ public class ClientProjectManagerLogicFacade implements ProjectManagerLogicInter
     }
 
     @Override
-    public InformationResource[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) throws IOException, ClassNotFoundException {
+    public Project[] estimateResourceAllocations(String[] technologies, Date startDate, Date endDate, int budget) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(technologies);
         params.add(startDate);
         params.add(endDate);
         params.add(budget);
-        return (InformationResource[])clientNetwork.sendRequest(new NetworkRequest("estimateResourceAllocations",params)).getResponse();
+        return (Project[]) clientNetwork.sendRequest(new NetworkRequest("estimateResourceAllocations",params)).getResponse();
     }
 
     @Override
