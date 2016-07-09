@@ -139,7 +139,6 @@ public class User implements Serializable {
 		return ORM_emails;
 	}
 	
-	public final network.EmailSetCollection emails = new network.EmailSetCollection(this, _ormAdapter, ORMConstants.KEY_USER_EMAILS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public void setORM_UserJobs(java.util.Set value) {
 		this.ORM_userJobs = value;
