@@ -49,8 +49,6 @@ public class ResourceReport extends Report implements Serializable {
         }
 
         Table table = new Table(headers, contents);
-        System.out.println("Hey!");
-        table.print();
         setTable(table);
         return table;
     }
