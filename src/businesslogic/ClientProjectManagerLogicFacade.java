@@ -1,17 +1,19 @@
 package businesslogic;
 
-import businesslogic.distribution.requirement.Requirement;
-import businesslogic.distribution.resource.*;
-import businesslogic.utility.Date;
-import businesslogic.utility.Notification;
-import network.ClientNetwork;
-import network.NetworkRequest;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
+
+import network.ClientNetwork;
+import network.NetworkRequest;
+import businesslogic.distribution.requirement.Requirement;
+import businesslogic.distribution.resource.HumanResource;
+import businesslogic.distribution.resource.InformationResource;
+import businesslogic.distribution.resource.Module;
+import businesslogic.distribution.resource.Project;
+import businesslogic.utility.Date;
+import businesslogic.utility.Notification;
 
 /**
  * Created by Esi on 6/22/2016.

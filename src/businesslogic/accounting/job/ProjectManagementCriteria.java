@@ -16,7 +16,10 @@ package businesslogic.accounting.job;
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import org.orm.criteria.*;
+import org.orm.criteria.AbstractORMCriteria;
+import org.orm.criteria.CollectionExpression;
+import org.orm.criteria.IntegerExpression;
+
 import orm.OODPersistentManager;
 
 public class ProjectManagementCriteria extends AbstractORMCriteria {

@@ -1,19 +1,20 @@
 package businesslogic;
 
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import orm.OODPersistentManager;
 import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.Programming;
 import businesslogic.accounting.job.ProgrammingDAO;
-import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
-import businesslogic.distribution.resource.*;
+import businesslogic.distribution.resource.Module;
+import businesslogic.distribution.resource.ModuleChange;
+import businesslogic.distribution.resource.ModuleChangeDAO;
+import businesslogic.distribution.resource.ModuleDAO;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
-import orm.OODPersistentManager;
-
-import java.util.List;
 
 /**
  * Created by Esi on 6/22/2016.

@@ -1,14 +1,12 @@
 package businesslogic.accounting;
 
+import java.util.ArrayList;
+
+import org.orm.PersistentException;
+
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
 import businesslogic.utility.Notification;
-import org.orm.PersistentException;
-
-import java.net.Socket;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * Created by Esi on 6/24/2016.

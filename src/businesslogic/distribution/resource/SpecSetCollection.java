@@ -15,6 +15,7 @@ package businesslogic.distribution.resource;
 
 import org.orm.PersistentException;
 import org.orm.PersistentManager;
+
 import orm.OODPersistentManager;
 
 public class SpecSetCollection extends org.orm.util.ORMSet {

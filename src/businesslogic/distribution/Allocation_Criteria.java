@@ -16,7 +16,11 @@ package businesslogic.distribution;
 import org.hibernate.Criteria;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import org.orm.criteria.*;
+import org.orm.criteria.AbstractORMCriteria;
+import org.orm.criteria.BooleanExpression;
+import org.orm.criteria.CollectionExpression;
+import org.orm.criteria.IntegerExpression;
+
 import orm.OODPersistentManager;
 
 public class Allocation_Criteria extends AbstractORMCriteria {

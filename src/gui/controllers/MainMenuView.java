@@ -1,20 +1,24 @@
 package gui.controllers;
 
-import businesslogic.ClientAccountingLogicFacade;
-import businesslogic.accounting.PermissionTitles;
-import businesslogic.accounting.user.User;
 import gui.StartMenu;
+
+import java.io.IOException;
+import java.util.Optional;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Optional;
+import businesslogic.ClientAccountingLogicFacade;
+import businesslogic.accounting.PermissionTitles;
+import businesslogic.accounting.user.User;
 
 /**
  * Created by qizilbash on 7/4/2016.

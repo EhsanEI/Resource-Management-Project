@@ -15,6 +15,7 @@ package businesslogic.accounting.job;
 
 import org.orm.PersistentException;
 import org.orm.PersistentManager;
+
 import orm.OODPersistentManager;
 
 public class UserPermissionSetCollection extends org.orm.util.ORMSet {

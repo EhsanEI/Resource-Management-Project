@@ -1,15 +1,15 @@
 package businesslogic;
 
+import java.io.IOException;
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import network.ClientNetwork;
+import network.NetworkRequest;
 import businesslogic.distribution.resource.Module;
 import businesslogic.distribution.resource.ModuleChange;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
-import network.ClientNetwork;
-import network.NetworkRequest;
-
-import java.io.IOException;
-import java.io.Serializable;
-import java.util.ArrayList;
 
 /**
  * Created by Esi on 6/22/2016.

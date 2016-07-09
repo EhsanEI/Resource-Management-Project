@@ -15,13 +15,8 @@ package businesslogic.distribution.requirement;
 
 import java.io.Serializable;
 
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
-
-import orm.OODPersistentManager;
 import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.distribution.resource.InformationResource;
-import businesslogic.distribution.resource.InformationResourceDAO;
 
 public class Requirement implements Serializable {
 	public Requirement() {

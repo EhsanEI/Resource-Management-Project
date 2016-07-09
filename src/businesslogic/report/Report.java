@@ -1,11 +1,11 @@
 package businesslogic.report;
 
-import businesslogic.utility.Date;
-import businesslogic.utility.Table;
+import java.io.Serializable;
+
 import org.orm.PersistentException;
 
-import java.io.Serializable;
-import java.text.SimpleDateFormat;
+import businesslogic.utility.Date;
+import businesslogic.utility.Table;
 
 /**
  * Created by Esi on 6/23/2016.

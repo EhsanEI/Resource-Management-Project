@@ -13,12 +13,12 @@
  */
 package businesslogic.accounting.job;
 
-import businesslogic.accounting.PermissionTitles;
-import businesslogic.distribution.Allocation;
-import orm.ORMConstants;
-
 import java.util.HashSet;
 import java.util.Set;
+
+import orm.ORMConstants;
+import businesslogic.accounting.PermissionTitles;
+import businesslogic.distribution.Allocation;
 
 public class ResourceManagement extends businesslogic.accounting.job.Job {
 	public ResourceManagement() {

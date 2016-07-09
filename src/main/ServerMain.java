@@ -1,9 +1,9 @@
 package main;
 
-import network.ServerNetwork;
-
 import java.io.IOException;
 import java.net.ServerSocket;
+
+import network.ServerNetwork;
 
 
 /**

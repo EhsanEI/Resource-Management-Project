@@ -1,21 +1,22 @@
 package gui.controllers.manager;
 
-import businesslogic.ClientManagerLogicFacade;
-import businesslogic.accounting.user.User;
-import businesslogic.utility.Tree;
 import gui.Direction;
 import gui.controllers.Controller;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-import javax.jws.soap.SOAPBinding;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ListView;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import businesslogic.ClientManagerLogicFacade;
+import businesslogic.accounting.user.User;
 
 /**
  * Created by qizilbash on 7/5/2016.

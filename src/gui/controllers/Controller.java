@@ -1,7 +1,9 @@
 package gui.controllers;
 
-import businesslogic.accounting.user.User;
 import gui.Direction;
+
+import java.io.IOException;
+
 import javafx.animation.Interpolator;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -9,8 +11,7 @@ import javafx.animation.Timeline;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.util.Duration;
-
-import java.io.IOException;
+import businesslogic.accounting.user.User;
 
 /**
  * Created by qizilbash on 7/4/2016.

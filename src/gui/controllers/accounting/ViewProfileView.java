@@ -1,19 +1,14 @@
 package gui.controllers.accounting;
 
-import businesslogic.accounting.job.JobType;
-import businesslogic.accounting.user.User;
-import businesslogic.utility.Tree;
 import gui.Direction;
 import gui.controllers.Controller;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import javafx.scene.layout.AnchorPane;
-
-import javax.swing.event.AncestorEvent;
-import java.util.ArrayList;
+import businesslogic.accounting.job.JobType;
+import businesslogic.utility.Tree;
 
 
 /**

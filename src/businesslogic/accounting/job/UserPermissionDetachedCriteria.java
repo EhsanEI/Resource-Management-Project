@@ -13,12 +13,12 @@
  */
 package businesslogic.accounting.job;
 
+import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
 import org.orm.criteria.AbstractORMDetachedCriteria;
 import org.orm.criteria.IntegerExpression;
-
-import java.util.List;
 
 public class UserPermissionDetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;

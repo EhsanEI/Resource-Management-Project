@@ -1,24 +1,26 @@
 package gui.controllers.projectmanager;
 
-import businesslogic.ClientProjectManagerLogicFacade;
-import businesslogic.distribution.requirement.Requirement;
-import businesslogic.distribution.resource.InformationResource;
-import businesslogic.distribution.resource.Project;
-import businesslogic.utility.Date;
 import gui.Direction;
 import gui.controllers.Controller;
-import javafx.embed.swing.SwingFXUtils;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.concurrent.TransferQueue;
+
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import businesslogic.ClientProjectManagerLogicFacade;
+import businesslogic.distribution.requirement.Requirement;
+import businesslogic.distribution.resource.InformationResource;
 
 /**
  * Created by qizilbash on 7/4/2016.

@@ -13,18 +13,15 @@
  */
 package businesslogic.accounting.user;
 
-import businesslogic.accounting.PermissionTitles;
-import businesslogic.accounting.job.*;
-import businesslogic.utility.Tree;
-import network.Email;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
-import orm.OODPersistentManager;
-import orm.ORMConstants;
-
-import javax.mail.MessagingException;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+
+import orm.ORMConstants;
+import businesslogic.accounting.PermissionTitles;
+import businesslogic.accounting.job.Job;
+import businesslogic.utility.Tree;
 
 public class User implements Serializable {
 	public User() {

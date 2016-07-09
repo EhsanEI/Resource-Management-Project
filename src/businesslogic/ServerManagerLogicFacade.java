@@ -1,16 +1,19 @@
 package businesslogic;
 
+import java.util.List;
+
+import javax.mail.MessagingException;
+
+import network.Email;
+
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import orm.OODPersistentManager;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
 import businesslogic.utility.Notification;
 import businesslogic.utility.NotificationDAO;
-import network.Email;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
-import orm.OODPersistentManager;
-
-import javax.mail.MessagingException;
-import java.util.List;
 
 /**
  * Created by Esi on 6/22/2016.

@@ -4,11 +4,13 @@
  */
 package ormsamples;
 
+import org.orm.PersistentException;
+import org.orm.PersistentTransaction;
+
+import orm.OODPersistentManager;
 import businesslogic.accounting.job.ResourceManagement;
 import businesslogic.accounting.job.ResourceManagementDAO;
 import businesslogic.distribution.Allocation;
-import org.orm.*;
-import orm.OODPersistentManager;
 
 public class DeleteOODData {
 	public void deleteTestData() throws PersistentException {

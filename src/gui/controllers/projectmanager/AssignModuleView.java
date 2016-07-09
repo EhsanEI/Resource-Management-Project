@@ -1,15 +1,13 @@
 package gui.controllers.projectmanager;
 
 
-import businesslogic.ClientProjectManagerLogicFacade;
-import businesslogic.distribution.requirement.RequirementPriorityEnum;
-import businesslogic.distribution.resource.HumanResource;
-import businesslogic.distribution.resource.Module;
-import businesslogic.distribution.resource.Project;
-import businesslogic.utility.Notification;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import gui.Direction;
 import gui.controllers.Controller;
+
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -18,11 +16,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Optional;
-import java.util.Set;
+import businesslogic.ClientProjectManagerLogicFacade;
+import businesslogic.distribution.resource.HumanResource;
+import businesslogic.distribution.resource.Module;
+import businesslogic.distribution.resource.Project;
+import businesslogic.utility.Notification;
 
 /**
  * Created by qizilbash on 7/4/2016.

@@ -1,28 +1,33 @@
 package gui.controllers.projectmanager;
 
-import businesslogic.ClientProjectManagerLogicFacade;
-import businesslogic.distribution.requirement.Requirement;
-import businesslogic.distribution.requirement.RequirementPriorityEnum;
-import businesslogic.distribution.resource.InformationResource;
-
-import businesslogic.distribution.resource.ResourceType;
-import businesslogic.utility.Notification;
 import gui.Direction;
 import gui.controllers.Controller;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
-import orm.OODPersistentManager;
 
 import java.io.IOException;
 import java.util.Date;
 import java.util.Optional;
+
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+
+import org.orm.PersistentException;
+
+import businesslogic.ClientProjectManagerLogicFacade;
+import businesslogic.distribution.requirement.Requirement;
+import businesslogic.distribution.requirement.RequirementPriorityEnum;
+import businesslogic.distribution.resource.InformationResource;
+import businesslogic.distribution.resource.ResourceType;
+import businesslogic.utility.Notification;
 
 /**
  * Created by qizilbash on 7/4/2016.

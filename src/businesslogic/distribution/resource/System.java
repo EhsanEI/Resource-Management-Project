@@ -13,12 +13,12 @@
  */
 package businesslogic.distribution.resource;
 
-import businesslogic.distribution.requirement.Requirement;
-import orm.ORMConstants;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Set;
+
+import orm.ORMConstants;
+import businesslogic.distribution.requirement.Requirement;
 
 public class System extends businesslogic.distribution.resource.InformationResource {
 	public System() {

@@ -13,11 +13,13 @@
  */
 package businesslogic.support;
 
-import org.orm.*;
-import org.hibernate.Query;
-import orm.OODPersistentManager;
-
 import java.util.List;
+
+import org.hibernate.Query;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import orm.OODPersistentManager;
 
 public class SystemConfigurationDAO {
 	public static SystemConfiguration loadSystemConfigurationByORMID(int ID) throws PersistentException {

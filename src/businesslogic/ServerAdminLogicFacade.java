@@ -1,10 +1,11 @@
 package businesslogic;
 
+import org.orm.PersistentException;
+
 import businesslogic.accounting.user.Admin;
 import businesslogic.accounting.user.AdminDAO;
 import businesslogic.support.SystemConfiguration;
 import businesslogic.support.SystemConfigurationDAO;
-import org.orm.PersistentException;
 
 /**
  * Created by Esi on 6/22/2016.

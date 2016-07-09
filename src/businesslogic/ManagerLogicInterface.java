@@ -1,8 +1,8 @@
 package businesslogic;
 
-import businesslogic.accounting.user.User;
-
 import java.io.IOException;
+
+import businesslogic.accounting.user.User;
 
 /**
  * Created by Esi on 6/22/2016.

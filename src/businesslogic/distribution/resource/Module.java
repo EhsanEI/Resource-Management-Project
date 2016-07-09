@@ -13,13 +13,13 @@
  */
 package businesslogic.distribution.resource;
 
-import businesslogic.accounting.job.Specialty;
-import businesslogic.distribution.requirement.Requirement;
-import orm.ORMConstants;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
+
+import orm.ORMConstants;
+import businesslogic.accounting.job.Specialty;
+import businesslogic.distribution.requirement.Requirement;
 
 public class Module extends businesslogic.distribution.resource.InformationResource implements Serializable{
 	public Module() {

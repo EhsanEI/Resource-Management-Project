@@ -13,18 +13,19 @@
  */
 package businesslogic.accounting.user;
 
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.hibernate.Query;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import orm.OODPersistentManager;
 import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.JobDAO;
 import businesslogic.accounting.job.UserJob;
 import businesslogic.accounting.job.UserJobDAO;
-import org.orm.*;
-import org.hibernate.Query;
-import orm.OODPersistentManager;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 public class UserDAO {
 	public static User loadUserByORMID(int ID) throws PersistentException {

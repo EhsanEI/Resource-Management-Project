@@ -13,10 +13,10 @@
  */
 package businesslogic.accounting.job;
 
-import businesslogic.utility.Tree;
-import orm.ORMConstants;
-
 import java.io.Serializable;
+
+import orm.ORMConstants;
+import businesslogic.utility.Tree;
 
 public class Job implements Serializable{
 	public Job() {

@@ -1,15 +1,18 @@
 package businesslogic.prediction;
 
-import businesslogic.distribution.Allocation;
-import businesslogic.distribution.requirement.Requirement;
-import businesslogic.distribution.resource.*;
-import businesslogic.distribution.resource.System;
-import businesslogic.utility.Date;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import orm.OODPersistentManager;
 
-import java.util.*;
+import orm.OODPersistentManager;
+import businesslogic.distribution.resource.InformationResource;
+import businesslogic.distribution.resource.InformationResourceDAO;
+import businesslogic.distribution.resource.Project;
+import businesslogic.distribution.resource.ProjectDAO;
+import businesslogic.distribution.resource.System;
+import businesslogic.utility.Date;
 
 /**
  * Created by Esi on 7/6/2016.

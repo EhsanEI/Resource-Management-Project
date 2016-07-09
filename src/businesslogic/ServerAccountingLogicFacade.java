@@ -1,27 +1,28 @@
 package businesslogic;
 
+import java.math.BigInteger;
+import java.security.SecureRandom;
+
+import javax.mail.MessagingException;
+
+import network.Email;
+
+import org.orm.PersistentException;
+
+import orm.OODPersistentManager;
 import businesslogic.accounting.Authentication;
 import businesslogic.accounting.AuthenticationResult;
-import businesslogic.accounting.job.*;
+import businesslogic.accounting.job.Job;
+import businesslogic.accounting.job.JobDAO;
+import businesslogic.accounting.job.Specialty;
+import businesslogic.accounting.job.SpecialtyDAO;
+import businesslogic.accounting.job.UserJob;
+import businesslogic.accounting.job.UserJobDAO;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
 import businesslogic.distribution.resource.HumanResource;
 import businesslogic.distribution.resource.HumanResourceDAO;
-import businesslogic.distribution.resource.Spec;
 import businesslogic.utility.Notification;
-import network.Email;
-import org.hibernate.NonUniqueObjectException;
-import org.orm.PersistentException;
-import org.orm.PersistentTransaction;
-import orm.OODPersistentManager;
-
-import javax.mail.MessagingException;
-import java.math.BigInteger;
-import java.security.SecureRandom;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Esi on 6/22/2016.

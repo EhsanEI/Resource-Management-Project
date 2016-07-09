@@ -1,27 +1,37 @@
 package gui.controllers.accounting;
 
-import businesslogic.ClientAccountingLogicFacade;
-import businesslogic.ClientProgrammerLogicFacade;
-import businesslogic.accounting.job.*;
-import businesslogic.accounting.user.*;
-import businesslogic.distribution.resource.HumanResource;
-import businesslogic.distribution.resource.Spec;
-import businesslogic.utility.Notification;
-import com.sun.org.apache.xalan.internal.xsltc.dom.NthIterator;
 import gui.Direction;
 import gui.controllers.Controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import javax.jws.soap.SOAPBinding;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Optional;
+import businesslogic.ClientAccountingLogicFacade;
+import businesslogic.accounting.job.Job;
+import businesslogic.accounting.job.JobType;
+import businesslogic.accounting.job.Programming;
+import businesslogic.accounting.job.ProjectManagement;
+import businesslogic.accounting.job.ResourceManagement;
+import businesslogic.accounting.job.Specialty;
+import businesslogic.accounting.user.Admin;
+import businesslogic.accounting.user.Employee;
+import businesslogic.accounting.user.HighLevelManager;
+import businesslogic.accounting.user.MiddleLevelManager;
+import businesslogic.accounting.user.User;
+import businesslogic.distribution.resource.HumanResource;
+import businesslogic.utility.Notification;
 
 /**
  * Created by qizilbash on 7/4/2016.

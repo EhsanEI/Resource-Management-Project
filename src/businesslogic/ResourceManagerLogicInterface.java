@@ -1,18 +1,15 @@
 package businesslogic;
 
+import java.io.IOException;
+
 import businesslogic.distribution.Allocation;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.distribution.resource.Project;
 import businesslogic.distribution.resource.Resource;
-import businesslogic.report.FlowReport;
-import businesslogic.report.ResourceReport;
-import businesslogic.report.ResourceRequirementReport;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 import businesslogic.utility.Table;
-
-import java.io.IOException;
 
 /**
  * Created by Esi on 6/22/2016.

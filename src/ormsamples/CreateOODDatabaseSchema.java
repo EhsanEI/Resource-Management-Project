@@ -4,7 +4,8 @@
  */
 package ormsamples;
 
-import org.orm.*;
+import org.orm.ORMDatabaseInitiator;
+
 import orm.OODPersistentManager;
 
 public class CreateOODDatabaseSchema {

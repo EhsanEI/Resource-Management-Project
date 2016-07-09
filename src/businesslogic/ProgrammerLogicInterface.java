@@ -1,11 +1,11 @@
 package businesslogic;
 
+import java.io.IOException;
+
 import businesslogic.distribution.resource.Module;
 import businesslogic.distribution.resource.ModuleChange;
 import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
-
-import java.io.IOException;
 
 /**
  * Created by Esi on 6/22/2016.

@@ -1,12 +1,12 @@
 package gui.controllers.resourcemanager;
 
-import businesslogic.ClientResourceManagerLogicFacade;
-import businesslogic.distribution.Allocation;
-import businesslogic.distribution.requirement.Requirement;
-import businesslogic.distribution.resource.Resource;
-import businesslogic.utility.Notification;
 import gui.Direction;
 import gui.controllers.Controller;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
@@ -16,10 +16,11 @@ import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Optional;
+import businesslogic.ClientResourceManagerLogicFacade;
+import businesslogic.distribution.Allocation;
+import businesslogic.distribution.requirement.Requirement;
+import businesslogic.distribution.resource.Resource;
+import businesslogic.utility.Notification;
 
 /**
  * Created by qizilbash on 7/4/2016.

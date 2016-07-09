@@ -19,6 +19,7 @@ import org.orm.PersistentSession;
 import org.orm.criteria.AbstractORMCriteria;
 import org.orm.criteria.IntegerExpression;
 import org.orm.criteria.StringExpression;
+
 import orm.OODPersistentManager;
 
 public class SpecCriteria extends AbstractORMCriteria {

@@ -1,11 +1,11 @@
 package gui.controllers.resourcemanager;
 
-import businesslogic.ClientResourceManagerLogicFacade;
-import businesslogic.report.FlowReport;
-import businesslogic.report.ResourceReport;
-import businesslogic.utility.Table;
 import gui.Direction;
 import gui.controllers.Controller;
+
+import java.io.IOException;
+import java.util.Arrays;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -16,9 +16,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Callback;
-
-import java.io.IOException;
-import java.util.Arrays;
+import businesslogic.ClientResourceManagerLogicFacade;
+import businesslogic.utility.Table;
 
 /**
  * Created by qizilbash on 7/4/2016.

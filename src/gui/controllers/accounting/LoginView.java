@@ -1,11 +1,10 @@
 package gui.controllers.accounting;
 
-import businesslogic.ClientAccountingLogicFacade;
-import businesslogic.accounting.AuthenticationResult;
-
-import businesslogic.accounting.user.Manager;
-import businesslogic.accounting.user.User;
 import gui.MainMenu;
+
+import java.io.IOException;
+import java.util.Optional;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,9 +16,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.Optional;
+import businesslogic.ClientAccountingLogicFacade;
+import businesslogic.accounting.AuthenticationResult;
+import businesslogic.accounting.user.User;
 
 /**
  * Created by qizilbash on 7/4/2016.

@@ -1,23 +1,23 @@
 package businesslogic.report;
 
-import businesslogic.distribution.Allocation_DAO;
-import businesslogic.distribution.requirement.Requirement;
-import businesslogic.distribution.resource.InformationResource;
-import businesslogic.distribution.resource.InformationResourceDAO;
-import businesslogic.distribution.resource.Resource;
-import businesslogic.utility.Table;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
-
-
 import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import businesslogic.utility.Date;
+
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
 import orm.OODPersistentManager;
+import businesslogic.distribution.Allocation_DAO;
+import businesslogic.distribution.requirement.Requirement;
+import businesslogic.distribution.resource.InformationResource;
+import businesslogic.distribution.resource.InformationResourceDAO;
+import businesslogic.distribution.resource.Resource;
+import businesslogic.utility.Date;
+import businesslogic.utility.Table;
 
 /**
  * Created by Esi on 6/23/2016.

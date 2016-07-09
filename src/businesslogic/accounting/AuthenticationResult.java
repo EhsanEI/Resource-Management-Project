@@ -1,9 +1,9 @@
 package businesslogic.accounting;
 
+import java.io.Serializable;
+
 import businesslogic.accounting.user.User;
 import businesslogic.utility.Notification;
-
-import java.io.Serializable;
 
 /**
  * Created by Esi on 6/24/2016.

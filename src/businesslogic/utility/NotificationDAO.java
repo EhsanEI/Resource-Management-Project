@@ -13,11 +13,13 @@
  */
 package businesslogic.utility;
 
-import org.orm.*;
-import org.hibernate.Query;
-import orm.OODPersistentManager;
-
 import java.util.List;
+
+import org.hibernate.Query;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import orm.OODPersistentManager;
 
 public class NotificationDAO {
 	public static Notification loadNotificationByORMID(int ID) throws PersistentException {

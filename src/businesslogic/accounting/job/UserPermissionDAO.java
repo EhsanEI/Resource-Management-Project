@@ -13,13 +13,14 @@
  */
 package businesslogic.accounting.job;
 
+import java.util.List;
+
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import orm.OODPersistentManager;
 
-import java.util.List;
+import orm.OODPersistentManager;
 
 public class UserPermissionDAO {
 	public static UserPermission loadUserPermissionByORMID(int ID) throws PersistentException {

@@ -13,12 +13,12 @@
  */
 package businesslogic.accounting.user;
 
-import businesslogic.accounting.PermissionTitles;
-import orm.ORMConstants;
-
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
+
+import orm.ORMConstants;
+import businesslogic.accounting.PermissionTitles;
 
 public class Admin extends businesslogic.accounting.user.User {
 	public Admin() {

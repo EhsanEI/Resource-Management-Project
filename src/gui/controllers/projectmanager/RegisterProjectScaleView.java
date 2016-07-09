@@ -1,23 +1,32 @@
 package gui.controllers.projectmanager;
 
-import businesslogic.ClientProjectManagerLogicFacade;
-import businesslogic.accounting.job.Specialty;
-import businesslogic.distribution.resource.*;
-import businesslogic.distribution.resource.System;
-import businesslogic.utility.Notification;
 import gui.Direction;
 import gui.controllers.Controller;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
+
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import businesslogic.ClientProjectManagerLogicFacade;
+import businesslogic.accounting.job.Specialty;
+import businesslogic.distribution.resource.Module;
+import businesslogic.distribution.resource.Project;
+import businesslogic.distribution.resource.Subsystem;
+import businesslogic.distribution.resource.System;
+import businesslogic.utility.Notification;
 
 /**
  * Created by qizilbash on 7/4/2016.

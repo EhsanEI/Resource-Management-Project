@@ -13,13 +13,14 @@
  */
 package businesslogic.distribution.resource;
 
+import java.util.List;
+
 import org.hibernate.LockMode;
 import org.hibernate.Query;
 import org.orm.PersistentException;
 import org.orm.PersistentSession;
-import orm.OODPersistentManager;
 
-import java.util.List;
+import orm.OODPersistentManager;
 
 public class SpecDAO {
 	public static Spec loadSpecByORMID(int ID) throws PersistentException {

@@ -1,23 +1,28 @@
 package gui.controllers.programmer;
 
-import businesslogic.ClientProgrammerLogicFacade;
-import businesslogic.distribution.resource.Module;
-import businesslogic.distribution.resource.ModuleChange;
-import businesslogic.utility.Notification;
-
 import gui.Direction;
 import gui.controllers.Controller;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Optional;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.DatePicker;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import businesslogic.ClientProgrammerLogicFacade;
+import businesslogic.distribution.resource.Module;
+import businesslogic.distribution.resource.ModuleChange;
+import businesslogic.utility.Notification;
 
 /**
  * Created by qizilbash on 7/4/2016.

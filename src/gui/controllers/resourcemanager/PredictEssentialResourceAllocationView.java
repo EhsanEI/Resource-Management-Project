@@ -1,22 +1,25 @@
 package gui.controllers.resourcemanager;
 
+import gui.Direction;
+import gui.controllers.Controller;
+
+import java.io.IOException;
+import java.util.Optional;
+
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.TreeItem;
+import javafx.scene.control.TreeView;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
 import businesslogic.ClientResourceManagerLogicFacade;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.requirement.RequirementPriorityEnum;
 import businesslogic.distribution.resource.Project;
-import businesslogic.utility.Tree;
-import gui.Direction;
-import gui.controllers.Controller;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-
-import java.io.IOException;
-import java.util.Optional;
 
 /**
  * Created by qizilbash on 7/4/2016.

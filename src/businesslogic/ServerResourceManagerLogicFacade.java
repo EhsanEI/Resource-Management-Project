@@ -1,9 +1,17 @@
 package businesslogic;
 
-import businesslogic.accounting.job.ProjectManagement;
-import businesslogic.accounting.job.ResourceManagement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import orm.OODPersistentManager;
 import businesslogic.accounting.job.Job;
+import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.job.ProjectManagementDAO;
+import businesslogic.accounting.job.ResourceManagement;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
 import businesslogic.distribution.Allocation;
@@ -12,7 +20,11 @@ import businesslogic.distribution.ResourceAllocation;
 import businesslogic.distribution.ResourceAllocationDAO;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.requirement.RequirementDAO;
-import businesslogic.distribution.resource.*;
+import businesslogic.distribution.resource.InformationResource;
+import businesslogic.distribution.resource.InformationResourceDAO;
+import businesslogic.distribution.resource.Project;
+import businesslogic.distribution.resource.Resource;
+import businesslogic.distribution.resource.ResourceDAO;
 import businesslogic.prediction.ResourceAllocationPrediction;
 import businesslogic.report.FlowReport;
 import businesslogic.report.ResourceReport;
@@ -21,13 +33,6 @@ import businesslogic.utility.Date;
 import businesslogic.utility.Notification;
 import businesslogic.utility.NotificationDAO;
 import businesslogic.utility.Table;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
-import orm.OODPersistentManager;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Esi on 6/22/2016.

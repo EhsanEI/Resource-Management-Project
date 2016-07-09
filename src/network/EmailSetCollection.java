@@ -13,7 +13,9 @@
  */
 package network;
 
-import org.orm.*;
+import org.orm.PersistentException;
+import org.orm.PersistentManager;
+
 import orm.OODPersistentManager;
 
 public class EmailSetCollection extends org.orm.util.ORMSet {

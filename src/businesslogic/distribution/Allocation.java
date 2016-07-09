@@ -13,18 +13,12 @@
  */
 package businesslogic.distribution;
 
+import java.io.Serializable;
+import java.util.Set;
+
+import orm.ORMConstants;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.Resource;
-import businesslogic.distribution.resource.ResourceDAO;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
-import orm.OODPersistentManager;
-import orm.ORMConstants;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Set;
 
 public class Allocation implements Serializable {
 	public Allocation() {
@@ -120,7 +114,7 @@ public class Allocation implements Serializable {
 	
 	public void addResources(Resource[] resources) {
 		for (Resource resource : resources) {
-			ResourceAllocation ra = ResourceAllocationDAO.createResourceAllocation();
+			ResourceAllocation ra = new ResourceAllocation();
 			resource.addResourceAllocation(ra);
 			getORM_ResourceAllocations().add(ra);
 		}

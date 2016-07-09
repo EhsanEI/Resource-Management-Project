@@ -13,8 +13,6 @@
  */
 package businesslogic.distribution;
 
-import businesslogic.distribution.requirement.Requirement;
-
 import java.io.Serializable;
 
 public class ResourceAllocation implements Serializable{

@@ -1,13 +1,11 @@
 package network;
 
+import static java.lang.System.exit;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.net.Socket;
-import java.util.ArrayList;
-
-import static java.lang.System.exit;
 
 /**
  * Created by Esi on 6/25/2016.

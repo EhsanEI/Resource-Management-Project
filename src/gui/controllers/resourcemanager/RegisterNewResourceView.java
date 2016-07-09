@@ -1,22 +1,30 @@
 package gui.controllers.resourcemanager;
 
-import businesslogic.ClientResourceManagerLogicFacade;
-import businesslogic.ServerResourceManagerLogicFacade;
-import businesslogic.distribution.resource.*;
-import businesslogic.utility.Notification;
-import com.sun.xml.internal.ws.api.ha.StickyFeature;
 import gui.Direction;
 import gui.controllers.Controller;
-import javafx.event.ActionEvent;
-import javafx.fxml.FXML;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Optional;
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import businesslogic.ClientResourceManagerLogicFacade;
+import businesslogic.distribution.resource.FinancialResource;
+import businesslogic.distribution.resource.PhysicalResource;
+import businesslogic.distribution.resource.Resource;
+import businesslogic.distribution.resource.ResourceType;
+import businesslogic.utility.Notification;
 
 /**
  * Created by qizilbash on 7/4/2016.

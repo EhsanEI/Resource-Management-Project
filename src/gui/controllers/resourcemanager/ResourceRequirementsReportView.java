@@ -1,13 +1,12 @@
 package gui.controllers.resourcemanager;
 
-import businesslogic.ClientResourceManagerLogicFacade;
-import businesslogic.distribution.resource.InformationResource;
-import businesslogic.report.Report;
-import businesslogic.report.ResourceReport;
-import businesslogic.report.ResourceRequirementReport;
-import businesslogic.utility.Table;
 import gui.Direction;
 import gui.controllers.Controller;
+
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.Optional;
+
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -15,7 +14,12 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -23,10 +27,9 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
-
-import java.io.IOException;
-import java.util.Arrays;
-import java.util.Optional;
+import businesslogic.ClientResourceManagerLogicFacade;
+import businesslogic.distribution.resource.InformationResource;
+import businesslogic.utility.Table;
 
 /**
  * Created by qizilbash on 7/4/2016.

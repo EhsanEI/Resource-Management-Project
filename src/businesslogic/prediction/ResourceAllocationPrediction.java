@@ -1,14 +1,9 @@
 package businesslogic.prediction;
 
-import businesslogic.distribution.Allocation;
-import businesslogic.distribution.requirement.Requirement;
-import businesslogic.distribution.resource.InformationResource;
-import businesslogic.distribution.resource.Project;
-import businesslogic.distribution.resource.Resource;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+
+import businesslogic.distribution.requirement.Requirement;
+import businesslogic.distribution.resource.Project;
 
 /**
  * Created by Esi on 7/6/2016.

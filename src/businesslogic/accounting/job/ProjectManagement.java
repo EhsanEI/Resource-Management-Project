@@ -13,14 +13,14 @@
  */
 package businesslogic.accounting.job;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import orm.ORMConstants;
 import businesslogic.accounting.PermissionTitles;
 import businesslogic.distribution.requirement.Requirement;
 import businesslogic.distribution.resource.InformationResource;
 import businesslogic.utility.Notification;
-import orm.ORMConstants;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class ProjectManagement extends businesslogic.accounting.job.Job {
 	public ProjectManagement() {

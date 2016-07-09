@@ -1,12 +1,12 @@
 package businesslogic;
 
-import businesslogic.accounting.user.User;
-import network.ClientNetwork;
-import network.NetworkRequest;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
+
+import network.ClientNetwork;
+import network.NetworkRequest;
+import businesslogic.accounting.user.User;
 
 /**
  * Created by Esi on 6/22/2016.

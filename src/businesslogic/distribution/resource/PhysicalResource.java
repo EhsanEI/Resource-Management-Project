@@ -34,7 +34,7 @@ public class PhysicalResource extends businesslogic.distribution.resource.Resour
 
 	
 	public void addSpec(String title, String value) {
-		Spec spec = SpecDAO.createSpec();
+		Spec spec = new Spec();
 		spec.setName(title);
 		spec.setValue(value);
 		getORM_Specs().add(spec);

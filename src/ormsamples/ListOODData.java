@@ -4,12 +4,13 @@
  */
 package ormsamples;
 
+import org.orm.PersistentException;
+
+import orm.OODPersistentManager;
 import businesslogic.accounting.job.ResourceManagement;
 import businesslogic.accounting.job.ResourceManagementCriteria;
 import businesslogic.accounting.job.ResourceManagementDAO;
 import businesslogic.distribution.Allocation;
-import org.orm.*;
-import orm.OODPersistentManager;
 
 public class ListOODData {
 	private static final int ROW_COUNT = 100;

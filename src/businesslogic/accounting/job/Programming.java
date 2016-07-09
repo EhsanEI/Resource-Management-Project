@@ -13,14 +13,14 @@
  */
 package businesslogic.accounting.job;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import orm.ORMConstants;
 import businesslogic.accounting.PermissionTitles;
 import businesslogic.distribution.resource.Module;
 import businesslogic.distribution.resource.ModuleChange;
 import businesslogic.utility.Tree;
-import orm.ORMConstants;
-
-import java.util.HashSet;
-import java.util.Set;
 
 public class Programming extends businesslogic.accounting.job.Job {
 	public Programming() {

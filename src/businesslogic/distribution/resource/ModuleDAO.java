@@ -13,11 +13,13 @@
  */
 package businesslogic.distribution.resource;
 
-import org.orm.*;
-import org.hibernate.Query;
-import orm.OODPersistentManager;
-
 import java.util.List;
+
+import org.hibernate.Query;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import orm.OODPersistentManager;
 
 public class ModuleDAO {
 	public static Module loadModuleByORMID(int ID) throws PersistentException {

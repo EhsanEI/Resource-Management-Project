@@ -13,19 +13,10 @@
  */
 package businesslogic.distribution.resource;
 
-import businesslogic.distribution.Allocation_DAO;
-import businesslogic.distribution.ResourceAllocation;
-import businesslogic.distribution.requirement.Requirement;
-import org.orm.PersistentException;
-import org.orm.PersistentSession;
-import orm.OODPersistentManager;
-import orm.ORMConstants;
-
 import java.io.Serializable;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
+
+import orm.ORMConstants;
+import businesslogic.distribution.ResourceAllocation;
 
 
 public class Resource implements Serializable {

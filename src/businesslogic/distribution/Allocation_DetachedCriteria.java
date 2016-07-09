@@ -14,9 +14,13 @@
 package businesslogic.distribution;
 
 import java.util.List;
+
 import org.hibernate.criterion.DetachedCriteria;
 import org.orm.PersistentSession;
-import org.orm.criteria.*;
+import org.orm.criteria.AbstractORMDetachedCriteria;
+import org.orm.criteria.BooleanExpression;
+import org.orm.criteria.CollectionExpression;
+import org.orm.criteria.IntegerExpression;
 
 public class Allocation_DetachedCriteria extends AbstractORMDetachedCriteria {
 	public final IntegerExpression ID;

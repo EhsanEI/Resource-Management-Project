@@ -13,10 +13,12 @@
  */
 package orm;
 
-import org.orm.*;
-import org.orm.cfg.JDBCConnectionSetting;
-import org.hibernate.*;
 import java.util.Properties;
+
+import org.hibernate.FlushMode;
+import org.orm.PersistentException;
+import org.orm.PersistentManager;
+import org.orm.cfg.JDBCConnectionSetting;
 
 public class OODPersistentManager extends PersistentManager {
 	private static final String PROJECT_NAME = "OOD";
