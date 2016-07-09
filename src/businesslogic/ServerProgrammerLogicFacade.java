@@ -2,6 +2,7 @@ package businesslogic;
 
 import businesslogic.accounting.job.Job;
 import businesslogic.accounting.job.Programming;
+import businesslogic.accounting.job.ProgrammingDAO;
 import businesslogic.accounting.job.ProjectManagement;
 import businesslogic.accounting.user.User;
 import businesslogic.accounting.user.UserDAO;
@@ -49,6 +50,7 @@ public class ServerProgrammerLogicFacade implements ProgrammerLogicInterface{
 
         try {
             ModuleDAO.save(module);
+            OODPersistentManager.instance().getSession().flush();
         } catch (PersistentException e) {
             notification.setContent("Cannot save the changes.");
             return notification;
@@ -61,6 +63,12 @@ public class ServerProgrammerLogicFacade implements ProgrammerLogicInterface{
     @Override
     public Notification registerModuleMaintenance(int userID, int moduleID, ModuleChange[] changes) {
         Notification notification = new Notification();
+        Programming programming = getProgramming(userID);
+
+        if(programming == null) {
+            notification.setContent("User is not a programmer.");
+            return notification;
+        }
 
         Module module = null;
         try {
@@ -73,9 +81,12 @@ public class ServerProgrammerLogicFacade implements ProgrammerLogicInterface{
         try {
             for (ModuleChange change : changes) {
                 module.addModuleChange(change);
+                programming.getORM_ModuleChanges().add(change);
                 ModuleChangeDAO.save(change);
             }
             ModuleDAO.save(module);
+            ProgrammingDAO.save(programming);
+            OODPersistentManager.instance().getSession().flush();
         } catch(PersistentException e) {
             e.printStackTrace();
             notification.setContent("Cannot save the changes.");
