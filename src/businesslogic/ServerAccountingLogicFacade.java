@@ -17,6 +17,10 @@ import orm.OODPersistentManager;
 import javax.mail.MessagingException;
 import java.math.BigInteger;
 import java.security.SecureRandom;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Esi on 6/22/2016.
@@ -146,16 +150,28 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
                 UserJobDAO.save(uj);
             }
 
-            for(Job job: user.getJobs()) {
-                JobDAO.save(job);
+            for(Specialty specialty: specialties) {
+                try {
+                    SpecialtyDAO.save(specialty);
+                }catch(PersistentException e) {
+                }
             }
 
-            for(Specialty specialty: specialties) {
-                SpecialtyDAO.save(specialty);
+            for(Job job: user.getJobs()) {
+                try {
+                    JobDAO.save(job);
+                }catch(PersistentException e) {
+                    Job newJob = JobDAO.getJobByORMID(job.getID());
+                    newJob.setORM_UserJobs(job.getORM_UserJobs());
+                    JobDAO.save(newJob);
+                }
             }
 
             for(HumanResource hr: humanResources) {
-                HumanResourceDAO.save(hr);
+                try {
+                    HumanResourceDAO.save(hr);
+                }catch(PersistentException e) {
+                }
             }
 
             User creatorUser = UserDAO.getUserByORMID(user.getCreatorUser().getID());
