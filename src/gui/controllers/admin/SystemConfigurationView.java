@@ -8,6 +8,7 @@ import gui.controllers.Controller;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -15,6 +16,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.Optional;
 
 
 /**
@@ -42,11 +44,29 @@ public class SystemConfigurationView extends Controller {
     @FXML private void configure(ActionEvent event) throws IOException, ClassNotFoundException {
         if (backupTeypesCombo.getSelectionModel().getSelectedItem().isEmpty()) {
 
+            backupTeypesCombo.getScene().getRoot().setDisable(true);
+            alert.setTitle("Empty selection!");
+            alert.setContentText("Please select a backup format.");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                backupTeypesCombo.getScene().getRoot().setDisable(false);
+                return;
+            }
         } else{
             SystemConfiguration systemConfiguration = new SystemConfiguration();
             systemConfiguration.setBackupFormat(BackupFormat.valueOf(backupTeypesCombo.getSelectionModel().getSelectedItem()));
             systemConfiguration.setBackupPreiodDays(Integer.parseInt(backupPeriodDays.getText()));
-            ClientAdminLogicFacade.getInstance().configureSystem(systemConfiguration);
+            ClientAdminLogicFacade.getInstance().configureSystem(user.getID(), systemConfiguration);
+            backupTeypesCombo.getScene().getRoot().setDisable(true);
+            alert.setTitle("Result");
+            alert.setContentText("System configured.");
+            Optional<ButtonType> result = alert.showAndWait();
+
+            if (result.get() == ButtonType.OK) {
+                backupTeypesCombo.getScene().getRoot().setDisable(false);
+                return;
+            }
         }
     }
 }

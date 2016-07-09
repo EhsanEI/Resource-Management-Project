@@ -119,7 +119,8 @@ public class ServerNetwork {
             case "configureSystem":
                 networkResponse = new NetworkResponse(
                         ServerAdminLogicFacade.getInstance().configureSystem(
-                                (SystemConfiguration)request.getParams().get(0)
+                                (Integer)request.getParams().get(0),
+                                (SystemConfiguration)request.getParams().get(1)
                         ),"Processed");
                 break;
             case "getModuleList":

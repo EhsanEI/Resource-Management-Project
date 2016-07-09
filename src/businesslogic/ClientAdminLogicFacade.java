@@ -28,7 +28,9 @@ public class ClientAdminLogicFacade implements AdminLogicInterface{
     @Override
     public boolean configureSystem(int userID, SystemConfiguration configureSystem) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
+        params.add(userID);
         params.add(configureSystem);
+
         return (boolean)clientNetwork.sendRequest(new NetworkRequest("configureSystem",params)).getResponse();
     }
 }

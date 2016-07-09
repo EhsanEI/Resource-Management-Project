@@ -4,18 +4,18 @@ import businesslogic.utility.Date;
 import businesslogic.utility.Table;
 import org.orm.PersistentException;
 
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 
 /**
  * Created by Esi on 6/23/2016.
  */
-public abstract class Report {
+public abstract class Report implements Serializable {
     private Date date;
     private Table table;
 
     public Report() {
         this.date = new Date(new java.util.Date());
-
     }
 
     public Report(Date date) {
