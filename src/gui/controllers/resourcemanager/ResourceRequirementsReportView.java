@@ -194,7 +194,7 @@ public class ResourceRequirementsReportView extends Controller {
 
 
             max -= min;
-            System.out.println("max = " + max);
+
 
             for (int i = 0; i < lengths.length; i++) {
                 lengths[i][0] -= min;
@@ -204,7 +204,7 @@ public class ResourceRequirementsReportView extends Controller {
                 double y = ((lengths[i][1] - lengths[i][0]) / max) * 500.0;
 
 
-                System.out.println(y + " : " + x);
+
 
                 Rectangle rectangle = copyRect(sampleRect, x, y);
 
