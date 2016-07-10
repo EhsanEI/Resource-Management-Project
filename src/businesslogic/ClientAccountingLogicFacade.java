@@ -69,9 +69,12 @@ public class ClientAccountingLogicFacade implements AccountingLogicInterface{
 
 
     @Override
-    public Notification editProfile(User user) throws IOException, ClassNotFoundException {
+    public Notification editProfile(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) throws IOException, ClassNotFoundException {
         ArrayList<Serializable> params = new ArrayList<>();
         params.add(user);
+        params.add(jobs);
+        params.add(specialties);
+        params.add(humanResources);
         return (Notification) clientNetwork.sendRequest(new NetworkRequest("editProfile", params)).getResponse();
     }
 

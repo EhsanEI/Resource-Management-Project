@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.chart.*?>
 <?import java.lang.*?>
@@ -7,7 +9,6 @@
 <?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="575.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.controllers.resourcemanager.FlowReportview">
    <children>
@@ -100,6 +101,13 @@
                   <Image url="@../../resources/back.png" />
                </image>
             </ImageView>
+            <Rectangle fx:id="sampleRect" arcHeight="50.0" arcWidth="50.0" fill="#39ff1f42" height="40.0" layoutX="289.0" layoutY="158.0" opacity="0.76" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0">
+               <effect>
+                  <InnerShadow color="#35d115" />
+               </effect>
+            </Rectangle>
+            <Text fx:id="sampleText" layoutX="378.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+            <Line fx:id="sampleLine" endX="100.0" fill="#f2040400" layoutX="389.0" layoutY="244.0" startX="-100.0" stroke="RED" />
          </children>
       </AnchorPane>
    </children>

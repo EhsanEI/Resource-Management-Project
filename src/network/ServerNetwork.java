@@ -105,7 +105,9 @@ public class ServerNetwork {
 
             case "editProfile":
                 networkResponse =  new NetworkResponse(
-                        ServerAccountingLogicFacade.getInstance().editProfile((User)request.getParams().get(0)),"Processed");
+                        ServerAccountingLogicFacade.getInstance().editProfile((User) request.getParams().get(0),
+                                (Job[]) request.getParams().get(1), (Specialty[]) request.getParams().get(2),
+                                (HumanResource[]) request.getParams().get(3)),"Processed");
                 break;
             case  "approveUser":
                 networkResponse = new NetworkResponse(

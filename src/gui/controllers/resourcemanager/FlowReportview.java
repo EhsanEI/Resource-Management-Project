@@ -18,8 +18,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import org.omg.CORBA.INTERNAL;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -50,6 +55,10 @@ public class FlowReportview extends Controller {
     private Resource selectedResource;
 
     private Alert alert;
+
+    @FXML private Line sampleLine;
+    @FXML private Rectangle sampleRect;
+    @FXML private Text sampleText;
 
 
     public void animate(){
@@ -89,7 +98,7 @@ public class FlowReportview extends Controller {
 
             table = ClientResourceManagerLogicFacade.getInstance().reportFlowResourceAllocations(selectedResource,
                     startDate,endDate);
-            showReport(table);
+            showReport();
         }else {
             resultTable.getScene().getRoot().setDisable(true);
             alert.setTitle("Empty selection!");
@@ -104,7 +113,7 @@ public class FlowReportview extends Controller {
 
     }
 
-    private void showReport(Table table) {
+    private void showReport() {
 
         String[] headers = table.getHeaders();
         String[][] contents = table.getContents();
@@ -140,6 +149,59 @@ public class FlowReportview extends Controller {
 
     private void plot() {
 
+        String[][] contents = table.getContents();
+        int[][] lengths = new int[contents.length][2];
+
+        for(int i = 0; i<contents.length;i++){
+            lengths[i][0] = getdays(contents[i][1]);
+            lengths[i][1] = getdays(contents[i][2]);
+        }
+
+        int min = Integer.MAX_VALUE;
+        int max = Integer.MIN_VALUE;
+        for(int i = 0; i< lengths.length;i++){
+            if(lengths[i][1] > max)
+                max = lengths[i][1];
+            if(lengths[i][0] < min)
+                min = lengths[i][0];
+        }
+
+
+        for(int i = 0 ; i < lengths.length; i++){
+            lengths[i][0] -= min;
+            lengths[i][1] -= min;
+            max -= min;
+            Rectangle rectangle = copyRect(sampleRect,lengths[i][0]/max * 500, (lengths[i][1]-lengths[i][0])/max * 500);
+            Text text = new Text(contents[i][0]);
+            text.setLayoutX(lengths[i][0]/max * 500);
+            text.setLayoutY(250);
+
+            diagramPane.getChildren().add(rectangle);
+
+        }
+
+
+
+
+
+        Rectangle rectangle = copyRect(sampleRect,0,10);
+        rectangle.setArcWidth(300);
+        diagramPane.getChildren().add(rectangle);
+    }
+
+    private int getdays(String date){
+        String[] parts = date.split("/");
+        return Integer.parseInt(parts[0]) *365 + Integer.parseInt(parts[1])*30 + Integer.parseInt(parts[2]);
+    }
+
+    private Rectangle copyRect(Rectangle rectangle,int x, int w){
+        Rectangle rect = new Rectangle();
+        rect.setLayoutX(x);
+        rect.setWidth(w);
+        rect.setEffect(rectangle.getEffect());
+        rect.setArcWidth(rectangle.getArcWidth());
+        rect.setArcHeight(rectangle.getArcHeight());
+        return rect;
     }
 
     public void backFromDiagram(Event event) {

@@ -4,6 +4,7 @@ import businesslogic.ClientAccountingLogicFacade;
 import businesslogic.ClientProgrammerLogicFacade;
 import businesslogic.accounting.job.*;
 import businesslogic.accounting.user.*;
+import businesslogic.distribution.resource.HumanResource;
 import businesslogic.distribution.resource.Spec;
 import businesslogic.utility.Notification;
 import com.sun.org.apache.xalan.internal.xsltc.dom.NthIterator;
@@ -200,24 +201,36 @@ public class EditProfileView extends Controller {
         newUser.setPassword(passwordTextField.getText());
         newUser.setEmail(emailTextField.getText());
 
+        HumanResource humanResource = new HumanResource();
+        ArrayList<HumanResource> humanResources = new ArrayList<>();
 
-        ArrayList<Job> jobs = new ArrayList<>();
 
         for(String job : jobTitles){
-            if(job == JobType.Programming.getTitle()){
+            if(job.equals(JobType.Programming.getTitle())){
                 Programming programming= new Programming();
                 for(Specialty specialty : specialties)
                     programming.addSpecialty(specialty);
                 newUser.addJob(programming);
-            }else if(job == JobType.ProjectManagement.getTitle()){
+
+                humanResource.setProgramming(programming);
+                humanResource.setName(usernameTextField.getText());
+                humanResource.setUniqueIdentifier("HumanResource_" + usernameTextField.getText());
+                humanResources.add(humanResource);
+
+            }else if(job.equals(JobType.ProjectManagement.getTitle())){
                 newUser.addJob(new ProjectManagement());
-            }else if(job == JobType.ResourceManagement.getTitle()){
+            }else if(job.equals(JobType.ResourceManagement.getTitle())){
                 newUser.addJob(new ResourceManagement());
             }
         }
 
+        System.out.println(newUser.getID());
+        System.out.println(user.getID());
+
         newUser.setCreatorUser(user);
-        Notification notification = ClientAccountingLogicFacade.getInstance().editProfile(newUser);
+        Notification notification = ClientAccountingLogicFacade.getInstance().editProfile(
+                newUser,newUser.getJobs(),specialties.toArray(new Specialty[specialties.size()]),
+                humanResources.toArray(new HumanResource[humanResources.size()]));
 
         alert.setTitle("Result");
         if(notification!=null)

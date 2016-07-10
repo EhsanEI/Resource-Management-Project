@@ -153,7 +153,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
                 HumanResourceDAO.save(hr);
             }
 
-            UserDAO.save(user);
+            //UserDAO.save(user);
 
             Notification notification = new Notification();
             notification.setContent("Your request has been submitted.");
