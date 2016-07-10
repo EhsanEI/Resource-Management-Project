@@ -184,11 +184,6 @@ public class User implements Serializable {
 		setApproved(true);
 	}
 	
-	public void sendPassword(String password) throws MessagingException {
-		Email email = new Email(password, getEmail());
-		email.send();
-	}
-
 	public businesslogic.accounting.user.User getCreatorUser() {
 		return getUser();
 	}

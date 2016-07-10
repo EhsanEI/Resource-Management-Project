@@ -58,7 +58,8 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
 
             int requirementID = allocation.getRequirement().getID();
             Requirement requirement = RequirementDAO.getRequirementByORMID(requirementID);
-
+            
+            RequirementDAO.fetchInformationResource(allocation.getRequirement());
             int informationResourceID = allocation.getRequirement().getInformationResource().getID();
             InformationResource informationResource = InformationResourceDAO.getInformationResourceByORMID(informationResourceID);
 

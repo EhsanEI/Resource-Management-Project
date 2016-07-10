@@ -15,8 +15,14 @@ package businesslogic.distribution.resource;
 
 import org.orm.*;
 import org.hibernate.Query;
+
+import businesslogic.distribution.Allocation_DAO;
+import businesslogic.distribution.requirement.Requirement;
 import orm.OODPersistentManager;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 public class ResourceDAO {
@@ -29,6 +35,40 @@ public class ResourceDAO {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
+	}
+	
+	public static void fetchResourceState(Resource resource) {
+		try {
+			PersistentSession session = OODPersistentManager.instance().getSession();
+
+			//Can be done easier with join
+			List<Integer> allocationIDs = session
+					.createSQLQuery("SELECT [Allocation ID] FROM ResourceAllocation WHERE ResourceID2 = " + resource.getID()).list();
+
+
+			java.util.Date currentDate = new java.util.Date();
+			for (Integer allocationID : allocationIDs) {
+				Requirement requirement = Allocation_DAO.getAllocation_ByORMID(allocationID).getRequirement();
+
+				DateFormat df = new SimpleDateFormat("dd/mm/yy");
+
+				java.util.Date reqStartDate = null;
+				java.util.Date reqEndDate = null;
+				try {
+					reqStartDate = df.parse(requirement.getStartDate());
+					reqEndDate = df.parse(requirement.getEndDate());
+				} catch (ParseException e) {
+					resource.setResourceState(ResourceStateEnum.UNALLOCATED.ordinal());
+				}
+
+				if (reqStartDate.before(currentDate) && reqEndDate.after(currentDate)) {
+					resource.setResourceState(ResourceStateEnum.ALLOCATED.ordinal());
+				}
+			}
+
+		}catch(PersistentException e){
+		}
+		resource.setResourceState(ResourceStateEnum.UNALLOCATED.ordinal());
 	}
 	
 	public static Resource getResourceByORMID(int ID) throws PersistentException {

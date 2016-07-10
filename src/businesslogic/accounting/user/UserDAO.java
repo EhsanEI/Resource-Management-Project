@@ -377,24 +377,25 @@ public class UserDAO {
 
 	public static void updateJobs(User user) {
 		try {
-			PersistentSession session = OODPersistentManager.instance().getSession();
-			List<Integer> jobIDs = session
-					.createSQLQuery("SELECT JobID FROM UserJob WHERE UserID = " + user.getID()).list();
-			for (int jID : jobIDs) {
-				Job job = JobDAO.getJobByORMID(jID);
-				job.getORM_UserJobs().clear();
-				JobDAO.delete(job);
-			}
-			jobIDs.clear();
+			if(user.getID() > 0) {
+				PersistentSession session = OODPersistentManager.instance().getSession();
+				List<Integer> jobIDs = session
+						.createSQLQuery("SELECT JobID FROM UserJob WHERE UserID = " + user.getID()).list();
+				for (int jID : jobIDs) {
+					Job job = JobDAO.getJobByORMID(jID);
+					job.getORM_UserJobs().clear();
+					JobDAO.delete(job);
+				}
+				jobIDs.clear();
 
-			List<Integer> userJobIDs = session
-					.createSQLQuery("SELECT ID FROM UserJob WHERE UserID = " + user.getID()).list();
-			for (int ujID : userJobIDs) {
-				UserJobDAO.delete(UserJobDAO.getUserJobByORMID(ujID));
+				List<Integer> userJobIDs = session
+						.createSQLQuery("SELECT ID FROM UserJob WHERE UserID = " + user.getID()).list();
+				for (int ujID : userJobIDs) {
+					UserJobDAO.delete(UserJobDAO.getUserJobByORMID(ujID));
+				}
+				userJobIDs.clear();
+				user.getORM_UserJobs().clear();
 			}
-			userJobIDs.clear();
-			user.getORM_UserJobs().clear();
-
 			for(Job job:user.getJobs()) {
 				UserJob uj = UserJobDAO.createUserJob();
 				user.getORM_UserJobs().add(uj);

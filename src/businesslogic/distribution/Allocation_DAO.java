@@ -13,11 +13,16 @@
  */
 package businesslogic.distribution;
 
-import org.orm.*;
-import org.hibernate.Query;
-import orm.OODPersistentManager;
-
+import java.util.ArrayList;
 import java.util.List;
+
+import org.hibernate.Query;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import orm.OODPersistentManager;
+import businesslogic.distribution.resource.Resource;
+import businesslogic.distribution.resource.ResourceDAO;
 
 public class Allocation_DAO {
 	public static Allocation loadAllocation_ByORMID(int ID) throws PersistentException {
@@ -29,6 +34,24 @@ public class Allocation_DAO {
 			e.printStackTrace();
 			throw new PersistentException(e);
 		}
+	}
+	
+	public static void fetchResources(Allocation allocation) {
+		//This method can be called after allocation and resourceAllocation are saved to db
+		try {
+			PersistentSession session = OODPersistentManager.instance().getSession();
+			List<Integer> resourceIDs = session
+					.createSQLQuery("SELECT ResourceID2 FROM ResourceAllocation WHERE [Allocation ID] = "+ allocation.getID()).list();
+			ArrayList<Resource> result = new ArrayList<>();
+			for(Integer id : resourceIDs) {
+				result.add(ResourceDAO.getResourceByORMID(id));
+			}
+			allocation.setResources(result.toArray(new Resource[result.size()]));
+		}
+		catch (PersistentException ex) {
+			ex.printStackTrace();
+		}
+		allocation.setResources(new Resource[0]);
 	}
 	
 	public static Allocation getAllocation_ByORMID(int ID) throws PersistentException {

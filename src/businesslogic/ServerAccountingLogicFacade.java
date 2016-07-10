@@ -9,6 +9,7 @@ import businesslogic.distribution.resource.HumanResource;
 import businesslogic.distribution.resource.HumanResourceDAO;
 import businesslogic.distribution.resource.Spec;
 import businesslogic.utility.Notification;
+import network.Email;
 import org.orm.PersistentException;
 import org.orm.PersistentTransaction;
 
@@ -106,7 +107,8 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
             user.setPassword(randomPassword);
 
             try {
-                user.sendPassword(randomPassword);
+                Email email = new Email(randomPassword, user.getEmail());
+                email.send();
             } catch (MessagingException e) {
                 msg.append("Cannot send the new password.");
                 notification.setContent(msg.toString());
@@ -134,6 +136,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
     @Override
     public Notification editProfile(User user, Job[] jobs, Specialty[] specialties, HumanResource[] humanResources) {
         try {
+
             UserDAO.updateJobs(user);
 
             for(Object ujObject: user.getORM_UserJobs()) {
@@ -141,7 +144,7 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
                 UserJobDAO.save(uj);
             }
 
-            for(Job job: jobs) {
+            for(Job job: user.getJobs()) {
                 JobDAO.save(job);
             }
 
@@ -153,7 +156,8 @@ public class ServerAccountingLogicFacade implements AccountingLogicInterface{
                 HumanResourceDAO.save(hr);
             }
 
-            //UserDAO.save(user);
+//            User creatorUser = UserDAO.getUserByORMID()
+            UserDAO.save(user);
 
             Notification notification = new Notification();
             notification.setContent("Your request has been submitted.");

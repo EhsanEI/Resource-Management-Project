@@ -56,6 +56,8 @@ public class Allocation implements Serializable {
 	
 	private java.util.Set ORM_resourceAllocations = new java.util.HashSet();
 	
+	private Resource[] resources;
+	
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -109,21 +111,11 @@ public class Allocation implements Serializable {
 	}
 	
 	public Resource[] getResources() {
-		//This method can be called after allocation and resourceAllocation are saved to db
-		try {
-			PersistentSession session = OODPersistentManager.instance().getSession();
-			List<Integer> resourceIDs = session
-					.createSQLQuery("SELECT ResourceID2 FROM ResourceAllocation WHERE [Allocation ID] = "+ getID()).list();
-			ArrayList<Resource> result = new ArrayList<>();
-			for(Integer id : resourceIDs) {
-				result.add(ResourceDAO.getResourceByORMID(id));
-			}
-			return result.toArray(new Resource[result.size()]);
-		}
-		catch (PersistentException ex) {
-			ex.printStackTrace();
-		}
-		return new Resource[0];
+		return this.resources;
+	}
+	
+	public void setResources(Resource[] resources) {
+		this.resources = resources;
 	}
 	
 	public void addResources(Resource[] resources) {

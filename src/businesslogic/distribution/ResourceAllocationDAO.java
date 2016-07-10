@@ -13,11 +13,13 @@
  */
 package businesslogic.distribution;
 
-import org.orm.*;
-import org.hibernate.Query;
-import orm.OODPersistentManager;
-
 import java.util.List;
+
+import org.hibernate.Query;
+import org.orm.PersistentException;
+import org.orm.PersistentSession;
+
+import orm.OODPersistentManager;
 
 public class ResourceAllocationDAO {
 	public static ResourceAllocation loadResourceAllocationByORMID(int ID) throws PersistentException {

@@ -56,6 +56,8 @@ public class Resource implements Serializable {
 	
 	private java.util.Set ORM_resourceAllocations = new java.util.HashSet();
 	
+	private int resourceState;
+	
 	private void setID(int value) {
 		this.ID = value;
 	}
@@ -95,38 +97,11 @@ public class Resource implements Serializable {
 	public final businesslogic.distribution.ResourceAllocationSetCollection resourceAllocations = new businesslogic.distribution.ResourceAllocationSetCollection(this, _ormAdapter, ORMConstants.KEY_RESOURCE_RESOURCEALLOCATIONS, ORMConstants.KEY_MUL_ONE_TO_MANY);
 	
 	public int getResourceState() {
-
-		try {
-			PersistentSession session = OODPersistentManager.instance().getSession();
-
-			//Can be done easier with join
-			List<Integer> allocationIDs = session
-					.createSQLQuery("SELECT [Allocation ID] FROM ResourceAllocation WHERE ResourceID2 = " + getID()).list();
-
-
-			java.util.Date currentDate = new java.util.Date();
-			for (Integer allocationID : allocationIDs) {
-				Requirement requirement = Allocation_DAO.getAllocation_ByORMID(allocationID).getRequirement();
-
-				DateFormat df = new SimpleDateFormat("dd/mm/yy");
-
-				java.util.Date reqStartDate = null;
-				java.util.Date reqEndDate = null;
-				try {
-					reqStartDate = df.parse(requirement.getStartDate());
-					reqEndDate = df.parse(requirement.getEndDate());
-				} catch (ParseException e) {
-					return ResourceStateEnum.UNALLOCATED.ordinal();
-				}
-
-				if (reqStartDate.before(currentDate) && reqEndDate.after(currentDate)) {
-					return ResourceStateEnum.ALLOCATED.ordinal();
-				}
-			}
-
-		}catch(PersistentException e){
-		}
-		return ResourceStateEnum.UNALLOCATED.ordinal();
+		return this.resourceState;
+	}
+	
+	public void setResourceState(int resourceState) {
+		this.resourceState = resourceState;
 	}
 
 	public void addResourceAllocation(ResourceAllocation resourceAllocation) {
