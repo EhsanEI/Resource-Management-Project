@@ -57,6 +57,8 @@ public class ResourceRequirementsReportView extends Controller {
     private Alert alert;
 
 
+    private Table table;
+
     public void animate(){
         animatePaneChange(resourceRequirementReportPane, Direction.RIGHT);
     }
@@ -75,7 +77,8 @@ public class ResourceRequirementsReportView extends Controller {
                 if(getInfoResourceString(informationResource).equals(informationResourceCombo.getSelectionModel().getSelectedItem()))
                     selectedInformationResource = informationResource;
 
-            showReport(ClientResourceManagerLogicFacade.getInstance().reportResourceRequirements(selectedInformationResource.getID()));
+            table =ClientResourceManagerLogicFacade.getInstance().reportResourceRequirements(selectedInformationResource.getID());
+            showReport();
         }else {
             resultTable.getScene().getRoot().setDisable(true);
             alert.setTitle("Empty selection!");
@@ -89,7 +92,7 @@ public class ResourceRequirementsReportView extends Controller {
         }
 
     }
-    private void showReport(Table table) {
+    private void showReport() {
 
 
         String[] headers = table.getHeaders();
@@ -141,7 +144,8 @@ public class ResourceRequirementsReportView extends Controller {
 
     private void plot() {
 
-
+        String[][] contents = table.getContents();
+        /*
         String[][] contents = new String[2][5];
         contents[0][0] = "PC";
         contents[0][1] = "5";
@@ -154,7 +158,7 @@ public class ResourceRequirementsReportView extends Controller {
         contents[1][2] = "2/07/12";
         contents[1][3] = "9/07/12";
         contents[1][4] = "Ordinary";
-
+*/
 
         if(contents.length <3)
             reqPane3.setVisible(false);

@@ -155,7 +155,9 @@ public class FlowReportview extends Controller {
 
         sampleRect.setVisible(false);
 
-       // String[][] contents = table.getContents();
+       String[][] contents = table.getContents();
+
+        /*
         String[][] contents = new String[2][3];
         contents[0][0] = "info1";
         contents[0][1] = "22/06/12";
@@ -165,7 +167,7 @@ public class FlowReportview extends Controller {
         contents[1][1] = "29/06/12";
         contents[1][2] = "1/07/12";
 
-
+*/
         int[][] lengths = new int[contents.length][2];
 
 
