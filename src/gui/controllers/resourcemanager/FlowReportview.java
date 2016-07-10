@@ -58,7 +58,11 @@ public class FlowReportview extends Controller {
 
     @FXML private Line sampleLine;
     @FXML private Rectangle sampleRect;
-    @FXML private Text sampleText;
+    @FXML private Label endLabel;
+    @FXML private Label startLabel;
+
+
+
 
 
     public void animate(){
@@ -149,16 +153,10 @@ public class FlowReportview extends Controller {
 
     private void plot() {
 
-
-
-
         sampleRect.setVisible(false);
 
        // String[][] contents = table.getContents();
         String[][] contents = new String[2][3];
-        int[][] lengths = new int[contents.length][2];
-
-
         contents[0][0] = "info1";
         contents[0][1] = "22/06/12";
         contents[0][2] = "26/06/12";
@@ -166,6 +164,12 @@ public class FlowReportview extends Controller {
         contents[1][0] = "info2";
         contents[1][1] = "29/06/12";
         contents[1][2] = "1/07/12";
+
+
+        int[][] lengths = new int[contents.length][2];
+
+
+
 
 
         for(int i = 0; i<contents.length;i++){
@@ -178,10 +182,14 @@ public class FlowReportview extends Controller {
         double max = Integer.MIN_VALUE;
 
         for(int i = 0; i< lengths.length;i++){
-            if(lengths[i][1] > max)
+            if(lengths[i][1] > max){
                 max = lengths[i][1];
-            if(lengths[i][0] < min)
+                endLabel.setText(contents[i][2]);
+            }
+            if(lengths[i][0] < min){
                 min = lengths[i][0];
+                startLabel.setText(contents[i][1]);
+            }
         }
 
 
@@ -195,23 +203,36 @@ public class FlowReportview extends Controller {
             lengths[i][1] -= min;
 
 
-            System.out.println(lengths[i][0]);
-            System.out.println(lengths[i][1]);
+            double x = (lengths[i][0] / max) * 650.0;
+            double y = ((lengths[i][1]-lengths[i][0])/max) * 650.0;
 
-            double x = (lengths[i][0] / max) * 500.0;
-            double y = ((lengths[i][1]-lengths[i][0])/max) * 500.0;
 
-            System.out.println(x + ":" + y);
 
             Rectangle rectangle = copyRect(sampleRect, x,y );
 
             Text text = new Text(contents[i][0]);
-            text.setLayoutX(x+y/2-text.getY()/2);
-            text.setLayoutY(250);
+
+
+
+
+            text.setStyle(startLabel.getStyle());
 
             text.setFill(Color.WHITE);
+            text.setFont(startLabel.getFont());
+            text.setLayoutX(50 + x + y / 2 - text.getLayoutBounds().getWidth()/2);
+            text.setLayoutY(250 + 5 );
 
-            diagramPane.getChildren().addAll(rectangle,text);
+            int daysCount = (lengths[i][1]-lengths[i][0]);
+
+            Text days = new Text(String.valueOf(daysCount));
+            days.setStyle(startLabel.getStyle());
+            days.setFont(startLabel.getFont());
+            days.setLayoutY(230);
+            days.setFill(startLabel.getTextFill());
+            days.setLayoutX(50 + x + y / 2 - days.getLayoutBounds().getWidth()/2);
+            days.setEffect(startLabel.getEffect());
+
+            diagramPane.getChildren().addAll(rectangle,text,days);
 
         }
 
