@@ -60,6 +60,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             Requirement requirement = RequirementDAO.getRequirementByORMID(requirementID);
             
             RequirementDAO.fetchInformationResource(allocation.getRequirement());
+            RequirementDAO.fetchInformationResource(allocation.getRequirement());
             int informationResourceID = allocation.getRequirement().getInformationResource().getID();
             InformationResource informationResource = InformationResourceDAO.getInformationResourceByORMID(informationResourceID);
 
@@ -87,6 +88,7 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
             Notification projectManagerNotification = NotificationDAO.createNotification();
             projectManagerNotification .setContent("A resource manager responded to your requirement for "
                     + allocation.getRequirement().getResourceName() + ".");
+            RequirementDAO.fetchProjectManager(allocation.getRequirement());
             allocation.getRequirement().getProjectManagement().addNotification(projectManagerNotification );
 
             NotificationDAO.save(projectManagerNotification);
@@ -121,7 +123,8 @@ public class ServerResourceManagerLogicFacade implements ResourceManagerLogicInt
         Notification projectManagerNotification = NotificationDAO.createNotification();
         projectManagerNotification .setContent("A resource manager rejected your requirement for "
                 + requirement.getResourceName() + ".");
-
+        
+        RequirementDAO.fetchProjectManager(requirement);
         ProjectManagement pm = requirement.getProjectManagement();
         pm.addNotification(projectManagerNotification );
 

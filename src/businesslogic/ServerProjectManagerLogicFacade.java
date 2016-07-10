@@ -125,10 +125,8 @@ public class ServerProjectManagerLogicFacade implements ProjectManagerLogicInter
     @Override
     public Notification registerRequirement(int userID, Requirement newRequirement, InformationResource resource) {
         try {
-
-            User user = UserDAO.getUserByORMID(userID);
-            RequirementDAO.fetchProjectManager(newRequirement);
-            newRequirement.setProjectManager(getProjectManagement(user));
+        	User user = UserDAO.getUserByORMID(userID);
+        	newRequirement.setProjectManager(getProjectManagement(user));
             RequirementDAO.save(newRequirement);
 
             InformationResource oldResource = InformationResourceDAO.getInformationResourceByORMID(resource.getID());

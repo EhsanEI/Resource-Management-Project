@@ -107,7 +107,10 @@ public class Requirement implements Serializable {
 	
 	public void setProjectManager(ProjectManagement pm) {
 		pm.addRequirement(this);
-		this.projectManagement = pm;
+	}
+	
+	public void setProjectManagement(ProjectManagement projectManager) {
+		this.projectManagement = projectManager;
 	}
 	
 
@@ -118,7 +121,6 @@ public class Requirement implements Serializable {
 	public void setInformationResource(InformationResource informationResource) {
 		informationResource.addRequirement(this);
 		this.informationResource = informationResource;
-		
 	}
 
 	public InformationResource getInformationResource() {

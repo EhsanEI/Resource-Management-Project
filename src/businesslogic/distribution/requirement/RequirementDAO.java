@@ -112,7 +112,7 @@ public class RequirementDAO {
 		try {
 			PersistentSession session = OODPersistentManager.instance().getSession();
 			Integer jobID = (Integer) session.createSQLQuery("SELECT JobID FROM Requirement WHERE ID = " + requirement.getID()).list().get(0);
-			requirement.setProjectManager(ProjectManagementDAO.getProjectManagementByORMID(jobID));
+			requirement.setProjectManagement(ProjectManagementDAO.getProjectManagementByORMID(jobID));
 		}
 		catch (PersistentException ex) {
 			ex.printStackTrace();
