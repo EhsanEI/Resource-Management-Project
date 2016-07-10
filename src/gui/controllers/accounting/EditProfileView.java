@@ -65,6 +65,10 @@ public class EditProfileView extends Controller {
         for(JobType jobType : JobType.values())
             jobTypeCombo.getItems().add(jobType.getTitle());
 
+        for(Job job : user.getJobs()){
+
+        }
+
 
         addSpecialtyButton.setDisable(true);
         specialtiesListView.setDisable(true);
@@ -90,12 +94,18 @@ public class EditProfileView extends Controller {
                 addSpecialtyButton.setDisable(false);
                 specialtiesListView.setDisable(false);
                 Programming programming = (Programming)job;
-                for (Specialty specialty : programming.getSpecialties())
+                for (Specialty specialty : programming.getSpecialties()) {
                     specialtiesListView.getItems().addAll(specialty.getTitle());
-            }else if(ProjectManagement.class.isInstance(job))
+                    specialties.add(specialty);
+                }
+                jobTitles.add(JobType.Programming.getTitle());
+            }else if(ProjectManagement.class.isInstance(job)) {
                 jobsListView.getItems().add(JobType.ProjectManagement.getTitle());
-            else
+                jobTitles.add(JobType.ProjectManagement.getTitle());
+            } else{
                 jobsListView.getItems().add(JobType.ResourceManagement.getTitle());
+                jobTitles.add(JobType.ResourceManagement.getTitle());
+            }
         }
     }
 
@@ -159,7 +169,7 @@ public class EditProfileView extends Controller {
     @FXML private void singleJobRemoveButtonPressed(ActionEvent event) {
         String jobToRemove = null;
         for(String job : jobTitles)
-            if(job == jobsListViewInJobAddition.getSelectionModel().getSelectedItem())
+            if(job.equals(jobsListViewInJobAddition.getSelectionModel().getSelectedItem()))
                 jobToRemove = job;
         jobTitles.remove(jobToRemove);
 
@@ -204,7 +214,6 @@ public class EditProfileView extends Controller {
         HumanResource humanResource = new HumanResource();
         ArrayList<HumanResource> humanResources = new ArrayList<>();
 
-
         for(String job : jobTitles){
             if(job.equals(JobType.Programming.getTitle())){
                 Programming programming= new Programming();
@@ -224,8 +233,9 @@ public class EditProfileView extends Controller {
             }
         }
 
-        System.out.println(newUser.getID());
-        System.out.println(user.getID());
+        newUser.getJobInfo().print();
+
+        user.getJobInfo().print();
 
         newUser.setCreatorUser(user);
         Notification notification = ClientAccountingLogicFacade.getInstance().editProfile(

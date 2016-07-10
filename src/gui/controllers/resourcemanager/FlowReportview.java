@@ -149,16 +149,34 @@ public class FlowReportview extends Controller {
 
     private void plot() {
 
-        String[][] contents = table.getContents();
+
+
+
+        sampleRect.setVisible(false);
+
+       // String[][] contents = table.getContents();
+        String[][] contents = new String[2][3];
         int[][] lengths = new int[contents.length][2];
+
+
+        contents[0][0] = "info1";
+        contents[0][1] = "22/06/12";
+        contents[0][2] = "26/06/12";
+
+        contents[1][0] = "info2";
+        contents[1][1] = "29/06/12";
+        contents[1][2] = "1/07/12";
+
 
         for(int i = 0; i<contents.length;i++){
             lengths[i][0] = getdays(contents[i][1]);
             lengths[i][1] = getdays(contents[i][2]);
         }
 
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
+        double min = Integer.MAX_VALUE;
+
+        double max = Integer.MIN_VALUE;
+
         for(int i = 0; i< lengths.length;i++){
             if(lengths[i][1] > max)
                 max = lengths[i][1];
@@ -167,37 +185,50 @@ public class FlowReportview extends Controller {
         }
 
 
+
+
+        max -= min;
+
+
         for(int i = 0 ; i < lengths.length; i++){
             lengths[i][0] -= min;
             lengths[i][1] -= min;
-            max -= min;
-            Rectangle rectangle = copyRect(sampleRect,lengths[i][0]/max * 500, (lengths[i][1]-lengths[i][0])/max * 500);
+
+
+            System.out.println(lengths[i][0]);
+            System.out.println(lengths[i][1]);
+
+            double x = (lengths[i][0] / max) * 500.0;
+            double y = ((lengths[i][1]-lengths[i][0])/max) * 500.0;
+
+            System.out.println(x + ":" + y);
+
+            Rectangle rectangle = copyRect(sampleRect, x,y );
+
             Text text = new Text(contents[i][0]);
-            text.setLayoutX(lengths[i][0]/max * 500);
+            text.setLayoutX(x+y/2-text.getY()/2);
             text.setLayoutY(250);
 
-            diagramPane.getChildren().add(rectangle);
+            text.setFill(Color.WHITE);
+
+            diagramPane.getChildren().addAll(rectangle,text);
 
         }
 
 
-
-
-
-        Rectangle rectangle = copyRect(sampleRect,0,10);
-        rectangle.setArcWidth(300);
-        diagramPane.getChildren().add(rectangle);
     }
 
     private int getdays(String date){
         String[] parts = date.split("/");
-        return Integer.parseInt(parts[0]) *365 + Integer.parseInt(parts[1])*30 + Integer.parseInt(parts[2]);
+        return Integer.parseInt(parts[2]) *365 + Integer.parseInt(parts[1])*30 + Integer.parseInt(parts[0]);
     }
 
-    private Rectangle copyRect(Rectangle rectangle,int x, int w){
+    private Rectangle copyRect(Rectangle rectangle,double x, double w){
         Rectangle rect = new Rectangle();
-        rect.setLayoutX(x);
+        rect.setLayoutX(x+50);
+        rect.setLayoutY(250-rectangle.getHeight()/2);
         rect.setWidth(w);
+        rect.setHeight(rectangle.getHeight());
         rect.setEffect(rectangle.getEffect());
         rect.setArcWidth(rectangle.getArcWidth());
         rect.setArcHeight(rectangle.getArcHeight());

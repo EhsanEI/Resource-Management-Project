@@ -101,13 +101,12 @@
                   <Image url="@../../resources/back.png" />
                </image>
             </ImageView>
-            <Rectangle fx:id="sampleRect" arcHeight="50.0" arcWidth="50.0" fill="#39ff1f42" height="40.0" layoutX="289.0" layoutY="158.0" opacity="0.76" stroke="TRANSPARENT" strokeType="INSIDE" width="200.0">
+            <Rectangle fx:id="sampleRect" arcHeight="50.0" arcWidth="50.0" fill="#39ff1f42" height="40.0" layoutX="289.0" layoutY="158.0" opacity="0.76" stroke="TRANSPARENT" strokeType="INSIDE" visible="false" width="200.0">
                <effect>
                   <InnerShadow color="#35d115" />
                </effect>
             </Rectangle>
-            <Text fx:id="sampleText" layoutX="378.0" layoutY="183.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-            <Line fx:id="sampleLine" endX="100.0" fill="#f2040400" layoutX="389.0" layoutY="244.0" startX="-100.0" stroke="RED" />
+            <Line fx:id="sampleLine" endX="650.0" fill="#f2040400" layoutX="50.0" layoutY="250.0" stroke="RED" />
          </children>
       </AnchorPane>
    </children>
